@@ -74,8 +74,11 @@ ngpu = faiss.get_num_gpus()
 
 replicas = 1  # nb of replicas of sharded dataset
 add_batch_size = 32768
-query_batch_size = 16384
-nprobes = [1 << l for l in range(9)]
+# Wenqi edited, origin query_batch_size=16384
+query_batch_size = 1
+# query_batch_size = 16384
+
+nprobes = [1 << l for l in range(13)]
 knngraph = False
 use_precomputed_tables = True
 tempmem = -1  # if -1, use system default
@@ -111,7 +114,7 @@ while args:
         print("argument %s unknown" % a, file=sys.stderr)
         sys.exit(1)
 
-cacheroot = '/tmp/bench_gpu_1bn'
+cacheroot = './bench_gpu_1bn'
 
 if not os.path.isdir(cacheroot):
     print("%s does not exist, creating it" % cacheroot)
@@ -308,19 +311,19 @@ gpu_resources = []
 total_gpu = 8 # spaceml 1, select the last GPU for our use
 
 # skip the first 7
-for i in range(total_gpu - 1):
+#for i in range(total_gpu):
+#    res = faiss.StandardGpuResources()
+#    if tempmem >= 0:
+#        res.setTempMemory(tempmem)
+#    gpu_resources.append(res)
+#print("GPU resourses:", gpu_resources)
+#gpu_resources = [gpu_resources[-1]]
+#print("Select the last one:\nGPU resourses:", gpu_resources)
+for i in range(ngpu):
     res = faiss.StandardGpuResources()
-# use the 8th
-res = faiss.StandardGpuResources()
-if tempmem >= 0:
-    res.setTempMemory(tempmem)
-gpu_resources.append(res)
-
-# for i in range(ngpu):
-#     res = faiss.StandardGpuResources()
-#     if tempmem >= 0:
-#         res.setTempMemory(tempmem)
-#     gpu_resources.append(res)
+    if tempmem >= 0:
+        res.setTempMemory(tempmem)
+    gpu_resources.append(res)
 
 
 def make_vres_vdev(i0=0, i1=-1):
@@ -691,7 +694,14 @@ def eval_dataset(index, preproc):
     nq_gt = gt_I.shape[0]
     print("search...")
     sl = query_batch_size
+
     nq = xq.shape[0]
+    print(nq)
+    # Wenqi adjusted, only use the first 1000 queries
+    # print(xq.shape)
+    xq = xq[:1000]
+    print(xq.shape)
+
     for nprobe in nprobes:
         ps.set_index_parameter(index, 'nprobe', nprobe)
         t0 = time.time()

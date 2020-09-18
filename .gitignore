@@ -1,2 +1,4 @@
 ./GPU/sift1M
 ./GPU/sift1M/*
+bench_gpu_1bn_coarse/*
+bench_gpu_1bn_coarse

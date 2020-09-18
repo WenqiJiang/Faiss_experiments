@@ -2,3 +2,5 @@ sift1M/*
 sift1M
 bigann/*
 bigann
+bench_gpu_1bn
+bench_gpu_1bn/*
