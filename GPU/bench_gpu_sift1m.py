@@ -10,15 +10,24 @@ import os
 import time
 import numpy as np
 import pdb
+import argparse 
 
 import faiss
 from datasets import load_sift1M, evaluate
 
+parser = argparse.ArgumentParser()
+parser.add_argument('--nq', type=int, default=10000, help="number of query, max=10000")
+
+args = parser.parse_args()
+nq = args.nq
 
 print("load data")
 
 xb, xq, xt, gt = load_sift1M()
-nq, d = xq.shape
+print("shape of all query vectors:", xq.shape)
+_, d = xq.shape
+xq = xq[:nq, :]
+print("shape of selected query vectors:", xq.shape)
 
 # we need only a StandardGpuResources per GPU
 res = faiss.StandardGpuResources()
