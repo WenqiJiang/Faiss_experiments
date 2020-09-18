@@ -304,11 +304,23 @@ print("preparing resources for %d GPUs" % ngpu)
 
 gpu_resources = []
 
-for i in range(ngpu):
+###### hardcode here #######
+total_gpu = 8 # spaceml 1, select the last GPU for our use
+
+# skip the first 7
+for i in range(total_gpu - 1):
     res = faiss.StandardGpuResources()
-    if tempmem >= 0:
-        res.setTempMemory(tempmem)
-    gpu_resources.append(res)
+# use the 8th
+res = faiss.StandardGpuResources()
+if tempmem >= 0:
+    res.setTempMemory(tempmem)
+gpu_resources.append(res)
+
+# for i in range(ngpu):
+#     res = faiss.StandardGpuResources()
+#     if tempmem >= 0:
+#         res.setTempMemory(tempmem)
+#     gpu_resources.append(res)
 
 
 def make_vres_vdev(i0=0, i1=-1):
