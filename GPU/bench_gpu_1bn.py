@@ -73,13 +73,16 @@ index_key = None
 ngpu = faiss.get_num_gpus()
 
 replicas = 1  # nb of replicas of sharded dataset
+# Wenqi edited, origin add_batch_size = 32768
 add_batch_size = 32768
 # Wenqi edited, origin query_batch_size=16384
-query_batch_size = 1
-# query_batch_size = 16384
+# query_batch_size = 1
+query_batch_size = 16384
 
-nprobes = [1 << l for l in range(13)]
+nprobes = [1 << l for l in range(1,13)]
 knngraph = False
+# Wenqi edited, origin use_precomputed_tables=True
+#use_precomputed_tables = False
 use_precomputed_tables = True
 tempmem = -1  # if -1, use system default
 max_add = -1
@@ -114,7 +117,7 @@ while args:
         print("argument %s unknown" % a, file=sys.stderr)
         sys.exit(1)
 
-cacheroot = './bench_gpu_1bn'
+cacheroot = './bench_gpu_1bn_OPQ8_32,IVF4096,PQ8'
 
 if not os.path.isdir(cacheroot):
     print("%s does not exist, creating it" % cacheroot)
@@ -204,6 +207,12 @@ if dbname.startswith('SIFT'):
     dbsize = int(dbname[4:-1])
     xb = mmap_bvecs('bigann/bigann_base.bvecs')
     xq = mmap_bvecs('bigann/bigann_query.bvecs')
+
+    # Wenqi adjusted, only use the first 1000 queries
+    # print(xq.shape)
+    # xq = xq[:1000]
+    print(xq.shape)
+
     xt = mmap_bvecs('bigann/bigann_learn.bvecs')
 
     # trim xb to correct size
@@ -326,6 +335,7 @@ for i in range(ngpu):
     gpu_resources.append(res)
 
 
+# Wenqi: I guess this is where we can adjust GPU resources
 def make_vres_vdev(i0=0, i1=-1):
     " return vectors of device ids and resources useful for gpu_multiple"
     vres = faiss.GpuResourcesVector()
@@ -697,10 +707,6 @@ def eval_dataset(index, preproc):
 
     nq = xq.shape[0]
     print(nq)
-    # Wenqi adjusted, only use the first 1000 queries
-    # print(xq.shape)
-    xq = xq[:1000]
-    print(xq.shape)
 
     for nprobe in nprobes:
         ps.set_index_parameter(index, 'nprobe', nprobe)
@@ -720,6 +726,8 @@ def eval_dataset(index, preproc):
                 sys.stdout.flush()
 
                 i1 = i0 + xs.shape[0]
+                # Wenqi: debugging memory overflow
+                # print(xs.shape)
                 Di, Ii = index.search(xs, nnn)
 
                 I[i0:i1] = Ii
@@ -739,6 +747,8 @@ def eval_dataset(index, preproc):
             print("  probe=%-3d: %.3f s" % (nprobe, t1 - t0), end=' ')
             gtc = gt_I[:, :1]
             nq = xq.shape[0]
+            # WENQI modified, when only using 1000 query, comment below
+            # because groud truth verification have problems with shape
             for rank in 1, 10, 100:
                 if rank > nnn: continue
                 nok = (I[:, :rank] == gtc).sum()

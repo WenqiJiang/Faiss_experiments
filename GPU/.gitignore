@@ -1,6 +1,17 @@
+__pycache__
 sift1M/*
 sift1M
 bigann/*
 bigann
 bench_gpu_1bn
 bench_gpu_1bn/*
+bench_cpu_IMI2x12,PQ16
+bench_cpu_IMI2x12,PQ8
+bench_cpu_IVF262144,PQ8
+bench_cpu_IVF262144,PQ16
+bench_cpu_IVF4096,PQ8
+bench_cpu_IVF4096,PQ16
+bench_gpu_1bn_OPQ8_32,IVF262144,PQ8
+bench_gpu_1bn_OPQ8_32,IVF262144,PQ16
+bench_gpu_1bn_OPQ8_32,IVF4096,PQ8
+bench_gpu_1bn_OPQ8_32,IVF4096,PQ16
