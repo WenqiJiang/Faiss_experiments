@@ -76,8 +76,8 @@ replicas = 1  # nb of replicas of sharded dataset
 # Wenqi edited, origin add_batch_size = 32768
 add_batch_size = 32768
 # Wenqi edited, origin query_batch_size=16384
-# query_batch_size = 1
-query_batch_size = 16384
+query_batch_size = 1
+# query_batch_size = 16384
 
 nprobes = [1 << l for l in range(1,13)]
 knngraph = False
@@ -117,7 +117,7 @@ while args:
         print("argument %s unknown" % a, file=sys.stderr)
         sys.exit(1)
 
-cacheroot = './bench_gpu_1bn_OPQ8_32,IVF4096,PQ8'
+cacheroot = './bench_gpu_1bn_{}'.format(index_key)
 
 if not os.path.isdir(cacheroot):
     print("%s does not exist, creating it" % cacheroot)
