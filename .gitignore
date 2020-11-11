@@ -2,6 +2,8 @@ sift1M
 bigann
 __pycache__
 bench_cpu_*/*
+bench_gpu_1bn_*
+bench_gpu_1bn_*/*
 bench_gpu_1bn_coarse/*
 bench_gpu_1bn_coarse
 bench_cpu_IMI2x12,PQ16

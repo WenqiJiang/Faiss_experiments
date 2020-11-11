@@ -77,9 +77,9 @@ replicas = 1  # nb of replicas of sharded dataset
 add_batch_size = 32768
 # Wenqi edited, origin query_batch_size=16384
 query_batch_size = 1
-# query_batch_size = 16384
+query_batch_size = 16384
 
-nprobes = [1 << l for l in range(1,13)]
+nprobes = [1 << l for l in range(10)]
 knngraph = False
 # Wenqi edited, origin use_precomputed_tables=True
 #use_precomputed_tables = False
@@ -88,6 +88,7 @@ tempmem = -1  # if -1, use system default
 max_add = -1
 use_float16 = False
 use_cache = True
+startgpu=0
 nnn = 10
 altadd = False
 I_fname = None
@@ -99,6 +100,7 @@ while args:
     a = args.pop(0)
     if a == '-h': usage()
     elif a == '-ngpu':      ngpu = int(args.pop(0))
+    elif a == '-startgpu':  startgpu = int(args.pop(0)) # Wenqi, the id the first GPU used, e.g., 1 -> skip GPU0
     elif a == '-R':         replicas = int(args.pop(0))
     elif a == '-noptables': use_precomputed_tables = False
     elif a == '-abs':       add_batch_size = int(args.pop(0))
@@ -342,8 +344,12 @@ def make_vres_vdev(i0=0, i1=-1):
     vdev = faiss.IntVector()
     if i1 == -1:
         i1 = ngpu
+#    for i in range(i0, i1):
+        #vdev.push_back(i)
+        #vres.push_back(gpu_resources[i])
+    # WENQI: Start from assigned GPU
     for i in range(i0, i1):
-        vdev.push_back(i)
+        vdev.push_back(i + startgpu)
         vres.push_back(gpu_resources[i])
     return vres, vdev
 

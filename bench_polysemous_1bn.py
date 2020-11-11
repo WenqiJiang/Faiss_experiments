@@ -16,6 +16,9 @@ from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
 
 
+### Wenqi: when loading the index, save it to numpy array, default: False
+save_numpy_index = False
+# save_numpy_index = False 
 # we mem-map the biggest files to avoid having them in memory all at
 # once
 
@@ -186,6 +189,11 @@ def get_populated_index():
     else:
         print("loading", filename)
         index = faiss.read_index(filename)
+        if save_numpy_index:
+            print("Saving index to numpy array...")
+            chunk = faiss.serialize_index(index)
+            np.save("{}.npy".format(filename), chunk)
+            print("Finish saving numpy index")
     return index
 
 
