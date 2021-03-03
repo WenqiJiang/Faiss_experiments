@@ -5,6 +5,11 @@
 # This source code is licensed under the MIT license found in the
 # LICENSE file in the root directory of this source tree.
 
+"""
+e.g., 
+python bench_gpu_1bn.py SIFT1000M OPQ16,IVF262144,PQ16 -nnn 100 -ngpu 3 -startgpu 1 -tempmem $[1536*1024*1024] -qbs 512
+"""
+
 from __future__ import print_function
 import numpy as np
 import time
@@ -119,7 +124,7 @@ while args:
         print("argument %s unknown" % a, file=sys.stderr)
         sys.exit(1)
 
-cacheroot = './bench_gpu_1bn_{}'.format(index_key)
+cacheroot = './trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key)
 
 if not os.path.isdir(cacheroot):
     print("%s does not exist, creating it" % cacheroot)

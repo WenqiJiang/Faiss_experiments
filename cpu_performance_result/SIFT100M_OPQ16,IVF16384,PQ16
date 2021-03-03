@@ -1,0 +1,12 @@
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16_populated.index
+         	 R@1    R@10   R@100     time    %pass
+nprobe=1 	 0.2059 0.3529 0.3697    0.223    0.00
+nprobe=2 	 0.2639 0.4889 0.5212    0.311    0.00
+nprobe=4 	 0.3073 0.6156 0.6721    0.489    0.00
+nprobe=8 	 0.3391 0.7147 0.7960    0.832    0.00
+nprobe=16 	 0.3534 0.7836 0.8893    1.510    0.00
+nprobe=32 	 0.3620 0.8224 0.9491    2.825    0.00
+nprobe=64 	 0.3638 0.8379 0.9762    5.385    0.00
+nprobe=128 	 0.3650 0.8441 0.9882   10.397    0.00

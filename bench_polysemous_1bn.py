@@ -45,7 +45,7 @@ index_key     = sys.argv[2]
 parametersets = sys.argv[3:]
 
 
-tmpdir = './bench_cpu_{}'.format(index_key)
+tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 
 if not os.path.isdir(tmpdir):
     print("%s does not exist, creating it" % tmpdir)
