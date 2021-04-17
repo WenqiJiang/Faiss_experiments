@@ -4,27 +4,22 @@
 
 install anaconda: https://docs.anaconda.com/anaconda/install/linux/
 
-# init conda ，加到~/.bashrc里
-source /home/wenqi/anaconda3/bin/activate
-
-# faiss只支持到3.7
+% faiss supports python3.7, not 3.8
 conda create -n py37 python=3.7
 conda activate py37
 
-# install openblas，复制进Commandline可能会出错，手动敲比较好
+% install openblas
 conda install -c conda-forge openblas
-
-# 出问题的一步，很多comment说conda完全不可靠 -> 不支持py3.8
 conda install -c pytorch faiss-cpu
 
-# 看看是否安装成功
+% verify installation
 python 
 import faiss
 
-可以运行git faiss的tutorial demo: 
+% Faiss's demo: 
 https://github.com/facebookresearch/faiss/blob/master/tutorial/python/1-Flat.py
 
-Faiss API: 
+% Faiss API: 
 https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
 
 ## Directory Navigation
@@ -73,10 +68,6 @@ python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0
 python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 8
 ```
 
-### print_cpu_performance.py
-
-Given the output recall / time result by Faiss, save these numbers in the form of python dictionary, and print the contents out.
-
 ### bench_gpu_1bn.py
 
 Train / query a single index on GPU.
@@ -108,14 +99,18 @@ Test the performance for trained indexes, and output the recall / performance in
 To cover all indexes on SIFT100M dataset:  
 
 ```
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1 --ngpu 1 --startgpu 0
+python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1 --ngpu 1 --startgpu 5
 
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0 --ngpu 1 --startgpu 0
+python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0 --ngpu 1 --startgpu 5
 
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 1 --ngpu 1 --startgpu 0
+python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 1 --ngpu 1 --startgpu 5
 
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0 --ngpu 1 --startgpu 0
+python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0 --ngpu 1 --startgpu 5
 ```
+
+### save_performance_log_as_dict.py
+
+Given the output log (recall / time result) printed by Faiss CPU / GPU, save these numbers in the form of python dictionary, and print the contents out.
 
 ## GPU Experiments
 

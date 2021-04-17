@@ -732,9 +732,9 @@ def eval_dataset(index, preproc):
             inter_res = ''
 
             for i0, xs in dataset_iterator(xq, preproc, sl):
-                print('\r%d/%d (%.3f s%s)   ' % (
-                    i0, nq, time.time() - t0, inter_res), end=' ')
-                sys.stdout.flush()
+                # print('\r%d/%d (%.3f s%s)   ' % (
+                #     i0, nq, time.time() - t0, inter_res), end=' ')
+                # sys.stdout.flush()
 
                 i1 = i0 + xs.shape[0]
                 # Wenqi: debugging memory overflow

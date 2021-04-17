@@ -24,18 +24,20 @@ if FLAGS.index == "IVF":
     for i in IVF_range:
 
         # TODO: add user selected searching range in bench_gpu_1bn
-        # search_range = ""
-        # nprobe_range = int(i / 2)
-        # for np in range(nprobe_range + 1):
-        #     search_range += "nprobe={} ".format(2 ** np)
+        search_range = "-nprobe "
+        nprobe_range = int(i / 2)
+        for np in range(nprobe_range + 1):
+            if np != 0:
+                search_range += ','
+            search_range += "{}".format(2 ** np)
 
         if FLAGS.OPQ:
                 index_str = "OPQ{0},IVF{1},PQ{0}".format(FLAGS.PQ, 2 ** i)
-                os.system("python bench_gpu_1bn.py {0} {1} -nnn 100 -ngpu {2} -startgpu {3} -tempmem {4} -qbs 512 -nprobe 1 >> train_gpu.log".format(
-                        FLAGS.dataset, index_str, FLAGS.ngpu, FLAGS.startgpu, GPU_memory_use))
+                os.system("python bench_gpu_1bn.py {0} {1} -nnn 100 -ngpu {2} -startgpu {3} -tempmem {4} -qbs 512 {5} > gpu_performance_result/{0}_{1}".format(
+                        FLAGS.dataset, index_str, FLAGS.ngpu, FLAGS.startgpu, GPU_memory_use, search_range))
         else:
                 index_str = "IVF{0},PQ{1}".format(2 ** i, FLAGS.PQ)
-                os.system("python bench_gpu_1bn.py {0} {1} -nnn 100 -ngpu {2} -startgpu {3} -tempmem {4} -qbs 512 -nprobe 1 >> train_gpu.log".format(
-                        FLAGS.dataset, index_str, FLAGS.ngpu, FLAGS.startgpu, GPU_memory_use))
+                os.system("python bench_gpu_1bn.py {0} {1} -nnn 100 -ngpu {2} -startgpu {3} -tempmem {4} -qbs 512 {5} > gpu_performance_result/{0}_{1}".format(
+                        FLAGS.dataset, index_str, FLAGS.ngpu, FLAGS.startgpu, GPU_memory_use, search_range))
 else:
     raise("Index error, this script only supports IVF")
