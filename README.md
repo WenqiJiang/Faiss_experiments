@@ -5,20 +5,29 @@
 install anaconda: https://docs.anaconda.com/anaconda/install/linux/
 
 % faiss supports python3.7, not 3.8
+
 conda create -n py37 python=3.7
+
 conda activate py37
 
 % install openblas
+
 conda install -c conda-forge openblas
 
-% install cpu version (I use version 1.6.3)
+% either install cpu or gpu version (the gpu version already includes the cpu version, thus can skip the cpu installation step)
+
+% cpu version 
+
 conda install -c pytorch faiss-cpu
 
-% install gpu version
-conda install -c conda-forge faiss-gpu
+% install gpu version (version 1.6.3)
+
+conda install faiss-gpu cudatoolkit=10.0 -c pytorch
 
 % verify installation
+
 python 
+
 import faiss
 
 % Faiss's demo: 
