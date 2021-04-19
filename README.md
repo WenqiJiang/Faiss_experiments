@@ -10,7 +10,12 @@ conda activate py37
 
 % install openblas
 conda install -c conda-forge openblas
+
+% install cpu version (I use version 1.6.3)
 conda install -c pytorch faiss-cpu
+
+% install gpu version
+conda install -c conda-forge faiss-gpu
 
 % verify installation
 python 
