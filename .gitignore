@@ -12,4 +12,5 @@ trained_GPU_indexes/*
 cpu_performance_result/*
 gpu_performance_result/*
 *log
-
+network_response_time.npy
+CPU_response_time/*

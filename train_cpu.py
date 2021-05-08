@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dataset', type=str, default="SIFT1000M", help="SIFT1M, SIFT10M, SIFT100M, SIFT1000M")
 parser.add_argument('--index', type=str, default="IVF", help="IVF, IMI")
 parser.add_argument('--PQ', type=int, default="16", help="8, 16")
-parser.add_argument('--OPQ', type=int, default=0, help="0 -> Disable; 1 -> Enable")
+parser.add_argument('--OPQ', type=int, default=1, help="0 -> Disable; 1 -> Enable")
 
 FLAGS, unparsed = parser.parse_known_args()
 
@@ -20,9 +20,14 @@ IMI_range = [8, 9, 10, 11, 12, 13, 14]
 IVF_range = [10, 11, 12, 13, 14, 15, 16, 17, 18]
 
 if FLAGS.index == "IMI":
-    for i in IMI_range:
-        os.system("python bench_polysemous_1bn.py {} IMI2x{},PQ{} nprobe=1 >> train_cpu.log".format(
-            FLAGS.dataset, i, FLAGS.PQ))
+    if FLAGS.OPQ:
+        for i in IMI_range:
+            os.system("python bench_polysemous_1bn.py {} OPQ{},IMI2x{},PQ{} nprobe=1 >> train_cpu.log".format(
+                FLAGS.dataset, FLAGS.PQ, i, FLAGS.PQ))
+    else:
+        for i in IMI_range:
+            os.system("python bench_polysemous_1bn.py {} IMI2x{},PQ{} nprobe=1 >> train_cpu.log".format(
+                FLAGS.dataset, i, FLAGS.PQ))
 elif FLAGS.index == "IVF":
     if FLAGS.OPQ:
         for i in IVF_range:
