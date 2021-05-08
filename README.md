@@ -36,6 +36,10 @@ https://github.com/facebookresearch/faiss/blob/master/tutorial/python/1-Flat.py
 % Faiss API: 
 https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
 
+## Benchmarking CPU performance
+
+See [bench_cpu_performance.md](./bench_cpu_performance.md)
+
 ## Directory Navigation
 
 ### bench_polysemous_1bn.py
