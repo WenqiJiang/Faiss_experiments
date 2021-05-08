@@ -1,0 +1,96 @@
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=28 	 QPS = 56.62787660593453
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=29 	 QPS = 106.98366388583376
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=22 	 QPS = 259.46751956049366
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=29 	 QPS = 341.5377195329252
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=29 	 QPS = 432.9391491667434
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=33 	 QPS = 292.02531312518886
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=40 	 QPS = 169.35600923731712
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=45 	 QPS = 88.16638056185303
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=13 	 QPS = 61.60774284280812
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=13 	 QPS = 119.46767637658937
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=17 	 QPS = 178.0709730792676
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=17 	 QPS = 321.49312353899
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=21 	 QPS = 446.75596501406596
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=24 	 QPS = 418.70956217903944
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=30 	 QPS = 295.0472736428289
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=37 	 QPS = 171.34363717809657
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=42 	 QPS = 90.11316867275646
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IMI2x8,PQ16/SIFT100M_IMI2x8,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=96 	 QPS = 124.85734653192775
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IMI2x9,PQ16/SIFT100M_IMI2x9,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=114 	 QPS = 267.50893687108265
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IMI2x10,PQ16/SIFT100M_IMI2x10,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=151 	 QPS = 484.6976645298141
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IMI2x11,PQ16/SIFT100M_IMI2x11,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=258 	 QPS = 606.3420574918641
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IMI2x12,PQ16/SIFT100M_IMI2x12,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=356 	 QPS = 638.0981974728184
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IMI2x13,PQ16/SIFT100M_IMI2x13,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=677 	 QPS = 408.62134788138127
+Preparing dataset SIFT100M
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_IMI2x14,PQ16/SIFT100M_IMI2x14,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1262 	 QPS = 251.42559489134467

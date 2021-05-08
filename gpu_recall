@@ -241,21 +241,3 @@ search...
   probe=44 : 1.673 s 1-R@1: 0.3913 1-R@10: 0.7983 
   probe=45 : 1.432 s 1-R@1: 0.3917 1-R@10: 0.8001 
   probe=46 : 1.286 s 1-R@1: 0.3923 1-R@10: 0.8011 
-  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
-Preparing dataset SIFT100M
-(10000, 128)
-sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
-cachefiles:
-None
-./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
-./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
-preparing resources for 1 GPUs
-load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
-CPU index contains 100000000 vectors, move to GPU
-copying loaded index to GPUs
-move to GPU done in 41.823 s
-search...
-10000
-  probe=48 : 0.425 s 1-R@1: 0.3858 1-R@10: 0.7991 
-  probe=49 : 0.692 s 1-R@1: 0.3859 1-R@10: 0.8003 
-  probe=50 : 0.587 s 1-R@1: 0.3862 1-R@10: 0.8017 

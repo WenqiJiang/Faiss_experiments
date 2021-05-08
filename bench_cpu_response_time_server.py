@@ -13,7 +13,7 @@ from datasets import ivecs_read
 import socket
 
 """
-Receive 10000 queries, and perform search
+Receive 10,000 queries, and perform search
 
 e.g., 
 python bench_cpu_response_time_server.py SIFT100M OPQ16,IVF4096,PQ16 nprobe=32 127.0.0.1 65432

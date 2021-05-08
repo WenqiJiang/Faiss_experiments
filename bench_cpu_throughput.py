@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 
 """
-Benchmarking the CPU's throughput using 10,000 queries (takes around a minute),
+Benchmarking the CPU's throughput using 10,000 queries (takes several minutes),
 the batch size is set to 1 to measure the maxmimum throughput
 
 python bench_cpu_throughput.py SIFT100M IVF4096,PQ16 nprobe=32
@@ -72,6 +72,17 @@ if dbname.startswith('SIFT'):
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
     gt = np.array(gt, dtype=np.int32)
+
+    # copy for 10 times
+    # xq_list = []
+    # gt_list = []
+    # for i in range(10):
+    #     xq_list.append(xq)
+    #     gt_list.append(gt)
+    # xq = np.array(xq_list)
+    # xq = np.reshape(xq, (xq.shape[0] * xq.shape[1], -1))
+    # gt = np.array(gt_list)
+    # gt = np.reshape(gt, (gt.shape[0] * gt.shape[1], -1))
 
 else:
     print('unknown dataset', dbname, file=sys.stderr)

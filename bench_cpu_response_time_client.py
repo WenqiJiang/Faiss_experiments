@@ -6,7 +6,7 @@ import time
 import sys
 
 """
-Send 10000 queries to the server
+Send 10,000 queries to the server
 
 e.g., 
 python bench_cpu_response_time_client.py SIFT100M OPQ16,IVF4096,PQ16 nprobe=32 127.0.0.1 65432
@@ -39,6 +39,11 @@ def mmap_bvecs(fname):
 xq = mmap_bvecs('bigann/bigann_query.bvecs')
 xq = xq.astype('float32').copy()
 xq = np.array(xq, dtype=np.float32)
+# xq_list = []
+# for i in range(10):
+#     xq_list.append(xq)
+# xq = np.array(xq_list)
+# xq = np.reshape(xq, (xq.shape[0] * xq.shape[1], -1))
 
 nq, d = xq.shape
 
