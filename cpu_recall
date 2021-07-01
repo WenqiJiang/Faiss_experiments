@@ -533,61 +533,235 @@ nprobe=1261 	 0.4015 0.7999    2.065    0.00
 nprobe=1262 	 0.4016 0.8000    1.975    0.00
 nprobe=1263 	 0.4016 0.8000    2.017    0.00
 nprobe=1264 	 0.4016 0.8000    1.950    0.00
+
 Preparing dataset SIFT100M
 sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x8,PQ16/SIFT100M_OPQ16,IMI2x8,PQ16_populated.index
           	 R@1    R@10   R@100     time    %pass
-nprobe=16 	 0.2971 0.6741    2.210    0.00
-nprobe=32 	 0.3093 0.7274    3.481    0.00
-nprobe=48 	 0.3194 0.7534    4.397    0.00
-nprobe=64 	 0.3222 0.7676    5.290    0.00
-nprobe=80 	 0.3255 0.7779    6.140    0.00
-nprobe=96 	 0.3279 0.7853    6.861    0.00
+nprobe=80 	 Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x8,PQ16/SIFT100M_OPQ16,IMI2x8,PQ16_populated.index
+          	 R@1    R@10   R@100     time    %pass
+nprobe=80 	 0.3229 0.7751    6.232    0.00
+nprobe=96 	 0.3240 0.7818    6.776    0.00
+nprobe=128 	 0.3263 0.7898    8.103    0.00
+nprobe=256 	 0.3281 0.8021   12.962    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x8,PQ16/SIFT100M_OPQ16,IMI2x8,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=180 	 0.3272 0.7956   10.689    0.00
+nprobe=200 	 0.3278 0.7978   11.340    0.00
+nprobe=220 	 Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x8,PQ16/SIFT100M_OPQ16,IMI2x8,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=210 	 0.3278 0.7989   14.802    0.00
+nprobe=220 	 0.3279 0.8000   14.678    0.00
+nprobe=230 	 0.3278 0.8008   15.133    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x8,PQ16/SIFT100M_OPQ16,IMI2x8,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=218 	 0.3278 0.7997   15.138    0.00
+nprobe=219 	 0.3279 0.8000   14.590    0.00
 Preparing dataset SIFT100M
 sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x9,PQ16/SIFT100M_OPQ16,IMI2x9,PQ16_populated.index
-          	 R@1    R@10   R@100     time    %pass
-nprobe=32 	 0.3172 0.6940    1.645    0.00
-nprobe=64 	 0.3343 0.7467    2.462    0.00
-nprobe=128 	 0.3431 0.7812    3.673    0.00
+           	 R@1    R@10   R@100     time    %pass
+nprobe=114 	 0.3366 0.7780    4.604    0.00
+nprobe=128 	 0.3380 0.7828    4.558    0.00
+nprobe=256 	 0.3433 0.8050    7.058    0.00
 Preparing dataset SIFT100M
 sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x10,PQ16/SIFT100M_OPQ16,IMI2x10,PQ16_populated.index
-          	 R@1    R@10   R@100     time    %pass
-nprobe=32 	 0.3068 0.6531    0.804    0.00
-nprobe=64 	 0.3261 0.7183    1.185    0.00
-nprobe=128 	 0.3374 0.7625    1.812    0.00
-nprobe=256 	 0.3461 0.7968    2.824    0.00
+           	 R@1    R@10   R@100     time    %pass
+nprobe=151 	 0.3410 0.7722    2.791    0.00
+nprobe=256 	 0.3463 0.7926    3.468    0.00
+nprobe=512 	 0.3499 0.8123    5.354    0.00
 Preparing dataset SIFT100M
 sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x11,PQ16/SIFT100M_OPQ16,IMI2x11,PQ16_populated.index
-          	 R@1    R@10   R@100     time    %pass
-nprobe=64 	 0.3177 0.6770    0.682    0.00
-nprobe=128 	 0.3351 0.7379    1.003    0.00
-nprobe=256 	 0.3471 0.7814    1.530    0.00
-nprobe=512 	 0.3535 0.8125    2.398    0.00
+           	 R@1    R@10   R@100     time    %pass
+nprobe=258 	 0.3498 0.7772    2.272    0.00
+nprobe=512 	 0.3594 0.8102    3.047    0.00
+nprobe=1024 	 0.3620 0.8288    4.773    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x9,PQ16/SIFT100M_OPQ16,IMI2x9,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=200 	 0.3409 0.7987    6.488    0.00
+nprobe=210 	 0.3415 0.8000    6.208    0.00
+nprobe=220 	 0.3422 0.8014    6.347    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x10,PQ16/SIFT100M_OPQ16,IMI2x10,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=300 	 0.3472 0.7990    4.202    0.00
+nprobe=340 	 0.3479 0.8014    4.127    0.00
+nprobe=384 	 0.3488 0.8044    4.397    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x11,PQ16/SIFT100M_OPQ16,IMI2x11,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=384 	 0.3557 0.7969    2.877    0.00
+nprobe=420 	 0.3567 0.8017    2.588    0.00
+nprobe=460 	 0.3580 0.8073    2.697    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x9,PQ16/SIFT100M_OPQ16,IMI2x9,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=208 	 0.3413 0.7997    6.622    0.00
+nprobe=209 	 0.3415 0.7999    6.166    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x10,PQ16/SIFT100M_OPQ16,IMI2x10,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=310 	 0.3474 0.8000    4.278    0.00
+nprobe=320 	 0.3476 0.8003    3.955    0.00
+nprobe=330 	 0.3479 0.8007    3.975    0.00
 Preparing dataset SIFT100M
 sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x12,PQ16/SIFT100M_OPQ16,IMI2x12,PQ16_populated.index
-          	 R@1    R@10   R@100     time    %pass
-nprobe=64 	 0.3067 0.6196    0.407    0.00
-nprobe=128 	 0.3296 0.6875    0.638    0.00
-nprobe=256 	 0.3441 0.7415    0.982    0.00
-nprobe=512 	 0.3574 0.7834    1.598    0.00
+           	 R@1    R@10   R@100     time    %pass
+nprobe=356 	 0.3560 0.7610    1.996    0.00
+nprobe=512 	 0.3622 0.7840    2.012    0.00
+nprobe=1024 	 0.3694 0.8140    3.191    0.00
 Preparing dataset SIFT100M
 sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x13,PQ16/SIFT100M_OPQ16,IMI2x13,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1262 	 0.3787 0.8093    3.511    0.00
+nprobe=2048 	 0.3819 0.8264    4.009    0.00
+nprobe=4096 	 0.3863 0.8463    6.746    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x10,PQ16/SIFT100M_OPQ16,IMI2x10,PQ16_populated.index
            	 R@1    R@10   R@100     time    %pass
-nprobe=128 	 0.3324 0.6459    0.465    0.00
-nprobe=256 	 0.3510 0.7085    0.747    0.00
-nprobe=512 	 0.3650 0.7628    1.172    0.00
-nprobe=1024 	 0.3762 0.8024    1.957    0.00
+nprobe=308 	 0.3473 0.8000    3.953    0.00
+nprobe=309 	 0.3473 0.8000    3.769    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x12,PQ16/SIFT100M_OPQ16,IMI2x12,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=600 	 0.3635 0.7902    2.826    0.00
+nprobe=750 	 0.3667 0.8015    2.613    0.00
+nprobe=900 	 0.3680 0.8084    2.896    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x13,PQ16/SIFT100M_OPQ16,IMI2x13,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1024 	 0.3766 0.8000    2.949    0.00
+nprobe=1100 	 0.3776 0.8030    2.721    0.00
+nprobe=1200 	 0.3782 0.8074    2.764    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x10,PQ16/SIFT100M_OPQ16,IMI2x10,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=305 	 0.3472 0.7996    4.242    0.00
+nprobe=306 	 0.3472 0.7996    3.850    0.00
+nprobe=307 	 0.3473 0.7999    3.805    0.00
+nprobe=308 	 0.3473 0.8000    3.784    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x12,PQ16/SIFT100M_OPQ16,IMI2x12,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=730 	 0.3666 0.8011    3.072    0.00
+nprobe=740 	 0.3667 0.8014    2.567    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x13,PQ16/SIFT100M_OPQ16,IMI2x13,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1020 	 0.3766 0.8001    3.224    0.00
+nprobe=1021 	 0.3766 0.8001    2.520    0.00
+nprobe=1022 	 0.3766 0.8000    2.449    0.00
+nprobe=1023 	 0.3766 0.8000    2.415    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x12,PQ16/SIFT100M_OPQ16,IMI2x12,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=680 	 0.3657 0.7980    2.917    0.00
+nprobe=700 	 0.3661 0.7991    2.461    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x11,PQ16/SIFT100M_OPQ16,IMI2x11,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=310 	 0.3520 0.7859    2.508    0.00
+nprobe=320 	 0.3526 0.7881    2.211    0.00
+nprobe=330 	 0.3529 0.7901    2.209    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x13,PQ16/SIFT100M_OPQ16,IMI2x13,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1000 	 0.3761 0.7990    3.157    0.00
+nprobe=1010 	 0.3764 0.7996    2.497    0.00
+nprobe=1015 	 0.3765 0.7998    2.435    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x12,PQ16/SIFT100M_OPQ16,IMI2x12,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=710 	 0.3664 0.8000    3.000    0.00
+nprobe=720 	 0.3664 0.8002    2.509    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x11,PQ16/SIFT100M_OPQ16,IMI2x11,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=333 	 0.3529 0.7901    2.485    0.00
+nprobe=335 	 0.3530 0.7907    2.183    0.00
+nprobe=337 	 0.3532 0.7909    2.172    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x13,PQ16/SIFT100M_OPQ16,IMI2x13,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1016 	 0.3765 0.7999    3.222    0.00
+nprobe=1017 	 0.3765 0.7999    2.516    0.00
+nprobe=1018 	 0.3765 0.7999    2.441    0.00
+nprobe=1019 	 0.3765 0.8000    2.410    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x11,PQ16/SIFT100M_OPQ16,IMI2x11,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=338 	 0.3532 0.7910    2.640    0.00
+nprobe=339 	 0.3533 0.7913    2.252    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x12,PQ16/SIFT100M_OPQ16,IMI2x12,PQ16_populated.index
+           	 R@1    R@10   R@100     time    %pass
+nprobe=706 	 0.3662 0.7995    3.028    0.00
+nprobe=707 	 0.3662 0.7995    2.484    0.00
+nprobe=708 	 0.3663 0.7996    2.424    0.00
+nprobe=709 	 0.3664 0.7998    2.600    0.00
 Preparing dataset SIFT100M
 sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x14,PQ16/SIFT100M_OPQ16,IMI2x14,PQ16_populated.index
-           	 R@1    R@10   R@100     time    %pass
-nprobe=128 	 0.3125 0.5804    0.510    0.00
-nprobe=256 	 0.3372 0.6425    0.779    0.00
-nprobe=512 	 0.3558 0.7032    1.201    0.00
-nprobe=1024 	 0.3703 0.7543    1.857    0.00
-nprobe=1264 	 0.3748 0.7684    1.973    0.00
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1096 	 0.3749 0.7728    3.981    0.00
+nprobe=1024 	 0.3733 0.7684    2.327    0.00
+nprobe=1536 	 0.3809 0.7914    2.991    0.00
+nprobe=2048 	 0.3853 0.8073    3.566    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x14,PQ16/SIFT100M_OPQ16,IMI2x14,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1600 	 0.3819 0.7938    4.672    0.00
+nprobe=1700 	 0.3825 0.7968    3.258    0.00
+nprobe=1800 	 0.3833 0.7999    3.272    0.00
+nprobe=1900 	 0.3842 0.8028    3.358    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x14,PQ16/SIFT100M_OPQ16,IMI2x14,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1810 	 0.3834 0.8002    3.510    0.00
+nprobe=1820 	 Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x14,PQ16/SIFT100M_OPQ16,IMI2x14,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1803 	 0.3834 0.7999    5.042    0.00
+nprobe=1805 	 0.3833 0.7999    3.373    0.00
+nprobe=1807 	 0.3833 0.7999    3.270    0.00
+Preparing dataset SIFT100M
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IMI2x14,PQ16/SIFT100M_OPQ16,IMI2x14,PQ16_populated.index
+            	 R@1    R@10   R@100     time    %pass
+nprobe=1808 	 0.3833 0.7999    5.071    0.00
+nprobe=1809 	 0.3834 0.8000    3.285    0.00
