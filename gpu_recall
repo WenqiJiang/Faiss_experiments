@@ -1,3 +1,35 @@
+==================== SIFT100M Recall 40 TopK 10 Starts ====================
+ 
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/cent_SIFT100M_IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.007 s
+  probe=1  : 0.391 s 1-R@10: 0.4869
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF1024,PQ16 is 1
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/cent_SIFT100M_IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.137 s
+  probe=1  : 0.291 s 1-R@10: 0.4472
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF2048,PQ16 is 1
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -10,12 +42,9 @@ preparing resources for 1 GPUs
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 5.288 s
-search...
-10000
-  probe=20 : 1.957 s 1-R@1: 0.3401 1-R@10: 0.7992 
-  probe=21 : 1.349 s 1-R@1: 0.3406 1-R@10: 0.8009 
-  probe=22 : 1.337 s 1-R@1: 0.3406 1-R@10: 0.8013 
+move to GPU done in 4.711 s
+  probe=1  : 0.253 s 1-R@10: 0.4157
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF4096,PQ16 is 1
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -28,12 +57,10 @@ preparing resources for 1 GPUs
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 5.260 s
-search...
-10000
-  probe=20 : 0.726 s 1-R@1: 0.3428 1-R@10: 0.7976 
-  probe=21 : 0.750 s 1-R@1: 0.3431 1-R@10: 0.7996 
-  probe=22 : 1.109 s 1-R@1: 0.3434 1-R@10: 0.8015 
+move to GPU done in 5.319 s
+  probe=1  : 0.389 s 1-R@10: 0.3942
+  probe=2  : 0.410 s 1-R@10: 0.5379
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF8192,PQ16 is 2
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -46,12 +73,10 @@ preparing resources for 1 GPUs
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 6.463 s
-search...
-10000
-  probe=18 : 0.773 s 1-R@1: 0.3588 1-R@10: 0.7948 
-  probe=19 : 1.063 s 1-R@1: 0.3595 1-R@10: 0.7971 
-  probe=20 : 0.744 s 1-R@1: 0.3600 1-R@10: 0.8000 
+move to GPU done in 6.840 s
+  probe=1  : 0.395 s 1-R@10: 0.3665
+  probe=2  : 0.341 s 1-R@10: 0.4979
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF16384,PQ16 is 2
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -64,12 +89,62 @@ preparing resources for 1 GPUs
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 8.952 s
-search...
-10000
-  probe=28 : 0.364 s 1-R@1: 0.3623 1-R@10: 0.7993 
-  probe=29 : 0.497 s 1-R@1: 0.3622 1-R@10: 0.8016 
-  probe=30 : 0.845 s 1-R@1: 0.3630 1-R@10: 0.8041 
+move to GPU done in 8.961 s
+  probe=1  : 0.383 s 1-R@10: 0.3319
+  probe=2  : 0.369 s 1-R@10: 0.4643
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF32768,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/cent_SIFT100M_IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 13.259 s
+  probe=1  : 0.323 s 1-R@10: 0.2918
+  probe=2  : 0.246 s 1-R@10: 0.4281
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF65536,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 22.353 s
+  probe=1  : 0.363 s 1-R@10: 0.2696
+  probe=2  : 0.286 s 1-R@10: 0.3887
+  probe=4  : 0.330 s 1-R@10: 0.5082
+  probe=3  : 0.402 s 1-R@10: 0.4575
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF131072,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 40.704 s
+  probe=1  : 0.324 s 1-R@10: 0.2395
+  probe=2  : 0.320 s 1-R@10: 0.3485
+  probe=4  : 0.452 s 1-R@10: 0.4721
+  probe=3  : 0.385 s 1-R@10: 0.4216
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF262144,PQ16 is 3
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -83,12 +158,9 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 4.810 s
-search...
-10000
-  probe=10 : 2.746 s 1-R@1: 0.3346 1-R@10: 0.7969 
-  probe=11 : 2.675 s 1-R@1: 0.3352 1-R@10: 0.8004 
-  probe=12 : 2.887 s 1-R@1: 0.3355 1-R@10: 0.8035 
+move to GPU done in 4.342 s
+  probe=1  : 0.609 s 1-R@10: 0.4915
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF1024,PQ16 is 1
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -102,12 +174,9 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 5.063 s
-search...
-10000
-  probe=12 : 2.026 s 1-R@1: 0.3368 1-R@10: 0.7989 
-  probe=13 : 2.405 s 1-R@1: 0.3383 1-R@10: 0.8029 
-  probe=14 : 1.381 s 1-R@1: 0.3387 1-R@10: 0.8051 
+move to GPU done in 4.064 s
+  probe=1  : 0.786 s 1-R@10: 0.4464
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF2048,PQ16 is 1
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -121,12 +190,9 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 5.024 s
-search...
-10000
-  probe=12 : 1.613 s 1-R@1: 0.3477 1-R@10: 0.7934 
-  probe=13 : 1.546 s 1-R@1: 0.3489 1-R@10: 0.7978 
-  probe=14 : 1.904 s 1-R@1: 0.3490 1-R@10: 0.8017 
+move to GPU done in 4.921 s
+  probe=1  : 0.448 s 1-R@10: 0.4172
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF4096,PQ16 is 1
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -140,12 +206,10 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 5.762 s
-search...
-10000
-  probe=16 : 1.477 s 1-R@1: 0.3570 1-R@10: 0.7984 
-  probe=17 : 1.187 s 1-R@1: 0.3577 1-R@10: 0.8019 
-  probe=18 : 1.311 s 1-R@1: 0.3587 1-R@10: 0.8060 
+move to GPU done in 5.201 s
+  probe=1  : 0.420 s 1-R@10: 0.3962
+  probe=2  : 0.486 s 1-R@10: 0.5379
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF8192,PQ16 is 2
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -159,12 +223,10 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT10
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 6.874 s
-search...
-10000
-  probe=16 : 1.099 s 1-R@1: 0.3640 1-R@10: 0.7941 
-  probe=17 : 1.320 s 1-R@1: 0.3649 1-R@10: 0.7986 
-  probe=18 : 1.007 s 1-R@1: 0.3656 1-R@10: 0.8018 
+move to GPU done in 6.575 s
+  probe=1  : 0.767 s 1-R@10: 0.3635
+  probe=2  : 0.476 s 1-R@10: 0.4970
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF16384,PQ16 is 2
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -178,12 +240,10 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT10
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 9.173 s
-search...
-10000
-  probe=22 : 1.196 s 1-R@1: 0.3583 1-R@10: 0.7992 
-  probe=23 : 1.392 s 1-R@1: 0.3594 1-R@10: 0.8025 
-  probe=24 : 1.012 s 1-R@1: 0.3604 1-R@10: 0.8052 
+move to GPU done in 8.528 s
+  probe=1  : 0.353 s 1-R@10: 0.3304
+  probe=2  : 0.458 s 1-R@10: 0.4634
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF32768,PQ16 is 2
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -197,12 +257,10 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT10
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 13.952 s
-search...
-10000
-  probe=24 : 1.106 s 1-R@1: 0.3665 1-R@10: 0.7942 
-  probe=25 : 1.021 s 1-R@1: 0.3669 1-R@10: 0.7970 
-  probe=26 : 1.928 s 1-R@1: 0.3682 1-R@10: 0.8002 
+move to GPU done in 13.319 s
+  probe=1  : 0.416 s 1-R@10: 0.2931
+  probe=2  : 0.321 s 1-R@10: 0.4307
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF65536,PQ16 is 2
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -216,12 +274,12 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT1
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 23.455 s
-search...
-10000
-  probe=32 : 1.370 s 1-R@1: 0.3826 1-R@10: 0.7993 
-  probe=33 : 1.152 s 1-R@1: 0.3835 1-R@10: 0.8021 
-  probe=34 : 0.904 s 1-R@1: 0.3841 1-R@10: 0.8041 
+move to GPU done in 23.040 s
+  probe=1  : 0.668 s 1-R@10: 0.2692
+  probe=2  : 0.561 s 1-R@10: 0.3936
+  probe=4  : 0.525 s 1-R@10: 0.5140
+  probe=3  : 0.710 s 1-R@10: 0.4620
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF131072,PQ16 is 3
   IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
 Preparing dataset SIFT100M
 (10000, 128)
@@ -235,9 +293,1525 @@ load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT1
 load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
 CPU index contains 100000000 vectors, move to GPU
 copying loaded index to GPUs
-move to GPU done in 42.484 s
-search...
-10000
-  probe=44 : 1.673 s 1-R@1: 0.3913 1-R@10: 0.7983 
-  probe=45 : 1.432 s 1-R@1: 0.3917 1-R@10: 0.8001 
-  probe=46 : 1.286 s 1-R@1: 0.3923 1-R@10: 0.8011 
+move to GPU done in 40.378 s
+  probe=1  : 0.691 s 1-R@10: 0.2375
+  probe=2  : 0.406 s 1-R@10: 0.3476
+  probe=4  : 0.372 s 1-R@10: 0.4744
+  probe=3  : 0.478 s 1-R@10: 0.4201
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF262144,PQ16 is 3
+==================== SIFT100M Recall 40 TopK 10 Ends ====================
+ 
+==================== SIFT100M Recall 50 TopK 10 Starts ====================
+ 
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/cent_SIFT100M_IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.150 s
+  probe=1  : 0.334 s 1-R@10: 0.4869
+  probe=2  : 0.430 s 1-R@10: 0.6248
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF1024,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/cent_SIFT100M_IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.750 s
+  probe=1  : 0.276 s 1-R@10: 0.4472
+  probe=2  : 0.389 s 1-R@10: 0.5889
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF2048,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/cent_SIFT100M_IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.947 s
+  probe=1  : 0.287 s 1-R@10: 0.4157
+  probe=2  : 0.254 s 1-R@10: 0.5537
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF4096,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/cent_SIFT100M_IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.532 s
+  probe=1  : 0.259 s 1-R@10: 0.3942
+  probe=2  : 0.252 s 1-R@10: 0.5379
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF8192,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/cent_SIFT100M_IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.656 s
+  probe=1  : 0.290 s 1-R@10: 0.3665
+  probe=2  : 0.250 s 1-R@10: 0.4979
+  probe=4  : 0.289 s 1-R@10: 0.6220
+  probe=3  : 0.336 s 1-R@10: 0.5756
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF16384,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/cent_SIFT100M_IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 8.525 s
+  probe=1  : 0.339 s 1-R@10: 0.3319
+  probe=2  : 0.436 s 1-R@10: 0.4643
+  probe=4  : 0.424 s 1-R@10: 0.5942
+  probe=3  : 0.396 s 1-R@10: 0.5420
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF32768,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/cent_SIFT100M_IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 13.594 s
+  probe=1  : 0.279 s 1-R@10: 0.2918
+  probe=2  : 0.276 s 1-R@10: 0.4281
+  probe=4  : 0.263 s 1-R@10: 0.5530
+  probe=3  : 0.362 s 1-R@10: 0.5000
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF65536,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 22.631 s
+  probe=1  : 0.344 s 1-R@10: 0.2696
+  probe=2  : 0.334 s 1-R@10: 0.3887
+  probe=4  : 0.375 s 1-R@10: 0.5082
+  probe=3  : 0.310 s 1-R@10: 0.4575
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF131072,PQ16 is 4
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 40.465 s
+  probe=1  : 0.450 s 1-R@10: 0.2395
+  probe=2  : 0.324 s 1-R@10: 0.3485
+  probe=4  : 0.460 s 1-R@10: 0.4721
+  probe=8  : 0.388 s 1-R@10: 0.5881
+  probe=6  : 0.363 s 1-R@10: 0.5411
+  probe=5  : 0.348 s 1-R@10: 0.5100
+The minimum nprobe to achieve R@10=0.5 on SIFT100M IVF262144,PQ16 is 5
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/cent_SIFT100M_OPQ16,IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.131 s
+  probe=1  : 0.798 s 1-R@10: 0.4915
+  probe=2  : 0.961 s 1-R@10: 0.6348
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF1024,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/cent_SIFT100M_OPQ16,IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.872 s
+  probe=1  : 0.566 s 1-R@10: 0.4464
+  probe=2  : 0.419 s 1-R@10: 0.5901
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF2048,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/cent_SIFT100M_OPQ16,IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.074 s
+  probe=1  : 0.372 s 1-R@10: 0.4172
+  probe=2  : 0.439 s 1-R@10: 0.5599
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF4096,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/cent_SIFT100M_OPQ16,IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.301 s
+  probe=1  : 0.619 s 1-R@10: 0.3962
+  probe=2  : 0.519 s 1-R@10: 0.5379
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF8192,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/cent_SIFT100M_OPQ16,IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 6.317 s
+  probe=1  : 0.588 s 1-R@10: 0.3635
+  probe=2  : 0.576 s 1-R@10: 0.4970
+  probe=4  : 0.428 s 1-R@10: 0.6255
+  probe=3  : 0.661 s 1-R@10: 0.5728
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF16384,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/cent_SIFT100M_OPQ16,IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 8.585 s
+  probe=1  : 0.576 s 1-R@10: 0.3304
+  probe=2  : 0.536 s 1-R@10: 0.4634
+  probe=4  : 0.431 s 1-R@10: 0.5953
+  probe=3  : 0.478 s 1-R@10: 0.5409
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF32768,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/cent_SIFT100M_OPQ16,IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 13.155 s
+  probe=1  : 0.479 s 1-R@10: 0.2931
+  probe=2  : 0.333 s 1-R@10: 0.4307
+  probe=4  : 0.523 s 1-R@10: 0.5591
+  probe=3  : 0.590 s 1-R@10: 0.5064
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF65536,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 22.634 s
+  probe=1  : 0.475 s 1-R@10: 0.2692
+  probe=2  : 0.363 s 1-R@10: 0.3936
+  probe=4  : 0.578 s 1-R@10: 0.5140
+  probe=3  : 0.553 s 1-R@10: 0.4620
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF131072,PQ16 is 4
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 40.704 s
+  probe=1  : 0.727 s 1-R@10: 0.2375
+  probe=2  : 0.732 s 1-R@10: 0.3476
+  probe=4  : 0.575 s 1-R@10: 0.4744
+  probe=8  : 0.523 s 1-R@10: 0.5909
+  probe=6  : 0.436 s 1-R@10: 0.5431
+  probe=5  : 0.493 s 1-R@10: 0.5125
+The minimum nprobe to achieve R@10=0.5 on SIFT100M OPQ16,IVF262144,PQ16 is 5
+==================== SIFT100M Recall 50 TopK 10 Ends ====================
+ 
+==================== SIFT100M Recall 60 TopK 10 Starts ====================
+ 
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/cent_SIFT100M_IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.714 s
+  probe=1  : 0.501 s 1-R@10: 0.4869
+  probe=2  : 0.588 s 1-R@10: 0.6248
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF1024,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/cent_SIFT100M_IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.357 s
+  probe=1  : 0.476 s 1-R@10: 0.4472
+  probe=2  : 0.363 s 1-R@10: 0.5889
+  probe=4  : 0.516 s 1-R@10: 0.6970
+  probe=3  : 0.431 s 1-R@10: 0.6564
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF2048,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/cent_SIFT100M_IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.683 s
+  probe=1  : 0.296 s 1-R@10: 0.4157
+  probe=2  : 0.321 s 1-R@10: 0.5537
+  probe=4  : 0.370 s 1-R@10: 0.6711
+  probe=3  : 0.398 s 1-R@10: 0.6250
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF4096,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/cent_SIFT100M_IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.436 s
+  probe=1  : 0.542 s 1-R@10: 0.3942
+  probe=2  : 0.422 s 1-R@10: 0.5379
+  probe=4  : 0.421 s 1-R@10: 0.6551
+  probe=3  : 0.386 s 1-R@10: 0.6110
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF8192,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/cent_SIFT100M_IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.839 s
+  probe=1  : 0.250 s 1-R@10: 0.3665
+  probe=2  : 0.225 s 1-R@10: 0.4979
+  probe=4  : 0.295 s 1-R@10: 0.6220
+  probe=3  : 0.229 s 1-R@10: 0.5756
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF16384,PQ16 is 4
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/cent_SIFT100M_IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 8.625 s
+  probe=1  : 0.280 s 1-R@10: 0.3319
+  probe=2  : 0.374 s 1-R@10: 0.4643
+  probe=4  : 0.300 s 1-R@10: 0.5942
+  probe=8  : 0.376 s 1-R@10: 0.6944
+  probe=6  : 0.486 s 1-R@10: 0.6556
+  probe=5  : 0.310 s 1-R@10: 0.6301
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF32768,PQ16 is 5
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/cent_SIFT100M_IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 13.504 s
+  probe=1  : 0.258 s 1-R@10: 0.2918
+  probe=2  : 0.319 s 1-R@10: 0.4281
+  probe=4  : 0.329 s 1-R@10: 0.5530
+  probe=8  : 0.340 s 1-R@10: 0.6612
+  probe=6  : 0.253 s 1-R@10: 0.6184
+  probe=5  : 0.344 s 1-R@10: 0.5908
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF65536,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 22.967 s
+  probe=1  : 0.490 s 1-R@10: 0.2696
+  probe=2  : 0.335 s 1-R@10: 0.3887
+  probe=4  : 0.366 s 1-R@10: 0.5082
+  probe=8  : 0.420 s 1-R@10: 0.6248
+  probe=6  : 0.350 s 1-R@10: 0.5782
+  probe=7  : 0.339 s 1-R@10: 0.6039
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF131072,PQ16 is 7
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 40.097 s
+  probe=1  : 0.452 s 1-R@10: 0.2395
+  probe=2  : 0.464 s 1-R@10: 0.3485
+  probe=4  : 0.368 s 1-R@10: 0.4721
+  probe=8  : 0.402 s 1-R@10: 0.5881
+  probe=16 : 0.345 s 1-R@10: 0.6886
+  probe=12 : 0.351 s 1-R@10: 0.6509
+  probe=10 : 0.325 s 1-R@10: 0.6242
+  probe=9  : 0.330 s 1-R@10: 0.6089
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF262144,PQ16 is 9
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/cent_SIFT100M_OPQ16,IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.391 s
+  probe=1  : 0.772 s 1-R@10: 0.4915
+  probe=2  : 0.740 s 1-R@10: 0.6348
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF1024,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/cent_SIFT100M_OPQ16,IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.261 s
+  probe=1  : 0.827 s 1-R@10: 0.4464
+  probe=2  : 0.742 s 1-R@10: 0.5901
+  probe=4  : 0.827 s 1-R@10: 0.7056
+  probe=3  : 0.597 s 1-R@10: 0.6616
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF2048,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/cent_SIFT100M_OPQ16,IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.783 s
+  probe=1  : 0.615 s 1-R@10: 0.4172
+  probe=2  : 0.393 s 1-R@10: 0.5599
+  probe=4  : 0.575 s 1-R@10: 0.6805
+  probe=3  : 0.627 s 1-R@10: 0.6325
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF4096,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/cent_SIFT100M_OPQ16,IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.068 s
+  probe=1  : 0.571 s 1-R@10: 0.3962
+  probe=2  : 0.701 s 1-R@10: 0.5379
+  probe=4  : 0.803 s 1-R@10: 0.6569
+  probe=3  : 0.487 s 1-R@10: 0.6149
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF8192,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/cent_SIFT100M_OPQ16,IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 7.751 s
+  probe=1  : 0.539 s 1-R@10: 0.3635
+  probe=2  : 0.460 s 1-R@10: 0.4970
+  probe=4  : 0.721 s 1-R@10: 0.6255
+  probe=3  : 0.560 s 1-R@10: 0.5728
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF16384,PQ16 is 4
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/cent_SIFT100M_OPQ16,IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 8.697 s
+  probe=1  : 0.602 s 1-R@10: 0.3304
+  probe=2  : 0.671 s 1-R@10: 0.4634
+  probe=4  : 0.451 s 1-R@10: 0.5953
+  probe=8  : 0.623 s 1-R@10: 0.7023
+  probe=6  : 0.455 s 1-R@10: 0.6609
+  probe=5  : 0.691 s 1-R@10: 0.6331
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF32768,PQ16 is 5
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/cent_SIFT100M_OPQ16,IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 12.856 s
+  probe=1  : 0.531 s 1-R@10: 0.2931
+  probe=2  : 0.408 s 1-R@10: 0.4307
+  probe=4  : 0.396 s 1-R@10: 0.5591
+  probe=8  : 0.559 s 1-R@10: 0.6699
+  probe=6  : 0.743 s 1-R@10: 0.6268
+  probe=5  : 0.495 s 1-R@10: 0.5972
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF65536,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 22.418 s
+  probe=1  : 0.575 s 1-R@10: 0.2692
+  probe=2  : 0.584 s 1-R@10: 0.3936
+  probe=4  : 0.464 s 1-R@10: 0.5140
+  probe=8  : 0.630 s 1-R@10: 0.6304
+  probe=6  : 0.609 s 1-R@10: 0.5831
+  probe=7  : 0.389 s 1-R@10: 0.6092
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF131072,PQ16 is 7
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 41.047 s
+  probe=1  : 0.720 s 1-R@10: 0.2375
+  probe=2  : 0.558 s 1-R@10: 0.3476
+  probe=4  : 0.447 s 1-R@10: 0.4744
+  probe=8  : 0.609 s 1-R@10: 0.5909
+  probe=16 : 0.561 s 1-R@10: 0.6916
+  probe=12 : 0.563 s 1-R@10: 0.6525
+  probe=10 : 0.530 s 1-R@10: 0.6254
+  probe=9  : 0.510 s 1-R@10: 0.6078
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF262144,PQ16 is 9
+==================== SIFT100M Recall 60 TopK 10 Ends ====================
+ 
+==================== SIFT100M Recall 70 TopK 10 Starts ====================
+ 
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/cent_SIFT100M_IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.065 s
+  probe=1  : 0.515 s 1-R@10: 0.4869
+  probe=2  : 0.438 s 1-R@10: 0.6248
+  probe=4  : 0.568 s 1-R@10: 0.7179
+  probe=3  : 0.512 s 1-R@10: 0.6871
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF1024,PQ16 is 4
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/cent_SIFT100M_IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.825 s
+  probe=1  : 0.293 s 1-R@10: 0.4472
+  probe=2  : 0.326 s 1-R@10: 0.5889
+  probe=4  : 0.407 s 1-R@10: 0.6970
+  probe=8  : 0.567 s 1-R@10: 0.7626
+  probe=6  : 0.522 s 1-R@10: 0.7403
+  probe=5  : 0.418 s 1-R@10: 0.7213
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF2048,PQ16 is 5
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/cent_SIFT100M_IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.025 s
+  probe=1  : 0.405 s 1-R@10: 0.4157
+  probe=2  : 0.279 s 1-R@10: 0.5537
+  probe=4  : 0.344 s 1-R@10: 0.6711
+  probe=8  : 0.599 s 1-R@10: 0.7479
+  probe=6  : 0.392 s 1-R@10: 0.7213
+  probe=5  : 0.438 s 1-R@10: 0.7005
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF4096,PQ16 is 5
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/cent_SIFT100M_IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.877 s
+  probe=1  : 0.261 s 1-R@10: 0.3942
+  probe=2  : 0.284 s 1-R@10: 0.5379
+  probe=4  : 0.447 s 1-R@10: 0.6551
+  probe=8  : 0.578 s 1-R@10: 0.7355
+  probe=6  : 0.383 s 1-R@10: 0.7060
+  probe=5  : 0.364 s 1-R@10: 0.6829
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF8192,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/cent_SIFT100M_IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 6.236 s
+  probe=1  : 0.248 s 1-R@10: 0.3665
+  probe=2  : 0.298 s 1-R@10: 0.4979
+  probe=4  : 0.291 s 1-R@10: 0.6220
+  probe=8  : 0.351 s 1-R@10: 0.7221
+  probe=6  : 0.344 s 1-R@10: 0.6863
+  probe=7  : 0.296 s 1-R@10: 0.7073
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF16384,PQ16 is 7
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/cent_SIFT100M_IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 8.775 s
+  probe=1  : 0.510 s 1-R@10: 0.3319
+  probe=2  : 0.380 s 1-R@10: 0.4643
+  probe=4  : 0.337 s 1-R@10: 0.5942
+  probe=8  : 0.290 s 1-R@10: 0.6944
+  probe=16 : 0.412 s 1-R@10: 0.7643
+  probe=12 : 0.318 s 1-R@10: 0.7380
+  probe=10 : 0.338 s 1-R@10: 0.7173
+  probe=9  : 0.303 s 1-R@10: 0.7063
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF32768,PQ16 is 9
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/cent_SIFT100M_IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 13.299 s
+  probe=1  : 0.376 s 1-R@10: 0.2918
+  probe=2  : 0.326 s 1-R@10: 0.4281
+  probe=4  : 0.342 s 1-R@10: 0.5530
+  probe=8  : 0.341 s 1-R@10: 0.6612
+  probe=16 : 0.463 s 1-R@10: 0.7457
+  probe=12 : 0.258 s 1-R@10: 0.7139
+  probe=10 : 0.267 s 1-R@10: 0.6905
+  probe=11 : 0.247 s 1-R@10: 0.7020
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF65536,PQ16 is 11
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 21.968 s
+  probe=1  : 0.425 s 1-R@10: 0.2696
+  probe=2  : 0.391 s 1-R@10: 0.3887
+  probe=4  : 0.341 s 1-R@10: 0.5082
+  probe=8  : 0.282 s 1-R@10: 0.6248
+  probe=16 : 0.309 s 1-R@10: 0.7214
+  probe=12 : 0.294 s 1-R@10: 0.6842
+  probe=14 : 0.310 s 1-R@10: 0.7049
+  probe=13 : 0.382 s 1-R@10: 0.6959
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF131072,PQ16 is 14
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 39.850 s
+  probe=1  : 0.429 s 1-R@10: 0.2395
+  probe=2  : 0.316 s 1-R@10: 0.3485
+  probe=4  : 0.364 s 1-R@10: 0.4721
+  probe=8  : 0.318 s 1-R@10: 0.5881
+  probe=16 : 0.366 s 1-R@10: 0.6886
+  probe=32 : 0.401 s 1-R@10: 0.7653
+  probe=24 : 0.341 s 1-R@10: 0.7362
+  probe=20 : 0.357 s 1-R@10: 0.7160
+  probe=18 : 0.387 s 1-R@10: 0.7028
+  probe=17 : 0.340 s 1-R@10: 0.6959
+The minimum nprobe to achieve R@10=0.7 on SIFT100M IVF262144,PQ16 is 18
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/cent_SIFT100M_OPQ16,IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.301 s
+  probe=1  : 1.011 s 1-R@10: 0.4915
+  probe=2  : 0.536 s 1-R@10: 0.6348
+  probe=4  : 0.872 s 1-R@10: 0.7324
+  probe=3  : 0.660 s 1-R@10: 0.6964
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF1024,PQ16 is 4
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/cent_SIFT100M_OPQ16,IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.662 s
+  probe=1  : 0.608 s 1-R@10: 0.4464
+  probe=2  : 0.482 s 1-R@10: 0.5901
+  probe=4  : 0.538 s 1-R@10: 0.7056
+  probe=3  : 0.911 s 1-R@10: 0.6616
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF2048,PQ16 is 4
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/cent_SIFT100M_OPQ16,IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.916 s
+  probe=1  : 0.482 s 1-R@10: 0.4172
+  probe=2  : 0.553 s 1-R@10: 0.5599
+  probe=4  : 0.712 s 1-R@10: 0.6805
+  probe=8  : 0.678 s 1-R@10: 0.7624
+  probe=6  : 0.811 s 1-R@10: 0.7327
+  probe=5  : 0.619 s 1-R@10: 0.7105
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF4096,PQ16 is 5
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/cent_SIFT100M_OPQ16,IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.263 s
+  probe=1  : 0.766 s 1-R@10: 0.3962
+  probe=2  : 0.491 s 1-R@10: 0.5379
+  probe=4  : 0.482 s 1-R@10: 0.6569
+  probe=8  : 0.689 s 1-R@10: 0.7418
+  probe=6  : 0.511 s 1-R@10: 0.7119
+  probe=5  : 0.385 s 1-R@10: 0.6910
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF8192,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/cent_SIFT100M_OPQ16,IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.495 s
+  probe=1  : 0.395 s 1-R@10: 0.3635
+  probe=2  : 0.324 s 1-R@10: 0.4970
+  probe=4  : 0.592 s 1-R@10: 0.6255
+  probe=8  : 0.543 s 1-R@10: 0.7287
+  probe=6  : 0.624 s 1-R@10: 0.6927
+  probe=7  : 0.619 s 1-R@10: 0.7141
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF16384,PQ16 is 7
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/cent_SIFT100M_OPQ16,IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 8.285 s
+  probe=1  : 0.692 s 1-R@10: 0.3304
+  probe=2  : 0.306 s 1-R@10: 0.4634
+  probe=4  : 0.330 s 1-R@10: 0.5953
+  probe=8  : 0.638 s 1-R@10: 0.7023
+  probe=6  : 0.341 s 1-R@10: 0.6609
+  probe=7  : 0.504 s 1-R@10: 0.6828
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF32768,PQ16 is 8
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/cent_SIFT100M_OPQ16,IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 12.563 s
+  probe=1  : 0.326 s 1-R@10: 0.2931
+  probe=2  : 0.380 s 1-R@10: 0.4307
+  probe=4  : 0.594 s 1-R@10: 0.5591
+  probe=8  : 0.353 s 1-R@10: 0.6699
+  probe=16 : 0.463 s 1-R@10: 0.7554
+  probe=12 : 0.580 s 1-R@10: 0.7218
+  probe=10 : 0.621 s 1-R@10: 0.7017
+  probe=9  : 0.448 s 1-R@10: 0.6866
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF65536,PQ16 is 10
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 22.077 s
+  probe=1  : 0.493 s 1-R@10: 0.2692
+  probe=2  : 0.737 s 1-R@10: 0.3936
+  probe=4  : 0.689 s 1-R@10: 0.5140
+  probe=8  : 0.669 s 1-R@10: 0.6304
+  probe=16 : 0.501 s 1-R@10: 0.7266
+  probe=12 : 0.498 s 1-R@10: 0.6914
+  probe=14 : 0.452 s 1-R@10: 0.7114
+  probe=13 : 0.448 s 1-R@10: 0.7014
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF131072,PQ16 is 13
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 39.941 s
+  probe=1  : 0.545 s 1-R@10: 0.2375
+  probe=2  : 0.397 s 1-R@10: 0.3476
+  probe=4  : 0.501 s 1-R@10: 0.4744
+  probe=8  : 0.585 s 1-R@10: 0.5909
+  probe=16 : 0.592 s 1-R@10: 0.6916
+  probe=32 : 0.803 s 1-R@10: 0.7713
+  probe=24 : 0.759 s 1-R@10: 0.7420
+  probe=20 : 0.793 s 1-R@10: 0.7201
+  probe=18 : 0.495 s 1-R@10: 0.7068
+  probe=17 : 0.675 s 1-R@10: 0.6991
+The minimum nprobe to achieve R@10=0.7 on SIFT100M OPQ16,IVF262144,PQ16 is 18
+==================== SIFT100M Recall 70 TopK 10 Ends ====================
+ 
+==================== SIFT100M Recall 80 TopK 10 Starts ====================
+ 
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/cent_SIFT100M_IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.406 s
+  probe=1  : 0.435 s 1-R@10: 0.4869
+  probe=2  : 0.361 s 1-R@10: 0.6248
+  probe=4  : 0.574 s 1-R@10: 0.7179
+  probe=8  : 1.050 s 1-R@10: 0.7703
+  probe=16 : 1.336 s 1-R@10: 0.7926
+  probe=32 : 2.634 s 1-R@10: 0.7993
+  probe=64 : 5.053 s 1-R@10: 0.8004
+  probe=48 : 3.550 s 1-R@10: 0.8001
+  probe=40 : 3.034 s 1-R@10: 0.8001
+  probe=36 : 3.005 s 1-R@10: 0.7998
+  probe=38 : 3.294 s 1-R@10: 0.7998
+  probe=39 : 3.333 s 1-R@10: 0.8001
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF1024,PQ16 is 39
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/cent_SIFT100M_IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF2048,PQ16/SIFT100M_IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.976 s
+  probe=1  : 0.292 s 1-R@10: 0.4472
+  probe=2  : 0.322 s 1-R@10: 0.5889
+  probe=4  : 0.476 s 1-R@10: 0.6970
+  probe=8  : 0.551 s 1-R@10: 0.7626
+  probe=16 : 0.907 s 1-R@10: 0.7951
+  probe=32 : 1.635 s 1-R@10: 0.8059
+  probe=24 : 1.168 s 1-R@10: 0.8031
+  probe=20 : 0.924 s 1-R@10: 0.7994
+  probe=22 : 1.076 s 1-R@10: 0.8018
+  probe=21 : 1.017 s 1-R@10: 0.8006
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF2048,PQ16 is 21
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/cent_SIFT100M_IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF4096,PQ16/SIFT100M_IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.501 s
+  probe=1  : 0.350 s 1-R@10: 0.4157
+  probe=2  : 0.295 s 1-R@10: 0.5537
+  probe=4  : 0.330 s 1-R@10: 0.6711
+  probe=8  : 0.548 s 1-R@10: 0.7479
+  probe=16 : 0.541 s 1-R@10: 0.7919
+  probe=32 : 0.978 s 1-R@10: 0.8080
+  probe=24 : 0.632 s 1-R@10: 0.8031
+  probe=20 : 0.595 s 1-R@10: 0.7992
+  probe=22 : 0.682 s 1-R@10: 0.8013
+  probe=21 : 0.756 s 1-R@10: 0.8009
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF4096,PQ16 is 21
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/cent_SIFT100M_IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.741 s
+  probe=1  : 0.223 s 1-R@10: 0.3942
+  probe=2  : 0.293 s 1-R@10: 0.5379
+  probe=4  : 0.372 s 1-R@10: 0.6551
+  probe=8  : 0.380 s 1-R@10: 0.7355
+  probe=16 : 0.444 s 1-R@10: 0.7880
+  probe=32 : 0.693 s 1-R@10: 0.8133
+  probe=24 : 0.511 s 1-R@10: 0.8046
+  probe=20 : 0.507 s 1-R@10: 0.7976
+  probe=22 : 0.666 s 1-R@10: 0.8015
+  probe=21 : 0.482 s 1-R@10: 0.7996
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF8192,PQ16 is 22
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/cent_SIFT100M_IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF16384,PQ16/SIFT100M_IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 5.900 s
+  probe=1  : 0.278 s 1-R@10: 0.3665
+  probe=2  : 0.291 s 1-R@10: 0.4979
+  probe=4  : 0.325 s 1-R@10: 0.6220
+  probe=8  : 0.408 s 1-R@10: 0.7221
+  probe=16 : 0.334 s 1-R@10: 0.7867
+  probe=32 : 0.391 s 1-R@10: 0.8192
+  probe=24 : 0.530 s 1-R@10: 0.8083
+  probe=20 : 0.414 s 1-R@10: 0.8000
+  probe=18 : 0.399 s 1-R@10: 0.7948
+  probe=19 : 0.365 s 1-R@10: 0.7971
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF16384,PQ16 is 20
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/cent_SIFT100M_IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF32768,PQ16/SIFT100M_IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 8.675 s
+  probe=1  : 0.408 s 1-R@10: 0.3319
+  probe=2  : 0.355 s 1-R@10: 0.4643
+  probe=4  : 0.343 s 1-R@10: 0.5942
+  probe=8  : 0.354 s 1-R@10: 0.6944
+  probe=16 : 0.390 s 1-R@10: 0.7643
+  probe=32 : 0.361 s 1-R@10: 0.8068
+  probe=24 : 0.362 s 1-R@10: 0.7912
+  probe=28 : 0.350 s 1-R@10: 0.7993
+  probe=30 : 0.424 s 1-R@10: 0.8041
+  probe=29 : 0.326 s 1-R@10: 0.8016
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF32768,PQ16 is 29
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/cent_SIFT100M_IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF65536,PQ16/SIFT100M_IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 12.895 s
+  probe=1  : 0.337 s 1-R@10: 0.2918
+  probe=2  : 0.278 s 1-R@10: 0.4281
+  probe=4  : 0.314 s 1-R@10: 0.5530
+  probe=8  : 0.332 s 1-R@10: 0.6612
+  probe=16 : 0.271 s 1-R@10: 0.7457
+  probe=32 : 0.388 s 1-R@10: 0.7996
+  probe=64 : 0.436 s 1-R@10: 0.8314
+  probe=48 : 0.358 s 1-R@10: 0.8197
+  probe=40 : 0.336 s 1-R@10: 0.8113
+  probe=36 : 0.309 s 1-R@10: 0.8066
+  probe=34 : 0.340 s 1-R@10: 0.8036
+  probe=33 : 0.301 s 1-R@10: 0.8015
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF65536,PQ16 is 33
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 21.992 s
+  probe=1  : 0.272 s 1-R@10: 0.2696
+  probe=2  : 0.252 s 1-R@10: 0.3887
+  probe=4  : 0.334 s 1-R@10: 0.5082
+  probe=8  : 0.353 s 1-R@10: 0.6248
+  probe=16 : 0.406 s 1-R@10: 0.7214
+  probe=32 : 0.368 s 1-R@10: 0.7923
+  probe=64 : 0.427 s 1-R@10: 0.8306
+  probe=48 : 0.431 s 1-R@10: 0.8171
+  probe=40 : 0.372 s 1-R@10: 0.8053
+  probe=36 : 0.406 s 1-R@10: 0.7987
+  probe=38 : 0.374 s 1-R@10: 0.8025
+  probe=37 : 0.437 s 1-R@10: 0.8009
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF131072,PQ16 is 37
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 40.006 s
+  probe=1  : 0.339 s 1-R@10: 0.2395
+  probe=2  : 0.357 s 1-R@10: 0.3485
+  probe=4  : 0.387 s 1-R@10: 0.4721
+  probe=8  : 0.398 s 1-R@10: 0.5881
+  probe=16 : 0.354 s 1-R@10: 0.6886
+  probe=32 : 0.416 s 1-R@10: 0.7653
+  probe=64 : 0.413 s 1-R@10: 0.8170
+  probe=48 : 0.454 s 1-R@10: 0.7991
+  probe=56 : 0.470 s 1-R@10: 0.8103
+  probe=52 : 0.436 s 1-R@10: 0.8052
+  probe=50 : 0.405 s 1-R@10: 0.8017
+  probe=49 : 0.383 s 1-R@10: 0.8003
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF262144,PQ16 is 49
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/cent_SIFT100M_OPQ16,IVF1024.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF1024,PQ16/SIFT100M_OPQ16,IVF1024,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.560 s
+  probe=1  : 0.493 s 1-R@10: 0.4915
+  probe=2  : 0.689 s 1-R@10: 0.6348
+  probe=4  : 0.616 s 1-R@10: 0.7324
+  probe=8  : 1.604 s 1-R@10: 0.7869
+  probe=16 : 1.681 s 1-R@10: 0.8109
+  probe=12 : 1.594 s 1-R@10: 0.8035
+  probe=10 : 1.458 s 1-R@10: 0.7969
+  probe=11 : 1.749 s 1-R@10: 0.8004
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF1024,PQ16 is 11
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/cent_SIFT100M_OPQ16,IVF2048.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF2048,PQ16/SIFT100M_OPQ16,IVF2048,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 3.930 s
+  probe=1  : 0.735 s 1-R@10: 0.4464
+  probe=2  : 0.400 s 1-R@10: 0.5901
+  probe=4  : 0.691 s 1-R@10: 0.7056
+  probe=8  : 0.816 s 1-R@10: 0.7758
+  probe=16 : 1.543 s 1-R@10: 0.8095
+  probe=12 : 1.147 s 1-R@10: 0.7989
+  probe=14 : 1.760 s 1-R@10: 0.8051
+  probe=13 : 1.500 s 1-R@10: 0.8029
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF2048,PQ16 is 13
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/cent_SIFT100M_OPQ16,IVF4096.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF4096,PQ16/SIFT100M_OPQ16,IVF4096,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 4.792 s
+  probe=1  : 0.803 s 1-R@10: 0.4172
+  probe=2  : 0.528 s 1-R@10: 0.5599
+  probe=4  : 0.549 s 1-R@10: 0.6805
+  probe=8  : 0.879 s 1-R@10: 0.7624
+  probe=16 : 1.224 s 1-R@10: 0.8080
+  probe=12 : 0.924 s 1-R@10: 0.7934
+  probe=14 : 0.994 s 1-R@10: 0.8017
+  probe=13 : 0.609 s 1-R@10: 0.7978
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF4096,PQ16 is 14
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/cent_SIFT100M_OPQ16,IVF8192.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF8192,PQ16/SIFT100M_OPQ16,IVF8192,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 6.521 s
+  probe=1  : 0.600 s 1-R@10: 0.3962
+  probe=2  : 0.513 s 1-R@10: 0.5379
+  probe=4  : 0.651 s 1-R@10: 0.6569
+  probe=8  : 0.945 s 1-R@10: 0.7418
+  probe=16 : 1.057 s 1-R@10: 0.7984
+  probe=32 : 1.054 s 1-R@10: 0.8293
+  probe=24 : 1.070 s 1-R@10: 0.8195
+  probe=20 : 0.677 s 1-R@10: 0.8106
+  probe=18 : 0.638 s 1-R@10: 0.8060
+  probe=17 : 0.794 s 1-R@10: 0.8019
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF8192,PQ16 is 17
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/cent_SIFT100M_OPQ16,IVF16384.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF16384,PQ16/SIFT100M_OPQ16,IVF16384,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 7.015 s
+  probe=1  : 0.580 s 1-R@10: 0.3635
+  probe=2  : 0.764 s 1-R@10: 0.4970
+  probe=4  : 0.779 s 1-R@10: 0.6255
+  probe=8  : 0.365 s 1-R@10: 0.7287
+  probe=16 : 0.723 s 1-R@10: 0.7941
+  probe=32 : 1.103 s 1-R@10: 0.8295
+  probe=24 : 0.670 s 1-R@10: 0.8182
+  probe=20 : 0.612 s 1-R@10: 0.8073
+  probe=18 : 0.590 s 1-R@10: 0.8018
+  probe=17 : 1.065 s 1-R@10: 0.7986
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF16384,PQ16 is 18
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/cent_SIFT100M_OPQ16,IVF32768.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF32768,PQ16/SIFT100M_OPQ16,IVF32768,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 9.024 s
+  probe=1  : 0.344 s 1-R@10: 0.3304
+  probe=2  : 0.417 s 1-R@10: 0.4634
+  probe=4  : 0.497 s 1-R@10: 0.5953
+  probe=8  : 0.501 s 1-R@10: 0.7023
+  probe=16 : 0.764 s 1-R@10: 0.7761
+  probe=32 : 0.438 s 1-R@10: 0.8224
+  probe=24 : 0.466 s 1-R@10: 0.8052
+  probe=20 : 0.545 s 1-R@10: 0.7929
+  probe=22 : 0.645 s 1-R@10: 0.7992
+  probe=23 : 0.457 s 1-R@10: 0.8025
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF32768,PQ16 is 23
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/cent_SIFT100M_OPQ16,IVF65536.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF65536,PQ16/SIFT100M_OPQ16,IVF65536,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 13.405 s
+  probe=1  : 0.368 s 1-R@10: 0.2931
+  probe=2  : 0.368 s 1-R@10: 0.4307
+  probe=4  : 0.566 s 1-R@10: 0.5591
+  probe=8  : 0.327 s 1-R@10: 0.6699
+  probe=16 : 0.422 s 1-R@10: 0.7554
+  probe=32 : 0.385 s 1-R@10: 0.8131
+  probe=24 : 0.365 s 1-R@10: 0.7942
+  probe=28 : 0.426 s 1-R@10: 0.8048
+  probe=26 : 0.671 s 1-R@10: 0.8002
+  probe=25 : 0.522 s 1-R@10: 0.7970
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF65536,PQ16 is 26
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 22.001 s
+  probe=1  : 0.474 s 1-R@10: 0.2692
+  probe=2  : 0.523 s 1-R@10: 0.3936
+  probe=4  : 0.554 s 1-R@10: 0.5140
+  probe=8  : 0.558 s 1-R@10: 0.6304
+  probe=16 : 0.592 s 1-R@10: 0.7266
+  probe=32 : 0.648 s 1-R@10: 0.7993
+  probe=64 : 0.632 s 1-R@10: 0.8409
+  probe=48 : 0.430 s 1-R@10: 0.8252
+  probe=40 : 0.735 s 1-R@10: 0.8143
+  probe=36 : 0.488 s 1-R@10: 0.8086
+  probe=34 : 0.697 s 1-R@10: 0.8041
+  probe=33 : 0.591 s 1-R@10: 0.8021
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF131072,PQ16 is 33
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load ./trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 39.839 s
+  probe=1  : 0.613 s 1-R@10: 0.2375
+  probe=2  : 0.493 s 1-R@10: 0.3476
+  probe=4  : 0.523 s 1-R@10: 0.4744
+  probe=8  : 0.673 s 1-R@10: 0.5909
+  probe=16 : 0.712 s 1-R@10: 0.6916
+  probe=32 : 0.461 s 1-R@10: 0.7713
+  probe=64 : 0.613 s 1-R@10: 0.8221
+  probe=48 : 0.568 s 1-R@10: 0.8034
+  probe=40 : 0.540 s 1-R@10: 0.7907
+  probe=44 : 0.658 s 1-R@10: 0.7983
+  probe=46 : 0.712 s 1-R@10: 0.8011
+  probe=45 : 0.530 s 1-R@10: 0.8001
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF262144,PQ16 is 45
+==================== SIFT100M Recall 80 TopK 10 Ends ====================
+ 

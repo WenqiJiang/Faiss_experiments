@@ -6,8 +6,11 @@
 # LICENSE file in the root directory of this source tree.
 
 """
-e.g., 
-python bench_gpu_1bn.py SIFT1000M OPQ16,IVF262144,PQ16 -nnn 100 -ngpu 3 -startgpu 1 -tempmem $[1536*1024*1024] -qbs 512
+usage 1, throughput test
+python bench_gpu_1bn.py SIFT1000M OPQ16,IVF262144,PQ16 -topK 100 -ngpu 3 -startgpu 1 -tempmem $[1536*1024*1024] -qbs 512
+
+usage 2, find min nprobe to achieve certain recall 
+python bench_gpu_1bn.py SIFT100M OPQ16,IVF262144,PQ16 -recall_goal 80 -topK 10 -ngpu 1 -startgpu 1 -qbs 512
 """
 
 from __future__ import print_function
@@ -17,6 +20,7 @@ import os
 import sys
 import faiss
 import re
+import pickle
 
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
@@ -28,6 +32,10 @@ from datasets import ivecs_read
 
 def usage():
     print("""
+
+Besides training / searching, 
+this script can also be used to automatically search the min(nprobe) that can achieve
+the target recall R@k using dataset D and index I.
 
 Usage: bench_gpu_1bn.py dataset indextype [options]
 
@@ -42,6 +50,8 @@ indextype: any index type supported by index_factory that runs on GPU.
 -tempmem N         use N bytes of temporary GPU memory
 -nocache           do not read or write intermediate files
 -float16           use 16-bit floats on the GPU side
+
+-recall_goal       this option evaluates recall
 
     Add options
 
@@ -58,10 +68,10 @@ indextype: any index type supported by index_factory that runs on GPU.
                    will be copied across ngpu/R, default R=1)
 -noptables         do not use precomputed tables in IVFPQ.
 -qbs N             split queries in blocks of no more than N vectors
--nnn N             search N neighbors for each query
+-topK N             search N neighbors for each query
 -nprobe 4,16,64    try this number of probes
 -knngraph          instead of the standard setup for the dataset,
-                   compute a k-nn graph with nnn neighbors per element
+                   compute a k-nn graph with topK neighbors per element
 -oI xx%d.npy       output the search result indices to this numpy file,
                    %d will be replaced with the nprobe
 -oD xx%d.npy       output the search result distances to this file
@@ -94,10 +104,11 @@ max_add = -1
 use_float16 = False
 use_cache = True
 startgpu=0
-nnn = 10
+topK = 10
 altadd = False
 I_fname = None
 D_fname = None
+recall_goal = None
 
 args = sys.argv[1:]
 
@@ -110,7 +121,7 @@ while args:
     elif a == '-noptables': use_precomputed_tables = False
     elif a == '-abs':       add_batch_size = int(args.pop(0))
     elif a == '-qbs':       query_batch_size = int(args.pop(0))
-    elif a == '-nnn':       nnn = int(args.pop(0))
+    elif a == '-topK':       topK = int(args.pop(0))
     elif a == '-tempmem':   tempmem = int(args.pop(0))
     elif a == '-nocache':   use_cache = False
     elif a == '-knngraph':  knngraph = True
@@ -118,6 +129,7 @@ while args:
     elif a == '-float16':   use_float16 = True
     elif a == '-nprobe':    nprobes = [int(x) for x in args.pop(0).split(',')]
     elif a == '-max_add':   max_add = int(args.pop(0))
+    elif a == '-recall_goal': recall_goal = int(args.pop(0)) / 100.0
     elif not dbname:        dbname = a
     elif not index_key:     index_key = a
     else:
@@ -724,10 +736,10 @@ def eval_dataset(index, preproc):
         t0 = time.time()
 
         if sl == 0:
-            D, I = index.search(preproc.apply_py(sanitize(xq)), nnn)
+            D, I = index.search(preproc.apply_py(sanitize(xq)), topK)
         else:
-            I = np.empty((nq, nnn), dtype='int32')
-            D = np.empty((nq, nnn), dtype='float32')
+            I = np.empty((nq, topK), dtype='int32')
+            D = np.empty((nq, topK), dtype='float32')
 
             inter_res = ''
 
@@ -739,21 +751,21 @@ def eval_dataset(index, preproc):
                 i1 = i0 + xs.shape[0]
                 # Wenqi: debugging memory overflow
                 # print(xs.shape)
-                Di, Ii = index.search(xs, nnn)
+                Di, Ii = index.search(xs, topK)
 
                 I[i0:i1] = Ii
                 D[i0:i1] = Di
 
                 if knngraph and not inter_res and i1 >= nq_gt:
                     ires = eval_intersection_measure(
-                        gt_I[:, :nnn], I[:nq_gt])
+                        gt_I[:, :topK], I[:nq_gt])
                     inter_res = ', %.4f' % ires
 
         t1 = time.time()
         if knngraph:
-            ires = eval_intersection_measure(gt_I[:, :nnn], I[:nq_gt])
+            ires = eval_intersection_measure(gt_I[:, :topK], I[:nq_gt])
             print("  probe=%-3d: %.3f s rank-%d intersection results: %.4f" % (
-                nprobe, t1 - t0, nnn, ires))
+                nprobe, t1 - t0, topK, ires))
         else:
             print("  probe=%-3d: %.3f s" % (nprobe, t1 - t0), end=' ')
             gtc = gt_I[:, :1]
@@ -761,7 +773,7 @@ def eval_dataset(index, preproc):
             # WENQI modified, when only using 1000 query, comment below
             # because groud truth verification have problems with shape
             for rank in 1, 10, 100:
-                if rank > nnn: continue
+                if rank > topK: continue
                 nok = (I[:, :rank] == gtc).sum()
                 print("1-R@%d: %.4f" % (rank, nok / float(nq)), end=' ')
             print()
@@ -775,6 +787,132 @@ def eval_dataset(index, preproc):
             np.save(D, D_fname_i)
 
 
+def recall_eval(index, preproc):
+    """
+    This script is used to automatically search the min(nprobe) that can achieve
+    the target recall R@k using dataset D and index I.
+    """
+    nlist = None
+    index_array = index_key.split(",")
+    if len(index_array) == 2: # "IVF4096,PQ16" 
+        s = index_array[0]
+        if s[:3]  == "IVF":
+            nlist = int(s[3:])
+        else:
+            raise ValueError
+    elif len(index_array) == 3: # "OPQ16,IVF4096,PQ16"
+        s = index_array[1]
+        if s[:3]  == "IVF":
+            nlist = int(s[3:])
+        else:
+            raise ValueError
+    else:
+        raise ValueError
+
+    ps = faiss.GpuParameterSpace()
+    ps.initialize(index)
+
+    nq_gt = gt_I.shape[0]
+    sl = query_batch_size
+    nq = xq.shape[0]
+
+    nprobe = 1 # start nprobe
+    min_range = 1
+    max_range = None
+    fail = False
+
+    while True:
+        ps.set_index_parameter(index, 'nprobe', nprobe)
+        t0 = time.time()
+
+        if sl == 0:
+            D, I = index.search(preproc.apply_py(sanitize(xq)), topK)
+        else:
+            I = np.empty((nq, topK), dtype='int32')
+            D = np.empty((nq, topK), dtype='float32')
+
+            inter_res = ''
+
+            for i0, xs in dataset_iterator(xq, preproc, sl):
+
+                i1 = i0 + xs.shape[0]
+                Di, Ii = index.search(xs, topK)
+
+                I[i0:i1] = Ii
+                D[i0:i1] = Di
+
+                if knngraph and not inter_res and i1 >= nq_gt:
+                    ires = eval_intersection_measure(
+                        gt_I[:, :topK], I[:nq_gt])
+                    inter_res = ', %.4f' % ires
+
+        t1 = time.time()
+        
+        print("  probe=%-3d: %.3f s" % (nprobe, t1 - t0), end=' ')
+        gtc = gt_I[:, :1]
+        nq = xq.shape[0]
+        nok = (I[:, :topK] == gtc).sum()
+        recall = nok / float(nq)
+        print("1-R@%d: %.4f" % (topK, recall), end='\n')
+
+        if recall >= recall_goal:
+            max_range = nprobe # max range is used when recall goal is achieved
+            nprobe = int((min_range + nprobe) / 2.0)
+            if nprobe == min_range:
+                break
+        else:
+            min_range = nprobe  # to achieve target recall, need larger than this nprobe
+            if nprobe == nlist:
+                print("ERROR! Search failed: cannot reach expected recall on given dataset and index")
+                break
+            elif max_range:
+                if nprobe  ==  max_range - 1:
+                    break
+                nprobe = int((max_range + nprobe) / 2.0)
+            else:
+                nprobe = nprobe * 2
+                if nprobe > nlist:
+                    nprobe = nlist
+    
+    if not fail:
+        min_nprobe = max_range
+        print("The minimum nprobe to achieve R@{topK}={recall_goal} on {dbname} {index_key} is {nprobe}".format(
+            topK=topK, recall_goal=recall_goal, dbname=dbname, index_key=index_key, nprobe=min_nprobe))
+
+        fname = './recall_info/gpu_recall_index_nprobe_pairs.pkl'
+        if os.path.exists(fname) and os.path.getsize(fname) > 0: # load and write
+            d = None
+            with open(fname, 'rb') as f:
+                d = pickle.load(f)
+
+            with open(fname, 'wb') as f:
+                # dictionary format:
+                #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = nprobe
+                #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+                if dbname not in d:
+                    d[dbname] = dict()
+                if index_key not in d[dbname]:
+                    d[dbname][index_key] = dict()
+                if topK not in d[dbname][index_key]:
+                    d[dbname][index_key][topK] = dict()
+                d[dbname][index_key][topK][recall_goal] = min_nprobe
+                pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)
+
+        else: # write new file
+            with open(fname, 'wb') as f:
+                # dictionary format:
+                #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = nprobe
+                #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+                d = dict()
+                d[dbname] = dict()
+                d[dbname][index_key] = dict()
+                d[dbname][index_key][topK] = dict()
+                d[dbname][index_key][topK][recall_goal] = min_nprobe
+                pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)
+
+
+
+
 #################################################################
 # Driver
 #################################################################
@@ -784,7 +922,12 @@ preproc = get_preprocessor()
 
 index = get_populated_index(preproc)
 
-eval_dataset(index, preproc)
+if recall_goal:
+    # test the min nprobe to achieve certain recall
+    recall_eval(index, preproc)
+else:  
+    # test throughput, nprobe recall, etc.
+    eval_dataset(index, preproc)
 
 # make sure index is deleted before the resources
 del index

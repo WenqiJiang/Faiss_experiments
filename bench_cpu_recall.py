@@ -19,6 +19,7 @@ import time
 import numpy as np
 import re
 import faiss
+import pickle
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
 
@@ -258,7 +259,6 @@ print(' ' * len("nprobe=1024"), '\t', 'R@{}'.format(topK))
 param = 1 # start nprobe
 min_range = 1
 max_range = None
-fail = False
 
 while True:
     print("nprobe={}".format(param), '\t', end=' ')
@@ -283,14 +283,46 @@ while True:
             print("ERROR! Search failed: cannot reach expected recall on given dataset and index")
             break
         elif max_range:
-            param = int((max_range + param) / 2.0)
-            if param == max_range:
+            if param  ==  max_range - 1:
                 break
+            param = int((max_range + param) / 2.0)
         else:
             param = param * 2
             if param > nlist:
                 param = nlist
 
-if not fail:
-    print("The minimum nprobe to achieve R@{topK}={recall_goal} on {dbname} {index_key} is {nprobe}".format(
-        topK=topK, recall_goal=recall_goal, dbname=dbname, index_key=index_key, nprobe=max_range))
+min_nprobe = max_range
+print("The minimum nprobe to achieve R@{topK}={recall_goal} on {dbname} {index_key} is {nprobe}".format(
+    topK=topK, recall_goal=recall_goal, dbname=dbname, index_key=index_key, nprobe=min_nprobe))
+
+fname = './recall_info/cpu_recall_index_nprobe_pairs.pkl'
+if os.path.exists(fname) and os.path.getsize(fname) > 0: # load and write
+    d = None
+    with open(fname, 'rb') as f:
+        d = pickle.load(f)
+
+    with open(fname, 'wb') as f:
+        # dictionary format:
+        #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = nprobe
+        #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+        if dbname not in d:
+            d[dbname] = dict()
+        if index_key not in d[dbname]:
+            d[dbname][index_key] = dict()
+        if topK not in d[dbname][index_key]:
+            d[dbname][index_key][topK] = dict()
+        d[dbname][index_key][topK][recall_goal] = min_nprobe
+        pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)
+
+else: # write new file
+    with open(fname, 'wb') as f:
+        # dictionary format:
+        #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = nprobe
+        #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+        d = dict()
+        d[dbname] = dict()
+        d[dbname][index_key] = dict()
+        d[dbname][index_key][topK] = dict()
+        d[dbname][index_key][topK][recall_goal] = min_nprobe
+        pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)
+
