@@ -4,7 +4,15 @@
 Benchmarking the CPU's throughput using 10,000 queries (takes several minutes),
 the batch size is set to 1 to measure the maxmimum throughput
 
-python bench_cpu_throughput.py SIFT100M IVF4096,PQ16 nprobe=32
+There are 2 ways to use the script:
+
+(1) Test the throughput of given DB & index & nprobe:
+
+python bench_cpu_throughput.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
+
+(2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
+
+python bench_cpu_throughput.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl'
 """
 
 from __future__ import print_function
@@ -14,9 +22,21 @@ import time
 import numpy as np
 import re
 import faiss
+import pickle
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
+import argparse 
+parser = argparse.ArgumentParser()
+parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name, e.g., SIFT100M")
+parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
+parser.add_argument('--topK', type=int, default=10, help="return topK most similar vector, related to recall, e.g., R@10=50perc or R@100=80perc")
+parser.add_argument('--parametersets', type=str, default='nprobe=1', help="a string of nprobes, e.g., 'nprobe=1 nprobe=32'")
 
+
+parser.add_argument('--load_from_dict', type=int, default=0, help="whether to use Mode B: evluating throughput by using loaded settings")
+parser.add_argument('--overwrite', type=int, default=0, help="whether to overwrite existed performance, by default, skip existed settings")
+parser.add_argument('--nprobe_dict_dir', type=str, default='./recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> nprobe")
+parser.add_argument('--performance_dict_dir', type=str, default='./cpu_performance_result/cpu_throughput_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> throughput (QPS)")
 
 ### Wenqi: when loading the index, save it to numpy array, default: False
 save_numpy_index = False
@@ -24,6 +44,7 @@ save_numpy_index = False
 # we mem-map the biggest files to avoid having them in memory all at
 # once
 
+args = parser.parse_args()
 
 def mmap_fvecs(fname):
     x = np.memmap(fname, dtype='int32', mode='r')
@@ -35,61 +56,6 @@ def mmap_bvecs(fname):
     x = np.memmap(fname, dtype='uint8', mode='r')
     d = x[:4].view('int32')[0]
     return x.reshape(-1, d + 4)[:, 4:]
-
-
-#################################################################
-# Bookkeeping
-#################################################################
-
-
-dbname        = sys.argv[1]
-index_key     = sys.argv[2]
-parametersets = sys.argv[3:]
-
-
-tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
-
-if not os.path.isdir(tmpdir):
-    print("%s does not exist, creating it" % tmpdir)
-    os.mkdir(tmpdir)
-
-
-#################################################################
-# Prepare dataset
-#################################################################
-
-
-print("Preparing dataset", dbname)
-
-if dbname.startswith('SIFT'):
-    # SIFT1M to SIFT1000M
-    dbsize = int(dbname[4:-1])
-    xq = mmap_bvecs('bigann/bigann_query.bvecs')
-
-    gt = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
-
-    # Wenqi: load xq to main memory and reshape
-    xq = xq.astype('float32').copy()
-    xq = np.array(xq, dtype=np.float32)
-    gt = np.array(gt, dtype=np.int32)
-
-    # copy for 10 times
-    # xq_list = []
-    # gt_list = []
-    # for i in range(10):
-    #     xq_list.append(xq)
-    #     gt_list.append(gt)
-    # xq = np.array(xq_list)
-    # xq = np.reshape(xq, (xq.shape[0] * xq.shape[1], -1))
-    # gt = np.array(gt_list)
-    # gt = np.reshape(gt, (gt.shape[0] * gt.shape[1], -1))
-
-else:
-    print('unknown dataset', dbname, file=sys.stderr)
-    sys.exit(1)
-
-nq, d = xq.shape
-assert gt.shape[0] == nq
 
 
 #################################################################
@@ -200,38 +166,174 @@ def get_populated_index():
 # Perform searches
 #################################################################
 
-index = get_populated_index()
+if not args.load_from_dict: # Mode A: using arguments passed by the arguments
 
-ps = faiss.ParameterSpace()
-ps.initialize(index)
+    dbname = args.dbname
+    index_key = args.index_key
+    topK = args.topK
+    parametersets = args.parametersets
 
-# a static C++ object that collects statistics about searches
-ivfpq_stats = faiss.cvar.indexIVFPQ_stats
-ivf_stats = faiss.cvar.indexIVF_stats
+    tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 
-# we do queries in a single thread
-faiss.omp_set_num_threads(1)
+    if not os.path.isdir(tmpdir):
+        print("%s does not exist, creating it" % tmpdir)
+        os.mkdir(tmpdir)
 
-print(' ' * len(parametersets[0]), '\t', 'R@1    R@10   R@100     time    %pass')
 
-query_vecs = np.reshape(xq, (nq,1,128))
+    print("Preparing dataset", dbname)
 
-for param in parametersets:
-    print(param, '\t', end=' ')
-    sys.stdout.flush()
-    ps.set_index_parameters(index, param)
-    t0 = time.time()
-    ivfpq_stats.reset()
-    ivf_stats.reset()
-    ## Wenqi: batch size = 1
-    for i in range(nq):
-        D, I = index.search(query_vecs[i], 10)
-    ## Wenqi: batch size = 1
-    # D, I = index.search(query_vec, 10)
-    t1 = time.time()
-    #for rank in 1, 10:
-    #    n_ok = (I[:, :rank] == gt[:, :1]).sum()
-    #    print("%.4f" % (n_ok / float(nq)), end=' ')
-    print("QPS = {}".format(nq / (t1 - t0)))
-    #print("%8.3f  " % ((t1 - t0) * 1000.0 / nq), end=' ms')
-    # print("%5.2f" % (ivfpq_stats.n_hamming_pass * 100.0 / ivf_stats.ndis))
+    if dbname.startswith('SIFT'):
+        # SIFT1M to SIFT1000M
+        dbsize = int(dbname[4:-1])
+        xq = mmap_bvecs('bigann/bigann_query.bvecs')
+
+        gt = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
+
+        # Wenqi: load xq to main memory and reshape
+        xq = xq.astype('float32').copy()
+        xq = np.array(xq, dtype=np.float32)
+        gt = np.array(gt, dtype=np.int32)
+
+    else:
+        print('unknown dataset', dbname, file=sys.stderr)
+        sys.exit(1)
+
+    nq, d = xq.shape
+    assert gt.shape[0] == nq
+
+
+    index = get_populated_index()
+
+    ps = faiss.ParameterSpace()
+    ps.initialize(index)
+
+    # a static C++ object that collects statistics about searches
+    ivfpq_stats = faiss.cvar.indexIVFPQ_stats
+    ivf_stats = faiss.cvar.indexIVF_stats
+
+    # we do queries in a single thread
+    faiss.omp_set_num_threads(1)
+
+    print(' ' * len(parametersets[0]), '\t', 'R@{}     time'.format(topK))
+
+    query_vecs = np.reshape(xq, (nq,1,128))
+
+    for param in parametersets:
+        print(param, '\t', end=' ')
+        sys.stdout.flush()
+        ps.set_index_parameters(index, param)
+        t0 = time.time()
+        ivfpq_stats.reset()
+        ivf_stats.reset()
+        ## Wenqi: batch size = 1
+        for i in range(nq):
+            D, I = index.search(query_vecs[i], topK)
+        ## Wenqi: batch size = 1
+        # D, I = index.search(query_vec, 10)
+        t1 = time.time()
+        #for rank in 1, 10:
+        #    n_ok = (I[:, :rank] == gt[:, :1]).sum()
+        #    print("%.4f" % (n_ok / float(nq)), end=' ')
+        print("QPS = {}".format(nq / (t1 - t0)))
+        #print("%8.3f  " % ((t1 - t0) * 1000.0 / nq), end=' ms')
+        # print("%5.2f" % (ivfpq_stats.n_hamming_pass * 100.0 / ivf_stats.ndis))
+
+else: # Mode B: using dictionary as input, save throughput to another dict
+
+    d_nprobes = None
+    if os.path.exists(args.nprobe_dict_dir):
+        with open(args.nprobe_dict_dir, 'rb') as f:
+            d_nprobes = pickle.load(f)
+    else:
+        print("ERROR! input dictionary does not exists")
+        raise ValueError
+
+    d_throughput = None
+    if os.path.exists(args.performance_dict_dir):
+        with open(args.performance_dict_dir, 'rb') as f:
+            d_throughput = pickle.load(f)
+    else:
+        d_throughput = dict()
+
+
+    for dbname in d_nprobes:
+
+        if dbname.startswith('SIFT'):
+            # SIFT1M to SIFT1000M
+            dbsize = int(dbname[4:-1])
+            xq = mmap_bvecs('bigann/bigann_query.bvecs')
+
+            gt = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
+
+            # Wenqi: load xq to main memory and reshape
+            xq = xq.astype('float32').copy()
+            xq = np.array(xq, dtype=np.float32)
+            gt = np.array(gt, dtype=np.int32)
+
+        else:
+            print('unknown dataset', dbname, file=sys.stderr)
+            sys.exit(1)
+
+        nq, d = xq.shape
+        assert gt.shape[0] == nq
+        
+        if dbname not in d_throughput:
+            d_throughput[dbname] = dict()
+        
+        for index_key in d_nprobes[dbname]:
+
+            if index_key not in d_throughput[dbname]:
+                d_throughput[dbname][index_key] = dict()
+
+            tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
+            index = get_populated_index()
+            ps = faiss.ParameterSpace()
+            ps.initialize(index)
+            ivfpq_stats = faiss.cvar.indexIVFPQ_stats
+            ivf_stats = faiss.cvar.indexIVF_stats
+            faiss.omp_set_num_threads(1)
+            query_vecs = np.reshape(xq, (nq,1,128))
+
+            for topK in d_nprobes[dbname][index_key]:
+
+                if topK not in d_throughput[dbname][index_key]:
+                    d_throughput[dbname][index_key][topK] = dict()
+
+                for recall_goal in d_nprobes[dbname][index_key][topK]:
+
+                    if recall_goal not in d_throughput[dbname][index_key][topK]:
+                        d_throughput[dbname][index_key][topK][recall_goal] = None
+                        
+                    # skip if there's already a QPS
+                    if d_throughput[dbname][index_key][topK][recall_goal] and (not args.overwrite): 
+                        print("SKIP TEST.\tDB: {}\tindex: {}\ttopK: {}\trecall goal: {}\t".format(
+                            dbname, index_key, topK, recall_goal))
+                        continue
+
+                    if d_nprobes[dbname][index_key][topK][recall_goal] is not None:
+
+                        nprobe = d_nprobes[dbname][index_key][topK][recall_goal]
+                        param = "nprobe={}".format(nprobe)
+
+                        sys.stdout.flush()
+                        ps.set_index_parameters(index, param)
+                        t0 = time.time()
+                        ivfpq_stats.reset()
+                        ivf_stats.reset()
+                        
+                        for i in range(nq):
+                            D, I = index.search(query_vecs[i], topK)
+                        t1 = time.time()
+                        #for rank in 1, 10:
+                        #    n_ok = (I[:, :rank] == gt[:, :1]).sum()
+                        #    print("%.4f" % (n_ok / float(nq)), end=' ')
+                        throughput = nq / (t1 - t0)
+                        print("DB: {}\tindex: {}\ttopK: {}\trecall goal: {}\tnprobe: {}\tQPS = {}".format(
+                            dbname, index_key, topK, recall_goal, nprobe, throughput))
+                        d_throughput[dbname][index_key][topK][recall_goal] = throughput
+
+                        with open(args.performance_dict_dir, 'wb') as f:
+                            # dictionary format:
+                            #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
+                            #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+                            pickle.dump(d_throughput, f, pickle.HIGHEST_PROTOCOL)

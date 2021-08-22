@@ -295,7 +295,7 @@ min_nprobe = max_range
 print("The minimum nprobe to achieve R@{topK}={recall_goal} on {dbname} {index_key} is {nprobe}".format(
     topK=topK, recall_goal=recall_goal, dbname=dbname, index_key=index_key, nprobe=min_nprobe))
 
-fname = './recall_info/cpu_recall_index_nprobe_pairs.pkl'
+fname = './recall_info/cpu_recall_index_nprobe_pairs_{}.pkl'.format(dbname)
 if os.path.exists(fname) and os.path.getsize(fname) > 0: # load and write
     d = None
     with open(fname, 'rb') as f:

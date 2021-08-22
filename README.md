@@ -57,13 +57,26 @@ python train_cpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1
 
 python train_cpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0
 
-python train_cpu.py --dataset SIFT100M --index IMI --PQ 16
+python train_cpu.py --dataset SIFT100M --index IMI --PQ 16 --OPQ 1
 
-python train_cpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 1
+python train_cpu.py --dataset SIFT100M --index IMI --PQ 16 --OPQ 0
 
-python train_cpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0
+python train_cpu.py --dataset SIFT10M --index IVF --PQ 16 --OPQ 1
 
-python train_cpu.py --dataset SIFT100M --index IMI --PQ 8
+python train_cpu.py --dataset SIFT10M --index IVF --PQ 16 --OPQ 0
+
+python train_cpu.py --dataset SIFT10M --index IMI --PQ 16 --OPQ 1
+
+python train_cpu.py --dataset SIFT10M --index IMI --PQ 16 --OPQ 0
+
+python train_cpu.py --dataset SIFT1M --index IVF --PQ 16 --OPQ 1
+
+python train_cpu.py --dataset SIFT1M --index IVF --PQ 16 --OPQ 0
+
+python train_cpu.py --dataset SIFT1M --index IMI --PQ 16 --OPQ 1
+
+python train_cpu.py --dataset SIFT1M --index IMI --PQ 16 --OPQ 0
+
 ```
 
 ### performance_test_cpu.py
@@ -77,13 +90,17 @@ python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1
 
 python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0
 
-python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 16
+python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 16 --OPQ 1
+
+python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 16 --OPQ 0
 
 python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 1
 
 python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0
 
-python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 8
+python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 8 --OPQ 1
+
+python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 8 --OPQ 0
 ```
 
 ### bench_gpu_1bn.py
@@ -101,13 +118,17 @@ Automatically train a set of indexes on GPU.
 To cover all indexes on SIFT100M dataset:  
 
 ```
-python train_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1 --ngpu 4 --startgpu 3
+python train_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1 --ngpu 1 --startgpu 0
 
-python train_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0 --ngpu 4 --startgpu 3
+python train_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0 --ngpu 1 --startgpu 0
 
-python train_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 1 --ngpu 4 --startgpu 3
+python train_gpu.py --dataset SIFT10M --index IVF --PQ 16 --OPQ 1 --ngpu 1 --startgpu 0
 
-python train_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0 --ngpu 4 --startgpu 3
+python train_gpu.py --dataset SIFT10M --index IVF --PQ 16 --OPQ 0 --ngpu 1 --startgpu 0
+
+python train_gpu.py --dataset SIFT1M --index IVF --PQ 16 --OPQ 1 --ngpu 1 --startgpu 0
+
+python train_gpu.py --dataset SIFT1M --index IVF --PQ 16 --OPQ 0 --ngpu 1 --startgpu 0
 ```
 
 ### performance_test_gpu.py
