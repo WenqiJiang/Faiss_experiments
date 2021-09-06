@@ -222,7 +222,7 @@ if parametersets == ['autotune'] or parametersets == ['autotuneMT']:
     # setup the Criterion object: optimize for 1-R@1
     crit = faiss.OneRecallAtRCriterion(nq, 1)
     # by default, the criterion will request only 1 NN
-    crit.nnn = 10
+    crit.nnn = 100
     crit.set_groundtruth(None, gt.astype('int64'))
 
     # then we let Faiss find the optimal parameters by itself
@@ -253,9 +253,9 @@ else:
         t0 = time.time()
         ivfpq_stats.reset()
         ivf_stats.reset()
-        D, I = index.search(xq, 10)
+        D, I = index.search(xq, 100)
         t1 = time.time()
-        for rank in 1, 10:
+        for rank in 1, 10, 100:
             n_ok = (I[:, :rank] == gt[:, :1]).sum()
             print("%.4f" % (n_ok / float(nq)), end=' ')
         print("%8.3f  " % ((t1 - t0) * 1000.0 / nq), end=' ')

@@ -48,8 +48,6 @@ parser.add_argument('--performance_dict_dir', type=str, default='./cpu_performan
 
 args = parser.parse_args()
 
-BYTES_PER_RESULT = 10 * 4 # top 10, int32
-
 HOST          = args.HOST # e.g., '127.0.0.1', set to physical interface if needed
 PORT          = args.PORT# e.g., 65432 Port to listen on
 
@@ -134,6 +132,7 @@ else: # Mode B: using dictionary as input, save throughput to another dict
             recall_goal = float(s.recv(recall_goal_len).decode())
             print("DB: {}\tindex_key: {}\ttopK: {}\trecall_goal: {}".format(
                 dbname, index_key, topK, recall_goal))
+            BYTES_PER_RESULT = 4 * topK # int32
 
             response_time = [] # in terms of ms
             for i in range(nq):

@@ -310,7 +310,7 @@ else: # Mode B: using dictionary as input, save throughput to another dict
                                 d_response_time[dbname][index_key][topK][recall_goal] = None
                                 
                             # skip if it is already evaluated
-                            if d_response_time[dbname][index_key][topK][recall_goal] and (not args.overwrite): 
+                            if (d_response_time[dbname][index_key][topK][recall_goal] is not None) and (not args.overwrite): 
                                 print("SKIP TEST.\tDB: {}\tindex: {}\ttopK: {}\trecall goal: {}\t".format(
                                     dbname, index_key, topK, recall_goal))
                                 continue
@@ -362,6 +362,3 @@ else: # Mode B: using dictionary as input, save throughput to another dict
                                 throughput = nq / (t1 - t0)
                                 print("DB: {}\tindex: {}\ttopK: {}\trecall goal: {}\tnprobe: {}\tQPS = {}".format(
                                     dbname, index_key, topK, recall_goal, nprobe, throughput))
-        
-        s.shutdown(socket.SHUT_RDWR)
-        s.close()

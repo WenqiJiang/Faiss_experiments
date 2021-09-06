@@ -44,7 +44,7 @@ if len(index_array) == 2: # "IVF4096,PQ16" or "IMI2x14,PQ16"
     if s[:3]  == "IVF":
         nlist = int(s[3:])
     elif s[:5]  == "IMI2x":
-        nlist = int(2 ** int(s[5:]))
+        nlist = int((2 ** int(s[5:])) ** 2)
     else:
         raise ValueError
 elif len(index_array) == 3: # "OPQ16,IVF4096,PQ16" or "OPQ16,IMI2x14,PQ16" 
@@ -52,7 +52,7 @@ elif len(index_array) == 3: # "OPQ16,IVF4096,PQ16" or "OPQ16,IMI2x14,PQ16"
     if s[:3]  == "IVF":
         nlist = int(s[3:])
     elif s[:5]  == "IMI2x":
-        nlist = int(2 ** int(s[5:]))
+        nlist = int((2 ** int(s[5:])) ** 2)
     else:
         raise ValueError
 else:

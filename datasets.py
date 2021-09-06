@@ -12,6 +12,12 @@ import numpy as np
 def ivecs_read(fname):
     a = np.fromfile(fname, dtype='int32')
     d = a[0]
+    # Wenqi: Format of ground truth (for 10000 query vectors):
+    #   1000(topK), [1000 ids]
+    #   1000(topK), [1000 ids]
+    #        ...     ...
+    #   1000(topK), [1000 ids]
+    # 10000 rows in total, 10000 * 1001 elements, 10000 * 1001 * 4 bytes
     return a.reshape(-1, d + 1)[:, 1:].copy()
 
 

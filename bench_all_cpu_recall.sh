@@ -1,8 +1,11 @@
-DBNAME='SIFT100M'
-TOPK='10'
+DBNAME='SIFT1M'
+# TOPK='1'
+# TOPK='10'
+TOPK='100'
 
-
-for RECALL in '40' '50' '60' '70' '80' 
+# for RECALL in '20' '25' '30' # topK=1
+# for RECALL in '40' '60' '80' # topK=10
+for RECALL in '60' '80' '95' # topK=100
 do
     echo '====================' $DBNAME 'Recall' $RECALL 'TopK' $TOPK 'Starts' '====================' >> cpu_recall
     echo ' ' >> cpu_recall
