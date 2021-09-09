@@ -115,6 +115,7 @@ else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
 
+xq.tofile(os.path.join(output_dir, "query_vectors_float32_{}_{}_raw".format(xq.shape[0], xq.shape[1]))
 
 print("sizes: B %s Q %s T %s gt %s" % (
     xb.shape, xq.shape, xt.shape, gt.shape))
@@ -402,3 +403,29 @@ for b in range(HBM_bank_num):
 for b in range(HBM_bank_num):
     with open (os.path.join(output_dir, "HBM_bank_{}_raw".format(b)), 'wb') as f:
         f.write(HBM_bank_contents_all[b])
+
+# Save control contents
+
+#  The format of storing HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid: 
+#     8192 start_addr, then 8192 scanned_entries_every_cell, then 8192 last_valid_element
+#     int start_addr_LUT[nlist];
+#     int scanned_entries_every_cell_LUT[nlist];
+#     int last_valid_channel_LUT[nlist];  
+
+list_start_addr_every_cell = [0]
+for c in range(nlist - 1):
+    list_start_addr_every_cell.append(list_start_addr_every_cell[c] + list_entries_per_bank[c])
+
+assert len(list_start_addr_every_cell) == len(list_entries_per_bank) and\
+    len(list_start_addr_every_cell) == len(list_last_valid_element)
+
+print(list_start_addr_every_cell[-1])
+
+HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid = \
+    list_start_addr_every_cell + list_entries_per_bank + list_last_valid_element
+
+HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid = np.array(
+    HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid, dtype=np.int32)
+
+HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid.tofile(
+    os.path.join(output_dir, 'HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid_3_by_{}_raw'.format(nlist)))
