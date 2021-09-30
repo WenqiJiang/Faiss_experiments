@@ -115,7 +115,9 @@ else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
 
-xq.tofile(os.path.join(output_dir, "query_vectors_float32_{}_{}_raw".format(xq.shape[0], xq.shape[1]))
+xq = np.array(xq, dtype=np.float32)
+xq.tofile(os.path.join(output_dir, "query_vectors_float32_{}_{}_raw".format(
+    xq.shape[0], xq.shape[1])))
 
 print("sizes: B %s Q %s T %s gt %s" % (
     xb.shape, xq.shape, xt.shape, gt.shape))

@@ -1,82 +1,66 @@
 # How to bench CPU performance?
 
+## Recall
+
+Use bench_all_cpu_recall.sh, which calls python bench_cpu_recall.py. When using it, remember to change two stuffs: (a) TOPK (b) the for loop, i.e., for RECALL in ...
+
+An example of python bench_cpu_recall.py: 
+
+python bench_cpu_recall.py --dbname SIFT100M --index_key IVF4096,PQ16 --recall_goal 80 --topK 10
+
+It will store the recall information in a dictionary located in ./recall_info/
+
 ## Throughput
+
+bench_cpu_throughput.py
 
 For throughput test, we consider the best case that all query vectors are stored locally.
 
-We consider the nprobe that allow the recall just to hit 80%.
+The throughput will be saved in ./cpu_performance_result/ as a dictionary when using the second option of the script.
 
-To perform the tests:
+Two ways to use the script
 
-```
-python bench_cpu_throughput.py SIFT100M IVF2048,PQ16 nprobe=28 >> cpu_throughput
+(1) Test the throughput of given DB & index & nprobe:
 
-python bench_cpu_throughput.py SIFT100M IVF4096,PQ16 nprobe=29 >> cpu_throughput
+python bench_cpu_throughput.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
 
-python bench_cpu_throughput.py SIFT100M IVF8192,PQ16 nprobe=22 >> cpu_throughput
+(2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
-python bench_cpu_throughput.py SIFT100M IVF16384,PQ16 nprobe=29 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IVF32768,PQ16 nprobe=29 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IVF65536,PQ16 nprobe=33 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IVF131072,PQ16 nprobe=40 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IVF262144,PQ16 nprobe=45 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF1024,PQ16 nprobe=13 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF2048,PQ16 nprobe=13 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF4096,PQ16 nprobe=17 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF8192,PQ16 nprobe=17 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF16384,PQ16 nprobe=21 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF32768,PQ16 nprobe=24 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF65536,PQ16 nprobe=30 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF131072,PQ16 nprobe=37 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M OPQ16,IVF262144,PQ16 nprobe=42 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IMI2x8,PQ16 nprobe=96 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IMI2x9,PQ16 nprobe=114 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IMI2x10,PQ16 nprobe=151 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IMI2x11,PQ16 nprobe=258 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IMI2x12,PQ16 nprobe=356 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IMI2x13,PQ16 nprobe=677 >> cpu_throughput
-
-python bench_cpu_throughput.py SIFT100M IMI2x14,PQ16 nprobe=1262 >> cpu_throughput
-```
+python bench_cpu_throughput.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl'
 
 ## Response time
 
 We consider a client sending query to an ANNS server, and measure the response time on the client side.
 
-To conduct the experiments, first adjust IP and port used on the server in two scripts, i.e., bench_all_cpu_response_time_server.sh and bench_all_cpu_response_time_client.sh
+To conduct the experiments, first adjust IP and port used on the server in two scripts, i.e., bench_cpu_response_time_server.py and bench_cpu_response_time_client.py
 
-Then execute the scripts, on the server side:
+The response time of every single query will be saved in ./cpu_performance_result/ as a dictionary when using the second option of the scripts.
 
-```
-./bench_all_cpu_response_time_server.sh
-```
+### bench_cpu_response_time_client.py
 
-On client:
+There are 2 ways to use the script:
 
-```
-./bench_all_cpu_response_time_client.sh
-```
+(1) Test the response time of given DB & index & nprobe:
 
-The response time of every single query will be saved in folder CPU_response_time.
+python bench_cpu_response_time_client.py --dbname SIFT100M --index_key OPQ16,IVF4096,PQ16 --topK 10 --param 'nprobe=32' --HOST 127.0.0.1 --PORT 65432
+
+(2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
+
+python bench_cpu_response_time_client.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' --HOST 10.1.212.76 --PORT 65432
+
+### bench_cpu_response_time_server.py
+
+There are 2 ways to use the script:
+
+(1) Test the response time of given DB & index & nprobe:
+
+python bench_cpu_response_time_server.py --dbname SIFT100M --index_key OPQ16,IVF4096,PQ16 --topK 10 --param 'nprobe=32' --HOST 127.0.0.1 --PORT 65432
+
+(2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
+
+python bench_cpu_response_time_server.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' --HOST 10.1.212.76 --PORT 65432
+
+### Measure network RTT
 
 The measured time includes both network RTT and ANNS searching time. To measure the network RTT alone, on server side:
 
@@ -94,7 +78,7 @@ The client will save a networt RTT distribution named network_response_time.npy
 
 ## Unused scripts
 
-In folder archieved_scripts, don't use them.
+In folder ./unused/, don't use them.
 
 performance_test_cpu.py
 
