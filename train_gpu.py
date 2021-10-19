@@ -16,19 +16,19 @@ FLAGS, unparsed = parser.parse_known_args()
 
 # IVF: 1024 (2^10) to 262144 (2^18)
 # IVF_range = [17, 18]
-IVF_range = [10, 11, 12, 13, 14, 15, 16, 17, 18]
+IVF_range = [10, 11, 12, 13, 14, 15, 16]
 GPU_memory_use = int(4*1024*1024*1024) # in terms of bytes
 
 if FLAGS.index == "IVF":
     if FLAGS.OPQ:
         for i in IVF_range:
             index_str = "OPQ{0},IVF{1},PQ{0}".format(FLAGS.PQ, 2 ** i)
-            os.system("python bench_gpu_1bn.py {0} {1} -topK 100 -ngpu {2} -startgpu {3} -tempmem {4} -qbs 512".format(
+            os.system("python bench_gpu_1bn.py -dbname {0} -index_key {1} -topK 100 -ngpu {2} -startgpu {3} -tempmem {4} -nprobe 1 -qbs 512".format(
                     FLAGS.dataset, index_str, FLAGS.ngpu, FLAGS.startgpu, GPU_memory_use))
     else:
         for i in IVF_range:
             index_str = "IVF{0},PQ{1}".format(2 ** i, FLAGS.PQ)
-            os.system("python bench_gpu_1bn.py {0} {1} -topK 100 -ngpu {2} -startgpu {3} -tempmem {4} -qbs 512".format(
+            os.system("python bench_gpu_1bn.py -dbname {0} -index_key {1} -topK 100 -ngpu {2} -startgpu {3} -tempmem {4} -nprobe 1 -qbs 512".format(
                     FLAGS.dataset, index_str, FLAGS.ngpu, FLAGS.startgpu, GPU_memory_use))
 else:
     raise("Index error, this script only supports IVF")

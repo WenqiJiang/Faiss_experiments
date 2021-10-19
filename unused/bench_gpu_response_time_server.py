@@ -9,8 +9,8 @@
 usage 1, throughput test on a single parameter setting
 python bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
 
-usage 2, (throughput and response time) test on a range of parameter settings (by loading a recall dictionary)
-python bench_gpu_1bn.py -load_from_dict 1 -overwrite 0 -nprobe_dict_dir './recall_info/gpu_recall_index_nprobe_pairs_SIFT100M.pkl' -throughput_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M.pkl' -ngpu 1 -startgpu 0 -tempmem $[1536*1024*1024] -qbs 1
+usage 2, throughput test on a range of parameter settings (by loading a recall dictionary)
+python bench_gpu_1bn.py -load_from_dict 1 -overwrite 0 -nprobe_dict_dir './recall_info/gpu_recall_index_nprobe_pairs_SIFT100M.pkl' -performance_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -ngpu 1 -startgpu 0 -tempmem $[1536*1024*1024] -qbs 1
     output dictionary format: d_throughput[dbname][index_key][topK][recall_goal][query_batch_size] = throughput
 
 usage 3, recall test: find min nprobe to achieve certain recall 
@@ -114,8 +114,7 @@ recall_goal = None
 load_from_dict = None 
 overwrite = 0
 nprobe_dict_dir = None
-throughput_dict_dir = None
-response_time_dict_dir = None
+performance_dict_dir = None
 
 args = sys.argv[1:]
 
@@ -140,8 +139,7 @@ while args:
     elif a == '-load_from_dict': load_from_dict = int(args.pop(0))
     elif a == '-overwrite': overwrite = int(args.pop(0))
     elif a == '-nprobe_dict_dir': nprobe_dict_dir = str(args.pop(0))
-    elif a == '-throughput_dict_dir': throughput_dict_dir = str(args.pop(0))
-    elif a == '-response_time_dict_dir': response_time_dict_dir = str(args.pop(0))
+    elif a == '-performance_dict_dir': performance_dict_dir = str(args.pop(0))
     elif a == '-dbname': dbname = str(args.pop(0))
     elif a == '-index_key': index_key = str(args.pop(0))
     else:
@@ -832,17 +830,11 @@ def eval_dataset_from_dict():
         raise ValueError
 
     d_throughput = None
-    if os.path.exists(throughput_dict_dir):
-        with open(throughput_dict_dir, 'rb') as f:
+    if os.path.exists(performance_dict_dir):
+        with open(performance_dict_dir, 'rb') as f:
             d_throughput = pickle.load(f)
     else:
         d_throughput = dict()
-
-    if os.path.exists(response_time_dict_dir):
-        with open(response_time_dict_dir, 'rb') as f:
-            d_response_time = pickle.load(f)
-    else:
-        d_response_time = dict()
 
     for dbname in d_nprobes:
 
@@ -864,11 +856,9 @@ def eval_dataset_from_dict():
             # Wenqi: load xq to main memory and reshape
             xq = xq.astype('float32').copy()
             xq = np.array(xq, dtype=np.float32)
-            xq = np.tile(xq, (10, 1)) # replicate the 10K queries to 100K queries to get a more stable performance
             gt = np.array(gt, dtype=np.int32)
+
             gt_I = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
-            gt = np.tile(gt, (10, 1))
-            gt_I = np.tile(gt_I, (10, 1))
         else:
             print('unknown dataset', dbname, file=sys.stderr)
             sys.exit(1)
@@ -878,15 +868,11 @@ def eval_dataset_from_dict():
         
         if dbname not in d_throughput:
             d_throughput[dbname] = dict()
-        if dbname not in d_response_time:
-            d_response_time[dbname] = dict()
-
+        
         for index_key in d_nprobes[dbname]:
 
             if index_key not in d_throughput[dbname]:
                 d_throughput[dbname][index_key] = dict()
-            if index_key not in d_response_time[dbname]:
-                d_response_time[dbname][index_key] = dict()
 
             cacheroot = './trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key)
             pat = re.compile('(OPQ[0-9]+(_[0-9]+)?,|PCAR[0-9]+,)?' +
@@ -966,18 +952,14 @@ def eval_dataset_from_dict():
 
                 if topK not in d_throughput[dbname][index_key]:
                     d_throughput[dbname][index_key][topK] = dict()
-                if topK not in d_response_time[dbname][index_key]:
-                    d_response_time[dbname][index_key][topK] = dict()
 
                 for recall_goal in d_nprobes[dbname][index_key][topK]:
 
                     if recall_goal not in d_throughput[dbname][index_key][topK]:
                         d_throughput[dbname][index_key][topK][recall_goal] = dict()
-                    if recall_goal not in d_response_time[dbname][index_key][topK]:
-                        d_response_time[dbname][index_key][topK][recall_goal] = dict()
                         
                     # skip if there's already a QPS
-                    if d_throughput[dbname][index_key][topK][recall_goal] and d_response_time[dbname][index_key][topK] and (not overwrite): 
+                    if d_throughput[dbname][index_key][topK][recall_goal] and (not overwrite): 
                         print("SKIP TEST.\tDB: {}\tindex: {}\ttopK: {}\trecall goal: {}\t".format(
                             dbname, index_key, topK, recall_goal))
                         continue
@@ -997,7 +979,6 @@ def eval_dataset_from_dict():
 
                             inter_res = ''
 
-                            response_time = [] # in terms of ms
                             for i0, xs in dataset_iterator(xq, preproc, sl):
                                 # print('\r%d/%d (%.3f s%s)   ' % (
                                 #     i0, nq, time.time() - t0, inter_res), end=' ')
@@ -1006,10 +987,7 @@ def eval_dataset_from_dict():
                                 i1 = i0 + xs.shape[0]
                                 # Wenqi: debugging memory overflow
                                 # print(xs.shape)
-                                t_RT_start = time.time()
                                 Di, Ii = index.search(xs, topK)
-                                t_RT_end = time.time()
-                                response_time.append(1000 * (t_RT_end - t_RT_start)) 
 
                                 I[i0:i1] = Ii
                                 D[i0:i1] = Di
@@ -1027,23 +1005,12 @@ def eval_dataset_from_dict():
                             d_throughput[dbname][index_key][topK][recall_goal][query_batch_size] = None
                         d_throughput[dbname][index_key][topK][recall_goal][query_batch_size] = throughput
 
-                        response_time = np.array(response_time, dtype=np.float32)
-                        if query_batch_size not in d_response_time[dbname][index_key][topK][recall_goal]:
-                            d_response_time[dbname][index_key][topK][recall_goal][query_batch_size] = None 
-                        d_response_time[dbname][index_key][topK][recall_goal][query_batch_size] = response_time 
-
-                        with open(throughput_dict_dir, 'wb') as f:
+                        with open(performance_dict_dir, 'wb') as f:
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
                             pickle.dump(d_throughput, f, pickle.HIGHEST_PROTOCOL)
                             
-                        with open(response_time_dict_dir, 'wb') as f:
-                            # dictionary format:
-                            #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = response time array (np array)
-                            #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                            pickle.dump(d_response_time, f, pickle.HIGHEST_PROTOCOL)
-
                         if knngraph:
                             ires = eval_intersection_measure(gt_I[:, :topK], I[:nq_gt])
                             print("  probe=%-3d: %.3f s rank-%d intersection results: %.4f" % (
@@ -1091,18 +1058,6 @@ def recall_eval(index, preproc):
             raise ValueError
     else:
         raise ValueError
-
-    threshold_nlist = nlist 
-    if nlist <= 128:
-        pass
-    elif nlist <= 256:
-        threshold_nlist = nlist / 2
-    elif nlist <= 512:
-        threshold_nlist = nlist / 4
-    elif nlist <= 1024:
-        threshold_nlist = nlist / 8
-    elif nlist > 1024:
-        threshold_nlist = nlist / 16
 
     ps = faiss.GpuParameterSpace()
     ps.initialize(index)
@@ -1157,7 +1112,7 @@ def recall_eval(index, preproc):
                 break
         else:
             min_range = nprobe  # to achieve target recall, need larger than this nprobe
-            if nprobe == threshold_nlist:
+            if nprobe == nlist:
                 print("ERROR! Search failed: cannot reach expected recall on given dataset and index")
                 break
             elif max_range:
@@ -1166,8 +1121,8 @@ def recall_eval(index, preproc):
                 nprobe = int((max_range + nprobe) / 2.0)
             else:
                 nprobe = nprobe * 2
-                if nprobe > threshold_nlist:
-                    nprobe = threshold_nlist
+                if nprobe > nlist:
+                    nprobe = nlist
     
     if not fail:
         min_nprobe = max_range
@@ -1224,9 +1179,6 @@ if recall_goal: # usage 3
 elif load_from_dict:  # usage 2
     eval_dataset_from_dict()
 else: # usage 1
-    # replicate the 10K queries to 100K to evaluate the more stable version of the GPU performance
-    xq = np.tile(xq, (10, 1))
-    gt_I = np.tile(gt_I, (10, 1))
     preproc = get_preprocessor()
     index = get_populated_index(preproc)
     # test throughput, nprobe recall, etc.

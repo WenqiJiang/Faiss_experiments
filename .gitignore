@@ -9,6 +9,10 @@ trained_CPU_indexes
 trained_CPU_indexes/*
 trained_GPU_indexes
 trained_GPU_indexes/*
+unused_trained_CPU_indexes
+unused_trained_CPU_indexes/*
+unused_trained_GPU_indexes
+unused_trained_GPU_indexes/*
 cpu_performance_result/*
 gpu_performance_result/*
 *log

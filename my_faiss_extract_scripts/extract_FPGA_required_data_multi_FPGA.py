@@ -1,6 +1,6 @@
 """
 Usage e.g.: 
-python extract_FPGA_required_data.py --dbname SIFT100M --index_key OPQ16,IVF8192,PQ16 --HBM_bank_num 10 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT100M_OPQ16,IVF8192,PQ16' --output_dir '/mnt/scratch/wenqi/saved_npy_data/FPGA_data_SIFT100M_OPQ16,IVF8192,PQ16_10_banks'
+python extract_FPGA_required_data_multi_FPGA.py --dbname SIFT500M --index_key OPQ16,IVF65536,PQ16 --FPGA_num 4 --HBM_bank_num 16 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT500M_OPQ16,IVF65536,PQ16' --output_dir '/mnt/scratch/wenqi/saved_npy_data/FPGA_data_SIFT500M_OPQ16,IVF65536,PQ16_16_banks'
 """
 
 from __future__ import print_function
@@ -17,13 +17,15 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--dbname', type=str, default=0, help="dataset name, e.g., SIFT100M")
 parser.add_argument('--index_key', type=str, default=0, help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
-parser.add_argument('--HBM_bank_num', type=int, default=10, help="partition the data to N HBM banks")
+parser.add_argument('--FPGA_num', type=int, default=4, help="partition the data to N FPGA")
+parser.add_argument('--HBM_bank_num', type=int, default=10, help="partition the data to N HBM banks per FPGA")
 parser.add_argument('--index_dir', type=str, default=0, help="the directory of the stored index, e.g., ../trained_CPU_indexes/bench_cpu_SIFT100M_IVF1024,PQ16")
 parser.add_argument('--output_dir', type=str, default=0, help="where to output the generated FPGA data, e.g., /home/wejiang/saved_npy_data/FPGA_data_SIFT100M_IVF1024,PQ16_HBM_10_banks")
 
 args = parser.parse_args()
 dbname = args.dbname
 index_key = args.index_key
+FPGA_num = args.FPGA_num
 HBM_bank_num = args.HBM_bank_num
 
 nlist = None
@@ -56,12 +58,19 @@ if args.index_dir:
 else:
     index_dir = '../trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 if args.output_dir:
-    output_dir = args.output_dir
+    output_parent_dir = args.output_dir
 else:
-    output_dir = os.join('/home/wejiang/saved_npy_data/', 
+    output_parent_dir = os.path.join('/home/wejiang/saved_npy_data/', 
         'FPGA_data_{}_{}_HBM_{}_banks'.format(dbname, index_key, HBM_bank_num))
-if not os.path.exists(output_dir):
-    os.mkdir(output_dir)
+if not os.path.exists(output_parent_dir):
+    os.mkdir(output_parent_dir)
+
+output_dir_set = []
+for i in range(FPGA_num):
+    output_dir_set.append(os.path.join(output_parent_dir, 'FPGA_{}'.format(i)))
+for output_dir in output_dir_set:
+    if not os.path.exists(output_dir):
+        os.mkdir(output_dir) 
 
 def mmap_fvecs(fname):
     x = np.memmap(fname, dtype='int32', mode='r')
@@ -116,8 +125,9 @@ else:
     sys.exit(1)
 
 xq = np.array(xq, dtype=np.float32)
-xq.tofile(os.path.join(output_dir, "query_vectors_float32_{}_{}_raw".format(
-    xq.shape[0], xq.shape[1])))
+for output_dir in output_dir_set:
+    xq.tofile(os.path.join(output_dir, "query_vectors_float32_{}_{}_raw".format(
+        xq.shape[0], xq.shape[1])))
 
 print("sizes: B %s Q %s T %s gt %s" % (
     xb.shape, xq.shape, xt.shape, gt.shape))
@@ -199,20 +209,22 @@ print("==== Coarse-quantizer ====\n{}\n\nshape:{}\n".format(coarse_cen, coarse_c
 # Save the OPQ matrix, coarse quantizer, and the product quantizer
 if OPQ_enable:
     OPQ_mat = np.array(OPQ_mat, dtype=np.float32)
-    OPQ_mat.tofile(os.path.join(output_dir, "OPQ_matrix_float32_{}_{}_raw".format(
-        OPQ_mat.shape[0], OPQ_mat.shape[1]))) 
+    for output_dir in output_dir_set:
+        OPQ_mat.tofile(os.path.join(output_dir, "OPQ_matrix_float32_{}_{}_raw".format(
+            OPQ_mat.shape[0], OPQ_mat.shape[1]))) 
     print("Shape OPQ: {}\n".format(OPQ_mat.shape))
         
 PQ_quantizer = np.array(sub_cen, dtype=np.float32)
 coarse_cen = np.array(coarse_cen, dtype=np.float32)
 # 16, 256, 8 -> (0,0,0:8) the first row of the subquantizer of the first sub-vector
 print("Shape PQ quantizer: {}\n".format(PQ_quantizer.shape))
-
-PQ_quantizer.tofile(os.path.join(output_dir, "product_quantizer_float32_{}_{}_{}_raw".format(
-    PQ_quantizer.shape[0], PQ_quantizer.shape[1], PQ_quantizer.shape[2])))
-coarse_cen.tofile(os.path.join(output_dir, "vector_quantizer_float32_{}_{}_raw".format(
-    coarse_cen.shape[0], coarse_cen.shape[1])))
 print("Shape coarse quantizer: {}\n".format(coarse_cen.shape))
+
+for output_dir in output_dir_set:
+    PQ_quantizer.tofile(os.path.join(output_dir, "product_quantizer_float32_{}_{}_{}_raw".format(
+        PQ_quantizer.shape[0], PQ_quantizer.shape[1], PQ_quantizer.shape[2])))
+    coarse_cen.tofile(os.path.join(output_dir, "vector_quantizer_float32_{}_{}_raw".format(
+        coarse_cen.shape[0], coarse_cen.shape[1])))
 
 
 """ Get contents in a single Voronoi Cell """
@@ -243,21 +255,28 @@ print("Contents of a single cluster:")
 print("==== Vector IDs ====\n{}\n\nshape: {}\n".format(list_vec_ids, list_vec_ids.shape))
 print("==== PQ codes ====\n{}\n\nshape: {}\n".format(list_PQ_codes, list_PQ_codes.shape))
 
-def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
+def get_contents_to_HBM(invlists, cluster_id, FPGA_num=4, HBM_bank_num=int(21)):
     """
     For a single cluster (list), extract the contents in the format that HBM loads
       inputs:
         invlists: the Faiss index.invlists object
         cluster_id: e.g., 0~8191 for nlist=8192
-        HBM_bank_num: 21 for default, athough there are 32 banks on U280, 
+        FPGA_num: number of FPGA
+        HBM_bank_num: per FPGA, 21 for default, athough there are 32 banks on U280, 
                     we don't have enough hardware logic to load and compute at that rate
       outputs:
-        HBM_bank_contents( content of 21 banks): a list of 21 element
-            each element is a byte object with a set of contents
-            the size of the content is m * 64 bytes
-            the contents includes (3 * (int32 vector ID) (16 byte PQ code)) + 4byte padding
-        entries_per_bank: int, all HBM shares the same number of 512-bit items to scan
-        last_valid_element: int from 0 to 62 (63 numbers in total given 21 HBM channels)
+        HBM_bank_contents_list( content of 21 banks): a list of 21 element
+            list (A) of list (B)
+            list(A) has a length of FPGA_num
+            in each list(B)
+                each element is as byte object with a set of contents
+                the size of the content is m * 64 bytes
+                the contents includes (3 * (int32 vector ID) (16 byte PQ code)) + 4byte padding
+        entries_per_bank_list: 
+            list of FPGA_num int (identical ints), all HBM shares the same number of 512-bit items to scan
+        last_valid_element_list: 
+            list, [63, 20, -1, -1] given FPGA_num=4
+            int from -1 to 63 (63 numbers in total given 21 HBM channels)
             some of the elements in the last row are paddings, which of them is the last non-padding (valid) 
             
       term:
@@ -265,6 +284,8 @@ def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
         vector: a 20-byte vector containing 4 byte vector ID + 16 byte PQ code
     """
     
+    total_HBM_bank_num = FPGA_num * HBM_bank_num
+
     list_vec_ids, list_PQ_codes = get_invlist(invlists, cluster_id)
 #     print("list_vec_ids", list_vec_ids.shape)
 #     print("list_PQ_codes", list_PQ_codes.shape)
@@ -273,16 +294,16 @@ def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
     
 #     print("num_vec", num_vec)
     
-    if num_vec % (HBM_bank_num * 3) == 0:
+    if num_vec % (total_HBM_bank_num * 3) == 0:
         # no padding
-        entries_per_bank = num_vec / (HBM_bank_num * 3)
-        last_valid_element = HBM_bank_num * 3 - 1
-        num_vec_per_HBM = [int(num_vec / HBM_bank_num)] * HBM_bank_num
-        num_pad_per_HBM = [0] * HBM_bank_num
+        entries_per_bank = num_vec / (total_HBM_bank_num * 3)
+        last_valid_element = total_HBM_bank_num * 3 - 1
+        num_vec_per_HBM = [int(num_vec / total_HBM_bank_num)] * total_HBM_bank_num
+        num_pad_per_HBM = [0] * total_HBM_bank_num
     else:
         # with padding
-        entries_per_bank = int(num_vec / (HBM_bank_num * 3)) + 1
-        last_valid_element = num_vec % (HBM_bank_num * 3) - 1
+        entries_per_bank = int(num_vec / (total_HBM_bank_num * 3)) + 1
+        last_valid_element = num_vec % (total_HBM_bank_num * 3) - 1
         num_vec_per_HBM = []
         num_pad_per_HBM = []
         
@@ -300,12 +321,12 @@ def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
             counted_banks += 1
         
         # (optional) bank with full padding in the last entry
-        for i in range(HBM_bank_num - counted_banks):
+        for i in range(total_HBM_bank_num - counted_banks):
             num_vec_per_HBM += [int((entries_per_bank - 1) * 3)]
             num_pad_per_HBM += [3]
             
     assert np.sum(np.array(num_vec_per_HBM)) == num_vec
-    assert entries_per_bank * HBM_bank_num * 3 - np.sum(np.array(num_pad_per_HBM)) == num_vec
+    assert entries_per_bank * total_HBM_bank_num * 3 - np.sum(np.array(num_pad_per_HBM)) == num_vec
     
     HBM_bank_contents = []
     
@@ -317,7 +338,7 @@ def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
 #     print("num_vec_per_HBM:", num_vec_per_HBM)
 #     print("num_pad_per_HBM:", num_pad_per_HBM)
     
-    for i in range(HBM_bank_num):
+    for i in range(total_HBM_bank_num):
         
         # add valid vectors first
         end = start + num_vec_per_HBM[i]
@@ -356,78 +377,115 @@ def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
         
         HBM_bank_contents += [byte_obj]
        
-    for i in range(HBM_bank_num):
+    for i in range(total_HBM_bank_num):
         assert len(HBM_bank_contents[i]) == len(HBM_bank_contents[0])
         assert len(HBM_bank_contents[i]) == 64 * entries_per_bank
     
-    return HBM_bank_contents, entries_per_bank, last_valid_element
+    HBM_bank_contents_list = []
+    for i in range(FPGA_num):
+        HBM_bank_contents_list.append([])
+
+    for i in range(FPGA_num):
+        for j in range(HBM_bank_num):
+            HBM_bank_contents_list[i].append(HBM_bank_contents[i * HBM_bank_num + j])
+    
+    entries_per_bank_list = []
+    for i in range(FPGA_num):
+        entries_per_bank_list.append(entries_per_bank)
+
+    last_valid_element_list = []
+    last_valid_element_count = last_valid_element
+    for i in range(FPGA_num):
+        if last_valid_element_count >= 63: 
+            last_valid_element_count -= 63
+            last_valid_element_list.append(63)
+        elif last_valid_element_count < 63 and last_valid_element >= 0:
+            last_valid_element_list.append(last_valid_element_count)
+            last_valid_element_count = -1
+        else:
+            last_valid_element_list.append(-1)
+
+    return HBM_bank_contents_list, entries_per_bank_list, last_valid_element_list
 
 # Get HBM contents from all clusters
-list_HBM_bank_contents = [] # array of nlist * HBM_bank_num elements
-list_entries_per_bank = []
-list_last_valid_element = []
+list_HBM_bank_contents_all_FPGA = [] # array of nlist * HBM_bank_num elements
+list_entries_per_bank_all_FPGA = []
+list_last_valid_element_all_FPGA = []
+
+for FPGA_id in range(FPGA_num):
+    list_HBM_bank_contents_all_FPGA.append([])
+    list_entries_per_bank_all_FPGA.append([])
+    list_last_valid_element_all_FPGA.append([])
 
 for c in range(nlist):
     print("generating contents in cluster {}".format(c))
-    HBM_bank_contents, entries_per_bank, last_valid_element = get_contents_to_HBM(invlists, c, HBM_bank_num)
-    list_HBM_bank_contents += HBM_bank_contents
-    list_entries_per_bank += [entries_per_bank]
-    list_last_valid_element += [last_valid_element]
+    HBM_bank_contents_list, entries_per_bank_list, last_valid_element_list = get_contents_to_HBM(invlists, c, FPGA_num, HBM_bank_num)
 
-# Reorder list_HBM_bank_contents
-print(len(list_HBM_bank_contents))
-print("list_entries_per_bank:\n", list_entries_per_bank)
-print("list_last_valid_element:\n", list_last_valid_element)
+    for FPGA_id in range(FPGA_num):
+        list_HBM_bank_contents_all_FPGA[FPGA_id] += HBM_bank_contents_list[FPGA_id]
+        list_entries_per_bank_all_FPGA[FPGA_id] += [entries_per_bank_list[FPGA_id]]
+        list_last_valid_element_all_FPGA[FPGA_id] += [last_valid_element_list[FPGA_id]]
 
-list_HBM_bank_contents_reordered = [] # put all contents of the same HBM bank together
+for FPGA_id in range(FPGA_num):
 
-for b in range(HBM_bank_num):
-    sub_list = []
-    for c in range(nlist):
-        sub_list += [list_HBM_bank_contents[c * HBM_bank_num + b]]
-    print(len(sub_list), len(sub_list[0]))
-    list_HBM_bank_contents_reordered += [sub_list]
-    
-print("list_HBM_bank_contents_reordered:", len(list_HBM_bank_contents_reordered), len(list_HBM_bank_contents_reordered[0]))
+    list_HBM_bank_contents = list_HBM_bank_contents_all_FPGA[FPGA_id]
+    list_entries_per_bank = list_entries_per_bank_all_FPGA[FPGA_id]
+    list_last_valid_element = list_last_valid_element_all_FPGA[FPGA_id]
 
-# Concatenate 
-HBM_bank_contents_all = [bytes()] * HBM_bank_num # contents of each bank
-for b in range(HBM_bank_num):
-    HBM_bank_contents_all[b] = HBM_bank_contents_all[b].join(list_HBM_bank_contents_reordered[b])
-    
-total_size = np.sum(np.array([len(h) for h in HBM_bank_contents_all]))
-print("HBM_bank_contents_all: shape: {}\tsize: {}".format(len(HBM_bank_contents_all), total_size))
+    # Reorder list_HBM_bank_contents
+    print(len(list_HBM_bank_contents))
+    print("list_entries_per_bank:\n", list_entries_per_bank)
+    print("list_last_valid_element:\n", list_last_valid_element)
 
-# Save HBM contents 
-for b in range(HBM_bank_num):
-    assert len(HBM_bank_contents_all[b]) == len(HBM_bank_contents_all[0])
+    list_HBM_bank_contents_reordered = [] # put all contents of the same HBM bank together
 
-for b in range(HBM_bank_num):
-    with open (os.path.join(output_dir, "HBM_bank_{}_raw".format(b)), 'wb') as f:
-        f.write(HBM_bank_contents_all[b])
+    for b in range(HBM_bank_num):
+        sub_list = []
+        for c in range(nlist):
+            sub_list += [list_HBM_bank_contents[c * HBM_bank_num + b]]
+        print(len(sub_list))
+        list_HBM_bank_contents_reordered += [sub_list]
+        
+    print("list_HBM_bank_contents_reordered:", len(list_HBM_bank_contents_reordered), len(list_HBM_bank_contents_reordered[0]))
 
-# Save control contents
+    # Concatenate 
+    HBM_bank_contents_all = [bytes()] * HBM_bank_num # contents of each bank
+    for b in range(HBM_bank_num):
+        HBM_bank_contents_all[b] = HBM_bank_contents_all[b].join(list_HBM_bank_contents_reordered[b])
+        
+    total_size = np.sum(np.array([len(h) for h in HBM_bank_contents_all]))
+    print("HBM_bank_contents_all: shape: {}\tsize: {}".format(len(HBM_bank_contents_all), total_size))
 
-#  The format of storing HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid: 
-#     8192 start_addr, then 8192 scanned_entries_every_cell, then 8192 last_valid_element
-#     int start_addr_LUT[nlist];
-#     int scanned_entries_every_cell_LUT[nlist];
-#     int last_valid_channel_LUT[nlist];  
+    # Save HBM contents 
+    for b in range(HBM_bank_num):
+        assert len(HBM_bank_contents_all[b]) == len(HBM_bank_contents_all[0])
 
-list_start_addr_every_cell = [0]
-for c in range(nlist - 1):
-    list_start_addr_every_cell.append(list_start_addr_every_cell[c] + list_entries_per_bank[c])
+    for b in range(HBM_bank_num):
+        with open (os.path.join(output_dir_set[FPGA_id], "HBM_bank_{}_raw".format(b)), 'wb') as f:
+            f.write(HBM_bank_contents_all[b])
 
-assert len(list_start_addr_every_cell) == len(list_entries_per_bank) and\
-    len(list_start_addr_every_cell) == len(list_last_valid_element)
+    # Save control contents
 
-print(list_start_addr_every_cell[-1])
+    #  The format of storing HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid: 
+    #     8192 start_addr, then 8192 scanned_entries_every_cell, then 8192 last_valid_element
+    #     int start_addr_LUT[nlist];
+    #     int scanned_entries_every_cell_LUT[nlist];
+    #     int last_valid_channel_LUT[nlist];  
 
-HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid = \
-    list_start_addr_every_cell + list_entries_per_bank + list_last_valid_element
+    list_start_addr_every_cell = [0]
+    for c in range(nlist - 1):
+        list_start_addr_every_cell.append(list_start_addr_every_cell[c] + list_entries_per_bank[c])
 
-HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid = np.array(
-    HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid, dtype=np.int32)
+    assert len(list_start_addr_every_cell) == len(list_entries_per_bank) and\
+        len(list_start_addr_every_cell) == len(list_last_valid_element)
 
-HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid.tofile(
-    os.path.join(output_dir, 'HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid_3_by_{}_raw'.format(nlist)))
+    print(list_start_addr_every_cell[-1])
+
+    HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid = \
+        list_start_addr_every_cell + list_entries_per_bank + list_last_valid_element
+
+    HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid = np.array(
+        HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid, dtype=np.int32)
+
+    HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid.tofile(
+        os.path.join(output_dir_set[FPGA_id], 'HBM_info_start_addr_and_scanned_entries_every_cell_and_last_element_valid_3_by_{}_raw'.format(nlist)))

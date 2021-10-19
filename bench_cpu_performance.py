@@ -8,11 +8,11 @@ There are 2 ways to use the script:
 
 (1) Test the throughput of given DB & index & nprobe:
 
-python bench_cpu_throughput.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
+python bench_cpu_performance.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
-python bench_cpu_throughput.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl'
+python bench_cpu_performance.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
 """
 
 from __future__ import print_function
@@ -36,7 +36,8 @@ parser.add_argument('--parametersets', type=str, default='nprobe=1', help="a str
 parser.add_argument('--load_from_dict', type=int, default=0, help="whether to use Mode B: evluating throughput by using loaded settings")
 parser.add_argument('--overwrite', type=int, default=0, help="whether to overwrite existed performance, by default, skip existed settings")
 parser.add_argument('--nprobe_dict_dir', type=str, default='./recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> nprobe")
-parser.add_argument('--performance_dict_dir', type=str, default='./cpu_performance_result/cpu_throughput_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> throughput (QPS)")
+parser.add_argument('--throughput_dict_dir', type=str, default='./cpu_performance_result/cpu_throughput_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> throughput (QPS)")
+parser.add_argument('--response_time_dict_dir', type=str, default='./cpu_performance_result/cpu_response_time_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> response_time (QPS)")
 
 ### Wenqi: when loading the index, save it to numpy array, default: False
 save_numpy_index = False
@@ -249,11 +250,17 @@ else: # Mode B: using dictionary as input, save throughput to another dict
         raise ValueError
 
     d_throughput = None
-    if os.path.exists(args.performance_dict_dir):
-        with open(args.performance_dict_dir, 'rb') as f:
+    if os.path.exists(args.throughput_dict_dir):
+        with open(args.throughput_dict_dir, 'rb') as f:
             d_throughput = pickle.load(f)
     else:
         d_throughput = dict()
+    d_response_time = None
+    if os.path.exists(args.response_time_dict_dir):
+        with open(args.response_time_dict_dir, 'rb') as f:
+            d_response_time = pickle.load(f)
+    else:
+        d_response_time = dict()
 
 
     for dbname in d_nprobes:
@@ -279,11 +286,15 @@ else: # Mode B: using dictionary as input, save throughput to another dict
         
         if dbname not in d_throughput:
             d_throughput[dbname] = dict()
-        
+        if dbname not in d_response_time:
+            d_response_time[dbname] = dict()
+
         for index_key in d_nprobes[dbname]:
 
             if index_key not in d_throughput[dbname]:
                 d_throughput[dbname][index_key] = dict()
+            if index_key not in d_response_time[dbname]:
+                d_response_time[dbname][index_key] = dict()
 
             tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
             index = get_populated_index()
@@ -298,14 +309,18 @@ else: # Mode B: using dictionary as input, save throughput to another dict
 
                 if topK not in d_throughput[dbname][index_key]:
                     d_throughput[dbname][index_key][topK] = dict()
+                if topK not in d_response_time[dbname][index_key]:
+                    d_response_time[dbname][index_key][topK] = dict()
 
                 for recall_goal in d_nprobes[dbname][index_key][topK]:
 
                     if recall_goal not in d_throughput[dbname][index_key][topK]:
                         d_throughput[dbname][index_key][topK][recall_goal] = None
+                    if recall_goal not in d_response_time[dbname][index_key][topK]:
+                        d_response_time[dbname][index_key][topK][recall_goal] = None
                         
                     # skip if there's already a QPS
-                    if d_throughput[dbname][index_key][topK][recall_goal] and (not args.overwrite): 
+                    if d_throughput[dbname][index_key][topK][recall_goal] and d_response_time[dbname][index_key][topK][recall] and (not args.overwrite): 
                         print("SKIP TEST.\tDB: {}\tindex: {}\ttopK: {}\trecall goal: {}\t".format(
                             dbname, index_key, topK, recall_goal))
                         continue
@@ -321,8 +336,12 @@ else: # Mode B: using dictionary as input, save throughput to another dict
                         ivfpq_stats.reset()
                         ivf_stats.reset()
                         
+                        response_time = [] # in terms of ms
                         for i in range(nq):
+                            t_RT_start = time.time()
                             D, I = index.search(query_vecs[i], topK)
+                            t_RT_end = time.time()
+                            response_time.append(1000 * (t_RT_end - t_RT_start)) 
                         t1 = time.time()
                         #for rank in 1, 10:
                         #    n_ok = (I[:, :rank] == gt[:, :1]).sum()
@@ -332,8 +351,18 @@ else: # Mode B: using dictionary as input, save throughput to another dict
                             dbname, index_key, topK, recall_goal, nprobe, throughput))
                         d_throughput[dbname][index_key][topK][recall_goal] = throughput
 
-                        with open(args.performance_dict_dir, 'wb') as f:
+                        response_time = np.array(response_time, dtype=np.float32)
+                        d_response_time[dbname][index_key][topK][recall_goal] = response_time
+
+
+                        with open(args.throughput_dict_dir, 'wb') as f:
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
                             pickle.dump(d_throughput, f, pickle.HIGHEST_PROTOCOL)
+
+                        with open(args.response_time_dict_dir, 'wb') as f:
+                            # dictionary format:
+                            #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
+                            #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+                            pickle.dump(d_response_time, f, pickle.HIGHEST_PROTOCOL)

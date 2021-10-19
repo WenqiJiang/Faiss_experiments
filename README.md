@@ -10,17 +10,17 @@ conda create -n py37 python=3.7
 
 conda activate py37
 
-% install openblas
-
-conda install -c conda-forge openblas
-
 % either install cpu or gpu version (the gpu version already includes the cpu version, thus can skip the cpu installation step)
 
 % cpu version 
 
+conda install -c conda-forge openblas
+
 conda install -c pytorch faiss-cpu
 
 % install gpu version (version 1.6.3)
+
+% install CUDA first if its not installed: https://docs.vmware.com/en/VMware-vSphere-Bitfusion/3.0/Example-Guide/GUID-ABB4A0B1-F26E-422E-85C5-BA9F2454363A.html
 
 conda install faiss-gpu cudatoolkit=10.0 -c pytorch
 
@@ -36,11 +36,11 @@ https://github.com/facebookresearch/faiss/blob/master/tutorial/python/1-Flat.py
 % Faiss API: 
 https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
 
-## Benchmarking CPU performance
+## CPU
+
+## Performance test
 
 See [bench_cpu_performance.md](./bench_cpu_performance.md)
-
-## Directory Navigation
 
 ### bench_polysemous_1bn.py
 
@@ -79,37 +79,24 @@ python train_cpu.py --dataset SIFT1M --index IMI --PQ 16 --OPQ 0
 
 ```
 
-### performance_test_cpu.py
+## GPU
 
-Test the performance for trained indexes, and output the recall / performance in "./cpu_performance_result"
+### performance test
 
-To cover all indexes on SIFT100M dataset:  
-
-```
-python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1
-
-python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0
-
-python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 16 --OPQ 1
-
-python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 16 --OPQ 0
-
-python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 1
-
-python performance_test_cpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0
-
-python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 8 --OPQ 1
-
-python performance_test_cpu.py --dataset SIFT100M --index IMI --PQ 8 --OPQ 0
-```
+See [bench_gpu_performance.md](./bench_gpu_performance.md)
 
 ### bench_gpu_1bn.py
 
-Train / query a single index on GPU.
+(a) Train / query a single index on GPU. 
 
 ```
 python bench_gpu_1bn.py SIFT1000M OPQ16,IVF262144,PQ16 -nnn 100 -ngpu 3 -startgpu 1 -tempmem $[1536*1024*1024] -qbs 512
 ```
+
+(b) evaluate the throughput (of a single parameter setting / using the recall dictionary)
+
+(c) evaluate the (nlist, nprobe) pair to achieve a certain recall
+
 
 ### train_gpu.py
 
@@ -130,28 +117,6 @@ python train_gpu.py --dataset SIFT1M --index IVF --PQ 16 --OPQ 1 --ngpu 1 --star
 
 python train_gpu.py --dataset SIFT1M --index IVF --PQ 16 --OPQ 0 --ngpu 1 --startgpu 0
 ```
-
-### performance_test_gpu.py
-
-Test the performance for trained indexes, and output the recall / performance in "./cpu_performance_result"
-
-To cover all indexes on SIFT100M dataset:  
-
-```
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 1 --ngpu 1 --startgpu 5
-
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 16 --OPQ 0 --ngpu 1 --startgpu 5
-
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 1 --ngpu 1 --startgpu 5
-
-python performance_test_gpu.py --dataset SIFT100M --index IVF --PQ 8 --OPQ 0 --ngpu 1 --startgpu 5
-```
-
-### save_performance_log_as_dict.py
-
-Given the output log (recall / time result) printed by Faiss CPU / GPU, save these numbers in the form of python dictionary, and print the contents out.
-
-## GPU Experiments
 
 ## CPU Experiments
 

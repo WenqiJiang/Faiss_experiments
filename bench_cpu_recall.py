@@ -39,25 +39,49 @@ topK = args.topK
 
 nlist = None
 index_array = index_key.split(",")
+index_type = None
 if len(index_array) == 2: # "IVF4096,PQ16" or "IMI2x14,PQ16" 
     s = index_array[0]
     if s[:3]  == "IVF":
+        index_type = "IVF"
         nlist = int(s[3:])
     elif s[:5]  == "IMI2x":
         nlist = int((2 ** int(s[5:])) ** 2)
+        index_type = "IMI"
     else:
         raise ValueError
 elif len(index_array) == 3: # "OPQ16,IVF4096,PQ16" or "OPQ16,IMI2x14,PQ16" 
     s = index_array[1]
     if s[:3]  == "IVF":
         nlist = int(s[3:])
+        index_type = "IVF"
     elif s[:5]  == "IMI2x":
         nlist = int((2 ** int(s[5:])) ** 2)
+        index_type = "IMI"
     else:
         raise ValueError
 else:
     raise ValueError
 
+threshold_nlist = nlist 
+if index_type == "IVF":
+    if nlist <= 64:
+        pass
+    elif nlist <= 128:
+        threshold_nlist = nlist / 2
+    elif nlist <= 256:
+        threshold_nlist = nlist / 4
+    elif nlist <= 512:
+        threshold_nlist = nlist / 8
+    elif nlist <= 1024:
+        threshold_nlist = nlist / 16
+    elif nlist > 1024:
+        threshold_nlist = nlist / 32
+elif index_type == "IMI":
+    threshold_nlist = int(np.sqrt(nlist))
+else:
+    print("Unknown index type")
+    raise(ValueError)
 ### Wenqi: when loading the index, save it to numpy array, default: False
 save_numpy_index = False
 # save_numpy_index = False 
@@ -269,6 +293,10 @@ while True:
     ivf_stats.reset()
     D, I = index.search(xq, topK)
     t1 = time.time()
+    if t1 - t0 >= 1800:
+        print("spend more than 1800 seconds to run nprobe={}, quit", param)
+        print("ERROR! Search failed: cannot reach expected recall on given dataset and index")
+        break
     n_ok = (I[:, :topK] == gt[:, :1]).sum()
     recall = n_ok / float(nq)
     print("%.4f" % (recall), end='\n')
@@ -279,7 +307,7 @@ while True:
             break
     else:
         min_range = param  # to achieve target recall, need larger than this nprobe
-        if param == nlist:
+        if param == threshold_nlist:
             print("ERROR! Search failed: cannot reach expected recall on given dataset and index")
             break
         elif max_range:
@@ -288,8 +316,8 @@ while True:
             param = int((max_range + param) / 2.0)
         else:
             param = param * 2
-            if param > nlist:
-                param = nlist
+            if param > threshold_nlist:
+                param = threshold_nlist
 
 min_nprobe = max_range
 print("The minimum nprobe to achieve R@{topK}={recall_goal} on {dbname} {index_key} is {nprobe}".format(

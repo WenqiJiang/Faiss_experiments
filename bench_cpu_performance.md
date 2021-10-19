@@ -10,9 +10,9 @@ python bench_cpu_recall.py --dbname SIFT100M --index_key IVF4096,PQ16 --recall_g
 
 It will store the recall information in a dictionary located in ./recall_info/
 
-## Throughput
+## Throughput & Response Time
 
-bench_cpu_throughput.py
+bench_cpu_performance.py
 
 For throughput test, we consider the best case that all query vectors are stored locally.
 
@@ -22,13 +22,15 @@ Two ways to use the script
 
 (1) Test the throughput of given DB & index & nprobe:
 
-python bench_cpu_throughput.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
+python bench_cpu_performance.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
-python bench_cpu_throughput.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl'
+python bench_cpu_performance.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
 
-## Response time
+## (Archieved) Response time with network
+
+In the "unused" folder
 
 We consider a client sending query to an ANNS server, and measure the response time on the client side.
 
