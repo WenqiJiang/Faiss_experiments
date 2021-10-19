@@ -83,6 +83,7 @@ indextype: any index type supported by index_factory that runs on GPU.
 """, file=sys.stderr)
     sys.exit(1)
 
+query_num_factor = 1 # the default query num = 10K, can set query_num_factor as 10 to run 100K query to get a more stable performance
 
 # default values
 
@@ -864,11 +865,11 @@ def eval_dataset_from_dict():
             # Wenqi: load xq to main memory and reshape
             xq = xq.astype('float32').copy()
             xq = np.array(xq, dtype=np.float32)
-            xq = np.tile(xq, (10, 1)) # replicate the 10K queries to 100K queries to get a more stable performance
+            xq = np.tile(xq, (query_num_factor, 1)) # replicate the 10K queries to 100K queries to get a more stable performance
             gt = np.array(gt, dtype=np.int32)
             gt_I = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
-            gt = np.tile(gt, (10, 1))
-            gt_I = np.tile(gt_I, (10, 1))
+            gt = np.tile(gt, (query_num_factor, 1))
+            gt_I = np.tile(gt_I, (query_num_factor, 1))
         else:
             print('unknown dataset', dbname, file=sys.stderr)
             sys.exit(1)
@@ -1225,8 +1226,8 @@ elif load_from_dict:  # usage 2
     eval_dataset_from_dict()
 else: # usage 1
     # replicate the 10K queries to 100K to evaluate the more stable version of the GPU performance
-    xq = np.tile(xq, (10, 1))
-    gt_I = np.tile(gt_I, (10, 1))
+    xq = np.tile(xq, (query_num_factor, 1))
+    gt_I = np.tile(gt_I, (query_num_factor, 1))
     preproc = get_preprocessor()
     index = get_populated_index(preproc)
     # test throughput, nprobe recall, etc.
