@@ -50,7 +50,8 @@ gunzip bigann_learn.bvecs.gz
 wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_query.bvecs.gz
 gunzip bigann_query.bvecs.gz
 wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_gnd.tar.gz
-gunzip bigann_gnd.tar.gz
+tar xzvf bigann_gnd.tar.gz
+rm bigann_gnd.tar.gz
 ```
 
 ## CPU
