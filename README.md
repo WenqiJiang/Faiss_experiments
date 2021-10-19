@@ -4,37 +4,56 @@
 
 install anaconda: https://docs.anaconda.com/anaconda/install/linux/
 
+```
 % faiss supports python3.7, not 3.8
-
 conda create -n py37 python=3.7
-
 conda activate py37
+```
 
-% either install cpu or gpu version (the gpu version already includes the cpu version, thus can skip the cpu installation step)
+Either install cpu or gpu version (the gpu version already includes the cpu version, thus can skip the cpu installation step)
 
+```
 % cpu version 
-
 conda install -c conda-forge openblas
-
 conda install -c pytorch faiss-cpu
+```
 
+```
 % install gpu version (version 1.6.3)
-
 % install CUDA first if its not installed: https://docs.vmware.com/en/VMware-vSphere-Bitfusion/3.0/Example-Guide/GUID-ABB4A0B1-F26E-422E-85C5-BA9F2454363A.html
-
 conda install faiss-gpu cudatoolkit=10.0 -c pytorch
+```
 
-% verify installation
-
+Verify installation
+```
 python 
-
 import faiss
+```
 
-% Faiss's demo: 
+Faiss's demo: 
 https://github.com/facebookresearch/faiss/blob/master/tutorial/python/1-Flat.py
 
-% Faiss API: 
+Faiss API: 
 https://github.com/facebookresearch/faiss/wiki/Faiss-indexes
+
+## Download dataset
+
+SITF (bigann) dataset: http://corpus-texmex.irisa.fr/
+
+```
+mkdir bigann
+cd bigann
+wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_base.bvecs.gz
+gunzip bigann_base.bvecs.gz 
+wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_learn.bvecs.gz
+gunzip bigann_learn.bvecs.gz
+wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_query.bvecs.gz
+gunzip bigann_query.bvecs.gz
+wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_gnd.tar.gz
+gunzip bigann_gnd.tar.gz
+% rm all the gz file after decompression 
+rm bigann_base.bvecs.gz bigann_learn.bvecs.gz bigann_query.bvecs.gz bigann_gnd.tar.gz
+```
 
 ## CPU
 
