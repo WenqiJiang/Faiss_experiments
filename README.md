@@ -51,8 +51,6 @@ wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_query.bvecs.gz
 gunzip bigann_query.bvecs.gz
 wget ftp://ftp.irisa.fr/local/texmex/corpus/bigann_gnd.tar.gz
 gunzip bigann_gnd.tar.gz
-% rm all the gz file after decompression 
-rm bigann_base.bvecs.gz bigann_learn.bvecs.gz bigann_query.bvecs.gz bigann_gnd.tar.gz
 ```
 
 ## CPU
