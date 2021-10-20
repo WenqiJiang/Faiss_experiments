@@ -3086,4 +3086,1551 @@ Preparing dataset SIFT1000M
 sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
 loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
             	 R@1
-nprobe=1 	 
+nprobe=1 	 0.1971
+nprobe=2 	 0.2397
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF2048,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1971
+nprobe=2 	 0.2397
+nprobe=4 	 0.2627
+nprobe=3 	 0.2546
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF2048,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1971
+nprobe=2 	 0.2397
+nprobe=4 	 0.2627
+nprobe=8 	 0.2746
+nprobe=16 	 0.2813
+nprobe=32 	 spend more than 1800 seconds to run nprobe={}, quit 32
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF2048,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4401
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF2048,PQ16 is 1
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4401
+nprobe=2 	 0.5685
+nprobe=4 	 0.6565
+nprobe=3 	 0.6255
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF2048,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4401
+nprobe=2 	 0.5685
+nprobe=4 	 0.6565
+nprobe=8 	 0.7047
+nprobe=16 	 0.7278
+nprobe=32 	 spend more than 1800 seconds to run nprobe={}, quit 32
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF2048,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.5177
+nprobe=2 	 0.6934
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF2048,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.5177
+nprobe=2 	 0.6934
+nprobe=4 	 0.8299
+nprobe=3 	 0.7797
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF2048,PQ16 is 4
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF2048,PQ16/SIFT1000M_OPQ16,IVF2048,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.5177
+nprobe=2 	 0.6934
+nprobe=4 	 0.8299
+nprobe=8 	 0.9142
+nprobe=16 	 0.9567
+nprobe=12 	 0.9437
+nprobe=14 	 0.9516
+nprobe=13 	 0.9481
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF2048,PQ16 is 14
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1990
+nprobe=2 	 0.2350
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF4096,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1990
+nprobe=2 	 0.2350
+nprobe=4 	 0.2616
+nprobe=3 	 0.2513
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF4096,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1990
+nprobe=2 	 0.2350
+nprobe=4 	 0.2616
+nprobe=8 	 0.2757
+nprobe=16 	 0.2833
+nprobe=32 	 0.2852
+nprobe=64 	 spend more than 1800 seconds to run nprobe={}, quit 64
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF4096,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4208
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF4096,PQ16 is 1
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4208
+nprobe=2 	 0.5470
+nprobe=4 	 0.6466
+nprobe=3 	 0.6120
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF4096,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4208
+nprobe=2 	 0.5470
+nprobe=4 	 0.6466
+nprobe=8 	 0.7011
+nprobe=16 	 0.7308
+nprobe=32 	 0.7424
+nprobe=64 	 spend more than 1800 seconds to run nprobe={}, quit 64
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF4096,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4837
+nprobe=2 	 0.6513
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF4096,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4837
+nprobe=2 	 0.6513
+nprobe=4 	 0.7961
+nprobe=8 	 0.8926
+nprobe=6 	 0.8572
+nprobe=5 	 0.8336
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF4096,PQ16 is 5
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF4096,PQ16/SIFT1000M_OPQ16,IVF4096,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4837
+nprobe=2 	 0.6513
+nprobe=4 	 0.7961
+nprobe=8 	 0.8926
+nprobe=16 	 0.9440
+nprobe=32 	 0.9690
+nprobe=24 	 0.9613
+nprobe=20 	 0.9554
+nprobe=18 	 0.9502
+nprobe=17 	 0.9474
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF4096,PQ16 is 18
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1970
+nprobe=2 	 0.2360
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF8192,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1970
+nprobe=2 	 0.2360
+nprobe=4 	 0.2672
+nprobe=3 	 0.2580
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF8192,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1970
+nprobe=2 	 0.2360
+nprobe=4 	 0.2672
+nprobe=8 	 0.2846
+nprobe=16 	 0.2922
+nprobe=32 	 0.2967
+nprobe=64 	 0.2978
+nprobe=128 	 spend more than 1800 seconds to run nprobe={}, quit 128
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF8192,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4005
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF8192,PQ16 is 1
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4005
+nprobe=2 	 0.5286
+nprobe=4 	 0.6406
+nprobe=3 	 0.5991
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF8192,PQ16 is 4
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.4005
+nprobe=2 	 0.5286
+nprobe=4 	 0.6406
+nprobe=8 	 0.7078
+nprobe=16 	 0.7428
+nprobe=32 	 0.7608
+nprobe=64 	 0.7662
+nprobe=128 	 spend more than 1800 seconds to run nprobe={}, quit 128
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF8192,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4498
+nprobe=2 	 0.6094
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF8192,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4498
+nprobe=2 	 0.6094
+nprobe=4 	 0.7615
+nprobe=8 	 0.8660
+nprobe=6 	 0.8265
+nprobe=5 	 0.7989
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF8192,PQ16 is 6
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF8192,PQ16/SIFT1000M_OPQ16,IVF8192,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4498
+nprobe=2 	 0.6094
+nprobe=4 	 0.7615
+nprobe=8 	 0.8660
+nprobe=16 	 0.9247
+nprobe=32 	 0.9594
+nprobe=24 	 0.9486
+nprobe=28 	 0.9546
+nprobe=26 	 0.9525
+nprobe=25 	 0.9506
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF8192,PQ16 is 25
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1986
+nprobe=2 	 0.2387
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF16384,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1986
+nprobe=2 	 0.2387
+nprobe=4 	 0.2723
+nprobe=3 	 0.2610
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF16384,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1986
+nprobe=2 	 0.2387
+nprobe=4 	 0.2723
+nprobe=8 	 0.2882
+nprobe=16 	 0.3012
+nprobe=12 	 0.2968
+nprobe=14 	 0.2990
+nprobe=15 	 0.3000
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF16384,PQ16 is 15
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3831
+nprobe=2 	 0.5080
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF16384,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3831
+nprobe=2 	 0.5080
+nprobe=4 	 0.6214
+nprobe=3 	 0.5794
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF16384,PQ16 is 4
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3831
+nprobe=2 	 0.5080
+nprobe=4 	 0.6214
+nprobe=8 	 0.6922
+nprobe=16 	 0.7392
+nprobe=32 	 0.7647
+nprobe=64 	 0.7730
+nprobe=128 	 0.7763
+nprobe=256 	 spend more than 1800 seconds to run nprobe={}, quit 256
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF16384,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4220
+nprobe=2 	 0.5767
+nprobe=4 	 0.7258
+nprobe=3 	 0.6702
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF16384,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4220
+nprobe=2 	 0.5767
+nprobe=4 	 0.7258
+nprobe=8 	 0.8308
+nprobe=6 	 0.7907
+nprobe=7 	 0.8134
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF16384,PQ16 is 7
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF16384,PQ16/SIFT1000M_OPQ16,IVF16384,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.4220
+nprobe=2 	 0.5767
+nprobe=4 	 0.7258
+nprobe=8 	 0.8308
+nprobe=16 	 0.9065
+nprobe=32 	 0.9523
+nprobe=24 	 0.9361
+nprobe=28 	 0.9445
+nprobe=30 	 0.9491
+nprobe=31 	 0.9509
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF16384,PQ16 is 31
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1875
+nprobe=2 	 0.2332
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF32768,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1875
+nprobe=2 	 0.2332
+nprobe=4 	 0.2688
+nprobe=3 	 0.2565
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF32768,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1875
+nprobe=2 	 0.2332
+nprobe=4 	 0.2688
+nprobe=8 	 0.2973
+nprobe=16 	 0.3108
+nprobe=12 	 0.3063
+nprobe=10 	 0.3021
+nprobe=9 	 0.2996
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF32768,PQ16 is 10
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3529
+nprobe=2 	 0.4787
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF32768,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3529
+nprobe=2 	 0.4787
+nprobe=4 	 0.5950
+nprobe=8 	 0.6855
+nprobe=6 	 0.6512
+nprobe=5 	 0.6272
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF32768,PQ16 is 5
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3529
+nprobe=2 	 0.4787
+nprobe=4 	 0.5950
+nprobe=8 	 0.6855
+nprobe=16 	 0.7422
+nprobe=32 	 0.7730
+nprobe=64 	 0.7865
+nprobe=128 	 0.7900
+nprobe=256 	 0.7914
+nprobe=512 	 spend more than 1800 seconds to run nprobe={}, quit 512
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF32768,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3827
+nprobe=2 	 0.5320
+nprobe=4 	 0.6785
+nprobe=3 	 0.6225
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF32768,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3827
+nprobe=2 	 0.5320
+nprobe=4 	 0.6785
+nprobe=8 	 0.8040
+nprobe=6 	 0.7557
+nprobe=7 	 0.7815
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF32768,PQ16 is 8
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF32768,PQ16/SIFT1000M_OPQ16,IVF32768,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3827
+nprobe=2 	 0.5320
+nprobe=4 	 0.6785
+nprobe=8 	 0.8040
+nprobe=16 	 0.8943
+nprobe=32 	 0.9460
+nprobe=64 	 0.9710
+nprobe=48 	 0.9634
+nprobe=40 	 0.9567
+nprobe=36 	 0.9516
+nprobe=34 	 0.9488
+nprobe=35 	 0.9506
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF32768,PQ16 is 35
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1771
+nprobe=2 	 0.2263
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF65536,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1771
+nprobe=2 	 0.2263
+nprobe=4 	 0.2646
+nprobe=3 	 0.2512
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF65536,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1771
+nprobe=2 	 0.2263
+nprobe=4 	 0.2646
+nprobe=8 	 0.2912
+nprobe=16 	 0.3093
+nprobe=12 	 0.3022
+nprobe=10 	 0.2974
+nprobe=11 	 0.2999
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF65536,PQ16 is 12
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3219
+nprobe=2 	 0.4461
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF65536,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3219
+nprobe=2 	 0.4461
+nprobe=4 	 0.5651
+nprobe=8 	 0.6644
+nprobe=6 	 0.6249
+nprobe=5 	 0.5983
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF65536,PQ16 is 6
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3219
+nprobe=2 	 0.4461
+nprobe=4 	 0.5651
+nprobe=8 	 0.6644
+nprobe=16 	 0.7307
+nprobe=32 	 0.7678
+nprobe=64 	 0.7847
+nprobe=128 	 0.7923
+nprobe=256 	 0.7936
+nprobe=512 	 0.7943
+nprobe=1024 	 spend more than 1800 seconds to run nprobe={}, quit 1024
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF65536,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3445
+nprobe=2 	 0.4894
+nprobe=4 	 0.6352
+nprobe=3 	 0.5759
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF65536,PQ16 is 4
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3445
+nprobe=2 	 0.4894
+nprobe=4 	 0.6352
+nprobe=8 	 0.7646
+nprobe=16 	 0.8650
+nprobe=12 	 0.8277
+nprobe=10 	 0.7999
+nprobe=11 	 0.8149
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF65536,PQ16 is 11
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_OPQ16,IVF65536,PQ16/SIFT1000M_OPQ16,IVF65536,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3445
+nprobe=2 	 0.4894
+nprobe=4 	 0.6352
+nprobe=8 	 0.7646
+nprobe=16 	 0.8650
+nprobe=32 	 0.9266
+nprobe=64 	 0.9600
+nprobe=48 	 0.9489
+nprobe=56 	 0.9547
+nprobe=52 	 0.9518
+nprobe=50 	 0.9504
+nprobe=49 	 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF65536,PQ16 is 50
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1516
+nprobe=2 	 0.1947
+nprobe=4 	 0.2255
+nprobe=3 	 0.2146
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IMI2x8,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1516
+nprobe=2 	 0.1947
+nprobe=4 	 0.2255
+nprobe=8 	 0.2471
+nprobe=16 	 0.2606
+nprobe=12 	 0.2548
+nprobe=10 	 0.2520
+nprobe=9 	 0.2498
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IMI2x8,PQ16 is 10
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1516
+nprobe=2 	 0.1947
+nprobe=4 	 0.2255
+nprobe=8 	 0.2471
+nprobe=16 	 0.2606
+nprobe=32 	 0.2686
+nprobe=64 	 0.2710
+nprobe=128 	 0.2728
+nprobe=256 	 0.2737
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IMI2x8,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3095
+nprobe=2 	 0.4250
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IMI2x8,PQ16 is 2
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3095
+nprobe=2 	 0.4250
+nprobe=4 	 0.5296
+nprobe=8 	 0.6096
+nprobe=6 	 0.5774
+nprobe=7 	 0.5959
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IMI2x8,PQ16 is 8
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.3095
+nprobe=2 	 0.4250
+nprobe=4 	 0.5296
+nprobe=8 	 0.6096
+nprobe=16 	 0.6629
+nprobe=32 	 0.7029
+nprobe=64 	 0.7200
+nprobe=128 	 0.7284
+nprobe=256 	 0.7320
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IMI2x8,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3560
+nprobe=2 	 0.5034
+nprobe=4 	 0.6409
+nprobe=3 	 0.5844
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IMI2x8,PQ16 is 4
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3560
+nprobe=2 	 0.5034
+nprobe=4 	 0.6409
+nprobe=8 	 0.7577
+nprobe=16 	 0.8442
+nprobe=12 	 0.8114
+nprobe=10 	 0.7884
+nprobe=11 	 0.8012
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IMI2x8,PQ16 is 11
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x8,PQ16/SIFT1000M_IMI2x8,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3560
+nprobe=2 	 0.5034
+nprobe=4 	 0.6409
+nprobe=8 	 0.7577
+nprobe=16 	 0.8442
+nprobe=32 	 0.9088
+nprobe=64 	 0.9422
+nprobe=128 	 0.9600
+nprobe=96 	 0.9542
+nprobe=80 	 0.9495
+nprobe=88 	 0.9524
+nprobe=84 	 0.9511
+nprobe=82 	 0.9501
+nprobe=81 	 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IMI2x8,PQ16 is 82
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1464
+nprobe=2 	 0.1901
+nprobe=4 	 0.2224
+nprobe=3 	 0.2087
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IMI2x9,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1464
+nprobe=2 	 0.1901
+nprobe=4 	 0.2224
+nprobe=8 	 0.2530
+nprobe=6 	 0.2418
+nprobe=7 	 0.2484
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IMI2x9,PQ16 is 8
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1464
+nprobe=2 	 0.1901
+nprobe=4 	 0.2224
+nprobe=8 	 0.2530
+nprobe=16 	 0.2714
+nprobe=32 	 0.2845
+nprobe=64 	 0.2920
+nprobe=128 	 0.2940
+nprobe=256 	 0.2953
+nprobe=512 	 0.2960
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IMI2x9,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.2740
+nprobe=2 	 0.3841
+nprobe=4 	 0.4845
+nprobe=3 	 0.4430
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IMI2x9,PQ16 is 3
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.2740
+nprobe=2 	 0.3841
+nprobe=4 	 0.4845
+nprobe=8 	 0.5738
+nprobe=16 	 0.6435
+nprobe=12 	 0.6199
+nprobe=10 	 0.6005
+nprobe=9 	 0.5869
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IMI2x9,PQ16 is 10
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.2740
+nprobe=2 	 0.3841
+nprobe=4 	 0.4845
+nprobe=8 	 0.5738
+nprobe=16 	 0.6435
+nprobe=32 	 0.6932
+nprobe=64 	 0.7250
+nprobe=128 	 0.7394
+nprobe=256 	 0.7473
+nprobe=512 	 0.7513
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IMI2x9,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3026
+nprobe=2 	 0.4340
+nprobe=4 	 0.5642
+nprobe=8 	 0.6847
+nprobe=6 	 0.6374
+nprobe=5 	 0.6028
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IMI2x9,PQ16 is 5
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3026
+nprobe=2 	 0.4340
+nprobe=4 	 0.5642
+nprobe=8 	 0.6847
+nprobe=16 	 0.7852
+nprobe=32 	 0.8617
+nprobe=24 	 0.8309
+nprobe=20 	 0.8095
+nprobe=18 	 0.7984
+nprobe=19 	 0.8045
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IMI2x9,PQ16 is 19
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x9,PQ16/SIFT1000M_IMI2x9,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.3026
+nprobe=2 	 0.4340
+nprobe=4 	 0.5642
+nprobe=8 	 0.6847
+nprobe=16 	 0.7852
+nprobe=32 	 0.8617
+nprobe=64 	 0.9171
+nprobe=128 	 0.9479
+nprobe=256 	 0.9634
+nprobe=192 	 0.9583
+nprobe=160 	 0.9536
+nprobe=144 	 0.9519
+nprobe=136 	 0.9500
+nprobe=132 	 0.9490
+nprobe=134 	 0.9496
+nprobe=135 	 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IMI2x9,PQ16 is 136
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1313
+nprobe=2 	 0.1751
+nprobe=4 	 0.2132
+nprobe=3 	 0.1993
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IMI2x10,PQ16 is 4
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1313
+nprobe=2 	 0.1751
+nprobe=4 	 0.2132
+nprobe=8 	 0.2442
+nprobe=16 	 0.2715
+nprobe=12 	 0.2616
+nprobe=10 	 0.2561
+nprobe=9 	 0.2510
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IMI2x10,PQ16 is 9
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1313
+nprobe=2 	 0.1751
+nprobe=4 	 0.2132
+nprobe=8 	 0.2442
+nprobe=16 	 0.2715
+nprobe=32 	 0.2880
+nprobe=64 	 0.2990
+nprobe=128 	 0.3035
+nprobe=96 	 0.3025
+nprobe=80 	 0.3013
+nprobe=72 	 0.3006
+nprobe=68 	 0.2997
+nprobe=70 	 0.3001
+nprobe=69 	 0.2999
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IMI2x10,PQ16 is 70
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.2333
+nprobe=2 	 0.3331
+nprobe=4 	 0.4362
+nprobe=3 	 0.3943
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IMI2x10,PQ16 is 4
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.2333
+nprobe=2 	 0.3331
+nprobe=4 	 0.4362
+nprobe=8 	 0.5331
+nprobe=16 	 0.6169
+nprobe=12 	 0.5842
+nprobe=14 	 0.6024
+nprobe=13 	 0.5953
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IMI2x10,PQ16 is 14
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.2333
+nprobe=2 	 0.3331
+nprobe=4 	 0.4362
+nprobe=8 	 0.5331
+nprobe=16 	 0.6169
+nprobe=32 	 0.6724
+nprobe=64 	 0.7146
+nprobe=128 	 0.7380
+nprobe=256 	 0.7545
+nprobe=512 	 0.7628
+nprobe=1024 	 0.7655
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IMI2x10,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.2543
+nprobe=2 	 0.3711
+nprobe=4 	 0.4950
+nprobe=8 	 0.6159
+nprobe=6 	 0.5662
+nprobe=7 	 0.5925
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IMI2x10,PQ16 is 8
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.2543
+nprobe=2 	 0.3711
+nprobe=4 	 0.4950
+nprobe=8 	 0.6159
+nprobe=16 	 0.7262
+nprobe=32 	 0.8109
+nprobe=24 	 0.7779
+nprobe=28 	 0.7976
+nprobe=30 	 0.8055
+nprobe=29 	 0.8022
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IMI2x10,PQ16 is 29
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x10,PQ16/SIFT1000M_IMI2x10,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.2543
+nprobe=2 	 0.3711
+nprobe=4 	 0.4950
+nprobe=8 	 0.6159
+nprobe=16 	 0.7262
+nprobe=32 	 0.8109
+nprobe=64 	 0.8792
+nprobe=128 	 0.9224
+nprobe=256 	 0.9521
+nprobe=192 	 0.9410
+nprobe=224 	 0.9465
+nprobe=240 	 0.9499
+nprobe=248 	 0.9508
+nprobe=244 	 0.9503
+nprobe=242 	 0.9502
+nprobe=241 	 0.9500
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IMI2x10,PQ16 is 241
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1114
+nprobe=2 	 0.1520
+nprobe=4 	 0.1973
+nprobe=8 	 0.2326
+nprobe=6 	 0.2184
+nprobe=5 	 0.2087
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IMI2x11,PQ16 is 5
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1114
+nprobe=2 	 0.1520
+nprobe=4 	 0.1973
+nprobe=8 	 0.2326
+nprobe=16 	 0.2619
+nprobe=12 	 0.2535
+nprobe=10 	 0.2432
+nprobe=11 	 0.2486
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IMI2x11,PQ16 is 12
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1114
+nprobe=2 	 0.1520
+nprobe=4 	 0.1973
+nprobe=8 	 0.2326
+nprobe=16 	 0.2619
+nprobe=32 	 0.2820
+nprobe=64 	 0.2951
+nprobe=128 	 0.3054
+nprobe=96 	 0.3019
+nprobe=80 	 0.2999
+nprobe=88 	 0.3015
+nprobe=84 	 0.3013
+nprobe=82 	 0.3009
+nprobe=81 	 0.3005
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IMI2x11,PQ16 is 81
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1906
+nprobe=2 	 0.2826
+nprobe=4 	 0.3841
+nprobe=8 	 0.4796
+nprobe=6 	 0.4408
+nprobe=5 	 0.4145
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IMI2x11,PQ16 is 5
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1906
+nprobe=2 	 0.2826
+nprobe=4 	 0.3841
+nprobe=8 	 0.4796
+nprobe=16 	 0.5684
+nprobe=32 	 0.6416
+nprobe=24 	 0.6102
+nprobe=20 	 0.5933
+nprobe=22 	 0.6022
+nprobe=21 	 0.5978
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IMI2x11,PQ16 is 22
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1906
+nprobe=2 	 0.2826
+nprobe=4 	 0.3841
+nprobe=8 	 0.4796
+nprobe=16 	 0.5684
+nprobe=32 	 0.6416
+nprobe=64 	 0.6982
+nprobe=128 	 0.7383
+nprobe=256 	 0.7631
+nprobe=512 	 0.7752
+nprobe=1024 	 0.7826
+nprobe=2048 	 0.7848
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IMI2x11,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.2030
+nprobe=2 	 0.3071
+nprobe=4 	 0.4209
+nprobe=8 	 0.5342
+nprobe=16 	 0.6446
+nprobe=12 	 0.6025
+nprobe=10 	 0.5713
+nprobe=11 	 0.5872
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IMI2x11,PQ16 is 12
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.2030
+nprobe=2 	 0.3071
+nprobe=4 	 0.4209
+nprobe=8 	 0.5342
+nprobe=16 	 0.6446
+nprobe=32 	 0.7435
+nprobe=64 	 0.8226
+nprobe=48 	 0.7910
+nprobe=56 	 0.8092
+nprobe=52 	 0.8021
+nprobe=50 	 0.7962
+nprobe=51 	 0.7986
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IMI2x11,PQ16 is 52
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x11,PQ16/SIFT1000M_IMI2x11,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.2030
+nprobe=2 	 0.3071
+nprobe=4 	 0.4209
+nprobe=8 	 0.5342
+nprobe=16 	 0.6446
+nprobe=32 	 0.7435
+nprobe=64 	 0.8226
+nprobe=128 	 0.8848
+nprobe=256 	 0.9297
+nprobe=512 	 0.9549
+nprobe=384 	 0.9443
+nprobe=448 	 0.9507
+nprobe=416 	 0.9490
+nprobe=432 	 0.9500
+nprobe=424 	 0.9498
+nprobe=428 	 0.9499
+nprobe=430 	 0.9500
+nprobe=429 	 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IMI2x11,PQ16 is 430
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1045
+nprobe=2 	 0.1453
+nprobe=4 	 0.1885
+nprobe=8 	 0.2257
+nprobe=6 	 0.2125
+nprobe=5 	 0.2014
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IMI2x12,PQ16 is 5
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1045
+nprobe=2 	 0.1453
+nprobe=4 	 0.1885
+nprobe=8 	 0.2257
+nprobe=16 	 0.2568
+nprobe=12 	 0.2430
+nprobe=14 	 0.2498
+nprobe=15 	 0.2539
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IMI2x12,PQ16 is 15
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.1045
+nprobe=2 	 0.1453
+nprobe=4 	 0.1885
+nprobe=8 	 0.2257
+nprobe=16 	 0.2568
+nprobe=32 	 0.2837
+nprobe=64 	 0.3018
+nprobe=48 	 0.2950
+nprobe=56 	 0.2990
+nprobe=60 	 0.3002
+nprobe=58 	 0.2995
+nprobe=59 	 0.2996
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IMI2x12,PQ16 is 60
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1628
+nprobe=2 	 0.2440
+nprobe=4 	 0.3345
+nprobe=8 	 0.4295
+nprobe=6 	 0.3920
+nprobe=7 	 0.4110
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IMI2x12,PQ16 is 7
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1628
+nprobe=2 	 0.2440
+nprobe=4 	 0.3345
+nprobe=8 	 0.4295
+nprobe=16 	 0.5187
+nprobe=32 	 0.6002
+nprobe=24 	 0.5691
+nprobe=28 	 0.5876
+nprobe=30 	 0.5947
+nprobe=31 	 0.5979
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IMI2x12,PQ16 is 32
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1628
+nprobe=2 	 0.2440
+nprobe=4 	 0.3345
+nprobe=8 	 0.4295
+nprobe=16 	 0.5187
+nprobe=32 	 0.6002
+nprobe=64 	 0.6626
+nprobe=128 	 0.7126
+nprobe=256 	 0.7520
+nprobe=512 	 0.7749
+nprobe=1024 	 0.7887
+nprobe=2048 	 0.7954
+nprobe=4096 	 0.7980
+ERROR! Search failed: cannot reach expected recall on given dataset and index
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IMI2x12,PQ16 is None
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1731
+nprobe=2 	 0.2600
+nprobe=4 	 0.3607
+nprobe=8 	 0.4675
+nprobe=16 	 0.5738
+nprobe=32 	 0.6766
+nprobe=24 	 0.6360
+nprobe=20 	 0.6083
+nprobe=18 	 0.5927
+nprobe=19 	 0.6003
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IMI2x12,PQ16 is 19
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1731
+nprobe=2 	 0.2600
+nprobe=4 	 0.3607
+nprobe=8 	 0.4675
+nprobe=16 	 0.5738
+nprobe=32 	 0.6766
+nprobe=64 	 0.7614
+nprobe=128 	 0.8350
+nprobe=96 	 0.8057
+nprobe=80 	 0.7845
+nprobe=88 	 0.7962
+nprobe=92 	 0.8027
+nprobe=90 	 0.7994
+nprobe=91 	 0.8012
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IMI2x12,PQ16 is 91
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x12,PQ16/SIFT1000M_IMI2x12,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1731
+nprobe=2 	 0.2600
+nprobe=4 	 0.3607
+nprobe=8 	 0.4675
+nprobe=16 	 0.5738
+nprobe=32 	 0.6766
+nprobe=64 	 0.7614
+nprobe=128 	 0.8350
+nprobe=256 	 0.8940
+nprobe=512 	 0.9335
+nprobe=1024 	 0.9605
+nprobe=768 	 0.9495
+nprobe=896 	 0.9553
+nprobe=832 	 0.9520
+nprobe=800 	 0.9510
+nprobe=784 	 0.9505
+nprobe=776 	 0.9499
+nprobe=780 	 0.9503
+nprobe=778 	 0.9501
+nprobe=777 	 0.9500
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IMI2x12,PQ16 is 777
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.0901
+nprobe=2 	 0.1289
+nprobe=4 	 0.1697
+nprobe=8 	 0.2083
+nprobe=6 	 0.1934
+nprobe=7 	 0.2020
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IMI2x13,PQ16 is 7
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.0901
+nprobe=2 	 0.1289
+nprobe=4 	 0.1697
+nprobe=8 	 0.2083
+nprobe=16 	 0.2444
+nprobe=32 	 0.2721
+nprobe=24 	 0.2609
+nprobe=20 	 0.2545
+nprobe=18 	 0.2499
+nprobe=19 	 0.2526
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IMI2x13,PQ16 is 19
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.0901
+nprobe=2 	 0.1289
+nprobe=4 	 0.1697
+nprobe=8 	 0.2083
+nprobe=16 	 0.2444
+nprobe=32 	 0.2721
+nprobe=64 	 0.2974
+nprobe=128 	 0.3175
+nprobe=96 	 0.3112
+nprobe=80 	 0.3053
+nprobe=72 	 0.3016
+nprobe=68 	 0.2993
+nprobe=70 	 0.3001
+nprobe=69 	 0.2999
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IMI2x13,PQ16 is 70
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1290
+nprobe=2 	 0.1990
+nprobe=4 	 0.2788
+nprobe=8 	 0.3710
+nprobe=16 	 0.4607
+nprobe=12 	 0.4213
+nprobe=10 	 0.3987
+nprobe=11 	 0.4101
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IMI2x13,PQ16 is 11
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1290
+nprobe=2 	 0.1990
+nprobe=4 	 0.2788
+nprobe=8 	 0.3710
+nprobe=16 	 0.4607
+nprobe=32 	 0.5415
+nprobe=64 	 0.6166
+nprobe=48 	 0.5886
+nprobe=56 	 0.6039
+nprobe=52 	 0.5971
+nprobe=54 	 0.6007
+nprobe=53 	 0.5992
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IMI2x13,PQ16 is 54
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1290
+nprobe=2 	 0.1990
+nprobe=4 	 0.2788
+nprobe=8 	 0.3710
+nprobe=16 	 0.4607
+nprobe=32 	 0.5415
+nprobe=64 	 0.6166
+nprobe=128 	 0.6854
+nprobe=256 	 0.7385
+nprobe=512 	 0.7726
+nprobe=1024 	 0.7973
+nprobe=2048 	 0.8106
+nprobe=1536 	 0.8058
+nprobe=1280 	 0.8021
+nprobe=1152 	 0.7989
+nprobe=1216 	 0.8005
+nprobe=1184 	 0.7996
+nprobe=1200 	 0.7999
+nprobe=1208 	 0.8002
+nprobe=1204 	 0.8001
+nprobe=1202 	 0.7999
+nprobe=1203 	 0.8000
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IMI2x13,PQ16 is 1203
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1338
+nprobe=2 	 0.2080
+nprobe=4 	 0.2939
+nprobe=8 	 0.3948
+nprobe=16 	 0.4948
+nprobe=32 	 0.5880
+nprobe=64 	 0.6787
+nprobe=48 	 0.6433
+nprobe=40 	 0.6173
+nprobe=36 	 0.6024
+nprobe=34 	 0.5948
+nprobe=35 	 0.5991
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IMI2x13,PQ16 is 36
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1338
+nprobe=2 	 0.2080
+nprobe=4 	 0.2939
+nprobe=8 	 0.3948
+nprobe=16 	 0.4948
+nprobe=32 	 0.5880
+nprobe=64 	 0.6787
+nprobe=128 	 0.7640
+nprobe=256 	 0.8368
+nprobe=192 	 0.8070
+nprobe=160 	 0.7878
+nprobe=176 	 0.7991
+nprobe=184 	 0.8040
+nprobe=180 	 0.8019
+nprobe=178 	 0.8004
+nprobe=177 	 0.8000
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IMI2x13,PQ16 is 177
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x13,PQ16/SIFT1000M_IMI2x13,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1338
+nprobe=2 	 0.2080
+nprobe=4 	 0.2939
+nprobe=8 	 0.3948
+nprobe=16 	 0.4948
+nprobe=32 	 0.5880
+nprobe=64 	 0.6787
+nprobe=128 	 0.7640
+nprobe=256 	 0.8368
+nprobe=512 	 0.8906
+nprobe=1024 	 0.9328
+nprobe=2048 	 0.9592
+nprobe=1536 	 0.9488
+nprobe=1792 	 0.9543
+nprobe=1664 	 0.9518
+nprobe=1600 	 0.9506
+nprobe=1568 	 0.9497
+nprobe=1584 	 0.9500
+nprobe=1576 	 0.9499
+nprobe=1580 	 0.9499
+nprobe=1582 	 0.9500
+nprobe=1581 	 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IMI2x13,PQ16 is 1582
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.0704
+nprobe=2 	 0.1047
+nprobe=4 	 0.1433
+nprobe=8 	 0.1799
+nprobe=16 	 0.2232
+nprobe=12 	 0.2076
+nprobe=10 	 0.1951
+nprobe=11 	 0.2017
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IMI2x14,PQ16 is 11
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.0704
+nprobe=2 	 0.1047
+nprobe=4 	 0.1433
+nprobe=8 	 0.1799
+nprobe=16 	 0.2232
+nprobe=32 	 0.2592
+nprobe=24 	 0.2433
+nprobe=28 	 0.2510
+nprobe=26 	 0.2465
+nprobe=27 	 0.2488
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IMI2x14,PQ16 is 28
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@1
+nprobe=1 	 0.0704
+nprobe=2 	 0.1047
+nprobe=4 	 0.1433
+nprobe=8 	 0.1799
+nprobe=16 	 0.2232
+nprobe=32 	 0.2592
+nprobe=64 	 0.2899
+nprobe=128 	 0.3155
+nprobe=96 	 0.3040
+nprobe=80 	 0.2967
+nprobe=88 	 0.3002
+nprobe=84 	 0.2990
+nprobe=86 	 0.2997
+nprobe=87 	 0.3002
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IMI2x14,PQ16 is 87
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1019
+nprobe=2 	 0.1595
+nprobe=4 	 0.2283
+nprobe=8 	 0.3008
+nprobe=16 	 0.3942
+nprobe=32 	 0.4816
+nprobe=24 	 0.4430
+nprobe=20 	 0.4215
+nprobe=18 	 0.4076
+nprobe=17 	 0.4006
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IMI2x14,PQ16 is 17
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1019
+nprobe=2 	 0.1595
+nprobe=4 	 0.2283
+nprobe=8 	 0.3008
+nprobe=16 	 0.3942
+nprobe=32 	 0.4816
+nprobe=64 	 0.5659
+nprobe=128 	 0.6435
+nprobe=96 	 0.6113
+nprobe=80 	 0.5916
+nprobe=88 	 0.6015
+nprobe=84 	 0.5974
+nprobe=86 	 0.5994
+nprobe=87 	 0.6004
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IMI2x14,PQ16 is 87
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@10
+nprobe=1 	 0.1019
+nprobe=2 	 0.1595
+nprobe=4 	 0.2283
+nprobe=8 	 0.3008
+nprobe=16 	 0.3942
+nprobe=32 	 0.4816
+nprobe=64 	 0.5659
+nprobe=128 	 0.6435
+nprobe=256 	 0.7077
+nprobe=512 	 0.7544
+nprobe=1024 	 0.7894
+nprobe=2048 	 0.8112
+nprobe=1536 	 0.8029
+nprobe=1280 	 0.7969
+nprobe=1408 	 0.8005
+nprobe=1344 	 0.7985
+nprobe=1376 	 0.7999
+nprobe=1392 	 0.8001
+nprobe=1384 	 0.8002
+nprobe=1380 	 0.8001
+nprobe=1378 	 0.8000
+nprobe=1377 	 0.8000
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IMI2x14,PQ16 is 1377
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1047
+nprobe=2 	 0.1657
+nprobe=4 	 0.2393
+nprobe=8 	 0.3177
+nprobe=16 	 0.4179
+nprobe=32 	 0.5146
+nprobe=64 	 0.6107
+nprobe=48 	 0.5701
+nprobe=56 	 0.5916
+nprobe=60 	 0.6018
+nprobe=58 	 0.5962
+nprobe=59 	 0.5991
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IMI2x14,PQ16 is 60
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1047
+nprobe=2 	 0.1657
+nprobe=4 	 0.2393
+nprobe=8 	 0.3177
+nprobe=16 	 0.4179
+nprobe=32 	 0.5146
+nprobe=64 	 0.6107
+nprobe=128 	 0.7018
+nprobe=256 	 0.7828
+nprobe=512 	 0.8463
+nprobe=384 	 0.8222
+nprobe=320 	 0.8048
+nprobe=288 	 0.7956
+nprobe=304 	 0.8001
+nprobe=296 	 0.7971
+nprobe=300 	 0.7985
+nprobe=302 	 0.7992
+nprobe=303 	 0.7997
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IMI2x14,PQ16 is 304
+Preparing dataset SIFT1000M
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+loading ./trained_CPU_indexes/bench_cpu_SIFT1000M_IMI2x14,PQ16/SIFT1000M_IMI2x14,PQ16_populated.index
+            	 R@100
+nprobe=1 	 0.1047
+nprobe=2 	 0.1657
+nprobe=4 	 0.2393
+nprobe=8 	 0.3177
+nprobe=16 	 0.4179
+nprobe=32 	 0.5146
+nprobe=64 	 0.6107
+nprobe=128 	 0.7018
+nprobe=256 	 0.7828
+nprobe=512 	 0.8463
+nprobe=1024 	 0.8988
+nprobe=2048 	 0.9357
+nprobe=4096 	 0.9623
+nprobe=3072 	 0.9526
+nprobe=2560 	 0.9464
+nprobe=2816 	 0.9499
+nprobe=2944 	 0.9515
+nprobe=2880 	 0.9509
+nprobe=2848 	 0.9504
+nprobe=2832 	 0.9503
+nprobe=2824 	 0.9500
+nprobe=2820 	 0.9499
+nprobe=2822 	 0.9499
+nprobe=2823 	 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IMI2x14,PQ16 is 2824
