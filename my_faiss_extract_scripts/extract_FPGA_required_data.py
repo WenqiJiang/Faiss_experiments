@@ -62,6 +62,9 @@ else:
         'FPGA_data_{}_{}_HBM_{}_banks'.format(dbname, index_key, HBM_bank_num))
 if not os.path.exists(output_dir):
     os.mkdir(output_dir)
+else:
+    print("Error: the output directory already exists, stop generating data")
+    exit(1)
 
 def mmap_fvecs(fname):
     x = np.memmap(fname, dtype='int32', mode='r')

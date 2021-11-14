@@ -1,6 +1,6 @@
 """
 Usage e.g.: 
-python extract_FPGA_required_data_multi_FPGA.py --dbname SIFT500M --index_key OPQ16,IVF65536,PQ16 --FPGA_num 4 --HBM_bank_num 16 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT500M_OPQ16,IVF65536,PQ16' --output_dir '/mnt/scratch/wenqi/saved_npy_data/FPGA_data_SIFT500M_OPQ16,IVF65536,PQ16_16_banks'
+python extract_FPGA_required_data_multi_FPGA.py --dbname SIFT500M --index_key OPQ16,IVF65536,PQ16 --FPGA_num 4 --HBM_bank_num 16 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT500M_OPQ16,IVF65536,PQ16' --output_dir '/mnt/scratch/wenqi/saved_npy_data/FPGA_data_SIFT500M_OPQ16,IVF65536,PQ16_4_FPGA_16_banks'
 """
 
 from __future__ import print_function
@@ -64,6 +64,9 @@ else:
         'FPGA_data_{}_{}_HBM_{}_banks'.format(dbname, index_key, HBM_bank_num))
 if not os.path.exists(output_parent_dir):
     os.mkdir(output_parent_dir)
+else:
+    print("Error: the output directory already exists, stop generating data")
+    exit(1)
 
 output_dir_set = []
 for i in range(FPGA_num):
