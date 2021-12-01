@@ -1,0 +1,28 @@
+
+
+======= Dictionary Name: ./cpu_recall_index_nprobe_pairs_SIFT100M.pkl =======
+
+IVF1024,PQ16 10 0.8 : nlist=None
+IVF2048,PQ16 10 0.8 : nlist=28
+IVF4096,PQ16 10 0.8 : nlist=29
+IVF8192,PQ16 10 0.8 : nlist=22
+IVF16384,PQ16 10 0.8 : nlist=29
+IVF32768,PQ16 10 0.8 : nlist=29
+IVF65536,PQ16 10 0.8 : nlist=33
+OPQ16,IVF1024,PQ16 10 0.8 : nlist=13
+OPQ16,IVF2048,PQ16 10 0.8 : nlist=13
+OPQ16,IVF4096,PQ16 10 0.8 : nlist=17
+OPQ16,IVF8192,PQ16 10 0.8 : nlist=17
+OPQ16,IVF16384,PQ16 10 0.8 : nlist=21
+OPQ16,IVF32768,PQ16 10 0.8 : nlist=24
+OPQ16,IVF65536,PQ16 10 0.8 : nlist=30
+IMI2x8,PQ16 10 0.8 : nlist=96
+IMI2x9,PQ16 10 0.8 : nlist=114
+IMI2x10,PQ16 10 0.8 : nlist=151
+IMI2x11,PQ16 10 0.8 : nlist=258
+IMI2x12,PQ16 10 0.8 : nlist=353
+IMI2x13,PQ16 10 0.8 : nlist=677
+IMI2x14,PQ16 10 0.8 : nlist=1262
+
+
+

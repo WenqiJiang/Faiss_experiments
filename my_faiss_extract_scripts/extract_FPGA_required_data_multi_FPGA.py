@@ -65,7 +65,7 @@ else:
 if not os.path.exists(output_parent_dir):
     os.mkdir(output_parent_dir)
 else:
-    print("Error: the output directory already exists, stop generating data")
+    print("Warning: the output directory already exists, stop generating data...")
     exit(1)
 
 output_dir_set = []
