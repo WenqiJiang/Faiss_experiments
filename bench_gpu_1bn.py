@@ -801,7 +801,7 @@ def eval_dataset(index, preproc):
             print("  probe=%-3d: %.3f s rank-%d intersection results: %.4f" % (
                 nprobe, t1 - t0, topK, ires))
         else:
-            print("  probe=%-3d: %.3f s" % (nprobe, t1 - t0), end=' ')
+            print("  probe=%-3d: %.3f s (QPS=%.3f)" % (nprobe, t1 - t0, nq / (t1 - t0)), end=' ')
             gtc = gt_I[:, :1]
             nq = xq.shape[0]
             # WENQI modified, when only using 1000 query, comment below
