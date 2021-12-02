@@ -33,13 +33,13 @@ qbs = args.qbs
 nsys_enable = args.nsys_enable
 
 out_dir = "result_experiment_5_topK"
-if not os.path.exists(out_dir)
+if not os.path.exists(out_dir):
     os.mkdir(out_dir)
 
 logname = "./{out_dir}/out_{dbname}_{index_key}_ngpu_{ngpu}".format(
     out_dir=out_dir, dbname=dbname, index_key=index_key, ngpu=ngpu)
-if os.path.exists(logname)
-    os.path.remove(logname)
+if os.path.exists(logname):
+    os.remove(logname)
 
 topK_list = [1, 10, 20, 50, 100, 200, 500, 1000]
 

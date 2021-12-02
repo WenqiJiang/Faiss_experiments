@@ -44,13 +44,13 @@ else:
     raise ValueError
 
 out_dir = "result_experiment_2_algorithm_settings"
-if not os.path.exists(out_dir)
+if not os.path.exists(out_dir):
     os.mkdir(out_dir)
 
 logname = "./{out_dir}/out_{dbname}_R@{topK}={recall_goal}_ngpu_{ngpu}".format(
     out_dir=out_dir, dbname=dbname, topK=topK, recall_goal=recall_goal, ngpu=ngpu)
-if os.path.exists(logname)
-    os.path.remove(logname)
+if os.path.exists(logname):
+    os.remove(logname)
 
 index_keys = ['IVF1024,PQ16', 'IVF2048,PQ16', 'IVF4096,PQ16', 'IVF8192,PQ16', 'IVF16384,PQ16', 'IVF32768,PQ16', 'IVF65536,PQ16', \
     'OPQ16,IVF1024,PQ16', 'OPQ16,IVF2048,PQ16', 'OPQ16,IVF4096,PQ16', 'OPQ16,IVF8192,PQ16', 'OPQ16,IVF16384,PQ16', 'OPQ16,IVF32768,PQ16', 'OPQ16,IVF65536,PQ16']

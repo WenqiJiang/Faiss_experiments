@@ -244,11 +244,18 @@ preproc_cachefile = None
 
 nq_gt = None
 gt_sl = None
-
+"""
+print(os.path.abspath(os.getcwd()))
+os.path.abspath(os.getcwd())
+os.path.dirname(os.path.abspath(__file__))
+print(os.path.dirname(os.path.abspath(__file__)))
+"""
+cur_script_dir = os.path.dirname(os.path.abspath(__file__))
 if dbname: 
     print("Preparing dataset", dbname)
 
-    cacheroot = './trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key)
+    cacheroot = os.path.abspath(os.path.join(cur_script_dir, './trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key)))
+    #cacheroot = os.path.relpath('./trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key))
 
     if not os.path.isdir(cacheroot):
         print("%s does not exist, creating it" % cacheroot)
@@ -889,7 +896,7 @@ def eval_dataset_from_dict():
             if index_key not in d_response_time[dbname]:
                 d_response_time[dbname][index_key] = dict()
 
-            cacheroot = './trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key)
+            cacheroot = os.path.relpath('./trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key))
             pat = re.compile('(OPQ[0-9]+(_[0-9]+)?,|PCAR[0-9]+,)?' +
                             '(IVF[0-9]+),' +
                             '(PQ[0-9]+|Flat)')

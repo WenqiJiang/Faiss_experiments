@@ -35,13 +35,13 @@ startgpu = args.startgpu
 nsys_enable = args.nsys_enable
 
 out_dir = "result_experiment_1_batch_size_effect"
-if not os.path.exists(out_dir)
+if not os.path.exists(out_dir):
     os.mkdir(out_dir)
 
 logname = "./{out_dir}/out_{dbname}_{index_key}_K_{topK}_nprobe_{nprobe}_ngpu_{ngpu}".format(
     out_dir=out_dir, dbname=dbname, index_key=index_key, topK=topK, nprobe=nprobe, ngpu=ngpu)
-if os.path.exists(logname)
-    os.path.remove(logname)
+if os.path.exists(logname):
+    os.remove(logname)
 
 batch_sizes = [1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 10000]
 
@@ -49,7 +49,7 @@ for qbs in batch_sizes:
 
     # Example command:
     # python ../bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -tempmem $[1536*1024*1024] -nprobe 32 -qbs 512
-    cmd = "python ../bench_gpu_1bn.py -dbname {dbname} -index_key {index_key} -topK {topK} -ngpu {ngpu} -startgpu {startgpu} -tempmem $[1536*1024*1024] -nprobe {nprobe} -qbs {qbs} >> {logname}".format(
+    cmd = "python ../bench_gpu_1bn.py -dbname {dbname} -index_key {index_key} -topK {topK} -ngpu {ngpu} -startgpu {startgpu} -nprobe {nprobe} -qbs {qbs} >> {logname}".format(
         dbname=dbname, index_key=index_key, topK=topK, ngpu=ngpu, startgpu=startgpu, nprobe=nprobe, qbs=qbs, logname=logname)
 
     if not nsys_enable:

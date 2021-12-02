@@ -18,3 +18,4 @@ gpu_performance_result/*
 *log
 network_response_time.npy
 CPU_response_time/*
+gpu_prof_report_tmp
