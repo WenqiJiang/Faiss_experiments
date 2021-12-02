@@ -60,7 +60,7 @@ for index_key in index_keys:
     nprobe = d_nprobes[dbname][index_key][topK][recall_goal]
     # Example command:
     # python ../bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -tempmem $[1536*1024*1024] -nprobe 32 -qbs 512
-    cmd = "python ../bench_gpu_1bn.py -dbname {dbname} -index_key {index_key} -topK {topK} -ngpu {ngpu} -startgpu {startgpu} -tempmem $[1536*1024*1024] -nprobe {nprobe} -qbs {qbs} >> {logname}".format(
+    cmd = "python ../bench_gpu_1bn.py -dbname {dbname} -index_key {index_key} -topK {topK} -ngpu {ngpu} -startgpu {startgpu} -nprobe {nprobe} -qbs {qbs} >> {logname}".format(
         dbname=dbname, index_key=index_key, topK=topK, ngpu=ngpu, startgpu=startgpu, nprobe=nprobe, qbs=qbs, logname=logname)
 
     if not nsys_enable:
@@ -69,7 +69,7 @@ for index_key in index_keys:
         print("WARNING: nsys may cause memory bug and failed profiling by using small batches, according to experiments on 16GB V100")
         reportname = "./{out_dir}/nsys_report_{dbname}_{index_key}_R@{topK}={recall_goal}_nprobe_{nprobe}_ngpu_{ngpu}_batchsize_{qbs}".format(
             out_dir=out_dir, dbname=dbname, index_key=index_key, topK=topK, recall_goal=recall_goal, nprobe=nprobe, ngpu=ngpu, qbs=qbs)
-        cmd_prefix = "nsys profile --output {reportname} --trace=cuda,cudnn,cublas,osrt,nvtx "
+        cmd_prefix = "nsys profile --output {reportname} --force-overwrite true --trace=cuda,cudnn,cublas,osrt,nvtx ".format(reportname=reportname) # overwrite if the profile already exists
         cmd_prof = cmd_prefix + cmd
         os.system(cmd_prof)
 

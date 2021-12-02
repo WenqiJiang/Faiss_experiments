@@ -58,7 +58,7 @@ for qbs in batch_sizes:
         print("WARNING: nsys may cause memory bug and failed profiling by using small batches, according to experiments on 16GB V100")
         reportname = "./{out_dir}/nsys_report_{dbname}_{index_key}_K_{topK}_nprobe_{nprobe}_ngpu_{ngpu}_batchsize_{qbs}".format(
             out_dir=out_dir, dbname=dbname, index_key=index_key, topK=topK, nprobe=nprobe, ngpu=ngpu, qbs=qbs)
-        cmd_prefix = "nsys profile --output {reportname} --trace=cuda,cudnn,cublas,osrt,nvtx "
+        cmd_prefix = "nsys profile --output {reportname} --force-overwrite true --trace=cuda,cudnn,cublas,osrt,nvtx ".format(reportname=reportname) # overwrite if the profile already exists
         cmd_prof = cmd_prefix + cmd
         os.system(cmd_prof)
 

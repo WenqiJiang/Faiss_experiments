@@ -150,6 +150,8 @@ while args:
         print("argument %s unknown" % a, file=sys.stderr)
         sys.exit(1)
 
+print("query_batch_size: ", query_batch_size)
+
 #################################################################
 # Small Utility Functions
 #################################################################
