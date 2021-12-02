@@ -33,6 +33,7 @@ from datasets import ivecs_read
 # Parse command line
 ####################################################################
 
+cur_script_dir = os.path.dirname(os.path.abspath(__file__))
 
 def usage():
     print("""
@@ -244,13 +245,7 @@ preproc_cachefile = None
 
 nq_gt = None
 gt_sl = None
-"""
-print(os.path.abspath(os.getcwd()))
-os.path.abspath(os.getcwd())
-os.path.dirname(os.path.abspath(__file__))
-print(os.path.dirname(os.path.abspath(__file__)))
-"""
-cur_script_dir = os.path.dirname(os.path.abspath(__file__))
+
 if dbname: 
     print("Preparing dataset", dbname)
 
@@ -264,28 +259,28 @@ if dbname:
     if dbname.startswith('SIFT'):
         # SIFT1M to SIFT1000M
         dbsize = int(dbname[4:-1])
-        xb = mmap_bvecs('bigann/bigann_base.bvecs')
-        xq = mmap_bvecs('bigann/bigann_query.bvecs')
+        xb = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, 'bigann/bigann_base.bvecs')))
+        xq = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, 'bigann/bigann_query.bvecs')))
 
         # Wenqi adjusted, only use the first 1000 queries
         # print(xq.shape)
         # xq = xq[:1000]
         print(xq.shape)
 
-        xt = mmap_bvecs('bigann/bigann_learn.bvecs')
+        xt = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, 'bigann/bigann_learn.bvecs')))
 
         # trim xb to correct size
         xb = xb[:dbsize * 1000 * 1000]
 
-        gt_I = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
+        gt_I = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, 'bigann/gnd/idx_%dM.ivecs' % dbsize)))
 
     elif dbname == 'Deep1B':
-        xb = mmap_fvecs('deep1b/base.fvecs')
-        xq = mmap_fvecs('deep1b/deep1B_queries.fvecs')
-        xt = mmap_fvecs('deep1b/learn.fvecs')
+        xb = mmap_fvecs(os.path.abspath(os.path.join(cur_script_dir, 'deep1b/base.fvecs')))
+        xq = mmap_fvecs(os.path.abspath(os.path.join(cur_script_dir, 'deep1b/deep1B_queries.fvecs')))
+        xt = mmap_fvecs(os.path.abspath(os.path.join(cur_script_dir, 'deep1b/learn.fvecs')))
         # deep1B's train is is outrageously big
         xt = xt[:10 * 1000 * 1000]
-        gt_I = ivecs_read('deep1b/deep1B_groundtruth.ivecs')
+        gt_I = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, 'deep1b/deep1B_groundtruth.ivecs')))
 
     else:
         print('unknown dataset', dbname, file=sys.stderr)
@@ -863,18 +858,18 @@ def eval_dataset_from_dict():
             global gt_I
 
             dbsize = int(dbname[4:-1])
-            xb = mmap_bvecs('bigann/bigann_base.bvecs')
-            xq = mmap_bvecs('bigann/bigann_query.bvecs')
-            xt = mmap_bvecs('bigann/bigann_learn.bvecs')
+            xb = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, 'bigann/bigann_base.bvecs')))
+            xq = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, 'bigann/bigann_query.bvecs')))
+            xt = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, 'bigann/bigann_learn.bvecs')))
 
-            gt = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
+            gt = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, 'bigann/gnd/idx_%dM.ivecs' % dbsize)))
 
             # Wenqi: load xq to main memory and reshape
             xq = xq.astype('float32').copy()
             xq = np.array(xq, dtype=np.float32)
             xq = np.tile(xq, (query_num_factor, 1)) # replicate the 10K queries to 100K queries to get a more stable performance
             gt = np.array(gt, dtype=np.int32)
-            gt_I = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
+            gt_I = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, 'bigann/gnd/idx_%dM.ivecs' % dbsize)))
             gt = np.tile(gt, (query_num_factor, 1))
             gt_I = np.tile(gt_I, (query_num_factor, 1))
         else:
@@ -896,7 +891,7 @@ def eval_dataset_from_dict():
             if index_key not in d_response_time[dbname]:
                 d_response_time[dbname][index_key] = dict()
 
-            cacheroot = os.path.relpath('./trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key))
+            cacheroot = os.path.abspath(os.path.join(cur_script_dir, './trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key)))
             pat = re.compile('(OPQ[0-9]+(_[0-9]+)?,|PCAR[0-9]+,)?' +
                             '(IVF[0-9]+),' +
                             '(PQ[0-9]+|Flat)')
@@ -1182,7 +1177,7 @@ def recall_eval(index, preproc):
         print("The minimum nprobe to achieve R@{topK}={recall_goal} on {dbname} {index_key} is {nprobe}".format(
             topK=topK, recall_goal=recall_goal, dbname=dbname, index_key=index_key, nprobe=min_nprobe))
 
-        fname = './recall_info/gpu_recall_index_nprobe_pairs_{}.pkl'.format(dbname)
+        fname = os.path.abspath(os.path.join(cur_script_dir, './recall_info/gpu_recall_index_nprobe_pairs_{}.pkl'.format(dbname)))
         if os.path.exists(fname) and os.path.getsize(fname) > 0: # load and write
             d = None
             with open(fname, 'rb') as f:
