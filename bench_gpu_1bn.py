@@ -810,7 +810,10 @@ def eval_dataset(index, preproc):
             nq = xq.shape[0]
             # WENQI modified, when only using 1000 query, comment below
             # because groud truth verification have problems with shape
-            for rank in 1, 10, 100:
+            rank_list = [1, 10, 100]
+            if topK not in rank_list:
+                rank_list.append(topK)
+            for rank in rank_list:
                 if rank > topK: continue
                 nok = (I[:, :rank] == gtc).sum()
                 print("1-R@%d: %.4f" % (rank, nok / float(nq)), end=' ')
@@ -1059,7 +1062,10 @@ def eval_dataset_from_dict():
                             nq = xq.shape[0]
                             # WENQI modified, when only using 1000 query, comment below
                             # because groud truth verification have problems with shape
-                            for rank in 1, 10, 100:
+                            rank_list = [1, 10, 100]
+                            if topK not in rank_list:
+                                rank_list.append(topK)
+                            for rank in rank_list:
                                 if rank > topK: continue
                                 nok = (I[:, :rank] == gtc).sum()
                                 print("1-R@%d: %.4f" % (rank, nok / float(nq)), end=' ')
