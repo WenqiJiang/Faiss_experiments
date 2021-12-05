@@ -1,7 +1,7 @@
 # Example Usage:
-#   python CPU_recall_print.py --dict_dir './cpu_recall_index_nprobe_pairs_SIFT100M.pkl' 
+#   python recall_print_CPU_GPU.py --dict_dir './cpu_recall_index_nprobe_pairs_SIFT100M.pkl' 
 # Example Usage (specify topK and/or recall_goal)
-#   python CPU_recall_print.py --dict_dir './cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --topK 10 --recall_goal 0.8
+#   python recall_print_CPU_GPU.py --dict_dir './cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --topK 10 --recall_goal 0.8
 import pickle
 import argparse 
 parser = argparse.ArgumentParser()

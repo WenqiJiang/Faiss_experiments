@@ -1,0 +1,136 @@
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.237 s
+search...
+10000
+  probe=46 : 0.854 s (QPS=11705.526) 1-R@1: 0.3427 
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.109 s
+search...
+10000
+  probe=46 : 0.594 s (QPS=16838.042) 1-R@1: 0.3426 1-R@10: 0.7930 
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.078 s
+search...
+10000
+  probe=46 : 0.592 s (QPS=16901.755) 1-R@1: 0.3428 1-R@10: 0.7930 
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.202 s
+search...
+10000
+  probe=46 : 0.594 s (QPS=16833.892) 1-R@1: 0.3426 1-R@10: 0.7930 
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.183 s
+search...
+10000
+  probe=46 : 0.621 s (QPS=16102.638) 1-R@1: 0.3427 1-R@10: 0.7930 1-R@100: 0.9500 
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.349 s
+search...
+10000
+  probe=46 : 0.644 s (QPS=15522.771) 1-R@1: 0.3427 1-R@10: 0.7930 1-R@100: 0.9500 
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.246 s
+search...
+10000
+  probe=46 : 0.682 s (QPS=14652.319) 1-R@1: 0.3428 1-R@10: 0.7930 1-R@100: 0.9500 
+  IndexIVFPQ size 500000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  10000
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/cent_SIFT500M_IVF65536.npy
+/data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+preparing resources for 1 GPUs
+load /data/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF65536,PQ16/SIFT500M_IVF65536,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 15.330 s
+search...
+10000
+  probe=46 : 0.879 s (QPS=11370.643) 1-R@1: 0.3427 1-R@10: 0.7930 1-R@100: 0.9500 
