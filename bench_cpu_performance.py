@@ -172,7 +172,7 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
     dbname = args.dbname
     index_key = args.index_key
     topK = args.topK
-    parametersets = args.parametersets
+    parametersets = args.parametersets.split() # split nprobe argument string by space
 
     tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 
@@ -232,6 +232,8 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
         ## Wenqi: batch size = 1
         # D, I = index.search(query_vec, 10)
         t1 = time.time()
+        n_ok = (I[:, :topK] == gt[:, :1]).sum()
+        print("%.4f" % (n_ok / float(nq)), end=' ')
         #for rank in 1, 10:
         #    n_ok = (I[:, :rank] == gt[:, :1]).sum()
         #    print("%.4f" % (n_ok / float(nq)), end=' ')
