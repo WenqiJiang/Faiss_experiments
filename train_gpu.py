@@ -16,7 +16,7 @@ FLAGS, unparsed = parser.parse_known_args()
 
 # IVF: 1024 (2^10) to 262144 (2^18)
 # IVF_range = [17, 18]
-IVF_range = [10, 11, 12, 13, 14, 15, 16]
+IVF_range = [10, 11, 12, 13, 14, 15, 16, 17, 18]
 GPU_memory_use = int(4*1024*1024*1024) # in terms of bytes
 
 if FLAGS.index == "IVF":

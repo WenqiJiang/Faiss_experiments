@@ -38,7 +38,16 @@ do
     IFS=',' read TOPK RECALL <<< "${i}"
     python bench_gpu_1bn.py -dbname $DBNAME -index_key IVF65536,PQ16 -recall_goal $RECALL -topK $TOPK -ngpu $NGPU -startgpu $STARTGPU -qbs 512 >> gpu_recall
 done
-
+for i in '1','20' '1','25' '1','30' '10','40' '10','60' '10','80' '100','60' '100','80' '100','95';
+do
+    IFS=',' read TOPK RECALL <<< "${i}"
+    python bench_gpu_1bn.py -dbname $DBNAME -index_key IVF131072,PQ16 -recall_goal $RECALL -topK $TOPK -ngpu $NGPU -startgpu $STARTGPU -qbs 512 >> gpu_recall
+done
+for i in '1','20' '1','25' '1','30' '10','40' '10','60' '10','80' '100','60' '100','80' '100','95';
+do
+    IFS=',' read TOPK RECALL <<< "${i}"
+    python bench_gpu_1bn.py -dbname $DBNAME -index_key IVF262144,PQ16 -recall_goal $RECALL -topK $TOPK -ngpu $NGPU -startgpu $STARTGPU -qbs 512 >> gpu_recall
+done
 
 for i in '1','20' '1','25' '1','30' '10','40' '10','60' '10','80' '100','60' '100','80' '100','95';
 do
@@ -75,4 +84,16 @@ do
     IFS=',' read TOPK RECALL <<< "${i}"
     python bench_gpu_1bn.py -dbname $DBNAME -index_key OPQ16,IVF65536,PQ16 -recall_goal $RECALL -topK $TOPK -ngpu $NGPU -startgpu $STARTGPU -qbs 512 >> gpu_recall
 done
+for i in '1','20' '1','25' '1','30' '10','40' '10','60' '10','80' '100','60' '100','80' '100','95';
+do
+    IFS=',' read TOPK RECALL <<< "${i}"
+    python bench_gpu_1bn.py -dbname $DBNAME -index_key OPQ16,IVF131072,PQ16 -recall_goal $RECALL -topK $TOPK -ngpu $NGPU -startgpu $STARTGPU -qbs 512 >> gpu_recall
+done
+for i in '1','20' '1','25' '1','30' '10','40' '10','60' '10','80' '100','60' '100','80' '100','95';
+do
+    IFS=',' read TOPK RECALL <<< "${i}"
+    python bench_gpu_1bn.py -dbname $DBNAME -index_key OPQ16,IVF262144,PQ16 -recall_goal $RECALL -topK $TOPK -ngpu $NGPU -startgpu $STARTGPU -qbs 512 >> gpu_recall
+done
+
+
 

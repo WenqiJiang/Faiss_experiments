@@ -15,9 +15,9 @@ FLAGS, unparsed = parser.parse_known_args()
 # IMI: 2x8 (256 cells per half) to 2x14 (16384 cells per half)
 IMI_range = [8, 9, 10, 11, 12, 13, 14]
 
-# IVF: 1024 (2^10) to 65536 (2^16)
+# IVF: 1024 (2^10) to 262144 (2^18)
 # IVF_range = [17, 18]
-IVF_range = [10, 11, 12, 13, 14, 15, 16]
+IVF_range = [10, 11, 12, 13, 14, 15, 16, 17, 18]
 
 if FLAGS.index == "IMI":
     if FLAGS.OPQ:

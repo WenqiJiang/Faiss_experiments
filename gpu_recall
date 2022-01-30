@@ -6167,3 +6167,2943 @@ move to GPU done in 191.017 s
   probe=46 : 2.433 s 1-R@100: 0.9518
   probe=45 : 1.767 s 1-R@100: 0.9509
 The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF65536,PQ16 is 45
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.666 s
+  probe=1  : 0.375 s 1-R@1: 0.1801
+  probe=2  : 0.389 s 1-R@1: 0.2348
+The minimum nprobe to achieve R@1=0.2 on SIFT100M IVF131072,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.457 s
+  probe=1  : 0.503 s 1-R@1: 0.1801
+  probe=2  : 0.424 s 1-R@1: 0.2348
+  probe=4  : 0.425 s 1-R@1: 0.2803
+  probe=3  : 0.374 s 1-R@1: 0.2612
+The minimum nprobe to achieve R@1=0.25 on SIFT100M IVF131072,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.871 s
+  probe=1  : 0.547 s 1-R@1: 0.1801
+  probe=2  : 0.454 s 1-R@1: 0.2348
+  probe=4  : 0.428 s 1-R@1: 0.2803
+  probe=8  : 0.335 s 1-R@1: 0.3227
+  probe=6  : 0.297 s 1-R@1: 0.3057
+  probe=5  : 0.382 s 1-R@1: 0.2954
+The minimum nprobe to achieve R@1=0.3 on SIFT100M IVF131072,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.906 s
+  probe=1  : 0.380 s 1-R@10: 0.2696
+  probe=2  : 0.370 s 1-R@10: 0.3887
+  probe=4  : 0.375 s 1-R@10: 0.5082
+  probe=3  : 0.418 s 1-R@10: 0.4575
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF131072,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.510 s
+  probe=1  : 0.359 s 1-R@10: 0.2696
+  probe=2  : 0.394 s 1-R@10: 0.3887
+  probe=4  : 0.424 s 1-R@10: 0.5082
+  probe=8  : 0.379 s 1-R@10: 0.6248
+  probe=6  : 0.396 s 1-R@10: 0.5782
+  probe=7  : 0.369 s 1-R@10: 0.6039
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF131072,PQ16 is 7
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.908 s
+  probe=1  : 0.330 s 1-R@10: 0.2696
+  probe=2  : 0.434 s 1-R@10: 0.3887
+  probe=4  : 0.380 s 1-R@10: 0.5082
+  probe=8  : 0.392 s 1-R@10: 0.6248
+  probe=16 : 0.414 s 1-R@10: 0.7214
+  probe=32 : 0.440 s 1-R@10: 0.7923
+  probe=64 : 0.484 s 1-R@10: 0.8306
+  probe=48 : 0.420 s 1-R@10: 0.8171
+  probe=40 : 0.388 s 1-R@10: 0.8053
+  probe=36 : 0.347 s 1-R@10: 0.7987
+  probe=38 : 0.375 s 1-R@10: 0.8025
+  probe=37 : 0.345 s 1-R@10: 0.8009
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF131072,PQ16 is 37
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.494 s
+  probe=1  : 0.503 s 1-R@100: 0.2751
+  probe=2  : 0.379 s 1-R@100: 0.4017
+  probe=4  : 0.381 s 1-R@100: 0.5321
+  probe=8  : 0.344 s 1-R@100: 0.6671
+  probe=6  : 0.403 s 1-R@100: 0.6132
+  probe=5  : 0.439 s 1-R@100: 0.5784
+The minimum nprobe to achieve R@100=0.6 on SIFT100M IVF131072,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.563 s
+  probe=1  : 0.366 s 1-R@100: 0.2751
+  probe=2  : 0.405 s 1-R@100: 0.4017
+  probe=4  : 0.402 s 1-R@100: 0.5321
+  probe=8  : 0.425 s 1-R@100: 0.6671
+  probe=16 : 0.395 s 1-R@100: 0.7843
+  probe=32 : 0.475 s 1-R@100: 0.8743
+  probe=24 : 0.478 s 1-R@100: 0.8410
+  probe=20 : 0.399 s 1-R@100: 0.8173
+  probe=18 : 0.386 s 1-R@100: 0.8027
+  probe=17 : 0.400 s 1-R@100: 0.7931
+The minimum nprobe to achieve R@100=0.8 on SIFT100M IVF131072,PQ16 is 18
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/cent_SIFT100M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF131072,PQ16/SIFT100M_IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.163 s
+  probe=1  : 0.498 s 1-R@100: 0.2751
+  probe=2  : 0.429 s 1-R@100: 0.4017
+  probe=4  : 0.324 s 1-R@100: 0.5321
+  probe=8  : 0.370 s 1-R@100: 0.6671
+  probe=16 : 0.373 s 1-R@100: 0.7843
+  probe=32 : 0.421 s 1-R@100: 0.8743
+  probe=64 : 0.440 s 1-R@100: 0.9322
+  probe=128: 0.685 s 1-R@100: 0.9676
+  probe=96 : 0.490 s 1-R@100: 0.9552
+  probe=80 : 0.508 s 1-R@100: 0.9451
+  probe=88 : 0.505 s 1-R@100: 0.9504
+  probe=84 : 0.492 s 1-R@100: 0.9477
+  probe=86 : 0.591 s 1-R@100: 0.9493
+  probe=87 : 0.611 s 1-R@100: 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT100M IVF131072,PQ16 is 88
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 47.218 s
+  probe=1  : 0.425 s 1-R@1: 0.1672
+  probe=2  : 0.464 s 1-R@1: 0.2222
+The minimum nprobe to achieve R@1=0.2 on SIFT100M IVF262144,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.712 s
+  probe=1  : 0.525 s 1-R@1: 0.1672
+  probe=2  : 0.387 s 1-R@1: 0.2222
+  probe=4  : 0.430 s 1-R@1: 0.2794
+  probe=3  : 0.390 s 1-R@1: 0.2563
+The minimum nprobe to achieve R@1=0.25 on SIFT100M IVF262144,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.588 s
+  probe=1  : 0.457 s 1-R@1: 0.1672
+  probe=2  : 0.461 s 1-R@1: 0.2222
+  probe=4  : 0.393 s 1-R@1: 0.2794
+  probe=8  : 0.453 s 1-R@1: 0.3239
+  probe=6  : 0.404 s 1-R@1: 0.3070
+  probe=5  : 0.432 s 1-R@1: 0.2953
+The minimum nprobe to achieve R@1=0.3 on SIFT100M IVF262144,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.274 s
+  probe=1  : 0.486 s 1-R@10: 0.2395
+  probe=2  : 0.538 s 1-R@10: 0.3485
+  probe=4  : 0.404 s 1-R@10: 0.4721
+  probe=3  : 0.394 s 1-R@10: 0.4216
+The minimum nprobe to achieve R@10=0.4 on SIFT100M IVF262144,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.523 s
+  probe=1  : 0.455 s 1-R@10: 0.2395
+  probe=2  : 0.423 s 1-R@10: 0.3485
+  probe=4  : 0.478 s 1-R@10: 0.4721
+  probe=8  : 0.459 s 1-R@10: 0.5881
+  probe=16 : 0.402 s 1-R@10: 0.6886
+  probe=12 : 0.475 s 1-R@10: 0.6509
+  probe=10 : 0.411 s 1-R@10: 0.6242
+  probe=9  : 0.468 s 1-R@10: 0.6089
+The minimum nprobe to achieve R@10=0.6 on SIFT100M IVF262144,PQ16 is 9
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.656 s
+  probe=1  : 0.533 s 1-R@10: 0.2395
+  probe=2  : 0.435 s 1-R@10: 0.3485
+  probe=4  : 0.453 s 1-R@10: 0.4721
+  probe=8  : 0.442 s 1-R@10: 0.5881
+  probe=16 : 0.441 s 1-R@10: 0.6886
+  probe=32 : 0.501 s 1-R@10: 0.7653
+  probe=64 : 0.504 s 1-R@10: 0.8170
+  probe=48 : 0.439 s 1-R@10: 0.7991
+  probe=56 : 0.504 s 1-R@10: 0.8103
+  probe=52 : 0.484 s 1-R@10: 0.8052
+  probe=50 : 0.507 s 1-R@10: 0.8017
+  probe=49 : 0.424 s 1-R@10: 0.8003
+The minimum nprobe to achieve R@10=0.8 on SIFT100M IVF262144,PQ16 is 49
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.422 s
+  probe=1  : 0.460 s 1-R@100: 0.2423
+  probe=2  : 0.436 s 1-R@100: 0.3562
+  probe=4  : 0.478 s 1-R@100: 0.4882
+  probe=8  : 0.408 s 1-R@100: 0.6184
+  probe=6  : 0.410 s 1-R@100: 0.5647
+  probe=7  : 0.419 s 1-R@100: 0.5941
+The minimum nprobe to achieve R@100=0.6 on SIFT100M IVF262144,PQ16 is 8
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.860 s
+  probe=1  : 0.527 s 1-R@100: 0.2423
+  probe=2  : 0.489 s 1-R@100: 0.3562
+  probe=4  : 0.439 s 1-R@100: 0.4882
+  probe=8  : 0.439 s 1-R@100: 0.6184
+  probe=16 : 0.521 s 1-R@100: 0.7370
+  probe=32 : 0.621 s 1-R@100: 0.8366
+  probe=24 : 0.424 s 1-R@100: 0.7967
+  probe=28 : 0.443 s 1-R@100: 0.8212
+  probe=26 : 0.450 s 1-R@100: 0.8099
+  probe=25 : 0.464 s 1-R@100: 0.8041
+The minimum nprobe to achieve R@100=0.8 on SIFT100M IVF262144,PQ16 is 25
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/cent_SIFT100M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_IVF262144,PQ16/SIFT100M_IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.785 s
+  probe=1  : 0.410 s 1-R@100: 0.2423
+  probe=2  : 0.493 s 1-R@100: 0.3562
+  probe=4  : 0.419 s 1-R@100: 0.4882
+  probe=8  : 0.458 s 1-R@100: 0.6184
+  probe=16 : 0.468 s 1-R@100: 0.7370
+  probe=32 : 0.476 s 1-R@100: 0.8366
+  probe=64 : 0.507 s 1-R@100: 0.9073
+  probe=128: 0.484 s 1-R@100: 0.9522
+  probe=96 : 0.586 s 1-R@100: 0.9362
+  probe=112: 0.686 s 1-R@100: 0.9460
+  probe=120: 0.468 s 1-R@100: 0.9496
+  probe=124: 0.654 s 1-R@100: 0.9514
+  probe=122: 0.629 s 1-R@100: 0.9506
+  probe=121: 0.555 s 1-R@100: 0.9500
+The minimum nprobe to achieve R@100=0.95 on SIFT100M IVF262144,PQ16 is 121
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.894 s
+  probe=1  : 0.710 s 1-R@1: 0.1803
+  probe=2  : 0.495 s 1-R@1: 0.2387
+The minimum nprobe to achieve R@1=0.2 on SIFT100M OPQ16,IVF131072,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.022 s
+  probe=1  : 0.586 s 1-R@1: 0.1803
+  probe=2  : 0.449 s 1-R@1: 0.2387
+  probe=4  : 0.492 s 1-R@1: 0.2920
+  probe=3  : 0.610 s 1-R@1: 0.2704
+The minimum nprobe to achieve R@1=0.25 on SIFT100M OPQ16,IVF131072,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.971 s
+  probe=1  : 0.660 s 1-R@1: 0.1803
+  probe=2  : 0.684 s 1-R@1: 0.2387
+  probe=4  : 0.567 s 1-R@1: 0.2920
+  probe=8  : 0.908 s 1-R@1: 0.3297
+  probe=6  : 0.692 s 1-R@1: 0.3161
+  probe=5  : 0.547 s 1-R@1: 0.3066
+The minimum nprobe to achieve R@1=0.3 on SIFT100M OPQ16,IVF131072,PQ16 is 5
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.950 s
+  probe=1  : 0.595 s 1-R@10: 0.2692
+  probe=2  : 0.539 s 1-R@10: 0.3936
+  probe=4  : 0.535 s 1-R@10: 0.5140
+  probe=3  : 0.555 s 1-R@10: 0.4620
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF131072,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.432 s
+  probe=1  : 0.704 s 1-R@10: 0.2692
+  probe=2  : 0.385 s 1-R@10: 0.3936
+  probe=4  : 0.563 s 1-R@10: 0.5140
+  probe=8  : 0.561 s 1-R@10: 0.6304
+  probe=6  : 0.685 s 1-R@10: 0.5831
+  probe=7  : 0.533 s 1-R@10: 0.6092
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF131072,PQ16 is 7
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.128 s
+  probe=1  : 0.562 s 1-R@10: 0.2692
+  probe=2  : 0.476 s 1-R@10: 0.3936
+  probe=4  : 0.572 s 1-R@10: 0.5140
+  probe=8  : 0.855 s 1-R@10: 0.6304
+  probe=16 : 0.497 s 1-R@10: 0.7266
+  probe=32 : 0.695 s 1-R@10: 0.7993
+  probe=64 : 0.910 s 1-R@10: 0.8409
+  probe=48 : 0.565 s 1-R@10: 0.8252
+  probe=40 : 0.734 s 1-R@10: 0.8143
+  probe=36 : 0.884 s 1-R@10: 0.8086
+  probe=34 : 0.524 s 1-R@10: 0.8041
+  probe=33 : 0.594 s 1-R@10: 0.8021
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF131072,PQ16 is 33
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.243 s
+  probe=1  : 0.674 s 1-R@100: 0.2739
+  probe=2  : 0.565 s 1-R@100: 0.4053
+  probe=4  : 0.621 s 1-R@100: 0.5355
+  probe=8  : 0.673 s 1-R@100: 0.6657
+  probe=6  : 0.700 s 1-R@100: 0.6125
+  probe=5  : 0.529 s 1-R@100: 0.5786
+The minimum nprobe to achieve R@100=0.6 on SIFT100M OPQ16,IVF131072,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 27.214 s
+  probe=1  : 0.488 s 1-R@100: 0.2739
+  probe=2  : 0.394 s 1-R@100: 0.4053
+  probe=4  : 0.665 s 1-R@100: 0.5355
+  probe=8  : 0.764 s 1-R@100: 0.6657
+  probe=16 : 0.574 s 1-R@100: 0.7811
+  probe=32 : 0.589 s 1-R@100: 0.8743
+  probe=24 : 0.796 s 1-R@100: 0.8421
+  probe=20 : 0.593 s 1-R@100: 0.8188
+  probe=18 : 0.823 s 1-R@100: 0.8012
+  probe=17 : 0.686 s 1-R@100: 0.7918
+The minimum nprobe to achieve R@100=0.8 on SIFT100M OPQ16,IVF131072,PQ16 is 18
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/cent_SIFT100M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF131072,PQ16/SIFT100M_OPQ16,IVF131072,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 26.700 s
+  probe=1  : 0.866 s 1-R@100: 0.2739
+  probe=2  : 0.793 s 1-R@100: 0.4053
+  probe=4  : 0.821 s 1-R@100: 0.5355
+  probe=8  : 0.505 s 1-R@100: 0.6657
+  probe=16 : 0.490 s 1-R@100: 0.7811
+  probe=32 : 0.823 s 1-R@100: 0.8743
+  probe=64 : 1.254 s 1-R@100: 0.9328
+  probe=128: 0.993 s 1-R@100: 0.9675
+  probe=96 : 0.623 s 1-R@100: 0.9560
+  probe=80 : 0.766 s 1-R@100: 0.9466
+  probe=88 : 0.928 s 1-R@100: 0.9519
+  probe=84 : 0.606 s 1-R@100: 0.9489
+  probe=86 : 0.568 s 1-R@100: 0.9504
+  probe=85 : 0.735 s 1-R@100: 0.9493
+The minimum nprobe to achieve R@100=0.95 on SIFT100M OPQ16,IVF131072,PQ16 is 86
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 48.012 s
+  probe=1  : 0.553 s 1-R@1: 0.1634
+  probe=2  : 0.722 s 1-R@1: 0.2219
+The minimum nprobe to achieve R@1=0.2 on SIFT100M OPQ16,IVF262144,PQ16 is 2
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 47.295 s
+  probe=1  : 0.692 s 1-R@1: 0.1634
+  probe=2  : 0.800 s 1-R@1: 0.2219
+  probe=4  : 0.812 s 1-R@1: 0.2799
+  probe=3  : 0.676 s 1-R@1: 0.2559
+The minimum nprobe to achieve R@1=0.25 on SIFT100M OPQ16,IVF262144,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.768 s
+  probe=1  : 0.795 s 1-R@1: 0.1634
+  probe=2  : 0.883 s 1-R@1: 0.2219
+  probe=4  : 0.605 s 1-R@1: 0.2799
+  probe=8  : 0.674 s 1-R@1: 0.3276
+  probe=6  : 0.739 s 1-R@1: 0.3073
+  probe=5  : 0.675 s 1-R@1: 0.2949
+The minimum nprobe to achieve R@1=0.3 on SIFT100M OPQ16,IVF262144,PQ16 is 6
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 46.822 s
+  probe=1  : 0.711 s 1-R@10: 0.2375
+  probe=2  : 0.623 s 1-R@10: 0.3476
+  probe=4  : 0.602 s 1-R@10: 0.4744
+  probe=3  : 0.730 s 1-R@10: 0.4201
+The minimum nprobe to achieve R@10=0.4 on SIFT100M OPQ16,IVF262144,PQ16 is 3
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 47.897 s
+  probe=1  : 0.677 s 1-R@10: 0.2375
+  probe=2  : 0.565 s 1-R@10: 0.3476
+  probe=4  : 0.683 s 1-R@10: 0.4744
+  probe=8  : 0.794 s 1-R@10: 0.5909
+  probe=16 : 0.630 s 1-R@10: 0.6916
+  probe=12 : 0.830 s 1-R@10: 0.6525
+  probe=10 : 0.653 s 1-R@10: 0.6254
+  probe=9  : 0.766 s 1-R@10: 0.6078
+The minimum nprobe to achieve R@10=0.6 on SIFT100M OPQ16,IVF262144,PQ16 is 9
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 47.442 s
+  probe=1  : 0.664 s 1-R@10: 0.2375
+  probe=2  : 0.666 s 1-R@10: 0.3476
+  probe=4  : 0.687 s 1-R@10: 0.4744
+  probe=8  : 0.631 s 1-R@10: 0.5909
+  probe=16 : 0.839 s 1-R@10: 0.6916
+  probe=32 : 0.812 s 1-R@10: 0.7713
+  probe=64 : 0.733 s 1-R@10: 0.8221
+  probe=48 : 0.744 s 1-R@10: 0.8034
+  probe=40 : 0.710 s 1-R@10: 0.7907
+  probe=44 : 0.775 s 1-R@10: 0.7983
+  probe=46 : 0.517 s 1-R@10: 0.8011
+  probe=45 : 0.603 s 1-R@10: 0.8001
+The minimum nprobe to achieve R@10=0.8 on SIFT100M OPQ16,IVF262144,PQ16 is 45
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 42.601 s
+  probe=1  : 0.702 s 1-R@100: 0.2399
+  probe=2  : 0.420 s 1-R@100: 0.3543
+  probe=4  : 0.512 s 1-R@100: 0.4902
+  probe=8  : 0.467 s 1-R@100: 0.6193
+  probe=6  : 0.645 s 1-R@100: 0.5652
+  probe=7  : 0.658 s 1-R@100: 0.5958
+The minimum nprobe to achieve R@100=0.6 on SIFT100M OPQ16,IVF262144,PQ16 is 8
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 43.034 s
+  probe=1  : 0.480 s 1-R@100: 0.2399
+  probe=2  : 0.490 s 1-R@100: 0.3543
+  probe=4  : 0.746 s 1-R@100: 0.4902
+  probe=8  : 0.537 s 1-R@100: 0.6193
+  probe=16 : 0.734 s 1-R@100: 0.7362
+  probe=32 : 0.620 s 1-R@100: 0.8351
+  probe=24 : 0.531 s 1-R@100: 0.7976
+  probe=28 : 0.827 s 1-R@100: 0.8207
+  probe=26 : 0.798 s 1-R@100: 0.8093
+  probe=25 : 0.597 s 1-R@100: 0.8033
+The minimum nprobe to achieve R@100=0.8 on SIFT100M OPQ16,IVF262144,PQ16 is 25
+  IndexIVFPQ size 100000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT100M
+(10000, 128)
+sizes: B (100000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/cent_SIFT100M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+preparing resources for 1 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/preproc_SIFT100M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT100M_OPQ16,IVF262144,PQ16/SIFT100M_OPQ16,IVF262144,PQ16.index
+CPU index contains 100000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 42.338 s
+  probe=1  : 0.733 s 1-R@100: 0.2399
+  probe=2  : 0.744 s 1-R@100: 0.3543
+  probe=4  : 0.745 s 1-R@100: 0.4902
+  probe=8  : 0.549 s 1-R@100: 0.6193
+  probe=16 : 0.530 s 1-R@100: 0.7362
+  probe=32 : 0.848 s 1-R@100: 0.8351
+  probe=64 : 0.843 s 1-R@100: 0.9077
+  probe=128: 0.792 s 1-R@100: 0.9531
+  probe=96 : 0.813 s 1-R@100: 0.9378
+  probe=112: 1.041 s 1-R@100: 0.9472
+  probe=120: 0.541 s 1-R@100: 0.9507
+  probe=116: 0.619 s 1-R@100: 0.9494
+  probe=118: 0.828 s 1-R@100: 0.9504
+  probe=117: 0.627 s 1-R@100: 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT100M OPQ16,IVF262144,PQ16 is 118
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 160.585 s
+  probe=1  : 1.008 s 1-R@1: 0.1783
+  probe=2  : 0.847 s 1-R@1: 0.2325
+The minimum nprobe to achieve R@1=0.2 on SIFT500M IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 167.072 s
+  probe=1  : 0.912 s 1-R@1: 0.1783
+  probe=2  : 0.877 s 1-R@1: 0.2325
+  probe=4  : 0.788 s 1-R@1: 0.2755
+  probe=3  : 0.852 s 1-R@1: 0.2583
+The minimum nprobe to achieve R@1=0.25 on SIFT500M IVF131072,PQ16 is 3
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 143.412 s
+  probe=1  : 0.912 s 1-R@1: 0.1783
+  probe=2  : 0.838 s 1-R@1: 0.2325
+  probe=4  : 0.884 s 1-R@1: 0.2755
+  probe=8  : 0.931 s 1-R@1: 0.3071
+  probe=6  : 0.929 s 1-R@1: 0.2953
+  probe=7  : 1.034 s 1-R@1: 0.3029
+The minimum nprobe to achieve R@1=0.3 on SIFT500M IVF131072,PQ16 is 7
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 138.103 s
+  probe=1  : 0.995 s 1-R@10: 0.3001
+  probe=2  : 1.093 s 1-R@10: 0.4222
+The minimum nprobe to achieve R@10=0.4 on SIFT500M IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 157.274 s
+  probe=1  : 0.979 s 1-R@10: 0.3001
+  probe=2  : 1.008 s 1-R@10: 0.4222
+  probe=4  : 1.144 s 1-R@10: 0.5412
+  probe=8  : 0.988 s 1-R@10: 0.6465
+  probe=6  : 1.022 s 1-R@10: 0.6050
+  probe=5  : 0.893 s 1-R@10: 0.5773
+The minimum nprobe to achieve R@10=0.6 on SIFT500M IVF131072,PQ16 is 6
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 164.849 s
+  probe=1  : 1.154 s 1-R@10: 0.3001
+  probe=2  : 0.985 s 1-R@10: 0.4222
+  probe=4  : 0.900 s 1-R@10: 0.5412
+  probe=8  : 1.024 s 1-R@10: 0.6465
+  probe=16 : 0.986 s 1-R@10: 0.7258
+  probe=32 : 1.146 s 1-R@10: 0.7745
+  probe=64 : 1.311 s 1-R@10: 0.8002
+  probe=48 : 1.197 s 1-R@10: 0.7921
+  probe=56 : 1.243 s 1-R@10: 0.7968
+  probe=60 : 1.211 s 1-R@10: 0.7986
+  probe=62 : 1.219 s 1-R@10: 0.7996
+  probe=63 : 1.301 s 1-R@10: 0.7999
+The minimum nprobe to achieve R@10=0.8 on SIFT500M IVF131072,PQ16 is 64
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 154.908 s
+  probe=1  : 1.158 s 1-R@100: 0.3128
+  probe=2  : 1.093 s 1-R@100: 0.4481
+  probe=4  : 1.168 s 1-R@100: 0.5867
+  probe=8  : 1.211 s 1-R@100: 0.7189
+  probe=6  : 1.193 s 1-R@100: 0.6673
+  probe=5  : 1.240 s 1-R@100: 0.6322
+The minimum nprobe to achieve R@100=0.6 on SIFT500M IVF131072,PQ16 is 5
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 145.265 s
+  probe=1  : 1.184 s 1-R@100: 0.3128
+  probe=2  : 0.790 s 1-R@100: 0.4481
+  probe=4  : 0.849 s 1-R@100: 0.5867
+  probe=8  : 0.922 s 1-R@100: 0.7189
+  probe=16 : 1.179 s 1-R@100: 0.8272
+  probe=12 : 0.997 s 1-R@100: 0.7869
+  probe=14 : 1.038 s 1-R@100: 0.8086
+  probe=13 : 1.054 s 1-R@100: 0.7991
+The minimum nprobe to achieve R@100=0.8 on SIFT500M IVF131072,PQ16 is 14
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/cent_SIFT500M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF131072,PQ16/SIFT500M_IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 156.615 s
+  probe=1  : 1.224 s 1-R@100: 0.3128
+  probe=2  : 1.087 s 1-R@100: 0.4481
+  probe=4  : 1.207 s 1-R@100: 0.5867
+  probe=8  : 1.471 s 1-R@100: 0.7189
+  probe=16 : 1.460 s 1-R@100: 0.8272
+  probe=32 : 1.823 s 1-R@100: 0.9024
+  probe=64 : 1.814 s 1-R@100: 0.9469
+  probe=128: 1.742 s 1-R@100: 0.9727
+  probe=96 : 1.612 s 1-R@100: 0.9633
+  probe=80 : 1.453 s 1-R@100: 0.9560
+  probe=72 : 1.589 s 1-R@100: 0.9520
+  probe=68 : 1.509 s 1-R@100: 0.9493
+  probe=70 : 1.455 s 1-R@100: 0.9505
+  probe=69 : 1.449 s 1-R@100: 0.9499
+The minimum nprobe to achieve R@100=0.95 on SIFT500M IVF131072,PQ16 is 70
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 240.738 s
+  probe=1  : 1.153 s 1-R@1: 0.1671
+  probe=2  : 1.102 s 1-R@1: 0.2192
+The minimum nprobe to achieve R@1=0.2 on SIFT500M IVF262144,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 239.495 s
+  probe=1  : 0.880 s 1-R@1: 0.1671
+  probe=2  : 0.850 s 1-R@1: 0.2192
+  probe=4  : 0.740 s 1-R@1: 0.2655
+  probe=3  : 0.800 s 1-R@1: 0.2470
+The minimum nprobe to achieve R@1=0.25 on SIFT500M IVF262144,PQ16 is 4
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 224.891 s
+  probe=1  : 1.022 s 1-R@1: 0.1671
+  probe=2  : 0.861 s 1-R@1: 0.2192
+  probe=4  : 0.925 s 1-R@1: 0.2655
+  probe=8  : 0.967 s 1-R@1: 0.3032
+  probe=6  : 1.099 s 1-R@1: 0.2899
+  probe=7  : 1.029 s 1-R@1: 0.2971
+The minimum nprobe to achieve R@1=0.3 on SIFT500M IVF262144,PQ16 is 8
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 238.692 s
+  probe=1  : 1.216 s 1-R@10: 0.2693
+  probe=2  : 1.186 s 1-R@10: 0.3881
+  probe=4  : 1.066 s 1-R@10: 0.5114
+  probe=3  : 0.975 s 1-R@10: 0.4619
+The minimum nprobe to achieve R@10=0.4 on SIFT500M IVF262144,PQ16 is 3
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 231.525 s
+  probe=1  : 0.980 s 1-R@10: 0.2693
+  probe=2  : 1.153 s 1-R@10: 0.3881
+  probe=4  : 1.015 s 1-R@10: 0.5114
+  probe=8  : 1.133 s 1-R@10: 0.6207
+  probe=6  : 1.115 s 1-R@10: 0.5790
+  probe=7  : 1.108 s 1-R@10: 0.6028
+The minimum nprobe to achieve R@10=0.6 on SIFT500M IVF262144,PQ16 is 7
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 231.728 s
+  probe=1  : 1.095 s 1-R@10: 0.2693
+  probe=2  : 0.945 s 1-R@10: 0.3881
+  probe=4  : 1.204 s 1-R@10: 0.5114
+  probe=8  : 1.154 s 1-R@10: 0.6207
+  probe=16 : 0.859 s 1-R@10: 0.7061
+  probe=32 : 1.086 s 1-R@10: 0.7671
+  probe=64 : 1.261 s 1-R@10: 0.8007
+  probe=48 : 1.154 s 1-R@10: 0.7888
+  probe=56 : 1.304 s 1-R@10: 0.7961
+  probe=60 : 1.177 s 1-R@10: 0.7988
+  probe=62 : 1.176 s 1-R@10: 0.7998
+  probe=63 : 1.159 s 1-R@10: 0.8003
+The minimum nprobe to achieve R@10=0.8 on SIFT500M IVF262144,PQ16 is 63
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 241.082 s
+  probe=1  : 1.127 s 1-R@100: 0.2772
+  probe=2  : 1.008 s 1-R@100: 0.4071
+  probe=4  : 1.052 s 1-R@100: 0.5465
+  probe=8  : 1.137 s 1-R@100: 0.6780
+  probe=6  : 1.128 s 1-R@100: 0.6262
+  probe=5  : 1.195 s 1-R@100: 0.5911
+The minimum nprobe to achieve R@100=0.6 on SIFT500M IVF262144,PQ16 is 6
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 240.479 s
+  probe=1  : 1.285 s 1-R@100: 0.2772
+  probe=2  : 0.868 s 1-R@100: 0.4071
+  probe=4  : 1.095 s 1-R@100: 0.5465
+  probe=8  : 1.026 s 1-R@100: 0.6780
+  probe=16 : 1.082 s 1-R@100: 0.7909
+  probe=32 : 1.149 s 1-R@100: 0.8775
+  probe=24 : 1.045 s 1-R@100: 0.8461
+  probe=20 : 1.129 s 1-R@100: 0.8221
+  probe=18 : 1.117 s 1-R@100: 0.8073
+  probe=17 : 1.163 s 1-R@100: 0.7981
+The minimum nprobe to achieve R@100=0.8 on SIFT500M IVF262144,PQ16 is 18
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/cent_SIFT500M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_IVF262144,PQ16/SIFT500M_IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 239.700 s
+  probe=1  : 1.253 s 1-R@100: 0.2772
+  probe=2  : 1.198 s 1-R@100: 0.4071
+  probe=4  : 1.105 s 1-R@100: 0.5465
+  probe=8  : 1.072 s 1-R@100: 0.6780
+  probe=16 : 1.113 s 1-R@100: 0.7909
+  probe=32 : 1.204 s 1-R@100: 0.8775
+  probe=64 : 1.357 s 1-R@100: 0.9325
+  probe=128: 1.656 s 1-R@100: 0.9671
+  probe=96 : 1.315 s 1-R@100: 0.9554
+  probe=80 : 1.246 s 1-R@100: 0.9468
+  probe=88 : 1.328 s 1-R@100: 0.9516
+  probe=84 : 1.311 s 1-R@100: 0.9491
+  probe=86 : 1.314 s 1-R@100: 0.9504
+  probe=85 : 1.292 s 1-R@100: 0.9496
+The minimum nprobe to achieve R@100=0.95 on SIFT500M IVF262144,PQ16 is 86
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 150.478 s
+  probe=1  : 1.040 s 1-R@1: 0.1836
+  probe=2  : 1.012 s 1-R@1: 0.2390
+The minimum nprobe to achieve R@1=0.2 on SIFT500M OPQ16,IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 155.257 s
+  probe=1  : 1.006 s 1-R@1: 0.1836
+  probe=2  : 0.928 s 1-R@1: 0.2390
+  probe=4  : 0.808 s 1-R@1: 0.2815
+  probe=3  : 1.108 s 1-R@1: 0.2640
+The minimum nprobe to achieve R@1=0.25 on SIFT500M OPQ16,IVF131072,PQ16 is 3
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 150.072 s
+  probe=1  : 1.124 s 1-R@1: 0.1836
+  probe=2  : 0.877 s 1-R@1: 0.2390
+  probe=4  : 0.735 s 1-R@1: 0.2815
+  probe=8  : 0.974 s 1-R@1: 0.3118
+  probe=6  : 0.995 s 1-R@1: 0.3012
+  probe=5  : 0.915 s 1-R@1: 0.2932
+The minimum nprobe to achieve R@1=0.3 on SIFT500M OPQ16,IVF131072,PQ16 is 6
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 151.266 s
+  probe=1  : 1.344 s 1-R@10: 0.3017
+  probe=2  : 0.919 s 1-R@10: 0.4260
+The minimum nprobe to achieve R@10=0.4 on SIFT500M OPQ16,IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 153.122 s
+  probe=1  : 1.154 s 1-R@10: 0.3017
+  probe=2  : 1.022 s 1-R@10: 0.4260
+  probe=4  : 1.224 s 1-R@10: 0.5460
+  probe=8  : 1.058 s 1-R@10: 0.6524
+  probe=6  : 1.391 s 1-R@10: 0.6118
+  probe=5  : 0.861 s 1-R@10: 0.5856
+The minimum nprobe to achieve R@10=0.6 on SIFT500M OPQ16,IVF131072,PQ16 is 6
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 156.504 s
+  probe=1  : 1.060 s 1-R@10: 0.3017
+  probe=2  : 1.057 s 1-R@10: 0.4260
+  probe=4  : 1.094 s 1-R@10: 0.5460
+  probe=8  : 1.179 s 1-R@10: 0.6524
+  probe=16 : 1.598 s 1-R@10: 0.7339
+  probe=32 : 1.228 s 1-R@10: 0.7870
+  probe=64 : 1.587 s 1-R@10: 0.8151
+  probe=48 : 1.472 s 1-R@10: 0.8061
+  probe=40 : 1.264 s 1-R@10: 0.7984
+  probe=44 : 1.448 s 1-R@10: 0.8032
+  probe=42 : 1.450 s 1-R@10: 0.8015
+  probe=41 : 1.380 s 1-R@10: 0.7999
+The minimum nprobe to achieve R@10=0.8 on SIFT500M OPQ16,IVF131072,PQ16 is 42
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 157.566 s
+  probe=1  : 0.996 s 1-R@100: 0.3142
+  probe=2  : 1.203 s 1-R@100: 0.4490
+  probe=4  : 1.366 s 1-R@100: 0.5885
+  probe=8  : 1.374 s 1-R@100: 0.7196
+  probe=6  : 1.248 s 1-R@100: 0.6694
+  probe=5  : 1.250 s 1-R@100: 0.6356
+The minimum nprobe to achieve R@100=0.6 on SIFT500M OPQ16,IVF131072,PQ16 is 5
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 146.832 s
+  probe=1  : 1.244 s 1-R@100: 0.3142
+  probe=2  : 1.178 s 1-R@100: 0.4490
+  probe=4  : 1.349 s 1-R@100: 0.5885
+  probe=8  : 1.391 s 1-R@100: 0.7196
+  probe=16 : 1.287 s 1-R@100: 0.8278
+  probe=12 : 1.456 s 1-R@100: 0.7886
+  probe=14 : 1.396 s 1-R@100: 0.8107
+  probe=13 : 1.387 s 1-R@100: 0.8018
+The minimum nprobe to achieve R@100=0.8 on SIFT500M OPQ16,IVF131072,PQ16 is 13
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/cent_SIFT500M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF131072,PQ16/SIFT500M_OPQ16,IVF131072,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 156.074 s
+  probe=1  : 1.245 s 1-R@100: 0.3142
+  probe=2  : 1.399 s 1-R@100: 0.4490
+  probe=4  : 1.354 s 1-R@100: 0.5885
+  probe=8  : 1.465 s 1-R@100: 0.7196
+  probe=16 : 1.426 s 1-R@100: 0.8278
+  probe=32 : 1.956 s 1-R@100: 0.9057
+  probe=64 : 1.842 s 1-R@100: 0.9509
+  probe=48 : 1.573 s 1-R@100: 0.9358
+  probe=56 : 1.825 s 1-R@100: 0.9443
+  probe=60 : 1.770 s 1-R@100: 0.9478
+  probe=62 : 1.923 s 1-R@100: 0.9497
+  probe=63 : 1.679 s 1-R@100: 0.9502
+The minimum nprobe to achieve R@100=0.95 on SIFT500M OPQ16,IVF131072,PQ16 is 63
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 237.570 s
+  probe=1  : 1.182 s 1-R@1: 0.1669
+  probe=2  : 0.890 s 1-R@1: 0.2215
+The minimum nprobe to achieve R@1=0.2 on SIFT500M OPQ16,IVF262144,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 231.514 s
+  probe=1  : 1.285 s 1-R@1: 0.1669
+  probe=2  : 1.186 s 1-R@1: 0.2215
+  probe=4  : 0.995 s 1-R@1: 0.2710
+  probe=3  : 1.131 s 1-R@1: 0.2493
+The minimum nprobe to achieve R@1=0.25 on SIFT500M OPQ16,IVF262144,PQ16 is 4
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 239.819 s
+  probe=1  : 1.127 s 1-R@1: 0.1669
+  probe=2  : 1.153 s 1-R@1: 0.2215
+  probe=4  : 0.869 s 1-R@1: 0.2710
+  probe=8  : 1.102 s 1-R@1: 0.3066
+  probe=6  : 0.902 s 1-R@1: 0.2947
+  probe=7  : 0.988 s 1-R@1: 0.3008
+The minimum nprobe to achieve R@1=0.3 on SIFT500M OPQ16,IVF262144,PQ16 is 7
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 240.514 s
+  probe=1  : 1.105 s 1-R@10: 0.2626
+  probe=2  : 0.973 s 1-R@10: 0.3855
+  probe=4  : 0.957 s 1-R@10: 0.5064
+  probe=3  : 1.085 s 1-R@10: 0.4540
+The minimum nprobe to achieve R@10=0.4 on SIFT500M OPQ16,IVF262144,PQ16 is 3
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 240.987 s
+  probe=1  : 1.113 s 1-R@10: 0.2626
+  probe=2  : 0.832 s 1-R@10: 0.3855
+  probe=4  : 1.126 s 1-R@10: 0.5064
+  probe=8  : 1.241 s 1-R@10: 0.6182
+  probe=6  : 1.027 s 1-R@10: 0.5743
+  probe=7  : 0.928 s 1-R@10: 0.5986
+The minimum nprobe to achieve R@10=0.6 on SIFT500M OPQ16,IVF262144,PQ16 is 8
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 239.561 s
+  probe=1  : 1.055 s 1-R@10: 0.2626
+  probe=2  : 0.978 s 1-R@10: 0.3855
+  probe=4  : 0.960 s 1-R@10: 0.5064
+  probe=8  : 1.061 s 1-R@10: 0.6182
+  probe=16 : 1.152 s 1-R@10: 0.7058
+  probe=32 : 1.314 s 1-R@10: 0.7688
+  probe=64 : 1.309 s 1-R@10: 0.8066
+  probe=48 : 1.245 s 1-R@10: 0.7939
+  probe=56 : 1.418 s 1-R@10: 0.8015
+  probe=52 : 1.338 s 1-R@10: 0.7972
+  probe=54 : 1.292 s 1-R@10: 0.7988
+  probe=55 : 1.396 s 1-R@10: 0.8000
+The minimum nprobe to achieve R@10=0.8 on SIFT500M OPQ16,IVF262144,PQ16 is 55
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 230.011 s
+  probe=1  : 1.360 s 1-R@100: 0.2736
+  probe=2  : 1.326 s 1-R@100: 0.4037
+  probe=4  : 1.536 s 1-R@100: 0.5412
+  probe=8  : 1.338 s 1-R@100: 0.6766
+  probe=6  : 1.073 s 1-R@100: 0.6237
+  probe=5  : 1.179 s 1-R@100: 0.5904
+The minimum nprobe to achieve R@100=0.6 on SIFT500M OPQ16,IVF262144,PQ16 is 6
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 242.596 s
+  probe=1  : 1.382 s 1-R@100: 0.2736
+  probe=2  : 1.281 s 1-R@100: 0.4037
+  probe=4  : 1.302 s 1-R@100: 0.5412
+  probe=8  : 1.095 s 1-R@100: 0.6766
+  probe=16 : 1.168 s 1-R@100: 0.7873
+  probe=32 : 1.438 s 1-R@100: 0.8731
+  probe=24 : 1.298 s 1-R@100: 0.8416
+  probe=20 : 1.179 s 1-R@100: 0.8156
+  probe=18 : 1.242 s 1-R@100: 0.8033
+  probe=17 : 1.329 s 1-R@100: 0.7954
+The minimum nprobe to achieve R@100=0.8 on SIFT500M OPQ16,IVF262144,PQ16 is 18
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 125000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT500M
+(10000, 128)
+sizes: B (500000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/cent_SIFT500M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/preproc_SIFT500M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT500M_OPQ16,IVF262144,PQ16/SIFT500M_OPQ16,IVF262144,PQ16.index
+CPU index contains 500000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 236.932 s
+  probe=1  : 1.305 s 1-R@100: 0.2736
+  probe=2  : 1.028 s 1-R@100: 0.4037
+  probe=4  : 1.231 s 1-R@100: 0.5412
+  probe=8  : 1.376 s 1-R@100: 0.6766
+  probe=16 : 1.273 s 1-R@100: 0.7873
+  probe=32 : 1.416 s 1-R@100: 0.8731
+  probe=64 : 1.577 s 1-R@100: 0.9313
+  probe=128: 1.873 s 1-R@100: 0.9651
+  probe=96 : 1.725 s 1-R@100: 0.9543
+  probe=80 : 1.679 s 1-R@100: 0.9453
+  probe=88 : 1.606 s 1-R@100: 0.9503
+  probe=84 : 1.668 s 1-R@100: 0.9478
+  probe=86 : 1.869 s 1-R@100: 0.9491
+  probe=87 : 1.984 s 1-R@100: 0.9497
+The minimum nprobe to achieve R@100=0.95 on SIFT500M OPQ16,IVF262144,PQ16 is 88
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 239.498 s
+  probe=1  : 0.996 s 1-R@1: 0.1723
+  probe=2  : 0.638 s 1-R@1: 0.2258
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 244.095 s
+  probe=1  : 1.161 s 1-R@1: 0.1723
+  probe=2  : 0.702 s 1-R@1: 0.2258
+  probe=4  : 0.656 s 1-R@1: 0.2635
+  probe=3  : 0.814 s 1-R@1: 0.2486
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IVF131072,PQ16 is 4
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 235.875 s
+  probe=1  : 1.102 s 1-R@1: 0.1723
+  probe=2  : 1.046 s 1-R@1: 0.2258
+  probe=4  : 1.071 s 1-R@1: 0.2635
+  probe=8  : 0.900 s 1-R@1: 0.2944
+  probe=16 : 1.150 s 1-R@1: 0.3160
+  probe=12 : 1.116 s 1-R@1: 0.3086
+  probe=10 : 1.040 s 1-R@1: 0.3022
+  probe=9  : 1.117 s 1-R@1: 0.2975
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IVF131072,PQ16 is 10
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 229.082 s
+  probe=1  : 0.936 s 1-R@10: 0.3000
+  probe=2  : 0.754 s 1-R@10: 0.4270
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 223.627 s
+  probe=1  : 1.274 s 1-R@10: 0.3000
+  probe=2  : 1.037 s 1-R@10: 0.4270
+  probe=4  : 0.964 s 1-R@10: 0.5397
+  probe=8  : 1.057 s 1-R@10: 0.6382
+  probe=6  : 0.927 s 1-R@10: 0.5997
+  probe=7  : 1.108 s 1-R@10: 0.6195
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IVF131072,PQ16 is 7
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 215.031 s
+  probe=1  : 1.142 s 1-R@10: 0.3000
+  probe=2  : 0.910 s 1-R@10: 0.4270
+  probe=4  : 0.917 s 1-R@10: 0.5397
+  probe=8  : 0.929 s 1-R@10: 0.6382
+  probe=16 : 1.064 s 1-R@10: 0.7112
+  probe=32 : 1.250 s 1-R@10: 0.7574
+  probe=64 : 1.526 s 1-R@10: 0.7810
+  probe=128: 1.965 s 1-R@10: 0.7900
+  probe=256: 3.052 s 1-R@10: 0.7939
+  probe=512: 5.136 s 1-R@10: 0.7946
+  probe=1024: 6.209 s 1-R@10: 0.7946
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 236.995 s
+  probe=1  : 1.146 s 1-R@100: 0.3159
+  probe=2  : 0.677 s 1-R@100: 0.4598
+  probe=4  : 0.861 s 1-R@100: 0.6010
+  probe=3  : 0.788 s 1-R@100: 0.5417
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IVF131072,PQ16 is 4
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 227.687 s
+  probe=1  : 1.141 s 1-R@100: 0.3159
+  probe=2  : 1.098 s 1-R@100: 0.4598
+  probe=4  : 1.294 s 1-R@100: 0.6010
+  probe=8  : 1.125 s 1-R@100: 0.7315
+  probe=16 : 1.293 s 1-R@100: 0.8360
+  probe=12 : 1.143 s 1-R@100: 0.7966
+  probe=14 : 1.269 s 1-R@100: 0.8180
+  probe=13 : 2.124 s 1-R@100: 0.8096
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IVF131072,PQ16 is 13
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/cent_SIFT1000M_IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF131072,PQ16/SIFT1000M_IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 211.413 s
+  probe=1  : 1.388 s 1-R@100: 0.3159
+  probe=2  : 1.012 s 1-R@100: 0.4598
+  probe=4  : 1.195 s 1-R@100: 0.6010
+  probe=8  : 1.436 s 1-R@100: 0.7315
+  probe=16 : 1.533 s 1-R@100: 0.8360
+  probe=32 : 1.490 s 1-R@100: 0.9062
+  probe=64 : 1.879 s 1-R@100: 0.9477
+  probe=128: 1.711 s 1-R@100: 0.9694
+  probe=96 : 1.975 s 1-R@100: 0.9617
+  probe=80 : 2.031 s 1-R@100: 0.9568
+  probe=72 : 2.171 s 1-R@100: 0.9529
+  probe=68 : 2.032 s 1-R@100: 0.9504
+  probe=66 : 1.847 s 1-R@100: 0.9488
+  probe=67 : 1.544 s 1-R@100: 0.9496
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IVF131072,PQ16 is 68
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 323.348 s
+  probe=1  : 1.126 s 1-R@1: 0.1617
+  probe=2  : 0.844 s 1-R@1: 0.2111
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M IVF262144,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 315.778 s
+  probe=1  : 1.069 s 1-R@1: 0.1617
+  probe=2  : 0.823 s 1-R@1: 0.2111
+  probe=4  : 0.899 s 1-R@1: 0.2543
+  probe=3  : 0.845 s 1-R@1: 0.2379
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M IVF262144,PQ16 is 4
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 316.774 s
+  probe=1  : 1.101 s 1-R@1: 0.1617
+  probe=2  : 0.697 s 1-R@1: 0.2111
+  probe=4  : 0.707 s 1-R@1: 0.2543
+  probe=8  : 0.773 s 1-R@1: 0.2897
+  probe=16 : 0.830 s 1-R@1: 0.3154
+  probe=12 : 0.841 s 1-R@1: 0.3067
+  probe=10 : 1.004 s 1-R@1: 0.2985
+  probe=11 : 1.221 s 1-R@1: 0.3028
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M IVF262144,PQ16 is 11
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 322.428 s
+  probe=1  : 1.127 s 1-R@10: 0.2769
+  probe=2  : 1.025 s 1-R@10: 0.3921
+  probe=4  : 0.893 s 1-R@10: 0.5100
+  probe=3  : 0.965 s 1-R@10: 0.4626
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M IVF262144,PQ16 is 3
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 316.295 s
+  probe=1  : 1.106 s 1-R@10: 0.2769
+  probe=2  : 0.936 s 1-R@10: 0.3921
+  probe=4  : 0.995 s 1-R@10: 0.5100
+  probe=8  : 0.999 s 1-R@10: 0.6165
+  probe=6  : 0.911 s 1-R@10: 0.5772
+  probe=7  : 0.857 s 1-R@10: 0.5994
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M IVF262144,PQ16 is 8
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 314.440 s
+  probe=1  : 1.124 s 1-R@10: 0.2769
+  probe=2  : 0.850 s 1-R@10: 0.3921
+  probe=4  : 0.920 s 1-R@10: 0.5100
+  probe=8  : 0.832 s 1-R@10: 0.6165
+  probe=16 : 0.931 s 1-R@10: 0.6991
+  probe=32 : 0.925 s 1-R@10: 0.7555
+  probe=64 : 1.155 s 1-R@10: 0.7881
+  probe=128: 1.613 s 1-R@10: 0.7980
+  probe=256: 2.436 s 1-R@10: 0.8036
+  probe=192: 1.985 s 1-R@10: 0.8021
+  probe=160: 1.730 s 1-R@10: 0.7999
+  probe=176: 2.014 s 1-R@10: 0.8013
+  probe=168: 1.947 s 1-R@10: 0.8003
+  probe=164: 1.896 s 1-R@10: 0.8000
+  probe=162: 1.964 s 1-R@10: 0.7998
+  probe=163: 1.871 s 1-R@10: 0.8000
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M IVF262144,PQ16 is 163
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 307.383 s
+  probe=1  : 1.409 s 1-R@100: 0.2882
+  probe=2  : 1.150 s 1-R@100: 0.4161
+  probe=4  : 1.374 s 1-R@100: 0.5550
+  probe=8  : 1.344 s 1-R@100: 0.6860
+  probe=6  : 1.162 s 1-R@100: 0.6356
+  probe=5  : 1.078 s 1-R@100: 0.6006
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M IVF262144,PQ16 is 5
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 313.681 s
+  probe=1  : 1.404 s 1-R@100: 0.2882
+  probe=2  : 1.264 s 1-R@100: 0.4161
+  probe=4  : 0.927 s 1-R@100: 0.5550
+  probe=8  : 1.116 s 1-R@100: 0.6860
+  probe=16 : 1.099 s 1-R@100: 0.8000
+  probe=12 : 0.950 s 1-R@100: 0.7570
+  probe=14 : 1.166 s 1-R@100: 0.7804
+  probe=15 : 1.097 s 1-R@100: 0.7905
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M IVF262144,PQ16 is 16
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+None
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/cent_SIFT1000M_IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_IVF262144,PQ16/SIFT1000M_IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 305.626 s
+  probe=1  : 1.190 s 1-R@100: 0.2882
+  probe=2  : 1.055 s 1-R@100: 0.4161
+  probe=4  : 0.919 s 1-R@100: 0.5550
+  probe=8  : 0.937 s 1-R@100: 0.6860
+  probe=16 : 1.117 s 1-R@100: 0.8000
+  probe=32 : 1.447 s 1-R@100: 0.8849
+  probe=64 : 1.621 s 1-R@100: 0.9399
+  probe=128: 1.994 s 1-R@100: 0.9670
+  probe=96 : 1.898 s 1-R@100: 0.9586
+  probe=80 : 1.799 s 1-R@100: 0.9516
+  probe=72 : 1.520 s 1-R@100: 0.9457
+  probe=76 : 1.512 s 1-R@100: 0.9486
+  probe=78 : 1.485 s 1-R@100: 0.9504
+  probe=77 : 1.548 s 1-R@100: 0.9497
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M IVF262144,PQ16 is 78
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 233.027 s
+  probe=1  : 1.074 s 1-R@1: 0.1731
+  probe=2  : 1.059 s 1-R@1: 0.2279
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 228.768 s
+  probe=1  : 1.302 s 1-R@1: 0.1731
+  probe=2  : 1.083 s 1-R@1: 0.2279
+  probe=4  : 1.147 s 1-R@1: 0.2638
+  probe=3  : 1.146 s 1-R@1: 0.2487
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF131072,PQ16 is 4
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 226.127 s
+  probe=1  : 1.439 s 1-R@1: 0.1731
+  probe=2  : 0.962 s 1-R@1: 0.2279
+  probe=4  : 1.003 s 1-R@1: 0.2638
+  probe=8  : 1.299 s 1-R@1: 0.2958
+  probe=16 : 1.382 s 1-R@1: 0.3181
+  probe=12 : 1.083 s 1-R@1: 0.3110
+  probe=10 : 1.185 s 1-R@1: 0.3051
+  probe=9  : 1.090 s 1-R@1: 0.3015
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF131072,PQ16 is 9
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 213.022 s
+  probe=1  : 1.248 s 1-R@10: 0.3022
+  probe=2  : 1.286 s 1-R@10: 0.4279
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF131072,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 228.855 s
+  probe=1  : 1.163 s 1-R@10: 0.3022
+  probe=2  : 0.988 s 1-R@10: 0.4279
+  probe=4  : 1.244 s 1-R@10: 0.5409
+  probe=8  : 1.212 s 1-R@10: 0.6456
+  probe=6  : 1.296 s 1-R@10: 0.6054
+  probe=5  : 1.099 s 1-R@10: 0.5793
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF131072,PQ16 is 6
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 212.851 s
+  probe=1  : 1.612 s 1-R@10: 0.3022
+  probe=2  : 1.431 s 1-R@10: 0.4279
+  probe=4  : 1.506 s 1-R@10: 0.5409
+  probe=8  : 0.973 s 1-R@10: 0.6456
+  probe=16 : 1.205 s 1-R@10: 0.7228
+  probe=32 : 1.366 s 1-R@10: 0.7720
+  probe=64 : 1.581 s 1-R@10: 0.7963
+  probe=128: 2.268 s 1-R@10: 0.8062
+  probe=96 : 2.470 s 1-R@10: 0.8033
+  probe=80 : 1.918 s 1-R@10: 0.8009
+  probe=72 : 1.952 s 1-R@10: 0.7985
+  probe=76 : 1.608 s 1-R@10: 0.7999
+  probe=78 : 2.052 s 1-R@10: 0.8003
+  probe=77 : 2.105 s 1-R@10: 0.8001
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF131072,PQ16 is 77
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 234.492 s
+  probe=1  : 1.304 s 1-R@100: 0.3183
+  probe=2  : 1.064 s 1-R@100: 0.4604
+  probe=4  : 1.279 s 1-R@100: 0.5968
+  probe=8  : 1.214 s 1-R@100: 0.7308
+  probe=6  : 1.114 s 1-R@100: 0.6771
+  probe=5  : 1.104 s 1-R@100: 0.6436
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF131072,PQ16 is 5
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 211.489 s
+  probe=1  : 1.230 s 1-R@100: 0.3183
+  probe=2  : 1.212 s 1-R@100: 0.4604
+  probe=4  : 1.554 s 1-R@100: 0.5968
+  probe=8  : 1.397 s 1-R@100: 0.7308
+  probe=16 : 1.403 s 1-R@100: 0.8352
+  probe=12 : 1.403 s 1-R@100: 0.7954
+  probe=14 : 1.327 s 1-R@100: 0.8181
+  probe=13 : 1.404 s 1-R@100: 0.8078
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF131072,PQ16 is 13
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/cent_SIFT1000M_OPQ16,IVF131072.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF131072,PQ16/SIFT1000M_OPQ16,IVF131072,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 212.296 s
+  probe=1  : 1.274 s 1-R@100: 0.3183
+  probe=2  : 1.235 s 1-R@100: 0.4604
+  probe=4  : 1.517 s 1-R@100: 0.5968
+  probe=8  : 1.376 s 1-R@100: 0.7308
+  probe=16 : 1.551 s 1-R@100: 0.8352
+  probe=32 : 1.651 s 1-R@100: 0.9100
+  probe=64 : 1.741 s 1-R@100: 0.9524
+  probe=48 : 1.531 s 1-R@100: 0.9379
+  probe=56 : 1.647 s 1-R@100: 0.9464
+  probe=60 : 1.839 s 1-R@100: 0.9498
+  probe=62 : 1.775 s 1-R@100: 0.9514
+  probe=61 : 1.816 s 1-R@100: 0.9506
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF131072,PQ16 is 61
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 314.613 s
+  probe=1  : 1.472 s 1-R@1: 0.1641
+  probe=2  : 1.063 s 1-R@1: 0.2181
+The minimum nprobe to achieve R@1=0.2 on SIFT1000M OPQ16,IVF262144,PQ16 is 2
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 311.219 s
+  probe=1  : 0.991 s 1-R@1: 0.1641
+  probe=2  : 1.043 s 1-R@1: 0.2181
+  probe=4  : 0.964 s 1-R@1: 0.2633
+  probe=3  : 0.952 s 1-R@1: 0.2454
+The minimum nprobe to achieve R@1=0.25 on SIFT1000M OPQ16,IVF262144,PQ16 is 4
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 298.836 s
+  probe=1  : 1.007 s 1-R@1: 0.1641
+  probe=2  : 1.073 s 1-R@1: 0.2181
+  probe=4  : 0.948 s 1-R@1: 0.2633
+  probe=8  : 1.177 s 1-R@1: 0.2952
+  probe=16 : 1.252 s 1-R@1: 0.3170
+  probe=12 : 1.034 s 1-R@1: 0.3099
+  probe=10 : 0.960 s 1-R@1: 0.3030
+  probe=9  : 1.179 s 1-R@1: 0.2991
+The minimum nprobe to achieve R@1=0.3 on SIFT1000M OPQ16,IVF262144,PQ16 is 10
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 302.240 s
+  probe=1  : 1.205 s 1-R@10: 0.2723
+  probe=2  : 1.112 s 1-R@10: 0.3910
+  probe=4  : 1.124 s 1-R@10: 0.5086
+  probe=3  : 1.248 s 1-R@10: 0.4572
+The minimum nprobe to achieve R@10=0.4 on SIFT1000M OPQ16,IVF262144,PQ16 is 3
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 297.234 s
+  probe=1  : 1.295 s 1-R@10: 0.2723
+  probe=2  : 1.257 s 1-R@10: 0.3910
+  probe=4  : 1.173 s 1-R@10: 0.5086
+  probe=8  : 1.129 s 1-R@10: 0.6171
+  probe=6  : 1.089 s 1-R@10: 0.5749
+  probe=7  : 1.043 s 1-R@10: 0.5998
+The minimum nprobe to achieve R@10=0.6 on SIFT1000M OPQ16,IVF262144,PQ16 is 8
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 301.190 s
+  probe=1  : 1.453 s 1-R@10: 0.2723
+  probe=2  : 1.153 s 1-R@10: 0.3910
+  probe=4  : 1.087 s 1-R@10: 0.5086
+  probe=8  : 1.002 s 1-R@10: 0.6171
+  probe=16 : 1.241 s 1-R@10: 0.7001
+  probe=32 : 1.197 s 1-R@10: 0.7597
+  probe=64 : 1.551 s 1-R@10: 0.7930
+  probe=128: 1.980 s 1-R@10: 0.8089
+  probe=96 : 1.688 s 1-R@10: 0.8045
+  probe=80 : 1.585 s 1-R@10: 0.7997
+  probe=88 : 1.817 s 1-R@10: 0.8030
+  probe=84 : 1.727 s 1-R@10: 0.8014
+  probe=82 : 1.798 s 1-R@10: 0.8007
+  probe=81 : 1.555 s 1-R@10: 0.8004
+The minimum nprobe to achieve R@10=0.8 on SIFT1000M OPQ16,IVF262144,PQ16 is 81
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 318.183 s
+  probe=1  : 1.464 s 1-R@100: 0.2863
+  probe=2  : 1.287 s 1-R@100: 0.4171
+  probe=4  : 1.260 s 1-R@100: 0.5531
+  probe=8  : 1.353 s 1-R@100: 0.6866
+  probe=6  : 1.125 s 1-R@100: 0.6331
+  probe=5  : 1.072 s 1-R@100: 0.5987
+The minimum nprobe to achieve R@100=0.6 on SIFT1000M OPQ16,IVF262144,PQ16 is 6
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 306.213 s
+  probe=1  : 1.367 s 1-R@100: 0.2863
+  probe=2  : 1.112 s 1-R@100: 0.4171
+  probe=4  : 1.188 s 1-R@100: 0.5531
+  probe=8  : 1.376 s 1-R@100: 0.6866
+  probe=16 : 1.262 s 1-R@100: 0.7963
+  probe=32 : 1.594 s 1-R@100: 0.8844
+  probe=24 : 1.701 s 1-R@100: 0.8528
+  probe=20 : 1.443 s 1-R@100: 0.8275
+  probe=18 : 1.444 s 1-R@100: 0.8142
+  probe=17 : 1.465 s 1-R@100: 0.8052
+The minimum nprobe to achieve R@100=0.8 on SIFT1000M OPQ16,IVF262144,PQ16 is 17
+IndexShards shard 0 select modulo 4 = 0
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 1 select modulo 4 = 1
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 2 select modulo 4 = 2
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+IndexShards shard 3 select modulo 4 = 3
+  IndexIVFPQ size 250000000 -> GpuIndexIVFPQ indicesOptions=0 usePrecomputed=1 useFloat16=0 reserveVecs=0
+query_batch_size:  512
+Preparing dataset SIFT1000M
+(10000, 128)
+sizes: B (1000000000, 128) Q (10000, 128) T (100000000, 128) gt (10000, 1000)
+cachefiles:
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/cent_SIFT1000M_OPQ16,IVF262144.npy
+/pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+preparing resources for 4 GPUs
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/preproc_SIFT1000M_OPQ16.vectrans
+load /pub/scratch/wenqi/Faiss_experiments/trained_GPU_indexes/bench_gpu_SIFT1000M_OPQ16,IVF262144,PQ16/SIFT1000M_OPQ16,IVF262144,PQ16.index
+CPU index contains 1000000000 vectors, move to GPU
+copying loaded index to GPUs
+move to GPU done in 310.527 s
+  probe=1  : 1.291 s 1-R@100: 0.2863
+  probe=2  : 1.233 s 1-R@100: 0.4171
+  probe=4  : 1.041 s 1-R@100: 0.5531
+  probe=8  : 1.159 s 1-R@100: 0.6866
+  probe=16 : 1.706 s 1-R@100: 0.7963
+  probe=32 : 1.919 s 1-R@100: 0.8844
+  probe=64 : 2.110 s 1-R@100: 0.9409
+  probe=128: 2.133 s 1-R@100: 0.9698
+  probe=96 : 1.874 s 1-R@100: 0.9612
+  probe=80 : 1.817 s 1-R@100: 0.9529
+  probe=72 : 1.706 s 1-R@100: 0.9473
+  probe=76 : 1.845 s 1-R@100: 0.9504
+  probe=74 : 1.549 s 1-R@100: 0.9490
+  probe=75 : 1.595 s 1-R@100: 0.9496
+The minimum nprobe to achieve R@100=0.95 on SIFT1000M OPQ16,IVF262144,PQ16 is 76

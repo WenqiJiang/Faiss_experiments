@@ -1044,13 +1044,13 @@ def eval_dataset_from_dict():
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                            pickle.dump(d_throughput, f, pickle.HIGHEST_PROTOCOL)
+                            pickle.dump(d_throughput, f, pickle_protocol=4)
                             
                         with open(response_time_dict_dir, 'wb') as f:
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = response time array (np array)
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                            pickle.dump(d_response_time, f, pickle.HIGHEST_PROTOCOL)
+                            pickle.dump(d_response_time, f, pickle_protocol=4)
 
                         if knngraph:
                             ires = eval_intersection_measure(gt_I[:, :topK], I[:nq_gt])
@@ -1202,7 +1202,7 @@ def recall_eval(index, preproc):
                 if topK not in d[dbname][index_key]:
                     d[dbname][index_key][topK] = dict()
                 d[dbname][index_key][topK][recall_goal] = min_nprobe
-                pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)
+                pickle.dump(d, f, pickle_protocol=4)
 
         else: # write new file
             with open(fname, 'wb') as f:
@@ -1214,7 +1214,7 @@ def recall_eval(index, preproc):
                 d[dbname][index_key] = dict()
                 d[dbname][index_key][topK] = dict()
                 d[dbname][index_key][topK][recall_goal] = min_nprobe
-                pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)
+                pickle.dump(d, f, pickle_protocol=4)
 
 
 

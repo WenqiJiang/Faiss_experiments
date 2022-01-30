@@ -362,10 +362,10 @@ else: # Mode B: using dictionary as input, save throughput to another dict
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                            pickle.dump(d_throughput, f, pickle.HIGHEST_PROTOCOL)
+                            pickle.dump(d_throughput, f, pickle_protocol=4)
 
                         with open(args.response_time_dict_dir, 'wb') as f:
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                            pickle.dump(d_response_time, f, pickle.HIGHEST_PROTOCOL)
+                            pickle.dump(d_response_time, f, pickle_protocol=4)

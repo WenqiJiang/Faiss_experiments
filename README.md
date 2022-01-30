@@ -24,6 +24,11 @@ conda install -c pytorch faiss-cpu
 conda install faiss-gpu cudatoolkit=10.0 -c pytorch
 ```
 
+Install pickle5 for recall dict load/save:
+```
+conda install -c conda-forge pickle5
+```
+
 Verify installation
 ```
 python 
