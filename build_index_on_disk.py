@@ -1,14 +1,17 @@
 """
+This script is used to build on-disk indexes which exceeds the memory capacity.
+    We build several index partitions, and merge them at once.
+
 Example usage:
-    <on_disk> -> 0 = in memory; 1 = on disk
     <dbnam> e.g., SIFT100M
     <index_key> e.g., IVF4096,PQ16
     <parametersets>, e.g., 'nprobe=1 nprobe=32
-    python bench_polysemous_1bn.py 0 SIFT100M IVF4096,PQ16 nprobe=1 nprobe=32
-    python bench_polysemous_1bn.py 0 SIFT1M IVF4096,Flat nprobe=1 nprobe=32
 
-Note! Use on_disk = 1 only when
-    (1) the trained index is built in memory (not by ondisk merge)
+    python build_index_on_disk.py SIFT100M IVF4096,PQ16 nprobe=1 nprobe=32
+    python build_index_on_disk.py SIFT1M IVF4096,Flat nprobe=1 nprobe=32
+
+Note! Use on_disk = 1 only when 
+    (1) the trained index is built in memory (not by ondisk merge) 
     (2) you want to use mmap for the index during the search instead of loading in memory
     For a disk-merged index, never use the on_disk=1. For those indexes,
     populated index & the ivflist are separate (the later always use mmap),
@@ -24,6 +27,7 @@ import time
 import numpy as np
 import re
 import faiss
+from faiss.contrib.ondisk import merge_ondisk
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
 
@@ -51,16 +55,12 @@ def mmap_bvecs(fname):
 # Bookkeeping
 #################################################################
 
-on_disk       = int(sys.argv[1])
-dbname        = sys.argv[2]
-index_key     = sys.argv[3]
-parametersets = sys.argv[4:]
+dbname        = sys.argv[1]
+index_key     = sys.argv[2]
+parametersets = sys.argv[3:]
 
-if not on_disk:
-    io_flags = 0
-else:
-    io_flags = faiss.IO_FLAG_MMAP
-print("io_flags: ", io_flags)
+# in memory
+io_flags = 0
 
 tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 
@@ -153,7 +153,7 @@ def get_trained_index():
         faiss.write_index(index, filename)
     else:
         print("loading", filename)
-        index = faiss.read_index(filename, io_flags)
+        index = faiss.read_index(filename)
     return index
 
 
@@ -190,19 +190,59 @@ def get_populated_index():
         tmpdir, dbname, index_key)
 
     if not os.path.exists(filename):
+
         index = get_trained_index()
-        i0 = 0
-        t0 = time.time()
-        for xs in matrix_slice_iterator(xb, 100000):
-            i1 = i0 + xs.shape[0]
-            print('\radd %d:%d, %.3f s' % (i0, i1, time.time() - t0), end=' ')
-            sys.stdout.flush()
-            index.add(xs)
-            i0 = i1
-        print()
-        print("Add done in %.3f s" % (time.time() - t0))
-        print("storing", filename)
-        faiss.write_index(index, filename)
+        
+        print("Flat" in index_key)
+        if "Flat" in index_key:
+            #index = faiss.read_index(os.path.join(tmpdir, "trained.index"))
+            vec_num = xb.shape[0]
+            partition_size = int(1e6)
+            partition_num = int(np.ceil(vec_num/partition_size))
+            print("For Flat index (uncompressed), we add data in partition and merge them to avoid memory overflow")
+            bno = 0 # block ID
+            for xs in matrix_slice_iterator(xb, partition_size):
+                i0, i1 = int(bno * vec_num / partition_num), np.minimum(int((bno + 1) * vec_num / partition_num), vec_num)
+                print("adding vectors %d:%d" % (i0, i1))
+                sys.stdout.flush()
+                index.add_with_ids(xs, np.arange(i0, i1))
+                print("write ", os.path.join(tmpdir, "block_%d.index" % bno))
+                faiss.write_index(index, os.path.join(tmpdir, "block_%d.index" % bno))
+                bno += 1
+
+            block_fnames = [
+                os.path.join(tmpdir, "block_%d.index" % bno)
+                for bno in range(partition_num)
+            ]
+        
+            index = get_trained_index()
+            merge_ondisk(index, block_fnames, os.path.join(tmpdir, "merged_index.ivfdata"))
+            
+            """
+            index = get_trained_index()
+            invlists = faiss.OnDiskInvertedLists(
+                index.nlist, index.code_size, os.path.join(tmpdir, "merged_index.ivfdata"))
+            index.replace_invlists(invlists)
+            """
+            print("write " + filename)
+            faiss.write_index(index, filename)
+
+            for block in block_fnames:
+                os.remove(block)
+
+        else:
+                i0 = 0
+                t0 = time.time()
+                for xs in matrix_slice_iterator(xb, 100000):
+                    i1 = i0 + xs.shape[0]
+                    print('\radd %d:%d, %.3f s' % (i0, i1, time.time() - t0), end=' ')
+                    sys.stdout.flush()
+                    index.add(xs)
+                    i0 = i1
+                print()
+                print("Add done in %.3f s" % (time.time() - t0))
+                print("storing", filename)
+                faiss.write_index(index, filename)
     else:
         print("loading", filename)
         index = faiss.read_index(filename, io_flags)
