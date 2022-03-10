@@ -1,9 +1,12 @@
-#!/usr/bin/env python2
+"""
+Example usage:
+    <on_disk> -> 0 = in memory; 1 = on disk
+    <dbnam> e.g., SIFT100M
+    <index_key> e.g., IVF4096,PQ16
+    <parametersets>, e.g., 'nprobe=1 nprobe=32
+    python bench_polysemous_1bn.py 0 SIFT100M IVF4096,PQ16 nprobe=1 nprobe=32
 
-# Copyright (c) Facebook, Inc. and its affiliates.
-#
-# This source code is licensed under the MIT license found in the
-# LICENSE file in the root directory of this source tree.
+"""
 
 from __future__ import print_function
 import os
@@ -39,11 +42,16 @@ def mmap_bvecs(fname):
 # Bookkeeping
 #################################################################
 
+on_disk       = int(sys.argv[1])
+dbname        = sys.argv[2]
+index_key     = sys.argv[3]
+parametersets = sys.argv[4:]
 
-dbname        = sys.argv[1]
-index_key     = sys.argv[2]
-parametersets = sys.argv[3:]
-
+if not on_disk:
+    io_flags = 0
+else:
+    io_flags = faiss.IO_FLAG_MMAP
+print("io_flags: ", io_flags)
 
 tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 
@@ -136,7 +144,7 @@ def get_trained_index():
         faiss.write_index(index, filename)
     else:
         print("loading", filename)
-        index = faiss.read_index(filename)
+        index = faiss.read_index(filename, io_flags)
     return index
 
 
@@ -188,7 +196,7 @@ def get_populated_index():
         faiss.write_index(index, filename)
     else:
         print("loading", filename)
-        index = faiss.read_index(filename)
+        index = faiss.read_index(filename, io_flags)
         if save_numpy_index:
             print("Saving index to numpy array...")
             chunk = faiss.serialize_index(index)

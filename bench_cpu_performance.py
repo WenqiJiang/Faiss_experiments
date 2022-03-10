@@ -1,5 +1,3 @@
-#!/usr/bin/env python2
-
 """
 Benchmarking the CPU's throughput using 10,000 queries (takes several minutes),
 the batch size is set to 1 to measure the maxmimum throughput
@@ -8,11 +6,11 @@ There are 2 ways to use the script:
 
 (1) Test the throughput of given DB & index & nprobe:
 
-python bench_cpu_performance.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
+python bench_cpu_performance.py --on_disk 0 --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
-python bench_cpu_performance.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
+python bench_cpu_performance.py --on_disk 0 --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
 """
 
 from __future__ import print_function
@@ -27,6 +25,7 @@ from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
 import argparse 
 parser = argparse.ArgumentParser()
+parser.add_argument('--on_disk', type=int, default=0, help="0 -> search in memory; 1 -> search on disk based on mmap")
 parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name, e.g., SIFT100M")
 parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
 parser.add_argument('--topK', type=int, default=10, help="return topK most similar vector, related to recall, e.g., R@10=50perc or R@100=80perc")
@@ -46,6 +45,13 @@ save_numpy_index = False
 # once
 
 args = parser.parse_args()
+
+# https://github.com/facebookresearch/faiss/blob/main/faiss/index_io.h
+# https://www.programcreek.com/python/example/112290/faiss.write_index
+if not args.on_disk:
+    io_flags = 0
+else:
+    io_flags = faiss.IO_FLAG_MMAP
 
 def mmap_fvecs(fname):
     x = np.memmap(fname, dtype='int32', mode='r')
@@ -103,7 +109,7 @@ def get_trained_index():
         faiss.write_index(index, filename)
     else:
         print("loading", filename)
-        index = faiss.read_index(filename)
+        index = faiss.read_index(filename, io_flags)
     return index
 
 
@@ -154,7 +160,7 @@ def get_populated_index():
         faiss.write_index(index, filename)
     else:
         print("loading", filename)
-        index = faiss.read_index(filename)
+        index = faiss.read_index(filename, io_flags)
         if save_numpy_index:
             print("Saving index to numpy array...")
             chunk = faiss.serialize_index(index)
