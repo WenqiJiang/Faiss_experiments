@@ -191,7 +191,6 @@ def get_populated_index():
 
     if not os.path.exists(filename):
 
-        index = get_trained_index()
         
         print("Flat" in index_key)
         if "Flat" in index_key:
@@ -200,15 +199,15 @@ def get_populated_index():
             partition_size = int(1e6)
             partition_num = int(np.ceil(vec_num/partition_size))
             print("For Flat index (uncompressed), we add data in partition and merge them to avoid memory overflow")
-            bno = 0 # block ID
-            for xs in matrix_slice_iterator(xb, partition_size):
+            for bno in range(partition_num): # block ID
                 i0, i1 = int(bno * vec_num / partition_num), np.minimum(int((bno + 1) * vec_num / partition_num), vec_num)
+                xs = xb[i0:i1].astype('float32').copy()
                 print("adding vectors %d:%d" % (i0, i1))
                 sys.stdout.flush()
+                index = get_trained_index()
                 index.add_with_ids(xs, np.arange(i0, i1))
                 print("write ", os.path.join(tmpdir, "block_%d.index" % bno))
                 faiss.write_index(index, os.path.join(tmpdir, "block_%d.index" % bno))
-                bno += 1
 
             block_fnames = [
                 os.path.join(tmpdir, "block_%d.index" % bno)
@@ -231,6 +230,7 @@ def get_populated_index():
                 os.remove(block)
 
         else:
+                index = get_trained_index()
                 i0 = 0
                 t0 = time.time()
                 for xs in matrix_slice_iterator(xb, 100000):
