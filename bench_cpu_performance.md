@@ -6,7 +6,9 @@ Use bench_all_cpu_recall.sh, which calls python bench_cpu_recall.py. When using 
 
 An example of python bench_cpu_recall.py: 
 
+```
 python bench_cpu_recall.py --dbname SIFT100M --index_key IVF4096,PQ16 --recall_goal 80 --topK 10
+```
 
 It will store the recall information in a dictionary located in ./recall_info/
 
@@ -22,11 +24,15 @@ Two ways to use the script
 
 (1) Test the throughput of given DB & index & nprobe:
 
+```
 python bench_cpu_performance.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
+```
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
+```
 python bench_cpu_performance.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
+```
 
 ## (Archieved) Response time with network
 
@@ -44,11 +50,15 @@ There are 2 ways to use the script:
 
 (1) Test the response time of given DB & index & nprobe:
 
+```
 python bench_cpu_response_time_client.py --dbname SIFT100M --index_key OPQ16,IVF4096,PQ16 --topK 10 --param 'nprobe=32' --HOST 127.0.0.1 --PORT 65432
+```
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
+```
 python bench_cpu_response_time_client.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' --HOST 10.1.212.76 --PORT 65432
+```
 
 ### bench_cpu_response_time_server.py
 
@@ -56,11 +66,15 @@ There are 2 ways to use the script:
 
 (1) Test the response time of given DB & index & nprobe:
 
+```
 python bench_cpu_response_time_server.py --dbname SIFT100M --index_key OPQ16,IVF4096,PQ16 --topK 10 --param 'nprobe=32' --HOST 127.0.0.1 --PORT 65432
+```
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
+```
 python bench_cpu_response_time_server.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --performance_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' --HOST 10.1.212.76 --PORT 65432
+```
 
 ### Measure network RTT
 
