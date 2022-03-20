@@ -1,16 +1,15 @@
 """
 Benchmarking the CPU's throughput using 10,000 queries (takes several minutes),
-the batch size is set to 1 to measure the maxmimum throughput
 
 There are 2 ways to use the script:
 
 (1) Test the throughput of given DB & index & nprobe:
 
-python bench_cpu_performance.py --on_disk 0 --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
+python bench_cpu_performance.py --on_disk 0 --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --qbs 1 --parametersets 'nprobe=1 nprobe=32'
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
-python bench_cpu_performance.py --on_disk 0 --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
+python bench_cpu_performance.py --on_disk 0 --qbs 1 --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
 """
 
 from __future__ import print_function
@@ -29,6 +28,7 @@ parser.add_argument('--on_disk', type=int, default=0, help="0 -> search in memor
 parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name, e.g., SIFT100M")
 parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
 parser.add_argument('--topK', type=int, default=10, help="return topK most similar vector, related to recall, e.g., R@10=50perc or R@100=80perc")
+parser.add_argument('--qbs', type=int, default=1, help="query batch size")
 parser.add_argument('--parametersets', type=str, default='nprobe=1', help="a string of nprobes, e.g., 'nprobe=1 nprobe=32'")
 
 
@@ -219,7 +219,7 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
     ivf_stats = faiss.cvar.indexIVF_stats
 
     # we do queries in a single thread
-    faiss.omp_set_num_threads(1)
+    # faiss.omp_set_num_threads(1)
 
     print(' ' * len(parametersets[0]), '\t', 'R@{}     time'.format(topK))
 
@@ -229,21 +229,34 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
         print(param, '\t', end=' ')
         sys.stdout.flush()
         ps.set_index_parameters(index, param)
-        t0 = time.time()
+        
+
+        I = np.empty((nq, topK), dtype='int32')
+        D = np.empty((nq, topK), dtype='float32')
+
         ivfpq_stats.reset()
         ivf_stats.reset()
-        ## Wenqi: batch size = 1
-        for i in range(nq):
-            D, I = index.search(query_vecs[i], topK)
-        ## Wenqi: batch size = 1
-        # D, I = index.search(query_vec, 10)
+
+        t0 = time.time()
+
+        i0 = 0
+        while i0 < nq:
+            if i0 + args.qbs < nq:
+                i1 = i0 + args.qbs
+            else:
+                i1 = nq
+            Di, Ii = index.search(xq[i0:i1], topK)
+            I[i0:i1] = Ii
+            D[i0:i1] = Di
+            i0 = i1
+
         t1 = time.time()
 
-        #n_ok = (I[:, :topK] == gt[:, :1]).sum()
-        #print("%.4f" % (n_ok / float(nq)), end=' ')
-        #for rank in 1, 10:
-        #    n_ok = (I[:, :rank] == gt[:, :1]).sum()
-        #    print("%.4f" % (n_ok / float(nq)), end=' ')
+        n_ok = (I[:, :topK] == gt[:, :1]).sum()
+        print("%.4f" % (n_ok / float(nq)), end=' ')
+        for rank in 1, 10, 100:
+            n_ok = (I[:, :rank] == gt[:, :1]).sum()
+            print("%.4f" % (n_ok / float(nq)), end=' ')
         print("QPS = {}".format(nq / (t1 - t0)))
         #print("%8.3f  " % ((t1 - t0) * 1000.0 / nq), end=' ms')
         # print("%5.2f" % (ivfpq_stats.n_hamming_pass * 100.0 / ivf_stats.ndis))
@@ -311,7 +324,7 @@ else: # Mode B: using dictionary as input, save throughput to another dict
             ps.initialize(index)
             ivfpq_stats = faiss.cvar.indexIVFPQ_stats
             ivf_stats = faiss.cvar.indexIVF_stats
-            faiss.omp_set_num_threads(1)
+            # faiss.omp_set_num_threads(1)
             query_vecs = np.reshape(xq, (nq,1,128))
 
             for topK in d_nprobes[dbname][index_key]:
@@ -341,17 +354,32 @@ else: # Mode B: using dictionary as input, save throughput to another dict
 
                         sys.stdout.flush()
                         ps.set_index_parameters(index, param)
-                        t0 = time.time()
+                        
+                        I = np.empty((nq, topK), dtype='int32')
+                        D = np.empty((nq, topK), dtype='float32')
+
                         ivfpq_stats.reset()
                         ivf_stats.reset()
-                        
+
+                        t0 = time.time()
                         response_time = [] # in terms of ms
-                        for i in range(nq):
+                        i0 = 0
+                        while i0 < nq:
+                            if i0 + args.qbs < nq:
+                                i1 = i0 + args.qbs
+                            else:
+                                i1 = nq
                             t_RT_start = time.time()
-                            D, I = index.search(query_vecs[i], topK)
+                            Di, Ii = index.search(xq[i0:i1], topK)
+                            I[i0:i1] = Ii
+                            D[i0:i1] = Di
+                            i0 = i1
                             t_RT_end = time.time()
                             response_time.append(1000 * (t_RT_end - t_RT_start)) 
+
                         t1 = time.time()
+
+
                         #for rank in 1, 10:
                         #    n_ok = (I[:, :rank] == gt[:, :1]).sum()
                         #    print("%.4f" % (n_ok / float(nq)), end=' ')
@@ -368,10 +396,10 @@ else: # Mode B: using dictionary as input, save throughput to another dict
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                            pickle.dump(d_throughput, f, pickle_protocol=4)
+                            pickle.dump(d_throughput, f, protocol=4)
 
                         with open(args.response_time_dict_dir, 'wb') as f:
                             # dictionary format:
                             #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = QPS
                             #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                            pickle.dump(d_response_time, f, pickle_protocol=4)
+                            pickle.dump(d_response_time, f, protocol=4)

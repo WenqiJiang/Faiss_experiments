@@ -25,13 +25,13 @@ Two ways to use the script
 (1) Test the throughput of given DB & index & nprobe:
 
 ```
-python bench_cpu_performance.py --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
+python bench_cpu_performance.py --on_disk 0 --qbs 10000 --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --parametersets 'nprobe=1 nprobe=32'
 ```
 
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
 ```
-python bench_cpu_performance.py --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
+python bench_cpu_performance.py --on_disk 0 --qbs 10000 --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M_IVFPQ_only.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M_qbs_10000.pkl' 
 ```
 
 ## (Archieved) Response time with network

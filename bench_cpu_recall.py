@@ -340,7 +340,7 @@ if os.path.exists(fname) and os.path.getsize(fname) > 0: # load and write
         if topK not in d[dbname][index_key]:
             d[dbname][index_key][topK] = dict()
         d[dbname][index_key][topK][recall_goal] = min_nprobe
-        pickle.dump(d, f, pickle_protocol=4)
+        pickle.dump(d, f, protocol=4)
 
 else: # write new file
     with open(fname, 'wb') as f:
@@ -352,5 +352,5 @@ else: # write new file
         d[dbname][index_key] = dict()
         d[dbname][index_key][topK] = dict()
         d[dbname][index_key][topK][recall_goal] = min_nprobe
-        pickle.dump(d, f, pickle_protocol=4)
+        pickle.dump(d, f, protocol=4)
 
