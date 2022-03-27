@@ -253,7 +253,6 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
         t1 = time.time()
 
         n_ok = (I[:, :topK] == gt[:, :1]).sum()
-        print("%.4f" % (n_ok / float(nq)), end=' ')
         for rank in 1, 10, 100:
             n_ok = (I[:, :rank] == gt[:, :1]).sum()
             print("%.4f" % (n_ok / float(nq)), end=' ')

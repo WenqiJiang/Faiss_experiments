@@ -22,18 +22,18 @@ IVF_range = [10, 11, 12, 13, 14, 15, 16, 17, 18]
 if FLAGS.index == "IMI":
     if FLAGS.OPQ:
         for i in IMI_range:
-            os.system("python bench_polysemous_1bn.py {} OPQ{},IMI2x{},PQ{} nprobe=1".format(
+            os.system("python bench_polysemous_1bn.py 0 {} OPQ{},IMI2x{},PQ{} nprobe=1".format(
                 FLAGS.dataset, FLAGS.PQ, i, FLAGS.PQ))
     else:
         for i in IMI_range:
-            os.system("python bench_polysemous_1bn.py {} IMI2x{},PQ{} nprobe=1".format(
+            os.system("python bench_polysemous_1bn.py 0 {} IMI2x{},PQ{} nprobe=1".format(
                 FLAGS.dataset, i, FLAGS.PQ))
 elif FLAGS.index == "IVF":
     if FLAGS.OPQ:
         for i in IVF_range:
-            os.system("python bench_polysemous_1bn.py {} OPQ{},IVF{},PQ{} nprobe=1".format(
+            os.system("python bench_polysemous_1bn.py 0 {} OPQ{},IVF{},PQ{} nprobe=1".format(
                     FLAGS.dataset, FLAGS.PQ, 2 ** i, FLAGS.PQ))
     else:
         for i in IVF_range:
-            os.system("python bench_polysemous_1bn.py {} IVF{},PQ{} nprobe=1".format(
+            os.system("python bench_polysemous_1bn.py 0 {} IVF{},PQ{} nprobe=1".format(
                     FLAGS.dataset, 2 ** i, FLAGS.PQ))

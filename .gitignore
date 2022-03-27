@@ -19,3 +19,4 @@ gpu_performance_result/*
 network_response_time.npy
 CPU_response_time/*
 gpu_prof_report_tmp
+__pycache__/*
