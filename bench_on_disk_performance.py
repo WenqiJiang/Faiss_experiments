@@ -28,7 +28,8 @@ print("Info: you are using the on_disk search script, several thing to keep in m
 	"1. The input index should be trained by build_index_on_disk.py, the index folder contains 3 rather than 2 files, e.g., merged_index.ivfdata  SIFT100M_IVF4096,Flat_populated.index  SIFT100M_IVF4096,Flat_trained.index\n" \
 	"2. don't use too many query number, otherwise differnt query may overlap the scanned region, thus they are simply accessing the memory. We force num_query * nprobe < nlist\n" \
 	"3. After running the script, make sure that you flush the page cache, otherwise the OS may just cache the content in memory, and the next run is actually in-memory performance\n" \
-	"    page cache flush: (1) sudo su (2) sync; echo 1 > /proc/sys/vm/drop_caches (3) free (see whether flushed)")
+	"    page cache flush: (1) sudo su (2) sync; echo 1 > /proc/sys/vm/drop_caches (3) free (see whether flushed)\n" \
+	"4. The recall only reflects the <query_num> query, for the precise recall please use the full 10000 queries")
 
 args = parser.parse_args()
 dbname = args.dbname
@@ -246,6 +247,7 @@ while i0 < nq:
 t1 = time.time()
 
 n_ok = (I[:, :topK] == gt[:, :1]).sum()
+print("The recall only reflects the <query_num> query, for the precise recall please use the full 10000 queries")
 for rank in 1, 10, 100:
     n_ok = (I[:, :rank] == gt[:, :1]).sum()
     print("%.4f" % (n_ok / float(nq)), end=' ')

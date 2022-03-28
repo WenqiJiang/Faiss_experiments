@@ -4,11 +4,10 @@ This script is used to build on-disk indexes which exceeds the memory capacity.
 
 Example usage:
     <dbnam> e.g., SIFT100M
-    <index_key> e.g., IVF4096,PQ16
+    <index_key> e.g., IVF4096,Flat
     <parametersets>, e.g., 'nprobe=1 nprobe=32
 
-    python build_index_on_disk.py SIFT100M IVF4096,PQ16 nprobe=1 nprobe=32
-    python build_index_on_disk.py SIFT1M IVF4096,Flat nprobe=1 nprobe=32
+    python build_index_on_disk.py SIFT100M IVF1024,Flat nprobe=1 nprobe=32
 
 Note! Use on_disk = 1 only when 
     (1) the trained index is built in memory (not by ondisk merge) 
