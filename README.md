@@ -19,9 +19,9 @@ conda install -c pytorch faiss-cpu
 ```
 
 ```
-% install gpu version (version 1.6.3)
+% install gpu version version >= 1.7.2
 % install CUDA first if its not installed: https://docs.vmware.com/en/VMware-vSphere-Bitfusion/3.0/Example-Guide/GUID-ABB4A0B1-F26E-422E-85C5-BA9F2454363A.html
-conda install faiss-gpu cudatoolkit=10.0 -c pytorch
+conda install faiss-gpu -c pytorch
 ```
 
 Install pickle5 for recall dict load/save:
