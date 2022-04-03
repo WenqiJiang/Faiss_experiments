@@ -17,20 +17,36 @@ x_labels = ['IVF1024', 'IVF1024\nw/ OPQ', \
     'IVF65536', 'IVF65536\nw/ OPQ']
 
 file_prefixes = [ \
-    'nsys_report_SIFT500M_IVF1024,PQ16_R@100=0.95_nprobe_11_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_OPQ16,IVF1024,PQ16_R@100=0.95_nprobe_10_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF2048,PQ16_R@100=0.95_nprobe_15_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_OPQ16,IVF2048,PQ16_R@100=0.95_nprobe_13_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF4096,PQ16_R@100=0.95_nprobe_18_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_OPQ16,IVF4096,PQ16_R@100=0.95_nprobe_17_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF8192,PQ16_R@100=0.95_nprobe_21_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_OPQ16,IVF8192,PQ16_R@100=0.95_nprobe_21_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF16384,PQ16_R@100=0.95_nprobe_29_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_OPQ16,IVF16384,PQ16_R@100=0.95_nprobe_28_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF32768,PQ16_R@100=0.95_nprobe_38_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_OPQ16,IVF32768,PQ16_R@100=0.95_nprobe_36_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF65536,PQ16_R@100=0.95_nprobe_46_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_OPQ16,IVF65536,PQ16_R@100=0.95_nprobe_47_ngpu_1_batchsize_10000']
+    'nsys_report_SIFT100M_IVF1024,PQ16_R@100=0.95_nprobe_11_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF1024,PQ16_R@100=0.95_nprobe_11_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF2048,PQ16_R@100=0.95_nprobe_14_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF2048,PQ16_R@100=0.95_nprobe_14_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF4096,PQ16_R@100=0.95_nprobe_19_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF4096,PQ16_R@100=0.95_nprobe_18_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF8192,PQ16_R@100=0.95_nprobe_26_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF8192,PQ16_R@100=0.95_nprobe_24_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF16384,PQ16_R@100=0.95_nprobe_31_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF16384,PQ16_R@100=0.95_nprobe_40_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF32768,PQ16_R@100=0.95_nprobe_48_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF32768,PQ16_R@100=0.95_nprobe_46_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_R@100=0.95_nprobe_63_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF65536,PQ16_R@100=0.95_nprobe_60_ngpu_1_batchsize_10000', \
+    ]
+# file_prefixes = [ \
+#     'nsys_report_SIFT500M_IVF1024,PQ16_R@100=0.95_nprobe_11_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_OPQ16,IVF1024,PQ16_R@100=0.95_nprobe_10_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF2048,PQ16_R@100=0.95_nprobe_15_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_OPQ16,IVF2048,PQ16_R@100=0.95_nprobe_13_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF4096,PQ16_R@100=0.95_nprobe_18_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_OPQ16,IVF4096,PQ16_R@100=0.95_nprobe_17_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF8192,PQ16_R@100=0.95_nprobe_21_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_OPQ16,IVF8192,PQ16_R@100=0.95_nprobe_21_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF16384,PQ16_R@100=0.95_nprobe_29_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_OPQ16,IVF16384,PQ16_R@100=0.95_nprobe_28_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF32768,PQ16_R@100=0.95_nprobe_38_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_OPQ16,IVF32768,PQ16_R@100=0.95_nprobe_36_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_R@100=0.95_nprobe_46_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_OPQ16,IVF65536,PQ16_R@100=0.95_nprobe_47_ngpu_1_batchsize_10000']
 
 assert len(x_labels) == len(file_prefixes)
 
