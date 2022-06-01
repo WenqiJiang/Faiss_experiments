@@ -5,12 +5,17 @@ import pickle
 
 plt.style.use('ggplot')
 
-# SIFT500M, K=100
-y_no_OPQ = np.array([1466, 1742, 5024, 7857, 10827, 13970, 15918])
-y_OPQ = np.array([1751, 2280, 5390, 7670, 10971, 13902, 15299])
+
+# SIFT100M, K=100
+y_no_OPQ = np.array([11270, 17459, 25600, 31852, 34667, 42813, 42926, 39325, 33100])
+y_OPQ = np.array([10924, 14261, 19764, 18733, 17743, 21852, 17146, 18252, 23279, ])
+
+# # SIFT500M, K=100
+# y_no_OPQ = np.array([1466, 1742, 5024, 7857, 10827, 13970, 15918])
+# y_OPQ = np.array([1751, 2280, 5390, 7670, 10971, 13902, 15299])
 
 x_labels = ['nlist=1024', 'nlist=2048', 'nlist=4096',\
-    'nlist=8192', 'nlist=16384', 'nlist=32768', 'nlist=65536']
+    'nlist=8192', 'nlist=16384', 'nlist=32768', 'nlist=65536', 'nlist=131072', 'nlist=262144']
 
 x = np.arange(len(x_labels))  # the label locations
 width = 0.3  # the width of the bars    
@@ -77,7 +82,7 @@ def autolabel_speedup(rects, speedup_array):
 
 # autolabel_speedup(rects2, speedup_array)
 
-ax.set(ylim=[0, np.amax(y_OPQ) * 1.5])
+ax.set(ylim=[0, np.amax(y_no_OPQ) * 1.5])
 
 plt.rcParams.update({'figure.autolayout': True})
 

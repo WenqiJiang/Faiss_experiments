@@ -8,22 +8,47 @@ from classify_stages import classify_stages, get_percentage
 from profiling_stages import draw_profiling_plot
 
 
-x_labels = ['IVF65536\nnprobe=1', \
-    'IVF65536\nnprobe=2', \
-    'IVF65536\nnprobe=4', \
-    'IVF65536\nnprobe=8', \
-    'IVF65536\nnprobe=16', \
-    'IVF65536\nnprobe=32', \
-    'IVF65536\nnprobe=64']
+x_labels = ['nprobe=1', \
+    'nprobe=2', \
+    'nprobe=4', \
+    'nprobe=8', \
+    'nprobe=16', \
+    'nprobe=32', \
+    'nprobe=64', \
+    'nprobe=128', \
+    ]
+
+# x_labels = ['IVF65536\nnprobe=1', \
+#     'IVF65536\nnprobe=2', \
+#     'IVF65536\nnprobe=4', \
+#     'IVF65536\nnprobe=8', \
+#     'IVF65536\nnprobe=16', \
+#     'IVF65536\nnprobe=32', \
+#     'IVF65536\nnprobe=64', \
+#     'IVF65536\nnprobe=128', \
+#     ]
 
 file_prefixes = [ \
-    'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_1_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_2_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_4_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_8_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_16_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_32_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_64_ngpu_1_batchsize_10000']
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_1_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_2_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_4_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_8_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_16_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_32_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_64_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF65536,PQ16_K_100_nprobe_128_ngpu_1_batchsize_10000', \
+    ]
+
+# file_prefixes = [ \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_1_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_2_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_4_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_8_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_16_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_32_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_64_ngpu_1_batchsize_10000', \
+#     'nsys_report_SIFT500M_IVF65536,PQ16_K_100_nprobe_128_ngpu_1_batchsize_10000', \
+#     ]
 
 assert len(x_labels) == len(file_prefixes)
 
@@ -51,6 +76,7 @@ profile_perc_array = []
 
 for i in range(len(file_prefixes)):
     t_1_2, t_3, t_4_5, t_6, t_other, t_transpose_4_5 = classify_stages(gputrace_csv_dirs[i], gpukernsum_csv_dirs[i])
+    print(file_prefixes[i], t_1_2, t_3, t_4_5, t_6, t_other, t_transpose_4_5)
     p_1_2, p_3, p_4_5, p_6, p_other, p_transpose_4_5 = get_percentage(t_1_2, t_3, t_4_5, t_6, t_other, t_transpose_4_5=t_transpose_4_5)
     profile_perc_array.append([p_1_2, p_3, p_4_5, p_6, p_other, p_transpose_4_5])
 
@@ -61,5 +87,5 @@ y_stage_6 = [r[3] for r in profile_perc_array]
 y_other = [r[4] for r in profile_perc_array]
 y_transpose = [r[5] for r in profile_perc_array]
 
-# draw_profiling_plot(x_labels, y_stage_1_2, y_stage_3, y_stage_4_5, y_stage_6, y_other, 'profile_experiment_4_nprobe', x_tick_rotation=45)
-draw_profiling_plot(x_labels, y_stage_1_2, y_stage_3, y_stage_4_5, y_stage_6, y_other, 'profile_experiment_4_nprobe_distinct_y_transpose', x_tick_rotation=45, mark_transpose=True, y_transpose=y_transpose)
+draw_profiling_plot(x_labels, y_stage_1_2, y_stage_3, y_stage_4_5, y_stage_6, y_other, 'profile_experiment_4_nprobe', x_tick_rotation=30, title='GPU,SIFT100M,IVF65536')
+# draw_profiling_plot(x_labels, y_stage_1_2, y_stage_3, y_stage_4_5, y_stage_6, y_other, 'profile_experiment_4_nprobe_distinct_y_transpose', x_tick_rotation=45, mark_transpose=True, y_transpose=y_transpose)

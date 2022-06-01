@@ -16,9 +16,13 @@ def get_default_colors():
 
 default_colors = get_default_colors()
 
-# SIFT500M, K=100, nprobe=16
-y_QPS = np.array([1346, 2642, 5980, 10822, 15341, 18734, 20512])
-y_recall = np.array([0.9682, 0.9584, 0.9465, 0.9368, 0.9158, 0.8868, 0.8668]) * 100
+# SIFT100M, K=100, nprobe=16
+y_QPS = np.array([9738, 17591, 28943, 37899, 47027, 53219, 43667])
+y_recall = np.array([0.9713, 0.9586, 0.9409, 0.9194, 0.8980, 0.8631, 0.8253]) * 100
+
+# # SIFT500M, K=100, nprobe=16
+# y_QPS = np.array([1346, 2642, 5980, 10822, 15341, 18734, 20512])
+# y_recall = np.array([0.9682, 0.9584, 0.9465, 0.9368, 0.9158, 0.8868, 0.8668]) * 100
 
 x_labels = ['nlist=1024', 'nlist=2048', 'nlist=4096',\
     'nlist=8192', 'nlist=16384', 'nlist=32768', 'nlist=65536']

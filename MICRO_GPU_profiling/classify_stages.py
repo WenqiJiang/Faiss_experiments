@@ -52,30 +52,30 @@ def transpose_gemm_stats(gputrace_csv_dir, gpukernsum_csv_dir):
         csv_reader = csv.DictReader(csv_file)
 
         for i, row in enumerate(csv_reader):
-            if 'transposeAny' in row['Name']:
+            if 'transposeAny' in row['Name'] or 'transposeOuter' in row['Name']:
                 transpose_count += 1
-                transpose_all_time += int(row['Duration (ns)'])
+                transpose_all_time += int(row['Duration(nsec)'])
                 if transpose_count <= 4:
-                    transpose_init_time += int(row['Duration (ns)'])
+                    transpose_init_time += int(row['Duration(nsec)'])
                 else:
-                    transpose_4_5_time += int(row['Duration (ns)'])
+                    transpose_4_5_time += int(row['Duration(nsec)'])
                 continue
 
             if gemm_krnl_name in row['Name']: 
 
-                gemm_stage_all_include_init += int(row['Duration (ns)'])
+                gemm_stage_all_include_init += int(row['Duration(nsec)'])
 
                 if transpose_count < 4:
                     continue
                 elif (transpose_count - 4) % 2 == 0:
                     # stage 1~3 gemm
-                    gemm_stage_1_2_time += int(row['Duration (ns)'])
-                    gemm_stage_all_exclude_init += int(row['Duration (ns)'])
+                    gemm_stage_1_2_time += int(row['Duration(nsec)'])
+                    gemm_stage_all_exclude_init += int(row['Duration(nsec)'])
                     continue
                 elif (transpose_count - 4) % 2 == 1:
                     # stage 4~6 gemm
-                    gemm_stage_4_5_time += int(row['Duration (ns)'])
-                    gemm_stage_all_exclude_init += int(row['Duration (ns)'])
+                    gemm_stage_4_5_time += int(row['Duration(nsec)'])
+                    gemm_stage_all_exclude_init += int(row['Duration(nsec)'])
                     continue
                 else:
                     continue
@@ -90,7 +90,7 @@ def transpose_gemm_stats(gputrace_csv_dir, gpukernsum_csv_dir):
         for i, row in enumerate(csv_reader):
             if gemm_krnl_name in row['Name']:
                 total_gemm_time_truth += int(row['Total Time (ns)'])
-            elif "transposeAny" in row['Name']:
+            elif "transposeAny" in row['Name'] or 'transposeOuter' in row['Name']:
                 total_transpose_time_truth += int(row['Total Time (ns)'])
     
     if total_gemm_time_truth == gemm_stage_all_include_init:
@@ -124,7 +124,7 @@ def classify_stages(gputrace_csv_dir, gpukernsum_csv_dir):
 
     """
     Complete function list according to gpukernsum:
-        transposeAny # stage 4~5
+        transposeAny / transposeOuter # stage 4~5
         pass1SelectLists # stage 6
         pqScanPrecomputedMultiPass # stage 4~5
         gemm # stage 1~2 or stage 4~5
@@ -159,7 +159,7 @@ def classify_stages(gputrace_csv_dir, gpukernsum_csv_dir):
         # load time consumption except transposeAny, gemm, and the non-Faiss function _kernel_agent
         for i, row in enumerate(csv_reader):
 
-            if ('transposeAny' not in row['Name']) and ('gemm' not in row['Name']):
+            if ('transposeAny' not in row['Name']) and ('transposeOuter' not in row['Name']) and ('gemm' not in row['Name']):
                 t_total += int(row['Total Time (ns)'])
 
             # stage 1 ~ 2
@@ -174,7 +174,7 @@ def classify_stages(gputrace_csv_dir, gpukernsum_csv_dir):
             elif ("pass1SelectLists" in row['Name']) or ("pass2SelectLists" in row['Name']):
                 t_6 += int(row['Total Time (ns)'])
 
-    assert (t_1_2 + t_3 + t_4_5 + t_6) / t_total >= 0.95, "Unknown function consumes > 5% total kernel time"
+    assert (t_1_2 + t_3 + t_4_5 + t_6) / t_total >= 0.90, "Unknown function consumes > 10% total kernel time"
     t_other = t_total - (t_1_2 + t_3 + t_4_5 + t_6)
     t_transpose_4_5 = transpose_4_5_time # transpose is a unique bottleneck in many settings, take it as its own
 
@@ -191,7 +191,7 @@ def get_percentage(t_1_2, t_3, t_4_5, t_6, t_other, t_transpose_4_5=None):
     p_6 = t_6 / t_total * 100
     p_other = t_other / t_total * 100
 
-    if t_transpose_4_5:
+    if t_transpose_4_5 is not None:
         p_transpose_4_5 = t_transpose_4_5 / t_total * 100
         return p_1_2, p_3, p_4_5, p_6, p_other, p_transpose_4_5
     else:
@@ -225,7 +225,7 @@ if __name__ == '__main__':
     print("stage 4~5: {} ns\t{}%".format(t_4_5, p_4_5))
     print("stage 6: {} ns\t{}%".format(t_6, p_6))
     print("other helper kernels: {} ns\t{}%".format(t_other, p_other))
-    print("transposeAny kernel: {} ns\t{}%".format(t_transpose_4_5, p_transpose_4_5))
+    print("transposeAny/transposeOuter kernel: {} ns\t{}%".format(t_transpose_4_5, p_transpose_4_5))
 
 
 

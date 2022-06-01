@@ -13,8 +13,11 @@ x_labels = ['IVF1024', 'IVF1024\nw/ OPQ', \
     'IVF4096', 'IVF4096\nw/ OPQ', \
     'IVF8192', 'IVF8192\nw/ OPQ', \
     'IVF16384', 'IVF16384\nw/ OPQ', \
-    'IVF32768', 'IVF32768\nw/ OPQ', \
-    'IVF65536', 'IVF65536\nw/ OPQ']
+    'IVF32768', 'IVF32768\nw/ OPQ', 
+    'IVF65536', 'IVF65536\nw/ OPQ', \
+    'IVF131072', 'IVF131072\nw/ OPQ', \
+    'IVF262144', 'IVF262144\nw/ OPQ', \
+    ]
 
 file_prefixes = [ \
     'nsys_report_SIFT100M_IVF1024,PQ16_R@100=0.95_nprobe_11_ngpu_1_batchsize_10000', \
@@ -26,11 +29,15 @@ file_prefixes = [ \
     'nsys_report_SIFT100M_IVF8192,PQ16_R@100=0.95_nprobe_26_ngpu_1_batchsize_10000', \
     'nsys_report_SIFT100M_OPQ16,IVF8192,PQ16_R@100=0.95_nprobe_24_ngpu_1_batchsize_10000', \
     'nsys_report_SIFT100M_IVF16384,PQ16_R@100=0.95_nprobe_31_ngpu_1_batchsize_10000', \
-    'nsys_report_SIFT100M_OPQ16,IVF16384,PQ16_R@100=0.95_nprobe_40_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF16384,PQ16_R@100=0.95_nprobe_30_ngpu_1_batchsize_10000', \
     'nsys_report_SIFT100M_IVF32768,PQ16_R@100=0.95_nprobe_48_ngpu_1_batchsize_10000', \
     'nsys_report_SIFT100M_OPQ16,IVF32768,PQ16_R@100=0.95_nprobe_46_ngpu_1_batchsize_10000', \
     'nsys_report_SIFT100M_IVF65536,PQ16_R@100=0.95_nprobe_63_ngpu_1_batchsize_10000', \
     'nsys_report_SIFT100M_OPQ16,IVF65536,PQ16_R@100=0.95_nprobe_60_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF131072,PQ16_R@100=0.95_nprobe_88_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF131072,PQ16_R@100=0.95_nprobe_86_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_IVF262144,PQ16_R@100=0.95_nprobe_121_ngpu_1_batchsize_10000', \
+    'nsys_report_SIFT100M_OPQ16,IVF262144,PQ16_R@100=0.95_nprobe_118_ngpu_1_batchsize_10000', \
     ]
 # file_prefixes = [ \
 #     'nsys_report_SIFT500M_IVF1024,PQ16_R@100=0.95_nprobe_11_ngpu_1_batchsize_10000', \
@@ -73,7 +80,9 @@ profile_perc_array = []
 #     ]
 
 for i in range(len(file_prefixes)):
+    print(file_prefixes[i])
     t_1_2, t_3, t_4_5, t_6, t_other, t_transpose_4_5 = classify_stages(gputrace_csv_dirs[i], gpukernsum_csv_dirs[i])
+    print(t_1_2, t_3, t_4_5, t_6, t_other, t_transpose_4_5)
     p_1_2, p_3, p_4_5, p_6, p_other, p_transpose_4_5 = get_percentage(t_1_2, t_3, t_4_5, t_6, t_other, t_transpose_4_5=t_transpose_4_5)
     profile_perc_array.append([p_1_2, p_3, p_4_5, p_6, p_other, p_transpose_4_5])
 
