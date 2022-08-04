@@ -292,20 +292,20 @@ def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
         counted_banks = 0
         # bank with full valid elements
         for i in range(int((last_valid_element + 1) / 3)):
-            num_vec_per_HBM += [entries_per_bank * 3]
-            num_pad_per_HBM += [0]
+            num_vec_per_HBM.append(entries_per_bank * 3)
+            num_pad_per_HBM.append(0)
         counted_banks += int((last_valid_element + 1) / 3)
         
         # (optional) bank with some valid elements and some padding in the last entry
         if (last_valid_element + 1) % 3 != 0:
-            num_vec_per_HBM += [(entries_per_bank - 1) * 3 + (last_valid_element + 1) % 3]
-            num_pad_per_HBM += [3 - (last_valid_element + 1) % 3]
+            num_vec_per_HBM.append((entries_per_bank - 1) * 3 + (last_valid_element + 1) % 3)
+            num_pad_per_HBM.append(3 - (last_valid_element + 1) % 3)
             counted_banks += 1
         
         # (optional) bank with full padding in the last entry
         for i in range(HBM_bank_num - counted_banks):
-            num_vec_per_HBM += [int((entries_per_bank - 1) * 3)]
-            num_pad_per_HBM += [3]
+            num_vec_per_HBM.append(int((entries_per_bank - 1) * 3))
+            num_pad_per_HBM.append(3)
             
     assert np.sum(np.array(num_vec_per_HBM)) == num_vec
     assert entries_per_bank * HBM_bank_num * 3 - np.sum(np.array(num_pad_per_HBM)) == num_vec
@@ -357,7 +357,7 @@ def get_contents_to_HBM(invlists, cluster_id, HBM_bank_num=int(21)):
                 byte_obj += empty_byte * 20
             byte_obj += empty_byte * 4
         
-        HBM_bank_contents += [byte_obj]
+        HBM_bank_contents.append(byte_obj)
        
     for i in range(HBM_bank_num):
         assert len(HBM_bank_contents[i]) == len(HBM_bank_contents[0])
@@ -374,8 +374,8 @@ for c in range(nlist):
     print("generating contents in cluster {}".format(c))
     HBM_bank_contents, entries_per_bank, last_valid_element = get_contents_to_HBM(invlists, c, HBM_bank_num)
     list_HBM_bank_contents += HBM_bank_contents
-    list_entries_per_bank += [entries_per_bank]
-    list_last_valid_element += [last_valid_element]
+    list_entries_per_bank.append(entries_per_bank)
+    list_last_valid_element.append(last_valid_element)
 
 # Reorder list_HBM_bank_contents
 print(len(list_HBM_bank_contents))
@@ -387,9 +387,9 @@ list_HBM_bank_contents_reordered = [] # put all contents of the same HBM bank to
 for b in range(HBM_bank_num):
     sub_list = []
     for c in range(nlist):
-        sub_list += [list_HBM_bank_contents[c * HBM_bank_num + b]]
+        sub_list.append(list_HBM_bank_contents[c * HBM_bank_num + b])
     print(len(sub_list), len(sub_list[0]))
-    list_HBM_bank_contents_reordered += [sub_list]
+    list_HBM_bank_contents_reordered.append(sub_list)
     
 print("list_HBM_bank_contents_reordered:", len(list_HBM_bank_contents_reordered), len(list_HBM_bank_contents_reordered[0]))
 
