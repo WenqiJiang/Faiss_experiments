@@ -39,10 +39,9 @@ parser.add_argument('--overwrite', type=int, default=0, help="whether to overwri
 parser.add_argument('--performance_dict_dir', type=str, default='./cpu_performance_result/cpu_throughput_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> throughput (QPS)")
 
 topK = 100
-# qbs_list = [1, 2, 4, 8, 16, 32, 64]
-# nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
-qbs_list = [16, 32]
-nprobe_list = [1, 2]
+qbs_list = [1, 2, 4, 8, 16, 32, 64]
+qbs_list.reverse() # using large batches first since they are faster
+nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
 
 ### Wenqi: when loading the index, save it to numpy array, default: False
 save_numpy_index = False
@@ -295,8 +294,8 @@ for qbs in qbs_list:
 
         i0 = 0
         while i0 < nq:
-            if i0 + args.qbs < nq:
-                i1 = i0 + args.qbs
+            if i0 + qbs < nq:
+                i1 = i0 + qbs
             else:
                 i1 = nq
             t_q_start = time.time()
