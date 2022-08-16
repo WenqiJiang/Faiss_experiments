@@ -310,21 +310,25 @@ for qbs in qbs_list:
         for rank in 1, 10, 100: # R1@K
             n_ok = (I[:, :rank] == gt[:, :1]).sum()
             R1_at_K = n_ok / float(nq)
-            print("%.4f" % (R1_at_K), end='\t')
             if rank == 1:
+                print("R1@1 = %.4f" % (R1_at_K), end='\t')
                 dict_perf[dbname][index_key][qbs][nprobe]["R1@1"] = R1_at_K
-            elif rank == 1:
+            elif rank == 10:
+                print("R1@10 = %.4f" % (R1_at_K), end='\t')
                 dict_perf[dbname][index_key][qbs][nprobe]["R1@10"] = R1_at_K
-            elif rank == 1:
+            elif rank == 100:
+                print("R1@100 = %.4f" % (R1_at_K), end='\t')
                 dict_perf[dbname][index_key][qbs][nprobe]["R1@100"] = R1_at_K
         for rank in 1, 10, 100: # R@K
             R_at_K = compute_recall(I[:,:rank], gt[:, :rank])
-            print("%.4f" % R_at_K, end='\t')
             if rank == 1:
+                print("R@1 = %.4f" % R_at_K, end='\t')
                 dict_perf[dbname][index_key][qbs][nprobe]["R@1"] = R_at_K
-            elif rank == 1:
+            elif rank == 10:
+                print("R@10 = %.4f" % R_at_K, end='\t')
                 dict_perf[dbname][index_key][qbs][nprobe]["R@10"] = R_at_K
-            elif rank == 1:
+            elif rank == 100:
+                print("R@100 = %.4f" % R_at_K, end='\t')
                 dict_perf[dbname][index_key][qbs][nprobe]["R@100"] = R_at_K
 
         total_time = np.sum(np.array(t_query_list)) 
