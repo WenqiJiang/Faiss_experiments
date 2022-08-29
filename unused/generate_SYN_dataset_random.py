@@ -1,15 +1,8 @@
 """
 Generate dummy dataset like SIFT1B
 
-The generation is based on the SIFT1B dataset distribution, because 
-    random distribution can cause very low recall as PQ cannot encode data effectively
-    
-Since the data generation and topK computation is expensive, the script can by parallelized
-    by running the script of different batches on several machines
-
 Usage:
     python generate_SYN_dataset.py --dbname SYN1M
-    python generate_SYN_dataset.py --dbname SYN10000M --start_batch 80 --end_batch 100
 """
 
 from __future__ import print_function
@@ -26,8 +19,6 @@ from multiprocessing.dummy import Pool as ThreadPool
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dbname', type=str, default='SYN1M', help="SYN1M, SYN1000M, SYN10000M")
-parser.add_argument('--start_batch', type=int, help="start_batch ID (inclusive), each batch = 100M vecs")
-parser.add_argument('--end_batch', type=int, help="end_batch ID (exclusive)")
 
 args = parser.parse_args()
 
@@ -46,11 +37,6 @@ def mmap_SYN_bvecs(fname, d=128):
     # vectors only, no vec_ID
     x = np.memmap(fname, dtype='uint8', mode='r')
     return x.reshape(-1, d)
-
-def mmap_bvecs(fname):
-    x = np.memmap(fname, dtype='uint8', mode='r')
-    d = x[:4].view('int32')[0]
-    return x.reshape(-1, d + 4)[:, 4:]
 
 def rate_limited_imap(f, l):
     'a thread pre-processes the next element'
@@ -77,13 +63,6 @@ gt_topK = 1000
 D = 128 # same as SIFT
 query_num = 10000
 
-CHANGE_RATIO = 0.1 # select 10% of bigann elements to adjust
-
-xb_bigann = mmap_bvecs('bigann/bigann_base.bvecs')
-xq_bigann = mmap_bvecs('bigann/bigann_query.bvecs')
-xt_bigann = mmap_bvecs('bigann/bigann_learn.bvecs')
-
-
 if dbsize < 100:
 
     """ Generate the dataset """
@@ -92,21 +71,9 @@ if dbsize < 100:
     if os.path.exists(base_vec_dir):
         print("Base data already exist, skip...")
     else:
-        num_vec = dbsize * 1000 * 1000 
-        num_elements = num_vec * D
-        mask = np.zeros(num_elements, dtype='uint8')
-        mask[:int(CHANGE_RATIO * num_elements)] = 1
         np.random.seed(seed=0)
-        np.random.shuffle(mask) 
-
-        # small delta, only 0~5
-        np.random.seed(seed=10000)
-        delta = (np.random.randint(0, 5, size=num_elements, dtype='uint8') * mask).reshape(-1, D).astype('uint8')
-        xb = xb_bigann[:num_vec] + delta
-
+        xb = np.random.randint(0, 256, size=dbsize * 1000 * 1000 * D, dtype='uint8')
         xb.tofile(base_vec_dir)
-
-        del mask
         del xb
         gc.collect()
 
@@ -117,8 +84,7 @@ if dbsize < 100:
         print("Learning data already exist, skip...")
     else:
         np.random.seed(seed=1)
-        num_vec = dbsize * 100 * 1000 # 10% of base vec
-        xt = delta[:num_vec] + xt_bigann[:num_vec]
+        xt = np.random.randint(0, 256, size=dbsize * 100 * 1000 * D,dtype='uint8')
         xt.tofile(learn_vec_dir)
         del xt
         gc.collect()
@@ -130,7 +96,7 @@ if dbsize < 100:
         print("Query data already exist, skip...")
     else:
         np.random.seed(seed=2)
-        xq = delta[:query_num] + xq_bigann
+        xq = np.random.randint(0, 256, size=query_num * D,dtype='uint8')
         xq.tofile(query_vec_dir)
         del xq
         gc.collect()
@@ -181,18 +147,6 @@ else: # dbsize >= 100
 
     """ Generate the dataset """
 
-    # mask for training set & query
-    num_vec =  100 * 1000 * 1000 # 100M at most
-    num_elements = num_vec * D
-    mask = np.zeros(num_elements, dtype='uint8')
-    mask[:int(CHANGE_RATIO * num_elements)] = 1
-    np.random.seed(seed=0)
-    np.random.shuffle(mask) 
-    # small delta, only 0~5
-    np.random.seed(seed=10000)
-    delta = (np.random.randint(0, 5, size=num_elements, dtype='uint8') * mask).reshape(-1, D).astype('uint8')
-
-
     # 10% traning set
     print("Generating learning data...")
     learn_vec_dir = os.path.join(dataset_dir, "learn.bvecs")
@@ -204,7 +158,7 @@ else: # dbsize >= 100
             num_vec = 100 * 1000 * 1000
         else:
             num_vec = dbsize * 100 * 1000
-        xt = delta[:num_vec] + xt_bigann[:num_vec]
+        xt = np.random.randint(0, 256, size=num_vec * D,dtype='uint8')
         xt.tofile(learn_vec_dir)
         del xt
         gc.collect()
@@ -216,42 +170,21 @@ else: # dbsize >= 100
         print("Query data already exist, skip...")
     else:
         np.random.seed(seed=2)
-        xq = delta[:query_num] + xq_bigann
+        xq = np.random.randint(0, 256, size=query_num * D,dtype='uint8')
         xq.tofile(query_vec_dir)
         del xq
         gc.collect()
 
-    if args.start_batch is not None: # inclusive
-        start_batch_id = args.start_batch
-    else:
-        start_batch_id = 0
-    
-    if args.end_batch is not None: # exclusive
-        end_batch_id = args.end_batch
-    else:
-        end_batch_id = db_batches
-
-    for batch_id in range(start_batch_id, end_batch_id):
+    for batch_id in range(db_batches):
 
         print("Generating base data... batch {} out of {}".format(batch_id, db_batches))
         base_vec_dir = os.path.join(dataset_dir, "base_{}_of_{}.bvecs".format(batch_id, db_batches))
         if os.path.exists(base_vec_dir):
             print("Training data already exist, skip...")
         else:
-            num_elements = dbsize_per_batch * D
-            mask = np.zeros(num_elements, dtype='uint8')
-            mask[:int(CHANGE_RATIO * num_elements)] = 1
             np.random.seed(seed=batch_id)
-            np.random.shuffle(mask) 
-
-            # small delta, only 0~5
-            np.random.seed(seed=10000 + batch_id)
-            delta = (np.random.randint(0, 5, size=num_elements, dtype='uint8') * mask).reshape(-1, D).astype('uint8')
-            xb = xb_bigann[:dbsize_per_batch] + delta
-
+            xb = np.random.randint(0, 256, size= dbsize_per_batch * D, dtype='uint8')
             xb.tofile(base_vec_dir)
-            del mask
-            del delta
             del xb
             gc.collect()
 
