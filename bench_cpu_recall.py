@@ -22,6 +22,7 @@ import faiss
 import pickle
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
+from datasets import read_deep_fbin, read_deep_ibin
 
 import argparse 
 parser = argparse.ArgumentParser()
@@ -133,13 +134,17 @@ if dbname.startswith('SIFT'):
 
     gt = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
 
-elif dbname == 'Deep1B':
-    xb = mmap_fvecs('deep1b/base.fvecs')
-    xq = mmap_fvecs('deep1b/deep1B_queries.fvecs')
-    xt = mmap_fvecs('deep1b/learn.fvecs')
-    # deep1B's train is is outrageously big
-    xt = xt[:10 * 1000 * 1000]
-    gt = ivecs_read('deep1b/deep1B_groundtruth.ivecs')
+elif dbname.startswith('Deep'):
+
+    assert dbname[:4] == 'Deep' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[4:-1]) # in million
+    xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
+    xq = read_deep_fbin('deep1b/query.public.10K.fbin')
+    xt = read_deep_fbin('deep1b/learn.350M.fbin')
+
+    gt = read_deep_ibin('deep1b/gt_idx_{}M.ibin'.format(dbsize))
+
 
 else:
     print('unknown dataset', dbname, file=sys.stderr)

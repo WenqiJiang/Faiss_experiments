@@ -36,7 +36,6 @@ def SYN_mmap_bvecs(fname):
     d = 128
     return x.reshape(-1, d)
 
-
 def SYN_ivecs_read(fname):
     a = np.fromfile(fname, dtype='int64')
     d = 1000 # topK=1000 results
@@ -159,14 +158,14 @@ def get_populated_index_multi_server(total_index_num, index_ID, xb_part, start_v
             print("Warning: when doing multi-partition training, the vector quantizer"
              " must be trained using the first partition before other indexes are constructed")
             index = get_trained_index(load_only=True)
-        i0 = 0
+        i0 = start_vec_ID
         t0 = time.time()
         for xs in matrix_slice_iterator(xb_part, 100000):
             i1 = i0 + xs.shape[0]
             print('\radd %d:%d, %.3f s' % (i0, i1, time.time() - t0), end=' ')
             sys.stdout.flush()
             # index.add(xs)
-            index.add_with_ids(xs, np.arange(start_vec_ID + i0, start_vec_ID + i1))
+            index.add_with_ids(xs, np.arange(i0, i1))
             i0 = i1
         print()
         print("Add done in %.3f s" % (time.time() - t0))

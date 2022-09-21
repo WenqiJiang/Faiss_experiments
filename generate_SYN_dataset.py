@@ -95,9 +95,13 @@ if dbsize < 100:
         num_vec = dbsize * 1000 * 1000 
         num_elements = num_vec * D
         mask = np.zeros(num_elements, dtype='uint8')
-        mask[:int(CHANGE_RATIO * num_elements)] = 1
+        sub_mask_elements = 1000 * D # shuffling an big matrix is too expensive, thus copy this small mask
+        sub_mask = np.zeros(sub_mask_elements)
+        sub_mask[:int(CHANGE_RATIO * sub_mask_elements)] = 1
         np.random.seed(seed=0)
-        np.random.shuffle(mask) 
+        np.random.shuffle(sub_mask) 
+        for i in range(int(num_elements / sub_mask_elements)):
+            mask[i * sub_mask_elements: (i + 1) * sub_mask_elements] = sub_mask
 
         # small delta, only 0~5
         np.random.seed(seed=10000)
@@ -185,9 +189,13 @@ else: # dbsize >= 100
     num_vec =  100 * 1000 * 1000 # 100M at most
     num_elements = num_vec * D
     mask = np.zeros(num_elements, dtype='uint8')
-    mask[:int(CHANGE_RATIO * num_elements)] = 1
+    sub_mask_elements = 1000 * D # shuffling an big matrix is too expensive, thus copy this small mask
+    sub_mask = np.zeros(sub_mask_elements)
+    sub_mask[:int(CHANGE_RATIO * sub_mask_elements)] = 1
     np.random.seed(seed=0)
-    np.random.shuffle(mask) 
+    np.random.shuffle(sub_mask) 
+    for i in range(int(num_elements / sub_mask_elements)):
+        mask[i * sub_mask_elements: (i + 1) * sub_mask_elements] = sub_mask
     # small delta, only 0~5
     np.random.seed(seed=10000)
     delta = (np.random.randint(0, 5, size=num_elements, dtype='uint8') * mask).reshape(-1, D).astype('uint8')
@@ -240,9 +248,13 @@ else: # dbsize >= 100
         else:
             num_elements = dbsize_per_batch * D
             mask = np.zeros(num_elements, dtype='uint8')
-            mask[:int(CHANGE_RATIO * num_elements)] = 1
+            sub_mask_elements = 1000 * D # shuffling an big matrix is too expensive, thus copy this small mask
+            sub_mask = np.zeros(sub_mask_elements)
+            sub_mask[:int(CHANGE_RATIO * sub_mask_elements)] = 1
             np.random.seed(seed=batch_id)
-            np.random.shuffle(mask) 
+            np.random.shuffle(sub_mask) 
+            for i in range(int(num_elements / sub_mask_elements)):
+                mask[i * sub_mask_elements: (i + 1) * sub_mask_elements] = sub_mask
 
             # small delta, only 0~5
             np.random.seed(seed=10000 + batch_id)

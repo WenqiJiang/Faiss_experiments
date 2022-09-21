@@ -13,6 +13,8 @@ import faiss
 from multiprocessing.dummy import Pool as ThreadPool
 from matplotlib import pyplot
 import argparse 
+sys.path.insert(0,'..') # to include parent dir
+from datasets import read_deep_fbin, read_deep_ibin
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dbname', type=str, default=0, help="dataset name, e.g., SIFT100M")
@@ -106,13 +108,21 @@ if dbname.startswith('SIFT'):
 
     gt = ivecs_read('../bigann/gnd/idx_%dM.ivecs' % dbsize)
 
-elif dbname == 'Deep1B':
-    xb = mmap_fvecs('../deep1b/base.fvecs')
-    xq = mmap_fvecs('../deep1b/deep1B_queries.fvecs')
-    xt = mmap_fvecs('../deep1b/learn.fvecs')
-    # deep1B's train is is outrageously big
-    xt = xt[:10 * 1000 * 1000]
-    gt = ivecs_read('../deep1b/deep1B_groundtruth.ivecs')
+
+elif dbname.startswith('Deep'):
+
+    assert dbname[:4] == 'Deep' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[4:-1]) # in million
+    xb = read_deep_fbin('../deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
+    xq = read_deep_fbin('../deep1b/query.public.10K.fbin')
+    xt = read_deep_fbin('../deep1b/learn.350M.fbin')
+
+    gt = read_deep_ibin('../deep1b/gt_idx_{}M.ibin'.format(dbsize))
+
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
 
 else:
     print('unknown dataset', dbname, file=sys.stderr)
@@ -153,7 +163,7 @@ if OPQ_enable:
     """ Get OPQ Matrix """
     linear_trans = faiss.downcast_VectorTransform(index.chain.at(0))
     OPQ_mat = faiss.vector_to_array(linear_trans.A)
-    OPQ_mat = OPQ_mat.reshape((128,128))
+    OPQ_mat = OPQ_mat.reshape((d,d))
     OPQ_mat = np.array(OPQ_mat, dtype=np.float32)
     print("OPQ mat: {}\nshape: {}\n".format(OPQ_mat, OPQ_mat.shape))
 
