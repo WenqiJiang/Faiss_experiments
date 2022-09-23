@@ -5,7 +5,11 @@ It evaluates different combinations of batch size (qbs) and nprobe, then evaluat
 
 To use the script:
 
-python bench_cpu_performance_OSDI.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_trade_off.pkl' --overwrite 0
+e.g., measure the performance of a single server
+python bench_cpu_performance_OSDI.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_trade_off.pkl' --record_latency_distribution 0 --overwrite 0
+
+e.g., measure the latency distribution (for distributed search QPS measurement)
+python bench_cpu_performance_OSDI.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution_server0.pkl' --record_latency_distribution 1 --overwrite 0
 
 The results are saved as an dictionary which has the following format:
     dict[dbname][index_key][qbs][nprobe] contains several components:
@@ -18,6 +22,9 @@ The results are saved as an dictionary which has the following format:
     dict[dbname][index_key][qbs][nprobe]["QPS"]
     dict[dbname][index_key][qbs][nprobe]["latency@50"] in ms
     dict[dbname][index_key][qbs][nprobe]["latency@95"] in ms
+
+    optional (record_latency_distribution == 1): 
+    dict[dbname][index_key][qbs][nprobe]["latency_distribution"] -> a list of latency (of batches) in ms
 """
 
 from __future__ import print_function
@@ -37,6 +44,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name, e.g., SIFT100M")
 parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
 parser.add_argument('--overwrite', type=int, default=0, help="whether to overwrite existed performance, by default, skip existed settings")
+parser.add_argument('--record_latency_distribution', type=int, default=0, help="whether to measure")
 parser.add_argument('--performance_dict_dir', type=str, default='./cpu_performance_result/cpu_throughput_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> throughput (QPS)")
 
 topK = 100
@@ -265,7 +273,7 @@ ivf_stats = faiss.cvar.indexIVF_stats
 
 # print(' ' * len('nprobe=32'), '\t', 'R1@1\t R1@10\t R1@100\t R@1\t R@10\t R@100\t QPS\t latency(50%)/ms\t latency(95%)/ms\t')
 
-query_vecs = np.reshape(xq, (nq,1,128))
+query_vecs = np.reshape(xq, (nq,1,d))
 
 
 def compute_recall(neighbors, true_neighbors):
@@ -345,6 +353,9 @@ for qbs in qbs_list:
             elif rank == 100:
                 print("R@100 = %.4f" % R_at_K, end='\t')
                 dict_perf[dbname][index_key][qbs][nprobe]["R@100"] = R_at_K
+
+        if args.record_latency_distribution: 
+            dict_perf[dbname][index_key][qbs][nprobe]["latency_distribution"] = np.array(t_query_list) * 1000
 
         total_time = np.sum(np.array(t_query_list)) 
         QPS = nq / total_time
