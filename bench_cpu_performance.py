@@ -7,6 +7,8 @@ There are 2 ways to use the script:
 
 python bench_cpu_performance.py --on_disk 0 --dbname SIFT100M --index_key IVF4096,PQ16 --topK 10 --qbs 1 --parametersets 'nprobe=1 nprobe=32'
 
+optional: --nthreads 1
+
 (2) Load the dictionary that maps DB & index & topK & recall to nprobe, evaluate them all, then save the results
 
 python bench_cpu_performance.py --on_disk 0 --qbs 1 --load_from_dict 1 --overwrite 0 --nprobe_dict_dir './recall_info/cpu_recall_index_nprobe_pairs_SIFT100M.pkl' --throughput_dict_dir './cpu_performance_result/cpu_throughput_SIFT100M.pkl' --response_time_dict_dir './cpu_performance_result/cpu_response_time_SIFT100M.pkl' 
@@ -29,6 +31,7 @@ parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name
 parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
 parser.add_argument('--topK', type=int, default=10, help="return topK most similar vector, related to recall, e.g., R@10=50perc or R@100=80perc")
 parser.add_argument('--qbs', type=int, default=1, help="query batch size")
+parser.add_argument('--nthreads', type=int, default=None, help="number of threads, if not set, use the max")
 parser.add_argument('--parametersets', type=str, default='nprobe=1', help="a string of nprobes, e.g., 'nprobe=1 nprobe=32'")
 
 
@@ -173,6 +176,11 @@ def get_populated_index():
 # Perform searches
 #################################################################
 
+
+# we do queries in a single thread
+if args.nthreads:
+    faiss.omp_set_num_threads(args.nthreads)
+
 if not args.load_from_dict: # Mode A: using arguments passed by the arguments
 
     dbname = args.dbname
@@ -217,9 +225,6 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
     # a static C++ object that collects statistics about searches
     ivfpq_stats = faiss.cvar.indexIVFPQ_stats
     ivf_stats = faiss.cvar.indexIVF_stats
-
-    # we do queries in a single thread
-    # faiss.omp_set_num_threads(1)
 
     print(' ' * len(parametersets[0]), '\t', 'R@{}     time'.format(topK))
 
