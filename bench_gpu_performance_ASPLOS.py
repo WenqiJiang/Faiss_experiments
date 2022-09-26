@@ -322,9 +322,9 @@ if dbname:
         sys.exit(1)
 
 
-    print("sizes: B %s Q %s T %s gt %s" % (
-        xb.shape, xq.shape, xt.shape,
-        gt.shape if gt is not None else None))
+    # print("sizes: B %s Q %s T %s gt %s" % (
+    #     xb.shape, xq.shape, xt.shape,
+    #     gt.shape if gt is not None else None))
 
 
 
