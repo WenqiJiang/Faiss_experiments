@@ -436,7 +436,7 @@ def get_preprocessor():
             print("load", preproc_cachefile)
             preproc = faiss.read_VectorTransform(preproc_cachefile)
     else:
-        d = xb.shape[1]
+        d = xq.shape[1]
         preproc = IdentPreproc(d)
     return preproc
 
