@@ -5,11 +5,13 @@ It evaluates different combinations of batch size (qbs) and nprobe, then evaluat
 
 To use the script:
 
+nrun = number of runs to average the performance (the GPU runtime is not very stable)
+
 e.g., measure the performance of a single server
-python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4  -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
+python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
 
 e.g., measure the latency distribution
-python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4  -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -overwrite 0
+python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -overwrite 0
 
 The results are saved as an dictionary which has the following format:
     dict[dbname][index_key][ngpu][qbs][nprobe] contains several components:
@@ -104,10 +106,11 @@ dbname = None
 index_key = None
 
 ngpu = faiss.get_num_gpus()
+nrun = 1
 
 replicas = 1  # nb of replicas of sharded dataset
 # qbs_list = [1]
-qbs_list = [1, 2, 4, 8, 16, 32, 64]
+qbs_list = [1, 2, 4, 8, 16, 32, 64, 128, 256]
 qbs_list.reverse() # using large batches first since they are faster
 
 nprobes = [1 << l for l in range(8)] # 1 to 128
@@ -141,6 +144,7 @@ while args:
     a = args.pop(0)
     if a == '-h': usage()
     elif a == '-ngpu':      ngpu = int(args.pop(0))
+    elif a == '-nrun':      nrun = int(args.pop(0))
     elif a == '-startgpu':  startgpu = int(args.pop(0)) # Wenqi, the id the first GPU used, e.g., 1 -> skip GPU0
     elif a == '-R':         replicas = int(args.pop(0))
     elif a == '-noptables': use_precomputed_tables = False
@@ -565,7 +569,6 @@ def eval_dataset(index, preproc):
 
     for qbs in qbs_list:
         
-
         print("batch size: ", qbs)
         sys.stdout.flush()
         if qbs not in dict_perf[dbname][index_key][ngpu]:
@@ -578,29 +581,31 @@ def eval_dataset(index, preproc):
 
             if nprobe not in dict_perf[dbname][index_key][ngpu][qbs]:
                 dict_perf[dbname][index_key][ngpu][qbs][nprobe] = dict()
+            else:
+                continue
 
-            t_query_list = [] # in sec
+            t_query_list = [] # in sec, for all runs (e.g., 5 runs per nprobe)
             
             I = np.empty((nq, topK), dtype='int32')
             D = np.empty((nq, topK), dtype='float32')
 
-            inter_res = ''
+            for run_iter in range(nrun):
 
-            for i0, xs in dataset_iterator(xq, preproc, qbs):
-                # print('\r%d/%d (%.3f s%s)   ' % (
-                #     i0, nq, time.time() - t0, inter_res), end=' ')
-                # sys.stdout.flush()
+                for i0, xs in dataset_iterator(xq, preproc, qbs):
+                    # print('\r%d/%d (%.3f s%s)   ' % (
+                    #     i0, nq, time.time() - t0, inter_res), end=' ')
+                    # sys.stdout.flush()
 
-                i1 = i0 + xs.shape[0]
-                # Wenqi: debugging memory overflow
-                # print(xs.shape)
-                t_q_start = time.time()
-                Di, Ii = index.search(xs, topK)
-                t_q_end = time.time()
-                t_query_list.append(t_q_end - t_q_start)
+                    i1 = i0 + xs.shape[0]
+                    # Wenqi: debugging memory overflow
+                    # print(xs.shape)
+                    t_q_start = time.time()
+                    Di, Ii = index.search(xs, topK)
+                    t_q_end = time.time()
+                    t_query_list.append(t_q_end - t_q_start)
 
-                I[i0:i1] = Ii
-                D[i0:i1] = Di
+                    I[i0:i1] = Ii
+                    D[i0:i1] = Di
                     
             n_ok = (I[:, :topK] == gt[:, :1]).sum()
             for rank in 1, 10, 100: # R1@K
@@ -631,7 +636,7 @@ def eval_dataset(index, preproc):
                 dict_perf[dbname][index_key][ngpu][qbs][nprobe]["latency_distribution"] = np.array(t_query_list) * 1000
 
             total_time = np.sum(np.array(t_query_list)) 
-            QPS = nq / total_time
+            QPS = nrun * nq / total_time
             print("QPS = {:.4f}".format(QPS), end='\t')
             dict_perf[dbname][index_key][ngpu][qbs][nprobe]["QPS"] = QPS
             
