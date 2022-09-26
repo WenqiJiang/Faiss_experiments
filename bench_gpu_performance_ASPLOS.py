@@ -579,7 +579,7 @@ def eval_dataset(index, preproc):
             ps.set_index_parameter(index, 'nprobe', nprobe)
             print("nprobe: ", nprobe)
 
-            if nprobe not in dict_perf[dbname][index_key][ngpu][qbs]:
+            if nprobe not in dict_perf[dbname][index_key][ngpu][qbs] or overwrite:
                 dict_perf[dbname][index_key][ngpu][qbs][nprobe] = dict()
             else:
                 continue
