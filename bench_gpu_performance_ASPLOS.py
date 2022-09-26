@@ -6,10 +6,10 @@ It evaluates different combinations of batch size (qbs) and nprobe, then evaluat
 To use the script:
 
 e.g., measure the performance of a single server
-python bench_gpu_OSDI.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4  -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
+python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4  -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
 
 e.g., measure the latency distribution
-python bench_gpu_OSDI.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4  -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -overwrite 0
+python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4  -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -overwrite 0
 
 The results are saved as an dictionary which has the following format:
     dict[dbname][index_key][ngpu][qbs][nprobe] contains several components:
@@ -299,7 +299,7 @@ if dbname:
         # xt = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, 'bigann/bigann_learn.bvecs')))
 
         # trim xb to correct size
-        xb = xb[:dbsize * 1000 * 1000]
+        # xb = xb[:dbsize * 1000 * 1000]
 
         gt = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, 'bigann/gnd/idx_%dM.ivecs' % dbsize)))
 
@@ -310,7 +310,7 @@ if dbname:
         dbsize = int(dbname[4:-1]) # in million
         # xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
         xq = read_deep_fbin('deep1b/query.public.10K.fbin')
-        xt = read_deep_fbin('deep1b/learn.350M.fbin')
+        # xt = read_deep_fbin('deep1b/learn.350M.fbin')
 
         gt = read_deep_ibin('deep1b/gt_idx_{}M.ibin'.format(dbsize))
 

@@ -6,10 +6,10 @@ It evaluates different combinations of batch size (qbs) and nprobe, then evaluat
 To use the script:
 
 e.g., measure the performance of a single server
-python bench_cpu_performance_OSDI.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_trade_off.pkl' --record_latency_distribution 0 --overwrite 0
+python bench_cpu_performance_ASPLOS.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_trade_off.pkl' --record_latency_distribution 0 --overwrite 0
 
 e.g., measure the latency distribution (for distributed search QPS measurement)
-python bench_cpu_performance_OSDI.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution_server0.pkl' --record_latency_distribution 1 --overwrite 0
+python bench_cpu_performance_ASPLOS.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution_server0.pkl' --record_latency_distribution 1 --overwrite 0
 
 The results are saved as an dictionary which has the following format:
     dict[dbname][index_key][qbs][nprobe] contains several components:
@@ -242,9 +242,9 @@ elif dbname.startswith('Deep'):
     assert dbname[:4] == 'Deep' 
     assert dbname[-1] == 'M'
     dbsize = int(dbname[4:-1]) # in million
-    xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
+    # xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
     xq = read_deep_fbin('deep1b/query.public.10K.fbin')
-    xt = read_deep_fbin('deep1b/learn.350M.fbin')
+    # xt = read_deep_fbin('deep1b/learn.350M.fbin')
 
     gt = read_deep_ibin('deep1b/gt_idx_{}M.ibin'.format(dbsize))
 
