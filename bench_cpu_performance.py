@@ -23,6 +23,7 @@ import re
 import faiss
 import pickle
 from multiprocessing.dummy import Pool as ThreadPool
+from datasets import read_deep_fbin, read_deep_ibin
 from datasets import ivecs_read
 import argparse 
 parser = argparse.ArgumentParser()
@@ -209,6 +210,20 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
         xq = np.array(xq, dtype=np.float32)
         gt = np.array(gt, dtype=np.int32)
 
+    elif dbname.startswith('Deep'):
+
+        assert dbname[:4] == 'Deep' 
+        assert dbname[-1] == 'M'
+        dbsize = int(dbname[4:-1]) # in million
+        # xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
+        xq = read_deep_fbin('deep1b/query.public.10K.fbin')
+        # xt = read_deep_fbin('deep1b/learn.350M.fbin')
+
+        gt = read_deep_ibin('deep1b/gt_idx_{}M.ibin'.format(dbsize))
+
+        # Wenqi: load xq to main memory and reshape
+        xq = xq.astype('float32').copy()
+        xq = np.array(xq, dtype=np.float32)
     else:
         print('unknown dataset', dbname, file=sys.stderr)
         sys.exit(1)
