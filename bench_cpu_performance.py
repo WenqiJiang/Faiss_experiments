@@ -243,7 +243,7 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
 
     print(' ' * len(parametersets[0]), '\t', 'R@{}     time'.format(topK))
 
-    query_vecs = np.reshape(xq, (nq,1,128))
+    query_vecs = np.reshape(xq, (nq,1,d))
 
     for param in parametersets:
         print(param, '\t', end=' ')
@@ -358,7 +358,7 @@ else: # Mode B: using dictionary as input, save throughput to another dict
             ivfpq_stats = faiss.cvar.indexIVFPQ_stats
             ivf_stats = faiss.cvar.indexIVF_stats
             # faiss.omp_set_num_threads(1)
-            query_vecs = np.reshape(xq, (nq,1,128))
+            query_vecs = np.reshape(xq, (nq,1,d))
 
             for topK in d_nprobes[dbname][index_key]:
 
