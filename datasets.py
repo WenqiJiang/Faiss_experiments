@@ -51,6 +51,27 @@ def evaluate(index, xq, gt, k):
 
     return (t1 - t0) * 1000.0 / nq, recalls
 
+
+def mmap_bvecs_FB(fname, num_vec=int(1e9)):
+    """
+    for both FB SimNetSearch query and base vectors
+    8 bytes header, uint8 representation
+    first 4 bytes: number of vec (int32) == 1e9
+    second 4 bytes: number of dim (int32) == 256
+    """
+    x = np.memmap(fname, dtype='uint8', mode='r')
+    d = x[4:8].view('int32')[0]
+    x = x[8: 8 + num_vec * d]
+    return x.reshape(-1, d)
+
+def mmap_bvecs_SBERT(fname, num_vec=int(1e6)):
+    """
+    SBERT, 384 dim, no header
+    """
+    d = 384
+    x = np.memmap(fname, dtype='float32', mode='r')
+    return x.reshape(-1, d)
+
 def read_deep_fbin(filename):
     """
     Read *.fbin file that contains float32 vectors
@@ -70,9 +91,9 @@ def read_deep_fbin(filename):
     arr = np.memmap(filename, dtype=np.float32, offset=8, mode='r')
     return arr.reshape(nvecs, dim)
 
-def read_deep_ibin(filename):
+def read_deep_ibin(filename, dtype='int32'):
     """
-    Read *.ibin file that contains int32 vectors
+    Read *.ibin file that contains int32 or int64 vectors
 
     All embedding data is stored in .fbin format:
     [num_vectors (uint32), vector_dim (uint32), vector_array (float32)]
@@ -83,10 +104,9 @@ def read_deep_ibin(filename):
     https://research.yandex.com/datasets/biganns
     https://pastebin.com/BAf6bM5L
     """
-
     with open(filename, "rb") as f:
         nvecs, dim = np.fromfile(f, count=2, dtype=np.int32)
-    arr = np.fromfile(filename, dtype=np.int32, offset=8)
+    arr = np.fromfile(filename, dtype=dtype, offset=8)
     return arr.reshape(nvecs, dim)
 
 
@@ -104,8 +124,8 @@ def write_deep_fbin(filename, vecs):
         vecs.astype('float32').flatten().tofile(f)
  
         
-def write_deep_ibin(filename, vecs):
-    """ Write an array of int32 vectors to *.ibin file
+def write_deep_ibin(filename, vecs, dtype='int32'):
+    """ Write an array of int32 or int64 vectors to *.ibin file
     Args:
         :param filename (str): path to *.ibin file
         :param vecs (numpy.ndarray): array of int32 vectors to write
@@ -115,4 +135,10 @@ def write_deep_ibin(filename, vecs):
         nvecs, dim = vecs.shape
         f.write(struct.pack('<i', nvecs))
         f.write(struct.pack('<i', dim))
-        vecs.astype('int32').flatten().tofile(f)
+        if dtype == 'int32':
+            vecs.astype('int32').flatten().tofile(f)
+        elif dtype == 'int64':
+            vecs.astype('int64').flatten().tofile(f)
+        else:
+            print("Unsupported datatype ", dtype)
+            raise ValueError

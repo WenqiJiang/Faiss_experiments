@@ -44,7 +44,11 @@ def draw_profiling_plot(
     if mark_transpose: # 4~5 except transpose
         y_stage_4_5 = np.array(y_stage_4_5) - np.array(y_transpose)
 
-    plt.style.use('grayscale')
+    style = 'seaborn-pastel'
+    # style = 'seaborn-deep'
+    #style = 'ggplot'
+    #style = 'grayscale'
+    plt.style.use(style)
 
     x = np.arange(len(x_labels))  # the label locations
     width = 0.4  # the width of the bars
@@ -62,15 +66,26 @@ def draw_profiling_plot(
     bottom_stage_6 = y_stage_4_5 + bottom_stage_4_5
     bottom_other = y_stage_6 + bottom_stage_6
 
-    rects_stage_1_2 = ax.bar(x, y_stage_1_2, width, bottom=bottom_stage_1_2, color='#000000')
-    rects_stage_3 = ax.bar(x, y_stage_3, width, bottom=bottom_stage_3, color='#555555')
-    if mark_transpose:
-        rects_transpose = ax.bar(x, y_transpose, width, bottom=bottom_transpose, color='#999999')
-        rects_stage_4_5 = ax.bar(x, y_stage_4_5, width, bottom=bottom_stage_4_5, color='#777777')
+    if style == 'grayscale':
+        rects_stage_1_2 = ax.bar(x, y_stage_1_2, width, bottom=bottom_stage_1_2, color='#000000')
+        rects_stage_3 = ax.bar(x, y_stage_3, width, bottom=bottom_stage_3, color='#555555')
+        if mark_transpose:
+            rects_transpose = ax.bar(x, y_transpose, width, bottom=bottom_transpose, color='#999999')
+            rects_stage_4_5 = ax.bar(x, y_stage_4_5, width, bottom=bottom_stage_4_5, color='#777777')
+        else:
+            rects_stage_4_5 = ax.bar(x, y_stage_4_5, width, bottom=bottom_stage_4_5, color='#888888')
+        rects_stage_6 = ax.bar(x, y_stage_6, width, bottom=bottom_stage_6, color='#AAAAAA')
+        rects_other = ax.bar(x, y_other, width, bottom=bottom_other, color='#CCCCCC')
     else:
-        rects_stage_4_5 = ax.bar(x, y_stage_4_5, width, bottom=bottom_stage_4_5, color='#888888')
-    rects_stage_6 = ax.bar(x, y_stage_6, width, bottom=bottom_stage_6, color='#AAAAAA')
-    rects_other = ax.bar(x, y_other, width, bottom=bottom_other, color='#CCCCCC')
+        rects_stage_1_2 = ax.bar(x, y_stage_1_2, width, bottom=bottom_stage_1_2)
+        rects_stage_3 = ax.bar(x, y_stage_3, width, bottom=bottom_stage_3)
+        if mark_transpose:
+            rects_transpose = ax.bar(x, y_transpose, width, bottom=bottom_transpose)
+            rects_stage_4_5 = ax.bar(x, y_stage_4_5, width, bottom=bottom_stage_4_5)
+        else:
+            rects_stage_4_5 = ax.bar(x, y_stage_4_5, width, bottom=bottom_stage_4_5)
+        rects_stage_6 = ax.bar(x, y_stage_6, width, bottom=bottom_stage_6)
+        rects_other = ax.bar(x, y_other, width, bottom=bottom_other)
 
 
     label_font = 10
@@ -87,15 +102,23 @@ def draw_profiling_plot(
 
 
     if mark_transpose:
+        if style == 'grayscale':
+            facecolor = 'white'
+        else:
+            facecolor = 'black'
         ax.legend([rects_stage_1_2, rects_stage_3, rects_stage_4_5, rects_stage_6, rects_transpose, rects_other], 
             ["Stage OPQ + Stage IVFDist", "Stage SelCells", \
             "Stage BuildLUT + Stage PQDist", "Stage 6: SelK", "Transpose", "Other"], loc=(0.0, 1.05), ncol=2, \
-          facecolor='white', framealpha=1, frameon=False, fontsize=legend_font)
+          facecolor=facecolor, framealpha=1, frameon=False, fontsize=legend_font)
     else:
+        if style == 'grayscale':
+            facecolor = 'white'
+        else:
+            facecolor = 'black'
         ax.legend([rects_stage_1_2, rects_stage_4_5, rects_stage_3, rects_stage_6, rects_other], 
             ["Stage OPQ + Stage IVFDist", "Stage BuildLUT + Stage PQDist", "Stage SelCells", \
              "Stage 6: SelK", "Other"], loc=(0.0, 1.05), ncol=3, \
-          facecolor='white', framealpha=1, frameon=False, fontsize=legend_font)
+          facecolor=facecolor, framealpha=1, frameon=False, fontsize=legend_font)
 
 
     def number_single_bar(rects, bottom, annotate_threshold=20, color='black'):
@@ -110,8 +133,12 @@ def draw_profiling_plot(
                             ha='center', va='bottom', fontsize=tick_font, color=color)
 
 
-    number_single_bar(rects_stage_1_2, bottom_stage_1_2, annotate_threshold=20, color='white')
-    number_single_bar(rects_stage_3, bottom_stage_3, annotate_threshold=20, color='white')
+    if style == 'grayscale':
+        color = 'white'
+    else:
+        color = 'black'
+    number_single_bar(rects_stage_1_2, bottom_stage_1_2, annotate_threshold=20, color=color)
+    number_single_bar(rects_stage_3, bottom_stage_3, annotate_threshold=20, color=color)
     if mark_transpose:
         number_single_bar(rects_transpose, bottom_transpose, annotate_threshold=20, color='black')
     number_single_bar(rects_stage_4_5, bottom_stage_4_5, annotate_threshold=20, color='black')

@@ -26,7 +26,7 @@ import re
 import faiss
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
-from datasets import read_deep_fbin, read_deep_ibin
+from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_FB, mmap_bvecs_SBERT
 
 
 ### Wenqi: when loading the index, save it to numpy array, default: False
@@ -104,6 +104,46 @@ elif dbname.startswith('Deep'):
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
 
+elif dbname.startswith('FB'):
+
+    assert dbname[:2] == 'FB' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[2:-1]) # in million
+    xb = mmap_bvecs_FB('Facebook_SimSearchNet++/FB_ssnpp_database.u8bin', num_vec=dbsize * 1000 * 1000)
+    xq = mmap_bvecs_FB('Facebook_SimSearchNet++/FB_ssnpp_public_queries.u8bin', num_vec=10 * 1000)
+    xt = xb
+
+    # trim to correct size
+    xb = xb[:dbsize * 1000 * 1000]
+
+    gt = read_deep_ibin('Facebook_SimSearchNet++/gt_idx_{}M.ibin'.format(dbsize), dtype='int32')
+
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+elif dbname.startswith('SBERT'):
+    # FB1M to FB1000M
+    dataset_dir = './sbert'
+    assert dbname[:5] == 'SBERT' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[5:-1]) # in million
+    xb = mmap_bvecs_SBERT('sbert/sbert_concat_0_to_174.fvecs', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
+    xt = xb
+
+    # trim to correct size
+    xb = xb[:dbsize * 1000 * 1000]
+    
+    gt = read_deep_ibin('sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='int32')
+
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
+
 else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
@@ -115,6 +155,7 @@ print("sizes: B %s Q %s T %s gt %s" % (
 nq, d = xq.shape
 nb, d = xb.shape
 assert gt.shape[0] == nq
+print("nb: {}\tnq: {}\td: {}".format(nb, nq, d))
 
 
 #################################################################
@@ -267,7 +308,7 @@ if parametersets == ['autotune'] or parametersets == ['autotuneMT']:
 else:
 
     # we do queries in a single thread
-    faiss.omp_set_num_threads(1)
+    # faiss.omp_set_num_threads(1)
 
     print(' ' * len(parametersets[0]), '\t', 'R@1    R@10   R@100     time    %pass')
 
