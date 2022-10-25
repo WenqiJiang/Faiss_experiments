@@ -45,7 +45,9 @@ for shard_id in range(n_shards):
         dbname, index_key, n_shards, shard_id, performance_dict_dir_shard, record_latency_distribution, record_computed_results, overwrite)
     print("Running command:\n{}".format(cmd))
     os.system(cmd)
-    performance_dict_list.append(pickle.load(performance_dict_dir_shard))
+    with open(performance_dict_dir_shard, 'rb') as f:
+        dict_perf = pickle.load(f)
+        performance_dict_list.append(dict_perf)
 
 # Merge the performance results
 # Make sure these numbers to be the same with bench_cpu_performance_OSDI.py
