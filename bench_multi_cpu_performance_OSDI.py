@@ -40,11 +40,11 @@ assert performance_dict_dir[-4:] == '.pkl'
 # evaluate the performance results
 performance_dict_list = []
 for shard_id in range(n_shards):
-    performance_dict_dir_shard = performance_dict_dir[:-4] + 'shard_{}'.format(shard_id)
-    cmd = "python bench_cpu_performance_OSDI.py --dbname {} --index_key {} --n_shards {} --shard_id {} --performance_dict_dir {} --record_latency_distribution {} --record_computed_results{} --overwrite {}".format(
+    performance_dict_dir_shard = performance_dict_dir[:-4] + '_shard_{}'.format(shard_id)
+    cmd = "python bench_cpu_performance_OSDI.py --dbname {} --index_key {} --n_shards {} --shard_id {} --performance_dict_dir {} --record_latency_distribution {} --record_computed_results {} --overwrite {}".format(
         dbname, index_key, n_shards, shard_id, performance_dict_dir_shard, record_latency_distribution, record_computed_results, overwrite)
     print("Running command:\n{}".format(cmd))
-    os.sys(cmd)
+    os.system(cmd)
     performance_dict_list.append(pickle.load(performance_dict_dir_shard))
 
 # Merge the performance results
