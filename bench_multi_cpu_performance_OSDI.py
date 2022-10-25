@@ -2,6 +2,10 @@
 This script evaluate the recall and performance of multi-shard indexes.
 
 It first run the program on each CPU server, then gather the results to compute recall, and measure the performance.
+
+Example: 
+python bench_multi_cpu_performance_OSDI.py --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --performance_dict_dir './cpu_performance_result/m5.4xlarge_cpu_performance.pkl' --overwrite 1
+
 """
 
 from __future__ import print_function
@@ -49,3 +53,35 @@ topK = 100
 qbs_list = [1, 2, 4, 8, 16, 32, 64]
 qbs_list.reverse() # using large batches first since they are faster
 nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
+
+"""
+Input dict format
+
+The results are saved as an dictionary which has the following format:
+    dict[dbname][index_key][qbs][nprobe] contains several components:
+    dict[dbname][index_key][qbs][nprobe]["R1@1"]
+    dict[dbname][index_key][qbs][nprobe]["R1@10"]
+    dict[dbname][index_key][qbs][nprobe]["R1@100"]
+    dict[dbname][index_key][qbs][nprobe]["R@1"]
+    dict[dbname][index_key][qbs][nprobe]["R@10"]
+    dict[dbname][index_key][qbs][nprobe]["R@100"]
+    dict[dbname][index_key][qbs][nprobe]["QPS"]
+    dict[dbname][index_key][qbs][nprobe]["latency@50"] in ms
+    dict[dbname][index_key][qbs][nprobe]["latency@95"] in ms
+
+    optional (record_latency_distribution == 1): 
+    dict[dbname][index_key][qbs][nprobe]["latency_distribution"] -> a list of latency (of batches) in ms
+
+    optional (record_computed_results == 1):
+    dict[dbname][index_key][ngpu][qbs][nprobe]["I"] -> idx, shape = np.empty((nq, topK), dtype='int64')
+    dict[dbname][index_key][ngpu][qbs][nprobe]["D"] -> dist, shape = np.empty((nq, topK), dtype='float32')
+"""
+
+# for qbs in qbs_list:
+
+#     print("batch size: ", qbs)
+#     sys.stdout.flush()
+#     if qbs not in dict_perf[dbname][index_key]:
+#         dict_perf[dbname][index_key][qbs] = dict()
+
+#     for nprobe in nprobe_list:

@@ -6,13 +6,13 @@ It evaluates different combinations of batch size (qbs) and nprobe, then evaluat
 To use the script:
 
 e.g., measure the performance of a single server
-python bench_cpu_performance_ASPLOS.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_trade_off.pkl' --record_latency_distribution 0 --overwrite 0
+python bench_cpu_performance_OSDI.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_trade_off.pkl' --record_latency_distribution 0 --overwrite 0
 
 e.g., measure the latency distribution (for distributed search QPS measurement)
-python bench_cpu_performance_ASPLOS.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution.pkl' --record_latency_distribution 1 --overwrite 0
+python bench_cpu_performance_OSDI.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution.pkl' --record_latency_distribution 1 --overwrite 0
 
 e.g., measure the performance of one server of distributed search 
-python bench_cpu_performance_ASPLOS.py --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --shard_id 0 --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution_server0.pkl' --record_latency_distribution 1 --overwrite 0
+python bench_cpu_performance_OSDI.py --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --shard_id 0 --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution_server0.pkl' --record_latency_distribution 1 --overwrite 0
 
 
 The results are saved as an dictionary which has the following format:
@@ -29,6 +29,10 @@ The results are saved as an dictionary which has the following format:
 
     optional (record_latency_distribution == 1): 
     dict[dbname][index_key][qbs][nprobe]["latency_distribution"] -> a list of latency (of batches) in ms
+
+    optional (record_computed_results == 1):
+    dict[dbname][index_key][ngpu][qbs][nprobe]["I"] -> idx, shape = np.empty((nq, topK), dtype='int64')
+    dict[dbname][index_key][ngpu][qbs][nprobe]["D"] -> dist, shape = np.empty((nq, topK), dtype='float32')
 """
 
 from __future__ import print_function
@@ -51,6 +55,7 @@ parser.add_argument('--n_shards', type=int, default=None, help="e.g., can use 2 
 parser.add_argument('--shard_id', type=int, default=None, help="shard id, cooperate with n_shards")
 parser.add_argument('--overwrite', type=int, default=0, help="whether to overwrite existed performance, by default, skip existed settings")
 parser.add_argument('--record_latency_distribution', type=int, default=0, help="whether to measure")
+parser.add_argument('--record_computed_results', type=int, default=0, help="whether to measure")
 parser.add_argument('--performance_dict_dir', type=str, default='./cpu_performance_result/cpu_throughput_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> throughput (QPS)")
 
 topK = 100
@@ -346,7 +351,7 @@ for qbs in qbs_list:
 
         ps.set_index_parameters(index, param)
         
-        I = np.empty((nq, topK), dtype='int32')
+        I = np.empty((nq, topK), dtype='int64')
         D = np.empty((nq, topK), dtype='float32')
 
         ivfpq_stats.reset()
@@ -395,6 +400,10 @@ for qbs in qbs_list:
 
         if args.record_latency_distribution: 
             dict_perf[dbname][index_key][qbs][nprobe]["latency_distribution"] = np.array(t_query_list) * 1000
+
+        if args.record_computed_results:
+            dict_perf[dbname][index_key][qbs][nprobe]["I"] = I
+            dict_perf[dbname][index_key][qbs][nprobe]["D"] = D
 
         total_time = np.sum(np.array(t_query_list)) 
         QPS = nq / total_time
