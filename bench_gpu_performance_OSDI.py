@@ -343,6 +343,10 @@ if dbname:
 
         query_num = xq.shape[0]
         print('query shape: ', xq.shape)
+
+        # Wenqi: use true for >= 64 byte PQ code
+        # https://github.com/facebookresearch/faiss/wiki/Faiss-on-the-GPU
+        use_float16 = True 
     else:
         print('unknown dataset', dbname, file=sys.stderr)
         sys.exit(1)
