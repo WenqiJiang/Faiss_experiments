@@ -9,6 +9,7 @@ nrun = number of runs to average the performance (the GPU runtime is not very st
 
 e.g., measure the performance of a single server
 python bench_gpu_performance_OSDI.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
+python bench_gpu_performance_OSDI.py -dbname SBERT3000M -index_key IVF65536,PQ64  -ngpu 8 -nrun 5 -performance_dict_dir './gpu_performance_result/V100_32GB_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
 
 e.g., measure the latency distribution
 python bench_gpu_performance_OSDI.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -overwrite 0
@@ -320,6 +321,28 @@ if dbname:
         # Wenqi: load xq to main memory and reshape
         xq = xq.astype('float32').copy()
         xq = np.array(xq, dtype=np.float32)
+
+    elif dbname.startswith('SBERT'):
+        # FB1M to FB1000M
+        dataset_dir = './sbert'
+        assert dbname[:5] == 'SBERT' 
+        assert dbname[-1] == 'M'
+        dbsize = int(dbname[5:-1]) # in million
+        # xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
+        xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
+        # xt = xb
+
+        # trim to correct size
+        # xb = xb[:dbsize * 1000 * 1000]
+        
+        gt = read_deep_ibin('sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32')
+
+        # Wenqi: load xq to main memory and reshape
+        xq = xq.astype('float32').copy()
+        xq = np.array(xq, dtype=np.float32)
+
+        query_num = xq.shape[0]
+        print('query shape: ', xq.shape)
     else:
         print('unknown dataset', dbname, file=sys.stderr)
         sys.exit(1)
