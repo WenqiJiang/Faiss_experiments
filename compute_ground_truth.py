@@ -42,7 +42,7 @@ args = parser.parse_args()
 dbname = args.dbname
 batch_ID = args.batch_ID
 
-ID_dtype = 'int32' # works for dataset < 2B vectors
+ID_dtype = 'uint32' # works for dataset < 2B vectors
 gt_topK = 1000
 
 
@@ -90,7 +90,7 @@ elif dbname.startswith('SBERT'):
     assert dbname[:5] == 'SBERT' 
     assert dbname[-1] == 'M'
     dbsize = int(dbname[5:-1]) # in million
-    xb = mmap_bvecs_SBERT('sbert/sbert_concat_0_to_174.fvecs', num_vec=int(dbsize * 1e6))
+    xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
     xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
 
     # trim to correct size
@@ -108,6 +108,9 @@ else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
 
+nq, d = xq.shape
+nb, d = xb.shape
+print("nb: {}\tnq: {}\td: {}".format(nb, nq, d))
 
 def rate_limited_imap(f, l):
     'a thread pre-processes the next element'

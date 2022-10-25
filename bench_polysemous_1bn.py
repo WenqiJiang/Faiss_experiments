@@ -4,8 +4,11 @@ Example usage:
     <dbnam> e.g., SIFT100M
     <index_key> e.g., IVF4096,PQ16
     <parametersets>, e.g., 'nprobe=1 nprobe=32
-    python bench_polysemous_1bn.py 0 SIFT100M IVF4096,PQ16 nprobe=1 nprobe=32
-    python bench_polysemous_1bn.py 0 SIFT1M IVF4096,Flat nprobe=1 nprobe=32
+    python bench_polysemous_1bn.py --on_disk 0 --dbname SIFT100M --index_key IVF4096,PQ16 --parametersets 'nprobe=1 nprobe=32'
+    python bench_polysemous_1bn.py --on_disk 0 --dbname SIFT1M --index_key IVF4096,Flat --parametersets 'nprobe=1 nprobe=32'
+For large dataset that needs multiple servers / FPGAs for the search, using the shard option (need to add populated index shard by shard), e.g.:
+    python bench_polysemous_1bn.py --on_disk 0 --dbname SBERT1000M --index_key IVF32768,PQ64 --n_shards 2 --shard_id 1 --parametersets 'nprobe=1 nprobe=32'
+    python bench_polysemous_1bn.py --on_disk 0 --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --shard_id 3 --parametersets 'nprobe=1 nprobe=32'
 
 Note! Use on_disk = 1 only when
     (1) the trained index is built in memory (not by ondisk merge)
@@ -28,6 +31,22 @@ from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
 from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_FB, mmap_bvecs_SBERT
 
+import argparse 
+parser = argparse.ArgumentParser()
+parser.add_argument('--on_disk', type=int, default=0, help="0 -> search in memory; 1 -> search on disk based on mmap")
+parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name, e.g., SIFT100M")
+parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
+parser.add_argument('--n_shards', type=int, default=None, help="e.g., can use 2 or 4 shards for large datasets")
+parser.add_argument('--shard_id', type=int, default=None, help="shard id, cooperate with n_shards")
+parser.add_argument('--parametersets', type=str, default='nprobe=1', help="a string of nprobes, e.g., 'nprobe=1 nprobe=32'")
+
+args = parser.parse_args()
+on_disk = args.on_disk
+dbname = args.dbname
+index_key = args.index_key
+n_shards = args.n_shards
+shard_id = args.shard_id
+parametersets = args.parametersets.split() # split nprobe argument string by space
 
 ### Wenqi: when loading the index, save it to numpy array, default: False
 save_numpy_index = False
@@ -48,22 +67,17 @@ def mmap_bvecs(fname):
     return x.reshape(-1, d + 4)[:, 4:]
 
 
-#################################################################
-# Bookkeeping
-#################################################################
-
-on_disk       = int(sys.argv[1])
-dbname        = sys.argv[2]
-index_key     = sys.argv[3]
-parametersets = sys.argv[4:]
-
 if not on_disk:
     io_flags = 0
 else:
     io_flags = faiss.IO_FLAG_MMAP
 print("io_flags: ", io_flags)
 
-tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
+
+if n_shards is not None and shard_id is not None:
+    tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}_{}shards'.format(dbname, index_key, n_shards)
+else:
+    tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 
 if not os.path.isdir(tmpdir):
     print("%s does not exist, creating it" % tmpdir)
@@ -128,14 +142,14 @@ elif dbname.startswith('SBERT'):
     assert dbname[:5] == 'SBERT' 
     assert dbname[-1] == 'M'
     dbsize = int(dbname[5:-1]) # in million
-    xb = mmap_bvecs_SBERT('sbert/sbert_concat_0_to_174.fvecs', num_vec=int(dbsize * 1e6))
+    xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
     xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
     xt = xb
 
     # trim to correct size
     xb = xb[:dbsize * 1000 * 1000]
     
-    gt = read_deep_ibin('sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='int32')
+    gt = read_deep_ibin('sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32')
 
     # Wenqi: load xq to main memory and reshape
     xq = xq.astype('float32').copy()
@@ -148,6 +162,11 @@ else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
 
+
+if n_shards is not None and shard_id is not None:
+    assert int(dbsize * 1e6) % n_shards == 0
+    size_per_shard = int(int(dbsize * 1e6) / n_shards)
+    xb = xb[shard_id * size_per_shard: (shard_id + 1) * size_per_shard]
 
 print("sizes: B %s Q %s T %s gt %s" % (
     xb.shape, xq.shape, xt.shape, gt.shape))
@@ -235,18 +254,26 @@ def matrix_slice_iterator(x, bs):
 
 def get_populated_index():
 
-    filename = "%s/%s_%s_populated.index" % (
-        tmpdir, dbname, index_key)
+    if n_shards is not None and shard_id is not None:
+        print("n_shards: {}\tshard_id".format(n_shards, shard_id))
+        filename = "%s/%s_%s_populated_shard_%s.index" % (
+            tmpdir, dbname, index_key, str(shard_id))
+    else:
+        filename = "%s/%s_%s_populated.index" % (
+            tmpdir, dbname, index_key)
 
     if not os.path.exists(filename):
         index = get_trained_index()
-        i0 = 0
+        if n_shards is not None and shard_id is not None:
+            i0 = size_per_shard * shard_id
+        else:
+            i0 = 0
         t0 = time.time()
         for xs in matrix_slice_iterator(xb, 100000):
             i1 = i0 + xs.shape[0]
             print('\radd %d:%d, %.3f s' % (i0, i1, time.time() - t0), end=' ')
             sys.stdout.flush()
-            index.add(xs)
+            index.add_with_ids(xs, np.arange(i0, i1))
             i0 = i1
         print()
         print("Add done in %.3f s" % (time.time() - t0))

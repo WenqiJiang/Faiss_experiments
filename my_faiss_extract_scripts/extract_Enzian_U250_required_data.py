@@ -2,7 +2,8 @@
 OPQ not supported 
 
 Usage e.g.: 
-python extract_Enzian_U250_required_data.py --dbname SIFT100M --index_key IVF8192,PQ16 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT100M_IVF8192,PQ16' --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SIFT100M_IVF8192,PQ16'
+python extract_Enzian_U250_required_data.py --dbname SIFT100M --index_key IVF8192,PQ16 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16_populated.index' --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SIFT100M_IVF8192,PQ16'
+python extract_Enzian_U250_required_data.py --dbname SBERT1000M --index_key IVF32768,PQ64 --index_dir '../trained_CPU_indexes/bench_cpu_SBERT1000M_IVF32768,PQ64_2shards/SBERT1000M_IVF32768,PQ64_populated_shard_0.index' --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SBERT1000M_IVF32768,PQ64_2shards/shard_0'
 """
 
 from __future__ import print_function
@@ -20,13 +21,13 @@ import inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0, parentdir) 
-from datasets import read_deep_fbin, read_deep_ibin
+from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_SBERT
 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dbname', type=str, default=0, help="dataset name, e.g., SIFT100M")
 parser.add_argument('--index_key', type=str, default=0, help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
-parser.add_argument('--index_dir', type=str, default=0, help="the directory of the stored index, e.g., ../trained_CPU_indexes/bench_cpu_SIFT100M_IVF1024,PQ16")
+parser.add_argument('--index_dir', type=str, default=0, help="the directory of the stored index, e.g., ../trained_CPU_indexes/bench_cpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16_populated.index")
 parser.add_argument('--output_dir', type=str, default=0, help="where to output the generated FPGA data, e.g., /home/wejiang/Faiss_Enzian_U250_index/FPGA_data_SIFT100M_IVF1024,PQ16_DDR_10_banks")
 
 args = parser.parse_args()
@@ -50,7 +51,8 @@ else:
 if args.index_dir:
     index_dir = args.index_dir
 else:
-    index_dir = '../trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
+    index_dir = '../trained_CPU_indexes/bench_cpu_{}_{}/{}_{}_populated.index'.format(
+        dbname, index_key, dbname, index_key)
 if args.output_dir:
     output_dir = args.output_dir
 else:
@@ -72,7 +74,7 @@ def ivecs_read(fname):
     return a.reshape(-1, d + 1)[:, 1:].copy()
 
 
-if not os.path.isdir(index_dir):
+if not os.path.exists(index_dir):
     raise("%s does not exist")
 
 
@@ -109,6 +111,23 @@ elif dbname.startswith('Deep'):
     # Wenqi: load xq to main memory and reshape
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
+elif dbname.startswith('SBERT'):
+    # FB1M to FB1000M
+    assert dbname[:5] == 'SBERT' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[5:-1]) # in million
+    xb = mmap_bvecs_SBERT('../sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_SBERT('../sbert/query_10K.fvecs', num_vec=10 * 1000)
+    xt = xb
+    
+    gt = read_deep_ibin('../sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32')
+
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
 else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
@@ -129,8 +148,9 @@ assert gt.shape[0] == nq
 
 def get_populated_index():
 
-    filename = "%s/%s_%s_populated.index" % (
-        index_dir, dbname, index_key)
+    # filename = "%s/%s_%s_populated.index" % (
+    #     index_dir, dbname, index_key)
+    filename = index_dir
 
     if not os.path.exists(filename):
         raise("Index does not exist!")
@@ -448,7 +468,7 @@ print("bytes of PQ codes per channel: ", len(DDR_bank_0_contents_PQ))
 print("bytes of vec IDs per channel: ", len(DDR_bank_0_contents_vec_ids))
 
 if not os.path.exists(output_dir):
-    os.mkdir(output_dir)
+    os.makedirs(output_dir)
 
 xq.tofile(os.path.join(output_dir, "query_vectors_float32_{}_{}_raw".format(
     xq.shape[0], xq.shape[1])))

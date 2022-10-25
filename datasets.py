@@ -93,7 +93,7 @@ def read_deep_fbin(filename):
 
 def read_deep_ibin(filename, dtype='int32'):
     """
-    Read *.ibin file that contains int32 or int64 vectors
+    Read *.ibin file that contains int32, uint32 or int64 vectors
 
     All embedding data is stored in .fbin format:
     [num_vectors (uint32), vector_dim (uint32), vector_array (float32)]
@@ -137,6 +137,8 @@ def write_deep_ibin(filename, vecs, dtype='int32'):
         f.write(struct.pack('<i', dim))
         if dtype == 'int32':
             vecs.astype('int32').flatten().tofile(f)
+        elif dtype == 'uint32':
+            vecs.astype('uint32').flatten().tofile(f)
         elif dtype == 'int64':
             vecs.astype('int64').flatten().tofile(f)
         else:

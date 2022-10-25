@@ -13,6 +13,9 @@ python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ3
 e.g., measure the latency distribution
 python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -overwrite 0
 
+e.g., measure the latency distribution and results, that will further be gathered
+python bench_gpu_performance_ASPLOS.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -record_computed_results 1 -overwrite 0
+
 The results are saved as an dictionary which has the following format:
     dict[dbname][index_key][ngpu][qbs][nprobe] contains several components:
     dict[dbname][index_key][ngpu][qbs][nprobe]["R1@1"]
@@ -28,7 +31,9 @@ The results are saved as an dictionary which has the following format:
     optional (record_latency_distribution == 1): 
     dict[dbname][index_key][ngpu][qbs][nprobe]["latency_distribution"] -> a list of latency (of batches) in ms
 
-
+    optional (record_computed_results == 1):
+    dict[dbname][index_key][ngpu][qbs][nprobe]["I"] -> idx, shape = np.empty((nq, topK), dtype='int64')
+    dict[dbname][index_key][ngpu][qbs][nprobe]["D"] -> dist, shape = np.empty((nq, topK), dtype='float32')
 """
 
 from __future__ import print_function
@@ -166,6 +171,7 @@ while args:
     elif a == '-index_key': index_key = str(args.pop(0))
     elif a == '-performance_dict_dir': performance_dict_dir = str(args.pop(0))
     elif a == '-record_latency_distribution': record_latency_distribution = int(args.pop(0))
+    elif a == '-record_computed_results': record_computed_results = int(args.pop(0))
     elif a == '-overwrite': overwrite = int(args.pop(0))
     else:
         print("argument %s unknown" % a, file=sys.stderr)
@@ -586,7 +592,7 @@ def eval_dataset(index, preproc):
 
             t_query_list = [] # in sec, for all runs (e.g., 5 runs per nprobe)
             
-            I = np.empty((nq, topK), dtype='int32')
+            I = np.empty((nq, topK), dtype='int64')
             D = np.empty((nq, topK), dtype='float32')
 
             for run_iter in range(nrun):
@@ -634,6 +640,10 @@ def eval_dataset(index, preproc):
 
             if record_latency_distribution: 
                 dict_perf[dbname][index_key][ngpu][qbs][nprobe]["latency_distribution"] = np.array(t_query_list) * 1000
+
+            if record_computed_results:
+                dict_perf[dbname][index_key][ngpu][qbs][nprobe]["I"] = I
+                dict_perf[dbname][index_key][ngpu][qbs][nprobe]["D"] = D
 
             total_time = np.sum(np.array(t_query_list)) 
             QPS = nrun * nq / total_time

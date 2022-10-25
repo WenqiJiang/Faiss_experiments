@@ -9,7 +9,11 @@ e.g., measure the performance of a single server
 python bench_cpu_performance_ASPLOS.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_trade_off.pkl' --record_latency_distribution 0 --overwrite 0
 
 e.g., measure the latency distribution (for distributed search QPS measurement)
-python bench_cpu_performance_ASPLOS.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution_server0.pkl' --record_latency_distribution 1 --overwrite 0
+python bench_cpu_performance_ASPLOS.py --dbname SIFT1000M --index_key IVF32768,PQ32  --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution.pkl' --record_latency_distribution 1 --overwrite 0
+
+e.g., measure the performance of one server of distributed search 
+python bench_cpu_performance_ASPLOS.py --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --shard_id 0 --performance_dict_dir './cpu_performance_result/r630_cpu_performance_latency_distribution_server0.pkl' --record_latency_distribution 1 --overwrite 0
+
 
 The results are saved as an dictionary which has the following format:
     dict[dbname][index_key][qbs][nprobe] contains several components:
@@ -37,12 +41,14 @@ import faiss
 import pickle
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
-from datasets import read_deep_fbin, read_deep_ibin
+from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_SBERT
 import argparse 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name, e.g., SIFT100M")
 parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
+parser.add_argument('--n_shards', type=int, default=None, help="e.g., can use 2 or 4 shards for large datasets")
+parser.add_argument('--shard_id', type=int, default=None, help="shard id, cooperate with n_shards")
 parser.add_argument('--overwrite', type=int, default=0, help="whether to overwrite existed performance, by default, skip existed settings")
 parser.add_argument('--record_latency_distribution', type=int, default=0, help="whether to measure")
 parser.add_argument('--performance_dict_dir', type=str, default='./cpu_performance_result/cpu_throughput_SIFT100M.pkl', help="a dictionary of d[dbname][index_key][topK][recall_goal] -> throughput (QPS)")
@@ -62,6 +68,8 @@ args = parser.parse_args()
 
 dbname = args.dbname
 index_key = args.index_key
+n_shards = args.n_shards
+shard_id = args.shard_id
 overwrite = args.overwrite
 performance_dict_dir = args.performance_dict_dir
 
@@ -157,8 +165,13 @@ def matrix_slice_iterator(x, bs):
 
 def get_populated_index():
 
-    filename = "%s/%s_%s_populated.index" % (
-        tmpdir, dbname, index_key)
+    if n_shards is not None and shard_id is not None:
+        print("n_shards: {}\tshard_id: {}".format(n_shards, shard_id))
+        filename = "%s/%s_%s_populated_shard_%s.index" % (
+            tmpdir, dbname, index_key, str(shard_id))
+    else:
+        filename = "%s/%s_%s_populated.index" % (
+            tmpdir, dbname, index_key)
 
     if not os.path.exists(filename):
         index = get_trained_index()
@@ -216,7 +229,11 @@ if dbname not in dict_perf:
 if index_key not in dict_perf[dbname]:
     dict_perf[dbname][index_key] = dict()
 
-tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
+
+if n_shards is not None and shard_id is not None:
+    tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}_{}shards'.format(dbname, index_key, n_shards)
+else:
+    tmpdir = './trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)
 
 if not os.path.isdir(tmpdir):
     print("%s does not exist, creating it" % tmpdir)
@@ -251,6 +268,28 @@ elif dbname.startswith('Deep'):
     # Wenqi: load xq to main memory and reshape
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
+
+elif dbname.startswith('SBERT'):
+    # FB1M to FB1000M
+    dataset_dir = './sbert'
+    assert dbname[:5] == 'SBERT' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[5:-1]) # in million
+    # xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
+    # xt = xb
+
+    # trim to correct size
+    # xb = xb[:dbsize * 1000 * 1000]
+    
+    gt = read_deep_ibin('sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32')
+
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
 else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
