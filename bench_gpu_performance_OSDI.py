@@ -113,7 +113,7 @@ replicas = 1  # nb of replicas of sharded dataset
 qbs_list = [1, 2, 4, 8, 16, 32, 64, 128, 256]
 qbs_list.reverse() # using large batches first since they are faster
 
-nprobes = [1 << l for l in range(8)] # 1 to 128
+nprobes = [1 << l for l in range(7)] # 1 to 64, nprobe=128 for SBERT3000M -> cudaMalloc Fail
 # Wenqi edited, origin use_precomputed_tables=True
 #use_precomputed_tables = False
 use_precomputed_tables = True
@@ -346,6 +346,11 @@ if dbname:
 
         # Wenqi: use true for >= 64 byte PQ code
         # https://github.com/facebookresearch/faiss/wiki/Faiss-on-the-GPU
+        # RuntimeError: Error in void faiss::gpu::GpuIndexIVFPQ::verifySettings_() const at 
+        #   /root/miniconda3/conda-bld/faiss-pkg_1641228905850/work/faiss/gpu/GpuIndexIVFPQ.cu:443: 
+        #   Error: 'requiredSmemSize <= getMaxSharedMemPerBlock(config_.device)' failed: Device 0 has 
+        #   49152 bytes of shared memory, while 8 bits per code and 64 sub-quantizers requires 65536 bytes. 
+        #   Consider useFloat16LookupTables and/or reduce parameters
         use_float16 = True 
     else:
         print('unknown dataset', dbname, file=sys.stderr)
