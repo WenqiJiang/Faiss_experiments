@@ -43,7 +43,7 @@ import pickle
 
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
-from datasets import read_deep_fbin, read_deep_ibin
+from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_SBERT
 
 ####################################################################
 # Parse command line
