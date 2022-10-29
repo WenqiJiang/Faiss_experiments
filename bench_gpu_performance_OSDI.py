@@ -43,7 +43,7 @@ import pickle
 
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
-from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_SBERT
+from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_SBERT, mmap_bvecs_GNN
 
 ####################################################################
 # Parse command line
@@ -352,6 +352,36 @@ if dbname:
         #   49152 bytes of shared memory, while 8 bits per code and 64 sub-quantizers requires 65536 bytes. 
         #   Consider useFloat16LookupTables and/or reduce parameters
         use_float16 = True 
+
+    elif dbname.startswith('GNN'):
+        # FB1M to FB1000M
+        dataset_dir = './MariusGNN/'
+        assert dbname[:3] == 'GNN' 
+        assert dbname[-1] == 'M'
+        dbsize = int(dbname[3:-1]) # in million
+        # xb = mmap_bvecs_GNN('MariusGNN/embeddings.bin', num_vec=int(dbsize * 1e6))
+        xq = mmap_bvecs_GNN('MariusGNN/query_10K.fvecs', num_vec=10 * 1000)
+        # xt = xb
+
+        # trim to correct size
+        # xb = xb[:dbsize * 1000 * 1000]
+    
+        gt = read_deep_ibin('MariusGNN/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32') 
+        # Wenqi: load xq to main memory and reshape
+        xq = xq.astype('float32').copy()
+        xq = np.array(xq, dtype=np.float32)
+
+        query_num = xq.shape[0]
+        print('query shape: ', xq.shape)
+        # Wenqi: use true for >= 64 byte PQ code
+        # https://github.com/facebookresearch/faiss/wiki/Faiss-on-the-GPU
+        # RuntimeError: Error in void faiss::gpu::GpuIndexIVFPQ::verifySettings_() const at 
+        #   /root/miniconda3/conda-bld/faiss-pkg_1641228905850/work/faiss/gpu/GpuIndexIVFPQ.cu:443: 
+        #   Error: 'requiredSmemSize <= getMaxSharedMemPerBlock(config_.device)' failed: Device 0 has 
+        #   49152 bytes of shared memory, while 8 bits per code and 64 sub-quantizers requires 65536 bytes. 
+        #   Consider useFloat16LookupTables and/or reduce parameters
+        use_float16 = True 
+
     else:
         print('unknown dataset', dbname, file=sys.stderr)
         sys.exit(1)

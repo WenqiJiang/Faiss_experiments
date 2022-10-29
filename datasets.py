@@ -72,6 +72,14 @@ def mmap_bvecs_SBERT(fname, num_vec=int(1e6)):
     x = np.memmap(fname, dtype='float32', mode='r')
     return x.reshape(-1, d)
 
+def mmap_bvecs_GNN(fname, num_vec=int(1e6)):
+    """
+    SBERT, 384 dim, no header
+    """
+    d = 256
+    x = np.memmap(fname, dtype='float32', mode='r')
+    return x.reshape(-1, d)
+
 def read_deep_fbin(filename):
     """
     Read *.fbin file that contains float32 vectors

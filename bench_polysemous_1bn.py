@@ -7,7 +7,7 @@ Example usage:
     python bench_polysemous_1bn.py --on_disk 0 --dbname SIFT100M --index_key IVF4096,PQ16 --parametersets 'nprobe=1 nprobe=32'
     python bench_polysemous_1bn.py --on_disk 0 --dbname SIFT1M --index_key IVF4096,Flat --parametersets 'nprobe=1 nprobe=32'
 For large dataset that needs multiple servers / FPGAs for the search, using the shard option (need to add populated index shard by shard), e.g.:
-    python bench_polysemous_1bn.py --on_disk 0 --dbname SBERT1000M --index_key IVF32768,PQ64 --n_shards 2 --shard_id 1 --parametersets 'nprobe=1 nprobe=32'
+    python bench_polysemous_1bn.py --on_disk 0 --dbname GNN1400M --index_key IVF32768,PQ64 --n_shards 2 --shard_id 1 --parametersets 'nprobe=1 nprobe=32'
     python bench_polysemous_1bn.py --on_disk 0 --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --shard_id 3 --parametersets 'nprobe=1 nprobe=32'
 
 Note! Use on_disk = 1 only when
@@ -29,7 +29,8 @@ import re
 import faiss
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
-from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_FB, mmap_bvecs_SBERT
+from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_FB, \
+    mmap_bvecs_SBERT, mmap_bvecs_GNN
 
 import argparse 
 parser = argparse.ArgumentParser()
@@ -155,6 +156,28 @@ elif dbname.startswith('SBERT'):
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
 
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
+
+elif dbname.startswith('GNN'):
+    # FB1M to FB1000M
+    dataset_dir = './MariusGNN/'
+    assert dbname[:3] == 'GNN' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[3:-1]) # in million
+    xb = mmap_bvecs_GNN('MariusGNN/embeddings.bin', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_GNN('MariusGNN/query_10K.fvecs', num_vec=10 * 1000)
+    xt = xb
+
+    # trim to correct size
+    xb = xb[:dbsize * 1000 * 1000]
+   
+    gt = read_deep_ibin('MariusGNN/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32') 
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    nb, D = xb.shape # same as SIFT
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)
 

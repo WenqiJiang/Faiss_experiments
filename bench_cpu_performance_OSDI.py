@@ -45,7 +45,7 @@ import faiss
 import pickle
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
-from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_SBERT
+from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_SBERT, mmap_bvecs_GNN
 import argparse 
 
 parser = argparse.ArgumentParser()
@@ -289,6 +289,27 @@ elif dbname.startswith('SBERT'):
     
     gt = read_deep_ibin('sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32')
 
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
+
+elif dbname.startswith('GNN'):
+    # FB1M to FB1000M
+    dataset_dir = './MariusGNN/'
+    assert dbname[:3] == 'GNN' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[3:-1]) # in million
+    # xb = mmap_bvecs_GNN('MariusGNN/embeddings.bin', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_GNN('MariusGNN/query_10K.fvecs', num_vec=10 * 1000)
+    # xt = xb
+
+    # trim to correct size
+    # xb = xb[:dbsize * 1000 * 1000]
+
+    gt = read_deep_ibin('MariusGNN/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32') 
     # Wenqi: load xq to main memory and reshape
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)

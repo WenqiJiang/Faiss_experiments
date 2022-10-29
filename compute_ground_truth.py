@@ -3,6 +3,7 @@ This script is used to compute the ground truth for datasets, e.g., Deep100M
 
 Usage:
     python compute_ground_truth.py --dbname Deep1M 
+    python compute_ground_truth.py --dbname GNN1M 
     python compute_ground_truth.py --dbname SBERT500M  # compute all results linearly, or merge results after individual batch search
     python compute_ground_truth.py --dbname SBERT500M --batch_ID 1 # only compute 100M dataset of batch_ID=1
 
@@ -29,7 +30,7 @@ import argparse
 import gc
 import faiss
 from datasets import read_deep_fbin, read_deep_ibin, write_deep_fbin, \
-    write_deep_ibin, mmap_bvecs_FB, mmap_bvecs_SBERT
+    write_deep_ibin, mmap_bvecs_FB, mmap_bvecs_SBERT, mmap_bvecs_GNN
 
 from multiprocessing.dummy import Pool as ThreadPool
 
@@ -92,6 +93,26 @@ elif dbname.startswith('SBERT'):
     dbsize = int(dbname[5:-1]) # in million
     xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
     xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
+
+    # trim to correct size
+    xb = xb[:dbsize * 1000 * 1000]
+    
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    nb, D = xb.shape # same as SIFT
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
+
+elif dbname.startswith('GNN'):
+    # FB1M to FB1000M
+    dataset_dir = './MariusGNN/'
+    assert dbname[:3] == 'GNN' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[3:-1]) # in million
+    xb = mmap_bvecs_GNN('MariusGNN/embeddings.bin', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_GNN('MariusGNN/query_10K.fvecs', num_vec=10 * 1000)
 
     # trim to correct size
     xb = xb[:dbsize * 1000 * 1000]
