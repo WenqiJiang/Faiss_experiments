@@ -42,10 +42,10 @@ assert performance_dict_dir[-4:] == '.pkl'
 performance_dict_list = []
 for shard_id in range(n_shards):
     performance_dict_dir_shard = performance_dict_dir[:-4] + '_shard_{}'.format(shard_id)
-    # cmd = "python bench_cpu_performance_OSDI.py --dbname {} --index_key {} --n_shards {} --shard_id {} --performance_dict_dir {} --record_latency_distribution {} --record_computed_results {} --overwrite {}".format(
-    #     dbname, index_key, n_shards, shard_id, performance_dict_dir_shard, record_latency_distribution, record_computed_results, overwrite)
-    # print("Running command:\n{}".format(cmd))
-    # os.system(cmd)
+    cmd = "python bench_cpu_performance_OSDI.py --dbname {} --index_key {} --n_shards {} --shard_id {} --performance_dict_dir {} --record_latency_distribution {} --record_computed_results {} --overwrite {}".format(
+        dbname, index_key, n_shards, shard_id, performance_dict_dir_shard, record_latency_distribution, record_computed_results, overwrite)
+    print("Running command:\n{}".format(cmd))
+    os.system(cmd)
     with open(performance_dict_dir_shard, 'rb') as f:
         dict_perf = pickle.load(f)
         performance_dict_list.append(dict_perf)
