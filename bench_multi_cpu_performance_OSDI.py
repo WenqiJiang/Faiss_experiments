@@ -124,6 +124,9 @@ elif dbname.startswith('GNN'):
     # Wenqi: load xq to main memory and reshape
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
+    # The dataset is highly skewed (imbalance factor > 30), only search a subset to speedup the test
+    num_query_for_eval = 1000
+    xq = xq[:num_query_for_eval]
 
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)

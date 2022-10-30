@@ -30,7 +30,7 @@ import argparse
 import gc
 import faiss
 from datasets import read_deep_fbin, read_deep_ibin, write_deep_fbin, \
-    write_deep_ibin, mmap_bvecs_FB, mmap_bvecs_SBERT, mmap_bvecs_GNN
+    write_deep_ibin, mmap_bvecs_FB, mmap_bvecs_SBERT, mmap_bvecs_GNN, mmap_bvecs_Journal
 
 from multiprocessing.dummy import Pool as ThreadPool
 
@@ -113,6 +113,26 @@ elif dbname.startswith('GNN'):
     dbsize = int(dbname[3:-1]) # in million
     xb = mmap_bvecs_GNN('MariusGNN/embeddings.bin', num_vec=int(dbsize * 1e6))
     xq = mmap_bvecs_GNN('MariusGNN/query_10K.fvecs', num_vec=10 * 1000)
+
+    # trim to correct size
+    xb = xb[:dbsize * 1000 * 1000]
+    
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    nb, D = xb.shape # same as SIFT
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
+
+elif dbname.startswith('Journal'): # Roger's 4M sample
+    # FB1M to FB1000M
+    dataset_dir = './Journal/'
+    assert dbname[:7] == 'Journal' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[7:-1]) # in million
+    xb = mmap_bvecs_Journal('Journal/livejournal_embeddings.bin', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_Journal('Journal/query_10K.fvecs', num_vec=10 * 1000)
 
     # trim to correct size
     xb = xb[:dbsize * 1000 * 1000]

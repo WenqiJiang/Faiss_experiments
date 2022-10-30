@@ -30,7 +30,7 @@ import faiss
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
 from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_FB, \
-    mmap_bvecs_SBERT, mmap_bvecs_GNN
+    mmap_bvecs_SBERT, mmap_bvecs_GNN, mmap_bvecs_Journal
 
 import argparse 
 parser = argparse.ArgumentParser()
@@ -181,6 +181,28 @@ elif dbname.startswith('GNN'):
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)
 
+elif dbname.startswith('Journal'): # Roger's 4M sample
+    # FB1M to FB1000M
+    dataset_dir = './Journal/'
+    assert dbname[:7] == 'Journal' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[7:-1]) # in million
+    xb = mmap_bvecs_Journal('Journal/livejournal_embeddings.bin', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_Journal('Journal/query_10K.fvecs', num_vec=10 * 1000)
+    xt = xb
+
+    # trim to correct size
+    xb = xb[:dbsize * 1000 * 1000]
+    
+    gt = read_deep_ibin('Journal/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32') 
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    nb, D = xb.shape # same as SIFT
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
+
 else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
@@ -318,7 +340,9 @@ def get_populated_index():
 #################################################################
 
 index = get_populated_index()
-
+if "IVF" in index_key:
+    print("IVF imbalanced factor: ", index.invlists.imbalance_factor())
+    
 ps = faiss.ParameterSpace()
 ps.initialize(index)
 
