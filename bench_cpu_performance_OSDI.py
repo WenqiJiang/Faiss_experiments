@@ -331,7 +331,7 @@ else:
     sys.exit(1)
 
 nq, d = xq.shape
-assert gt.shape[0] == nq
+# assert gt.shape[0] == nq
 
 
 index = get_populated_index()
