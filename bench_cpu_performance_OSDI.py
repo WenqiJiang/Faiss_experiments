@@ -321,6 +321,7 @@ elif dbname.startswith('GNN'):
     # The dataset is highly skewed (imbalance factor > 30), only search a subset to speedup the test
     num_query_for_eval = 1000
     xq = xq[:num_query_for_eval]
+    gt = gt[:num_query_for_eval]
 
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)
@@ -331,7 +332,7 @@ else:
     sys.exit(1)
 
 nq, d = xq.shape
-# assert gt.shape[0] == nq
+assert gt.shape[0] == nq
 
 
 index = get_populated_index()
