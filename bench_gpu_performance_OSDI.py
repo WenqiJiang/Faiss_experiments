@@ -10,6 +10,7 @@ nrun = number of runs to average the performance (the GPU runtime is not very st
 e.g., measure the performance of a single server
 python bench_gpu_performance_OSDI.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
 python bench_gpu_performance_OSDI.py -dbname SBERT3000M -index_key IVF65536,PQ64  -ngpu 8 -nrun 5 -performance_dict_dir './gpu_performance_result/V100_32GB_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
+python bench_gpu_performance_OSDI.py -dbname GNN1400M -index_key IVF32768,PQ64  -ngpu 5 -nrun 5 -performance_dict_dir './gpu_performance_result/V100_32GB_gpu_performance_trade_off.pkl' -record_latency_distribution 0 -overwrite 0
 
 e.g., measure the latency distribution
 python bench_gpu_performance_OSDI.py -dbname SIFT1000M -index_key IVF32768,PQ32  -ngpu 4 -nrun 5 -performance_dict_dir './gpu_performance_result/Titan_X_gpu_performance_latency_distribution.pkl' -record_latency_distribution 1 -overwrite 0
@@ -392,6 +393,12 @@ if dbname:
         #   49152 bytes of shared memory, while 8 bits per code and 64 sub-quantizers requires 65536 bytes. 
         #   Consider useFloat16LookupTables and/or reduce parameters
         use_float16 = True 
+
+        # 4 GPU for 1400M: RuntimeError: Exception thrown from index 0: Error in virtual 
+        # void* faiss::gpu::StandardGpuResourcesImpl::allocMemory(const faiss::gpu::AllocRequest&) 
+        # at /root/miniconda3/conda-bld/faiss-pkg_1641228905850/work/faiss/gpu/StandardGpuResources.cpp:452: 
+        # Error: 'err == cudaSuccess' failed: StandardGpuResources: alloc fail type TemporaryMemoryOverflow 
+        # dev 0 space Device stream 0x7effcc5f47a0 size 4513349632 bytes (cudaMalloc error out of memory [2])
 
     else:
         print('unknown dataset', dbname, file=sys.stderr)

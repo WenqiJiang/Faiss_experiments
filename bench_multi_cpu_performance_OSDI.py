@@ -251,7 +251,7 @@ for qbs in qbs_list:
         latency_array = np.array(latency_tmp_list)
         tail_latency_ms = latency_array.max(axis=0) # decides by the highest latency per batch
         total_sec = np.sum(tail_latency_ms) / 1000
-        real_QPS = 10000 / total_sec
+        real_QPS = query_num / total_sec
         sorted_t_query_list = np.sort(np.array(tail_latency_ms))
         latency_50 = sorted_t_query_list[np.amin([len(sorted_t_query_list) - 1, int(np.ceil(len(sorted_t_query_list) * 0.5))])]
         latency_95 = sorted_t_query_list[np.amin([len(sorted_t_query_list) - 1, int(np.ceil(len(sorted_t_query_list) * 0.95))])]
