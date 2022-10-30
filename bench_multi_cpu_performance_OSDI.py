@@ -55,7 +55,6 @@ for shard_id in range(n_shards):
 topK = 100
 qbs_list = [1, 2, 4, 8, 16, 32, 64]
 qbs_list.reverse() # using large batches first since they are faster
-nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
 
 # load the ground truth
 if dbname.startswith('SIFT'):
@@ -69,6 +68,7 @@ if dbname.startswith('SIFT'):
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
     gt = np.array(gt, dtype=np.int32)
+    nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
 
 elif dbname.startswith('Deep'):
 
@@ -84,6 +84,7 @@ elif dbname.startswith('Deep'):
     # Wenqi: load xq to main memory and reshape
     xq = xq.astype('float32').copy()
     xq = np.array(xq, dtype=np.float32)
+    nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
 
 elif dbname.startswith('SBERT'):
     # FB1M to FB1000M
@@ -106,6 +107,7 @@ elif dbname.startswith('SBERT'):
 
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)
+    nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
 
 elif dbname.startswith('GNN'):
     # FB1M to FB1000M
@@ -130,6 +132,7 @@ elif dbname.startswith('GNN'):
 
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)
+    nprobe_list = [1, 2, 4, 8, 16, 32]
 else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)

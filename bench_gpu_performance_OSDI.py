@@ -113,7 +113,6 @@ replicas = 1  # nb of replicas of sharded dataset
 qbs_list = [1, 2, 4, 8, 16, 32, 64, 128, 256]
 qbs_list.reverse() # using large batches first since they are faster
 
-nprobes = [1 << l for l in range(7)] # 1 to 64, nprobe=128 for SBERT3000M -> cudaMalloc Fail
 # Wenqi edited, origin use_precomputed_tables=True
 #use_precomputed_tables = False
 use_precomputed_tables = True
@@ -307,6 +306,8 @@ if dbname:
 
         gt = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, 'bigann/gnd/idx_%dM.ivecs' % dbsize)))
 
+        nprobes = [1, 2, 4, 8, 16, 32, 64, 128] 
+
     elif dbname.startswith('Deep'):
 
         assert dbname[:4] == 'Deep' 
@@ -322,6 +323,8 @@ if dbname:
         xq = xq.astype('float32').copy()
         xq = np.array(xq, dtype=np.float32)
 
+        nprobes = [1, 2, 4, 8, 16, 32, 64, 128] 
+        
     elif dbname.startswith('SBERT'):
         # FB1M to FB1000M
         dataset_dir = './sbert'
@@ -344,6 +347,7 @@ if dbname:
         query_num = xq.shape[0]
         print('query shape: ', xq.shape)
 
+        nprobes = [1, 2, 4, 8, 16, 32, 64] # 1 to 64, nprobe=128 for SBERT3000M -> cudaMalloc Fail
         # Wenqi: use true for >= 64 byte PQ code
         # https://github.com/facebookresearch/faiss/wiki/Faiss-on-the-GPU
         # RuntimeError: Error in void faiss::gpu::GpuIndexIVFPQ::verifySettings_() const at 
@@ -376,6 +380,9 @@ if dbname:
 
         query_num = xq.shape[0]
         print('query shape: ', xq.shape)
+
+        nprobes = [1, 2, 4, 8, 16, 32] # > 32 no recall improvement
+
         # Wenqi: use true for >= 64 byte PQ code
         # https://github.com/facebookresearch/faiss/wiki/Faiss-on-the-GPU
         # RuntimeError: Error in void faiss::gpu::GpuIndexIVFPQ::verifySettings_() const at 
