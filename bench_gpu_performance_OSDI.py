@@ -713,11 +713,11 @@ def eval_dataset(index, preproc):
             dict_perf[dbname][index_key][ngpu][qbs][nprobe]["QPS"] = QPS
             
             sorted_t_query_list = np.sort(np.array(t_query_list))
-            latency_50 = sorted_t_query_list[np.amin([len(sorted_t_query_list), int(np.ceil(len(sorted_t_query_list) * 0.5))])] * 1000
+            latency_50 = sorted_t_query_list[np.amin([len(sorted_t_query_list) - 1, int(np.ceil(len(sorted_t_query_list) * 0.5))])] * 1000
             print("latency(50%)/ms = {:.4f}".format(latency_50), end='\t')
             dict_perf[dbname][index_key][ngpu][qbs][nprobe]["latency@50"] = latency_50
 
-            latency_95 = sorted_t_query_list[np.amin([len(sorted_t_query_list), int(np.ceil(len(sorted_t_query_list) * 0.95))])] * 1000
+            latency_95 = sorted_t_query_list[np.amin([len(sorted_t_query_list) - 1, int(np.ceil(len(sorted_t_query_list) * 0.95))])] * 1000
             print("latency(95%)/ms = {:.4f}".format(latency_95))
             dict_perf[dbname][index_key][ngpu][qbs][nprobe]["latency@95"] = latency_95
 
