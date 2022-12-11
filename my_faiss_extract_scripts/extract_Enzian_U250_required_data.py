@@ -2,8 +2,9 @@
 OPQ not supported 
 
 Usage e.g.: 
-python extract_Enzian_U250_required_data.py --dbname SIFT100M --index_key IVF8192,PQ16 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16_populated.index' --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SIFT100M_IVF8192,PQ16'
-python extract_Enzian_U250_required_data.py --dbname SBERT1000M --index_key IVF32768,PQ64 --index_dir '../trained_CPU_indexes/bench_cpu_SBERT1000M_IVF32768,PQ64_2shards/SBERT1000M_IVF32768,PQ64_populated_shard_0.index' --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SBERT1000M_IVF32768,PQ64_2shards/shard_0'
+python extract_Enzian_U250_required_data.py --dbname SIFT100M --index_key IVF8192,PQ16 --index_dir '../trained_CPU_indexes/bench_cpu_SIFT100M_IVF8192,PQ16/SIFT100M_IVF8192,PQ16_populated.index' --DDR_bank_num 4 --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SIFT100M_IVF8192,PQ16'
+python extract_Enzian_U250_required_data.py --dbname SBERT1000M --index_key IVF32768,PQ64 --index_dir '../trained_CPU_indexes/bench_cpu_SBERT1000M_IVF32768,PQ64_2shards/SBERT1000M_IVF32768,PQ64_populated_shard_0.index' --DDR_bank_num 4 --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SBERT1000M_IVF32768,PQ64_2shards/shard_0'
+python extract_Enzian_U250_required_data.py --dbname SBERT100M --index_key IVF65536,PQ64 --index_dir '../trained_CPU_indexes/bench_cpu_SBERT100M_IVF65536,PQ64/SBERT100M_IVF65536,PQ64_populated.index' --DDR_bank_num 3 --output_dir '/mnt/scratch/wenqi/Faiss_Enzian_U250_index/SBERT100M_IVF65536,PQ64_3_banks'
 """
 
 from __future__ import print_function
@@ -28,11 +29,13 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dbname', type=str, default=0, help="dataset name, e.g., SIFT100M")
 parser.add_argument('--index_key', type=str, default=0, help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
 parser.add_argument('--index_dir', type=str, default=0, help="the directory of the stored index, e.g., ../trained_CPU_indexes/bench_cpu_SIFT100M_IVF1024,PQ16/SIFT100M_IVF1024,PQ16_populated.index")
+parser.add_argument('--DDR_bank_num', type=int, default=4, help="number of banks used per FPGA")
 parser.add_argument('--output_dir', type=str, default=0, help="where to output the generated FPGA data, e.g., /home/wejiang/Faiss_Enzian_U250_index/FPGA_data_SIFT100M_IVF1024,PQ16_DDR_10_banks")
 
 args = parser.parse_args()
 dbname = args.dbname
 index_key = args.index_key
+DDR_bank_num = args.DDR_bank_num
 
 nlist = None
 PQ_bytes = None
@@ -247,7 +250,7 @@ print("Contents of a single cluster:")
 print("==== Vector IDs ====\n{}\n\nshape: {}\n".format(list_vec_ids, list_vec_ids.shape))
 print("==== PQ codes ====\n{}\n\nshape: {}\n".format(list_PQ_codes, list_PQ_codes.shape))
 
-def get_contents_to_DDR(invlists, cluster_id):
+def get_contents_to_DDR(invlists, cluster_id, DDR_bank_num=4):
     """
     For a single cluster (list), extract the contents in the format that DDR loads
       inputs:
@@ -260,10 +263,9 @@ def get_contents_to_DDR(invlists, cluster_id):
         num_vec: int, number of vectors in this Voronoi cell 
     """
 
-    DDR_bank_num=int(4)
     assert 64 % PQ_bytes == 0
     vec_per_channel_entry = int(64 / PQ_bytes)
-    vectors_per_entry = int(4 * 64 / PQ_bytes) # number of vectors per 4 DDR channels
+    vectors_per_entry = int(DDR_bank_num * 64 / PQ_bytes) # number of vectors per N DDR channels
     
     list_vec_ids, list_PQ_codes = get_invlist(invlists, cluster_id)
     list_vec_ids = np.array(list_vec_ids, dtype=np.int64)
@@ -274,8 +276,8 @@ def get_contents_to_DDR(invlists, cluster_id):
     num_vec = list_vec_ids.shape[0]
     assert list_vec_ids.shape[0] == list_PQ_codes.shape[0] / PQ_bytes
     if num_vec == 0:
-        DDR_bank_contents_PQ = [bytes()] * 4
-        DDR_bank_contents_vec_ids = [bytes()] * 4
+        DDR_bank_contents_PQ = [bytes()] * DDR_bank_num
+        DDR_bank_contents_vec_ids = [bytes()] * DDR_bank_num
         return DDR_bank_contents_PQ, DDR_bank_contents_vec_ids, 0, 0, 0
     
     size_vec_ID = 8 # faiss use 8-byte int
@@ -288,26 +290,10 @@ def get_contents_to_DDR(invlists, cluster_id):
     # convert to bytes: bytes() must be in range(0, 256)
     if num_vec % vectors_per_entry == 0 and num_vec > 0:
         # no padding
-        num_vec_per_bank = int(num_vec / 4)
-        bank_0_PQ = bytes(list_PQ_codes[0 * PQ_bytes * num_vec_per_bank: 1 * PQ_bytes * num_vec_per_bank].copy())
-        bank_1_PQ = bytes(list_PQ_codes[1 * PQ_bytes * num_vec_per_bank: 2 * PQ_bytes * num_vec_per_bank].copy())
-        bank_2_PQ = bytes(list_PQ_codes[2 * PQ_bytes * num_vec_per_bank: 3 * PQ_bytes * num_vec_per_bank].copy())
-        bank_3_PQ = bytes(list_PQ_codes[3 * PQ_bytes * num_vec_per_bank: 4 * PQ_bytes * num_vec_per_bank].copy())
-
-        DDR_bank_contents_PQ.append(bank_0_PQ)
-        DDR_bank_contents_PQ.append(bank_1_PQ)
-        DDR_bank_contents_PQ.append(bank_2_PQ)
-        DDR_bank_contents_PQ.append(bank_3_PQ)
-
-        bank_0_vec_ids = bytes(list_vec_ids[0 * num_vec_per_bank: 1 * num_vec_per_bank].copy())
-        bank_1_vec_ids = bytes(list_vec_ids[1 * num_vec_per_bank: 2 * num_vec_per_bank].copy())
-        bank_2_vec_ids = bytes(list_vec_ids[2 * num_vec_per_bank: 3 * num_vec_per_bank].copy())
-        bank_3_vec_ids = bytes(list_vec_ids[3 * num_vec_per_bank: 4 * num_vec_per_bank].copy())
-
-        DDR_bank_contents_vec_ids.append(bank_0_vec_ids)
-        DDR_bank_contents_vec_ids.append(bank_1_vec_ids)
-        DDR_bank_contents_vec_ids.append(bank_2_vec_ids)
-        DDR_bank_contents_vec_ids.append(bank_3_vec_ids)
+        num_vec_per_bank = int(num_vec / DDR_bank_num)
+        for bank_id in range(DDR_bank_num):
+            DDR_bank_contents_PQ.append(bytes(list_PQ_codes[bank_id * PQ_bytes * num_vec_per_bank: (bank_id + 1) * PQ_bytes * num_vec_per_bank].copy()))
+            DDR_bank_contents_vec_ids.append(bytes(list_vec_ids[bank_id * num_vec_per_bank: (bank_id + 1) * num_vec_per_bank].copy()))
 
     else:
         # with padding
@@ -319,107 +305,111 @@ def get_contents_to_DDR(invlists, cluster_id):
         # print('num_entries_lower_bound', num_entries_lower_bound)
         # print('num_vec_per_bank_lower_bound', num_vec_per_bank_lower_bound)
 
-        bank_0_PQ = bytes(np.array(list_PQ_codes[0 * PQ_bytes * num_vec_per_bank_lower_bound: 1 * PQ_bytes * num_vec_per_bank_lower_bound], dtype=np.uint8))
-        bank_1_PQ = bytes(list_PQ_codes[1 * PQ_bytes * num_vec_per_bank_lower_bound: 2 * PQ_bytes * num_vec_per_bank_lower_bound].copy())
-        bank_2_PQ = bytes(list_PQ_codes[2 * PQ_bytes * num_vec_per_bank_lower_bound: 3 * PQ_bytes * num_vec_per_bank_lower_bound].copy())
-        bank_3_PQ = bytes(list_PQ_codes[3 * PQ_bytes * num_vec_per_bank_lower_bound: 4 * PQ_bytes * num_vec_per_bank_lower_bound].copy())
-        
-        bank_0_vec_ids = bytes(list_vec_ids[0 * num_vec_per_bank_lower_bound: 1 * num_vec_per_bank_lower_bound].copy())
-        bank_1_vec_ids = bytes(list_vec_ids[1 * num_vec_per_bank_lower_bound: 2 * num_vec_per_bank_lower_bound].copy())
-        bank_2_vec_ids = bytes(list_vec_ids[2 * num_vec_per_bank_lower_bound: 3 * num_vec_per_bank_lower_bound].copy())
-        bank_3_vec_ids = bytes(list_vec_ids[3 * num_vec_per_bank_lower_bound: 4 * num_vec_per_bank_lower_bound].copy())
+        for bank_id in range(DDR_bank_num):
+            DDR_bank_contents_PQ.append(bytes(np.array(list_PQ_codes[bank_id * PQ_bytes * num_vec_per_bank_lower_bound: (bank_id + 1) * PQ_bytes * num_vec_per_bank_lower_bound], dtype=np.uint8)))
+            DDR_bank_contents_vec_ids.append(bytes(list_vec_ids[bank_id * num_vec_per_bank_lower_bound: (bank_id + 1) * num_vec_per_bank_lower_bound].copy()))
 
         # then handling the last row
         zero = int(0)
         empty_byte = zero.to_bytes(1, "little", signed=True)
 
-        last_PQ_codes = list_PQ_codes[4 * PQ_bytes * num_vec_per_bank_lower_bound: ].copy()
-        last_vec_ids = list_vec_ids[4 * num_vec_per_bank_lower_bound: ].copy()
+        last_PQ_codes = list_PQ_codes[DDR_bank_num * PQ_bytes * num_vec_per_bank_lower_bound: ].copy()
+        last_vec_ids = list_vec_ids[DDR_bank_num * num_vec_per_bank_lower_bound: ].copy()
 
         # print(len(last_vec_ids) / vec_per_channel_entry) 
-        if len(last_vec_ids) / vec_per_channel_entry <= 1: # only bank 0 has real contents
-            rest_vec = vec_per_channel_entry - len(last_vec_ids)
-            bank_0_PQ += bytes(last_PQ_codes)
-            bank_0_vec_ids += bytes(last_vec_ids)
-            bank_0_PQ +=  empty_byte * rest_vec * PQ_bytes
-            bank_0_vec_ids += empty_byte * rest_vec * size_vec_ID
+        channel_mix_id = int(np.ceil(len(last_vec_ids) / vec_per_channel_entry - 1))  # full + empty
 
-            bank_1_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
-            bank_2_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
-            bank_3_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
+        # all full
+        for bank_id in range(channel_mix_id):
+            DDR_bank_contents_PQ[bank_id] += bytes(last_PQ_codes[bank_id * vec_per_channel_entry * PQ_bytes : (bank_id + 1) * vec_per_channel_entry * PQ_bytes].copy())
+            DDR_bank_contents_vec_ids[bank_id] += bytes(last_vec_ids[bank_id * vec_per_channel_entry: (bank_id + 1) * vec_per_channel_entry].copy())
 
-            bank_1_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
-            bank_2_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
-            bank_3_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
+        # full + empty
+        bank_id = channel_mix_id
 
-        elif len(last_vec_ids) / vec_per_channel_entry <= 2: # only bank 0+1 has real contents
+        DDR_bank_contents_PQ[bank_id] += bytes(last_PQ_codes[bank_id * vec_per_channel_entry * PQ_bytes: ].copy())
+        DDR_bank_contents_vec_ids[bank_id] += bytes(last_vec_ids[bank_id * vec_per_channel_entry: ].copy())
+        
+        rest_vec = (bank_id + 1) * vec_per_channel_entry - len(last_vec_ids)
+        DDR_bank_contents_PQ[bank_id] +=  empty_byte * rest_vec * PQ_bytes
+        DDR_bank_contents_vec_ids[bank_id] += empty_byte * rest_vec * size_vec_ID
 
-            bank_0_PQ += bytes(last_PQ_codes[0: vec_per_channel_entry * PQ_bytes].copy())
-            bank_0_vec_ids += bytes(last_vec_ids[0: vec_per_channel_entry].copy())
+        # empty
+        for bank_id in range(channel_mix_id + 1, DDR_bank_num):
+            DDR_bank_contents_PQ[bank_id] +=  empty_byte * vec_per_channel_entry * PQ_bytes
+            DDR_bank_contents_vec_ids[bank_id] += empty_byte * vec_per_channel_entry * size_vec_ID
 
-            bank_1_PQ += bytes(last_PQ_codes[vec_per_channel_entry * PQ_bytes: ].copy())
-            bank_1_vec_ids += bytes(last_vec_ids[vec_per_channel_entry: ].copy())
+        # if len(last_vec_ids) / vec_per_channel_entry <= 1: # only bank 0 has real contents
+        #     rest_vec = vec_per_channel_entry - len(last_vec_ids)
+        #     bank_0_PQ += bytes(last_PQ_codes)
+        #     bank_0_vec_ids += bytes(last_vec_ids)
+        #     bank_0_PQ +=  empty_byte * rest_vec * PQ_bytes
+        #     bank_0_vec_ids += empty_byte * rest_vec * size_vec_ID
 
-            rest_vec = 2 * vec_per_channel_entry - len(last_vec_ids)
-            bank_1_PQ +=  empty_byte * rest_vec * PQ_bytes
-            bank_1_vec_ids += empty_byte * rest_vec * size_vec_ID
+        #     bank_1_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
+        #     bank_2_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
+        #     bank_3_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
 
-            bank_2_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
-            bank_3_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
+        #     bank_1_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
+        #     bank_2_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
+        #     bank_3_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
 
-            bank_2_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
-            bank_3_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
+        # elif len(last_vec_ids) / vec_per_channel_entry <= 2: # only bank 0+1 has real contents
 
-        elif len(last_vec_ids) / vec_per_channel_entry <= 3: # only bank 0+1+2 has real contents
+        #     bank_0_PQ += bytes(last_PQ_codes[0: vec_per_channel_entry * PQ_bytes].copy())
+        #     bank_0_vec_ids += bytes(last_vec_ids[0: vec_per_channel_entry].copy())
 
-            bank_0_PQ += bytes(last_PQ_codes[0: vec_per_channel_entry * PQ_bytes].copy())
-            bank_0_vec_ids += bytes(last_vec_ids[0: vec_per_channel_entry].copy())
+        #     bank_1_PQ += bytes(last_PQ_codes[vec_per_channel_entry * PQ_bytes: ].copy())
+        #     bank_1_vec_ids += bytes(last_vec_ids[vec_per_channel_entry: ].copy())
 
-            bank_1_PQ += bytes(last_PQ_codes[vec_per_channel_entry * PQ_bytes: 2 * vec_per_channel_entry * PQ_bytes].copy())
-            bank_1_vec_ids += bytes(last_vec_ids[vec_per_channel_entry: 2 * vec_per_channel_entry].copy())
+        #     rest_vec = 2 * vec_per_channel_entry - len(last_vec_ids)
+        #     bank_1_PQ +=  empty_byte * rest_vec * PQ_bytes
+        #     bank_1_vec_ids += empty_byte * rest_vec * size_vec_ID
 
-            bank_2_PQ += bytes(last_PQ_codes[2 * vec_per_channel_entry * PQ_bytes : ].copy())
-            bank_2_vec_ids += bytes(last_vec_ids[2 * vec_per_channel_entry : ].copy())
+        #     bank_2_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
+        #     bank_3_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
 
-            rest_vec = 3 * vec_per_channel_entry - len(last_vec_ids)
-            bank_2_PQ +=  empty_byte * rest_vec * PQ_bytes
-            bank_2_vec_ids += empty_byte * rest_vec * size_vec_ID
+        #     bank_2_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
+        #     bank_3_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
 
-            bank_3_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
-            bank_3_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
+        # elif len(last_vec_ids) / vec_per_channel_entry <= 3: # only bank 0+1+2 has real contents
 
-        elif len(last_vec_ids) / vec_per_channel_entry <= 4:
+        #     bank_0_PQ += bytes(last_PQ_codes[0: vec_per_channel_entry * PQ_bytes].copy())
+        #     bank_0_vec_ids += bytes(last_vec_ids[0: vec_per_channel_entry].copy())
 
-            bank_0_PQ += bytes(last_PQ_codes[0: vec_per_channel_entry * PQ_bytes].copy())
-            bank_0_vec_ids += bytes(last_vec_ids[0: vec_per_channel_entry].copy())
+        #     bank_1_PQ += bytes(last_PQ_codes[vec_per_channel_entry * PQ_bytes: 2 * vec_per_channel_entry * PQ_bytes].copy())
+        #     bank_1_vec_ids += bytes(last_vec_ids[vec_per_channel_entry: 2 * vec_per_channel_entry].copy())
 
-            bank_1_PQ += bytes(last_PQ_codes[vec_per_channel_entry * PQ_bytes: 2 * vec_per_channel_entry * PQ_bytes].copy())
-            bank_1_vec_ids += bytes(last_vec_ids[vec_per_channel_entry: 2 * vec_per_channel_entry].copy())
+        #     bank_2_PQ += bytes(last_PQ_codes[2 * vec_per_channel_entry * PQ_bytes : ].copy())
+        #     bank_2_vec_ids += bytes(last_vec_ids[2 * vec_per_channel_entry : ].copy())
 
-            bank_2_PQ += bytes(last_PQ_codes[2 * vec_per_channel_entry * PQ_bytes : 3 * vec_per_channel_entry * PQ_bytes].copy())
-            bank_2_vec_ids += bytes(last_vec_ids[2 * vec_per_channel_entry : 3 * vec_per_channel_entry].copy())
+        #     rest_vec = 3 * vec_per_channel_entry - len(last_vec_ids)
+        #     bank_2_PQ +=  empty_byte * rest_vec * PQ_bytes
+        #     bank_2_vec_ids += empty_byte * rest_vec * size_vec_ID
 
-            bank_3_PQ += bytes(last_PQ_codes[3 * vec_per_channel_entry * PQ_bytes : ].copy())
-            bank_3_vec_ids += bytes(last_vec_ids[3 * vec_per_channel_entry : ].copy())
+        #     bank_3_PQ += empty_byte * vec_per_channel_entry * PQ_bytes
+        #     bank_3_vec_ids += empty_byte * vec_per_channel_entry * size_vec_ID
 
-            rest_vec = 4 * vec_per_channel_entry - len(last_vec_ids)
-            bank_3_PQ +=  empty_byte * rest_vec * PQ_bytes
-            bank_3_vec_ids += empty_byte * rest_vec * size_vec_ID
+        # elif len(last_vec_ids) / vec_per_channel_entry <= 4:
 
-        else:
-            raise ValueError
+        #     bank_0_PQ += bytes(last_PQ_codes[0: vec_per_channel_entry * PQ_bytes].copy())
+        #     bank_0_vec_ids += bytes(last_vec_ids[0: vec_per_channel_entry].copy())
 
-        # store
-        DDR_bank_contents_PQ.append(bank_0_PQ)
-        DDR_bank_contents_PQ.append(bank_1_PQ)
-        DDR_bank_contents_PQ.append(bank_2_PQ)
-        DDR_bank_contents_PQ.append(bank_3_PQ)
+        #     bank_1_PQ += bytes(last_PQ_codes[vec_per_channel_entry * PQ_bytes: 2 * vec_per_channel_entry * PQ_bytes].copy())
+        #     bank_1_vec_ids += bytes(last_vec_ids[vec_per_channel_entry: 2 * vec_per_channel_entry].copy())
 
-        DDR_bank_contents_vec_ids.append(bank_0_vec_ids)
-        DDR_bank_contents_vec_ids.append(bank_1_vec_ids)
-        DDR_bank_contents_vec_ids.append(bank_2_vec_ids)
-        DDR_bank_contents_vec_ids.append(bank_3_vec_ids)
+        #     bank_2_PQ += bytes(last_PQ_codes[2 * vec_per_channel_entry * PQ_bytes : 3 * vec_per_channel_entry * PQ_bytes].copy())
+        #     bank_2_vec_ids += bytes(last_vec_ids[2 * vec_per_channel_entry : 3 * vec_per_channel_entry].copy())
 
+        #     bank_3_PQ += bytes(last_PQ_codes[3 * vec_per_channel_entry * PQ_bytes : ].copy())
+        #     bank_3_vec_ids += bytes(last_vec_ids[3 * vec_per_channel_entry : ].copy())
+
+        #     rest_vec = 4 * vec_per_channel_entry - len(last_vec_ids)
+        #     bank_3_PQ +=  empty_byte * rest_vec * PQ_bytes
+        #     bank_3_vec_ids += empty_byte * rest_vec * size_vec_ID
+
+        # else:
+        #     raise ValueError
 
     # print(len(DDR_bank_contents_PQ[0]), len(DDR_bank_contents_PQ[1]), len(DDR_bank_contents_PQ[2]), len(DDR_bank_contents_PQ[3]))
     # print(len(DDR_bank_contents_vec_ids[0]), len(DDR_bank_contents_vec_ids[1]), len(DDR_bank_contents_vec_ids[2]), len(DDR_bank_contents_vec_ids[3]))
@@ -444,49 +434,40 @@ list_num_vecs = [] # number of vectors per nlist, array of nlist elements
 list_num_entry_PQ_codes = []
 list_num_entry_vec_ID = []
 
-list_DDR_bank_0_contents_PQ = []
-list_DDR_bank_1_contents_PQ = []
-list_DDR_bank_2_contents_PQ = []
-list_DDR_bank_3_contents_PQ = []
+list_DDR_bank_contents_PQ = []
+list_DDR_bank_contents_vec_ids = []
 
-list_DDR_bank_0_contents_vec_ids = []
-list_DDR_bank_1_contents_vec_ids = []
-list_DDR_bank_2_contents_vec_ids = []
-list_DDR_bank_3_contents_vec_ids = []
+for bank_id in range(DDR_bank_num):
+    list_DDR_bank_contents_PQ.append([])
+    list_DDR_bank_contents_vec_ids.append([])
+
 
 for c in range(nlist):
     print("generating contents in cluster {}".format(c))
-    DDR_bank_contents_PQ, DDR_bank_contents_vec_ids, num_vec_in_cell, num_entry_PQ_codes, num_entry_vec_ID = get_contents_to_DDR(invlists, c)
+    DDR_bank_contents_PQ, DDR_bank_contents_vec_ids, num_vec_in_cell, num_entry_PQ_codes, num_entry_vec_ID = get_contents_to_DDR(invlists, c, DDR_bank_num)
     
-    list_DDR_bank_0_contents_PQ.append(DDR_bank_contents_PQ[0])
-    list_DDR_bank_1_contents_PQ.append(DDR_bank_contents_PQ[1])
-    list_DDR_bank_2_contents_PQ.append(DDR_bank_contents_PQ[2])
-    list_DDR_bank_3_contents_PQ.append(DDR_bank_contents_PQ[3])
-
-    list_DDR_bank_0_contents_vec_ids.append(DDR_bank_contents_vec_ids[0])
-    list_DDR_bank_1_contents_vec_ids.append(DDR_bank_contents_vec_ids[1])
-    list_DDR_bank_2_contents_vec_ids.append(DDR_bank_contents_vec_ids[2])
-    list_DDR_bank_3_contents_vec_ids.append(DDR_bank_contents_vec_ids[3])
+    for bank_id in range(DDR_bank_num):
+        list_DDR_bank_contents_PQ[bank_id].append(DDR_bank_contents_PQ[bank_id])
+        list_DDR_bank_contents_vec_ids[bank_id].append(DDR_bank_contents_vec_ids[bank_id])
 
     list_num_vecs.append(num_vec_in_cell)
     list_num_entry_PQ_codes.append(num_entry_PQ_codes)
     list_num_entry_vec_ID.append(num_entry_vec_ID)
     
 print("Concatenating data...")
-DDR_bank_0_contents_PQ = bytes(b"".join(list_DDR_bank_0_contents_PQ)) # array of nlist elements
-DDR_bank_1_contents_PQ = bytes(b"".join(list_DDR_bank_1_contents_PQ)) # array of nlist elements
-DDR_bank_2_contents_PQ = bytes(b"".join(list_DDR_bank_2_contents_PQ)) # array of nlist elements
-DDR_bank_3_contents_PQ = bytes(b"".join(list_DDR_bank_3_contents_PQ)) # array of nlist elements
+DDR_bank_contents_PQ = []
+DDR_bank_contents_vec_ids = []
 
-DDR_bank_0_contents_vec_ids = bytes(b"".join(list_DDR_bank_0_contents_vec_ids)) # array of nlist elements
-DDR_bank_1_contents_vec_ids = bytes(b"".join(list_DDR_bank_1_contents_vec_ids)) # array of nlist elements
-DDR_bank_2_contents_vec_ids = bytes(b"".join(list_DDR_bank_2_contents_vec_ids)) # array of nlist elements
-DDR_bank_3_contents_vec_ids = bytes(b"".join(list_DDR_bank_3_contents_vec_ids)) # array of nlist elements
+
+for bank_id in range(DDR_bank_num):
+    DDR_bank_contents_PQ.append(bytes(b"".join(list_DDR_bank_contents_PQ[bank_id]))) # array of nlist elements
+    DDR_bank_contents_vec_ids.append(bytes(b"".join(list_DDR_bank_contents_vec_ids[bank_id]))) # array of nlist elements
+
 
 # Reorder list_DDR_bank_contents_PQ
 print("list_num_vecs:\n", list_num_vecs)
-print("bytes of PQ codes per channel: ", len(DDR_bank_0_contents_PQ))
-print("bytes of vec IDs per channel: ", len(DDR_bank_0_contents_vec_ids))
+print("bytes of PQ codes per channel: ", len(DDR_bank_contents_PQ[0]))
+print("bytes of vec IDs per channel: ", len(DDR_bank_contents_vec_ids[0]))
 
 if not os.path.exists(output_dir):
     os.makedirs(output_dir)
@@ -499,23 +480,11 @@ coarse_cen.tofile(os.path.join(output_dir, "vector_quantizer_float32_{}_{}_raw".
     coarse_cen.shape[0], coarse_cen.shape[1])))
 
 # Save DDR contents 
-with open (os.path.join(output_dir, "DDR_bank_0_PQ_raw"), 'wb') as f:
-    f.write(DDR_bank_0_contents_PQ)
-with open (os.path.join(output_dir, "DDR_bank_1_PQ_raw"), 'wb') as f:
-    f.write(DDR_bank_1_contents_PQ)
-with open (os.path.join(output_dir, "DDR_bank_2_PQ_raw"), 'wb') as f:
-    f.write(DDR_bank_2_contents_PQ)
-with open (os.path.join(output_dir, "DDR_bank_3_PQ_raw"), 'wb') as f:
-    f.write(DDR_bank_3_contents_PQ)
-
-with open (os.path.join(output_dir, "DDR_bank_0_vec_ID_raw"), 'wb') as f:
-    f.write(DDR_bank_0_contents_vec_ids)
-with open (os.path.join(output_dir, "DDR_bank_1_vec_ID_raw"), 'wb') as f:
-    f.write(DDR_bank_1_contents_vec_ids)
-with open (os.path.join(output_dir, "DDR_bank_2_vec_ID_raw"), 'wb') as f:
-    f.write(DDR_bank_2_contents_vec_ids)
-with open (os.path.join(output_dir, "DDR_bank_3_vec_ID_raw"), 'wb') as f:
-    f.write(DDR_bank_3_contents_vec_ids)
+for bank_id in range(DDR_bank_num):
+    with open (os.path.join(output_dir, "DDR_bank_{}_PQ_raw".format(bank_id)), 'wb') as f:
+        f.write(DDR_bank_contents_PQ[bank_id])
+    with open (os.path.join(output_dir, "DDR_bank_{}_vec_ID_raw".format(bank_id)), 'wb') as f:
+        f.write(DDR_bank_contents_vec_ids[bank_id])
 
 
 # Save control contents
@@ -546,8 +515,8 @@ for c in range(1, nlist):
 size_vec_ID = 8 # faiss use 8-byte int
 assert len(list_nlist_PQ_codes_start_addr) == len(list_num_vecs) and\
     len(list_nlist_vec_ID_start_addr) == len(list_num_vecs)
-assert (list_nlist_vec_ID_start_addr[-1] + list_num_entry_vec_ID[-1]) * size_vec_ID == len(DDR_bank_0_contents_vec_ids)
-assert (list_nlist_PQ_codes_start_addr[-1] + list_num_entry_PQ_codes[-1]) * 64 == len(DDR_bank_0_contents_PQ) 
+assert (list_nlist_vec_ID_start_addr[-1] + list_num_entry_vec_ID[-1]) * size_vec_ID == len(DDR_bank_contents_vec_ids[0])
+assert (list_nlist_PQ_codes_start_addr[-1] + list_num_entry_PQ_codes[-1]) * 64 == len(DDR_bank_contents_PQ[0]) 
 
 list_nlist_PQ_codes_start_addr = np.array(list_nlist_PQ_codes_start_addr, dtype=np.int32)
 list_nlist_vec_ID_start_addr = np.array(list_nlist_vec_ID_start_addr, dtype=np.int32)

@@ -166,6 +166,7 @@ elif dbname.startswith('GNN'):
     assert dbname[-1] == 'M'
     dbsize = int(dbname[3:-1]) # in million
     xb = mmap_bvecs_GNN('MariusGNN/embeddings.bin', num_vec=int(dbsize * 1e6))
+    
     xq = mmap_bvecs_GNN('MariusGNN/query_10K.fvecs', num_vec=10 * 1000)
     xt = xb
 
