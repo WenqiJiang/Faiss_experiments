@@ -283,10 +283,10 @@ if dbname:
         assert dbname[-1] == 'M'
         dbsize = int(dbname[4:-1]) # in million
         # xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
-        xq = read_deep_fbin('deep1b/query.public.10K.fbin')
+        xq = read_deep_fbin('../deep1b/query.public.10K.fbin')
         # xt = read_deep_fbin('deep1b/learn.350M.fbin')
 
-        gt_I = read_deep_ibin('deep1b/gt_idx_{}M.ibin'.format(dbsize))
+        gt_I = read_deep_ibin('../deep1b/gt_idx_{}M.ibin'.format(dbsize))
 
         # Wenqi: load xq to main memory and reshape
         xq = xq.astype('float32').copy()
