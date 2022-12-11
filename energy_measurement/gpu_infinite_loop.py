@@ -252,7 +252,7 @@ gt_sl = None
 if dbname: 
     print("Preparing dataset", dbname)
 
-    cacheroot = os.path.abspath(os.path.join(cur_script_dir, '../trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key)))
+    cacheroot = os.path.abspath(os.path.join(cur_script_dir, '../trained_CPU_indexes/bench_cpu_{}_{}'.format(dbname, index_key)))
     #cacheroot = os.path.relpath('./trained_GPU_indexes/bench_gpu_{}_{}'.format(dbname, index_key))
 
     if not os.path.isdir(cacheroot):
@@ -400,7 +400,7 @@ if dbname:
     cent_cachefile = '%s/%scent_%s_%s%s.npy' % (
         cacheroot, prefix, dbname, preproc_str, ivf_str)
 
-    index_cachefile = '%s/%s%s_%s%s,%s.index' % (
+    index_cachefile = '%s/%s%s_%s%s,%s_populated.index' % (
         cacheroot, prefix, dbname, preproc_str, ivf_str, pqflat_str)
 
 
@@ -747,13 +747,7 @@ def compute_populated_index_2(preproc):
 def get_populated_index(preproc):
 
     if not index_cachefile or not os.path.exists(index_cachefile):
-        if not altadd:
-            gpu_index, indexall = compute_populated_index(preproc)
-        else:
-            gpu_index, indexall = compute_populated_index_2(preproc)
-        if index_cachefile:
-            print("store", index_cachefile)
-            faiss.write_index(indexall, index_cachefile)
+        raise ValueError
     else:
         print("load", index_cachefile)
         indexall = faiss.read_index(index_cachefile)
