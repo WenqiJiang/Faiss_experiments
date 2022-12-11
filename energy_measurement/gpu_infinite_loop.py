@@ -262,7 +262,7 @@ if dbname:
     if dbname.startswith('SIFT'):
         # SIFT1M to SIFT1000M
         dbsize = int(dbname[4:-1])
-        xb = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, '../bigann/bigann_base.bvecs')))
+        # xb = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, '../bigann/bigann_base.bvecs')))
         xq = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, '../bigann/bigann_query.bvecs')))
 
         # Wenqi adjusted, only use the first 1000 queries
@@ -270,21 +270,27 @@ if dbname:
         # xq = xq[:1000]
         print(xq.shape)
 
-        xt = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, '../bigann/bigann_learn.bvecs')))
+        # xt = mmap_bvecs(os.path.abspath(os.path.join(cur_script_dir, '../bigann/bigann_learn.bvecs')))
 
         # trim xb to correct size
-        xb = xb[:dbsize * 1000 * 1000]
+        # xb = xb[:dbsize * 1000 * 1000]
 
         gt_I = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, '../bigann/gnd/idx_%dM.ivecs' % dbsize)))
 
-    elif dbname == 'Deep1B':
-        xb = mmap_fvecs(os.path.abspath(os.path.join(cur_script_dir, '../deep1b/base.fvecs')))
-        xq = mmap_fvecs(os.path.abspath(os.path.join(cur_script_dir, '../deep1b/deep1B_queries.fvecs')))
-        xt = mmap_fvecs(os.path.abspath(os.path.join(cur_script_dir, '../deep1b/learn.fvecs')))
-        # deep1B's train is is outrageously big
-        xt = xt[:10 * 1000 * 1000]
-        gt_I = ivecs_read(os.path.abspath(os.path.join(cur_script_dir, '../deep1b/deep1B_groundtruth.ivecs')))
+    elif dbname.startswith('Deep'):
 
+        assert dbname[:4] == 'Deep' 
+        assert dbname[-1] == 'M'
+        dbsize = int(dbname[4:-1]) # in million
+        # xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
+        xq = read_deep_fbin('deep1b/query.public.10K.fbin')
+        # xt = read_deep_fbin('deep1b/learn.350M.fbin')
+
+        gt_I = read_deep_ibin('deep1b/gt_idx_{}M.ibin'.format(dbsize))
+
+        # Wenqi: load xq to main memory and reshape
+        xq = xq.astype('float32').copy()
+        xq = np.array(xq, dtype=np.float32)
     elif dbname.startswith('SBERT'):
         # FB1M to FB1000M
         dataset_dir = '../sbert'
@@ -306,8 +312,14 @@ if dbname:
 
         query_num = xq.shape[0]
         print('query shape: ', xq.shape)
-
-        nprobe_list = [1, 2, 4, 8, 16, 32, 64, 128]
+        # Wenqi: use true for >= 64 byte PQ code
+        # https://github.com/facebookresearch/faiss/wiki/Faiss-on-the-GPU
+        # RuntimeError: Error in void faiss::gpu::GpuIndexIVFPQ::verifySettings_() const at 
+        #   /root/miniconda3/conda-bld/faiss-pkg_1641228905850/work/faiss/gpu/GpuIndexIVFPQ.cu:443: 
+        #   Error: 'requiredSmemSize <= getMaxSharedMemPerBlock(config_.device)' failed: Device 0 has 
+        #   49152 bytes of shared memory, while 8 bits per code and 64 sub-quantizers requires 65536 bytes. 
+        #   Consider useFloat16LookupTables and/or reduce parameters
+        use_float16 = True 
 
     elif dbname.startswith('GNN'):
         # FB1M to FB1000M
@@ -334,7 +346,21 @@ if dbname:
         query_num = xq.shape[0]
         print('query shape: ', xq.shape)
 
-        nprobe_list = [1, 2, 4, 8, 16, 32]
+        # Wenqi: use true for >= 64 byte PQ code
+        # https://github.com/facebookresearch/faiss/wiki/Faiss-on-the-GPU
+        # RuntimeError: Error in void faiss::gpu::GpuIndexIVFPQ::verifySettings_() const at 
+        #   /root/miniconda3/conda-bld/faiss-pkg_1641228905850/work/faiss/gpu/GpuIndexIVFPQ.cu:443: 
+        #   Error: 'requiredSmemSize <= getMaxSharedMemPerBlock(config_.device)' failed: Device 0 has 
+        #   49152 bytes of shared memory, while 8 bits per code and 64 sub-quantizers requires 65536 bytes. 
+        #   Consider useFloat16LookupTables and/or reduce parameters
+        use_float16 = True 
+
+        # 4 GPU for 1400M: RuntimeError: Exception thrown from index 0: Error in virtual 
+        # void* faiss::gpu::StandardGpuResourcesImpl::allocMemory(const faiss::gpu::AllocRequest&) 
+        # at /root/miniconda3/conda-bld/faiss-pkg_1641228905850/work/faiss/gpu/StandardGpuResources.cpp:452: 
+        # Error: 'err == cudaSuccess' failed: StandardGpuResources: alloc fail type TemporaryMemoryOverflow 
+        # dev 0 space Device stream 0x7effcc5f47a0 size 4513349632 bytes (cudaMalloc error out of memory [2])
+
     else:
         print('unknown dataset', dbname, file=sys.stderr)
         sys.exit(1)
@@ -518,38 +544,16 @@ if dbname:
 #################################################################
 
 
-def train_preprocessor():
-    print("train preproc", preproc_str)
-    d = xt.shape[1]
-    t0 = time.time()
-    if preproc_str.startswith('OPQ'):
-        fi = preproc_str[3:-1].split('_')
-        m = int(fi[0])
-        dout = int(fi[1]) if len(fi) == 2 else d
-        preproc = faiss.OPQMatrix(d, m, dout)
-    elif preproc_str.startswith('PCAR'):
-        dout = int(preproc_str[4:-1])
-        preproc = faiss.PCAMatrix(d, dout, 0, True)
-    else:
-        assert False
-    preproc.train(sanitize(xt[:1000000]))
-    print("preproc train done in %.3f s" % (time.time() - t0))
-    return preproc
-
-
 def get_preprocessor():
     
     if preproc_str:
         if not preproc_cachefile or not os.path.exists(preproc_cachefile):
-            preproc = train_preprocessor()
-            if preproc_cachefile:
-                print("store", preproc_cachefile)
-                faiss.write_VectorTransform(preproc, preproc_cachefile)
+            raise ValueError
         else:
             print("load", preproc_cachefile)
             preproc = faiss.read_VectorTransform(preproc_cachefile)
     else:
-        d = xb.shape[1]
+        d = xq.shape[1]
         preproc = IdentPreproc(d)
     return preproc
 
@@ -558,44 +562,13 @@ def get_preprocessor():
 # Prepare the coarse quantizer
 #################################################################
 
-
-def train_coarse_quantizer(x, k, preproc):
-    d = preproc.d_out
-    clus = faiss.Clustering(d, k)
-    clus.verbose = True
-    # clus.niter = 2
-    clus.max_points_per_centroid = 10000000
-
-    print("apply preproc on shape", x.shape, 'k=', k)
-    t0 = time.time()
-    x = preproc.apply_py(sanitize(x))
-    print("   preproc %.3f s output shape %s" % (
-        time.time() - t0, x.shape))
-
-    vres, vdev = make_vres_vdev()
-    index = faiss.index_cpu_to_gpu_multiple(
-        vres, vdev, faiss.IndexFlatL2(d))
-
-    clus.train(x, index)
-    centroids = faiss.vector_float_to_array(clus.centroids)
-
-    return centroids.reshape(k, d)
-
-
 def prepare_coarse_quantizer(preproc):
 
     if cent_cachefile and os.path.exists(cent_cachefile):
         print("load centroids", cent_cachefile)
         centroids = np.load(cent_cachefile)
     else:
-        nt = max(1000000, 256 * ncent)
-        print("train coarse quantizer...")
-        t0 = time.time()
-        centroids = train_coarse_quantizer(xt[:nt], ncent, preproc)
-        print("Coarse train time: %.3f s" % (time.time() - t0))
-        if cent_cachefile:
-            print("store centroids", cent_cachefile)
-            np.save(cent_cachefile, centroids)
+        raise ValueError
 
     coarse_quantizer = faiss.IndexFlatL2(preproc.d_out)
     coarse_quantizer.add(centroids)
