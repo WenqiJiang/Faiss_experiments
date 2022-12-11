@@ -378,9 +378,9 @@ if dbname:
         gt_I = None
 
 
-    print("sizes: B %s Q %s T %s gt %s" % (
-        xb.shape, xq.shape, xt.shape,
-        gt_I.shape if gt_I is not None else None))
+    # print("sizes: B %s Q %s T %s gt %s" % (
+    #     xb.shape, xq.shape, xt.shape,
+    #     gt_I.shape if gt_I is not None else None))
 
 
 
