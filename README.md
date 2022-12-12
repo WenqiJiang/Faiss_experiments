@@ -15,7 +15,7 @@ Either install cpu or gpu version (the gpu version already includes the cpu vers
 ```
 % cpu version 
 conda install -c conda-forge openblas
-conda install -c pytorch faiss-cpu
+conda install -c pytorch faiss-cpu==1.7.1
 ```
 
 ```
