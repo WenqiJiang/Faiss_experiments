@@ -4,6 +4,9 @@ Use bench_polysemous_1bn.py to run a bunch of workloads, use cpu-energy-meter to
 
 Use m5.metal -> 2 sockets; 48 physical cores; 96 virtual cores; Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz; 512 GB
 
+## Summary
+
+Energy consumption projected to m5.4xlarge: 56.144 ~ 61.216 W
 ## SIFT
 
 python bench_polysemous_1bn.py --on_disk 0 --dbname SIFT1000M --index_key IVF32768,PQ32 --parametersets 'nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32 nprobe=32'
