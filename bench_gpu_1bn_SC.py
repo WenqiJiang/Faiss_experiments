@@ -7,20 +7,20 @@
 
 """
 usage 1, throughput test on a single parameter setting
-python bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
+python bench_gpu_1bn_SC.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
 
 optionally save the response time (as a list in pkl)
-python bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M_{index}_{topK}_{nprobe/recall}_{qbs}.pkl' -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
+python bench_gpu_1bn_SC.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M_{index}_{topK}_{nprobe/recall}_{qbs}.pkl' -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
 
 usage 2, (throughput and response time) test on a range of parameter settings (by loading a recall dictionary)
-python bench_gpu_1bn.py -load_from_dict 1 -overwrite 0 -nprobe_dict_dir './recall_info/gpu_recall_index_nprobe_pairs_SIFT100M.pkl' -throughput_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M.pkl' -ngpu 1 -startgpu 0 -tempmem $[1536*1024*1024] -qbs 1
+python bench_gpu_1bn_SC.py -load_from_dict 1 -overwrite 0 -nprobe_dict_dir './recall_info/gpu_recall_index_nprobe_pairs_SIFT100M.pkl' -throughput_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M.pkl' -ngpu 1 -startgpu 0 -tempmem $[1536*1024*1024] -qbs 1
     output dictionary format: d_throughput[dbname][index_key][topK][recall_goal][query_batch_size] = throughput
 
 or specify specific recall goal and topK on a specific database index in the dict
-python bench_gpu_1bn.py -load_from_dict 1 -overwrite 0 -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 10 -recall_goal 80 -nprobe_dict_dir './recall_info/gpu_recall_index_nprobe_pairs_SIFT100M.pkl' -throughput_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M.pkl' -ngpu 1 -startgpu 0 -tempmem $[1536*1024*1024] -qbs 1
+python bench_gpu_1bn_SC.py -load_from_dict 1 -overwrite 0 -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 10 -recall_goal 80 -nprobe_dict_dir './recall_info/gpu_recall_index_nprobe_pairs_SIFT100M.pkl' -throughput_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M.pkl' -ngpu 1 -startgpu 0 -tempmem $[1536*1024*1024] -qbs 1
 
 usage 3, recall test: find min nprobe to achieve certain recall 
-python bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -recall_goal 80 -topK 10 -ngpu 1 -startgpu 1 -qbs 512
+python bench_gpu_1bn_SC.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -recall_goal 80 -topK 10 -ngpu 1 -startgpu 1 -qbs 512
 """
 
 from __future__ import print_function
@@ -49,7 +49,7 @@ Besides training / searching,
 this script can also be used to automatically search the min(nprobe) that can achieve
 the target recall R@k using dataset D and index I.
 
-Usage: bench_gpu_1bn.py dataset indextype [options]
+Usage: bench_gpu_1bn_SC.py dataset indextype [options]
 
 dataset: set of vectors to operate on.
    Supported: SIFT1M, SIFT2M, ..., SIFT1000M or Deep1B
@@ -795,6 +795,7 @@ def eval_dataset(index, preproc):
 
             inter_res = ''
 
+            response_time = [] # in terms of ms
             for i0, xs in dataset_iterator(xq, preproc, sl):
                 # print('\r%d/%d (%.3f s%s)   ' % (
                 #     i0, nq, time.time() - t0, inter_res), end=' ')
@@ -803,7 +804,10 @@ def eval_dataset(index, preproc):
                 i1 = i0 + xs.shape[0]
                 # Wenqi: debugging memory overflow
                 # print(xs.shape)
+                t_RT_start = time.time()
                 Di, Ii = index.search(xs, topK)
+                t_RT_end = time.time()
+                response_time.append(1000 * (t_RT_end - t_RT_start)) 
 
                 I[i0:i1] = Ii
                 D[i0:i1] = Di
@@ -812,6 +816,15 @@ def eval_dataset(index, preproc):
                     ires = eval_intersection_measure(
                         gt_I[:, :topK], I[:nq_gt])
                     inter_res = ', %.4f' % ires
+
+        global response_time_dict_dir
+        response_time = np.array(response_time, dtype=np.float32)
+        if response_time_dict_dir is not None: 
+            with open(response_time_dict_dir, 'wb') as f:
+                # dictionary format:
+                #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = response time array (np array)
+                #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+                pickle.dump(response_time, f, protocol=4)
 
         t1 = time.time()
         if knngraph:
@@ -1210,12 +1223,6 @@ def recall_eval(index, preproc):
 
 
         response_time = np.array(response_time, dtype=np.float32)
-        if response_time_dict_dir is not None: 
-            with open(response_time_dict_dir, 'wb') as f:
-                # dictionary format:
-                #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = response time array (np array)
-                #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
-                pickle.dump(response_time, f, protocol=4)
 
         if recall >= recall_goal:
             max_range = nprobe # max range is used when recall goal is achieved
