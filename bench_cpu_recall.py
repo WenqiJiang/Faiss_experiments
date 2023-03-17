@@ -281,7 +281,7 @@ ivfpq_stats = faiss.cvar.indexIVFPQ_stats
 ivf_stats = faiss.cvar.indexIVF_stats
 
 # we do queries in a single thread
-faiss.omp_set_num_threads(1)
+# faiss.omp_set_num_threads(1)
 
 print(' ' * len("nprobe=1024"), '\t', 'R@{}'.format(topK))
 

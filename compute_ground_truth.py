@@ -4,6 +4,7 @@ This script is used to compute the ground truth for datasets, e.g., Deep100M
 Usage:
     python compute_ground_truth.py --dbname Deep1M 
     python compute_ground_truth.py --dbname GNN1M 
+    python compute_ground_truth.py --dbname SBERT_NQ1M  
     python compute_ground_truth.py --dbname SBERT500M  # compute all results linearly, or merge results after individual batch search
     python compute_ground_truth.py --dbname SBERT500M --batch_ID 1 # only compute 100M dataset of batch_ID=1
 
@@ -85,7 +86,7 @@ elif dbname.startswith('FB'):
     nb, D = xb.shape # same as SIFT
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)
-elif dbname.startswith('SBERT'):
+elif dbname.startswith('SBERT') and not dbname.startswith('SBERT_NQ'):
     # FB1M to FB1000M
     dataset_dir = './sbert'
     assert dbname[:5] == 'SBERT' 
@@ -93,6 +94,26 @@ elif dbname.startswith('SBERT'):
     dbsize = int(dbname[5:-1]) # in million
     xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
     xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
+
+    # trim to correct size
+    xb = xb[:dbsize * 1000 * 1000]
+    
+    # Wenqi: load xq to main memory and reshape
+    xq = xq.astype('float32').copy()
+    xq = np.array(xq, dtype=np.float32)
+
+    nb, D = xb.shape # same as SIFT
+    query_num = xq.shape[0]
+    print('query shape: ', xq.shape)
+
+elif dbname.startswith('SBERT_NQ'):
+    # FB1M to FB1000M
+    dataset_dir = './sbert_natural_question_with_frequency'
+    assert dbname[:8] == 'SBERT_NQ' 
+    assert dbname[-1] == 'M'
+    dbsize = int(dbname[8:-1]) # in million
+    xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
+    xq = mmap_bvecs_SBERT('sbert_natural_question_with_frequency/sbert_natural_question_with_frequency_10K.fvecs', num_vec=10 * 1000)
 
     # trim to correct size
     xb = xb[:dbsize * 1000 * 1000]
