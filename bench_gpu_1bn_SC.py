@@ -7,7 +7,10 @@
 
 """
 usage 1, throughput test on a single parameter setting
-python bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -throughput_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M.pkl' -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
+python bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
+
+optionally save the response time (as a list in pkl)
+python bench_gpu_1bn.py -dbname SIFT100M -index_key OPQ16,IVF262144,PQ16 -topK 100 -ngpu 1 -startgpu 1 -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M_{index}_{topK}_{nprobe/recall}_{qbs}.pkl' -tempmem $[1536*1024*1024] -nprobe 1,32 -qbs 512
 
 usage 2, (throughput and response time) test on a range of parameter settings (by loading a recall dictionary)
 python bench_gpu_1bn.py -load_from_dict 1 -overwrite 0 -nprobe_dict_dir './recall_info/gpu_recall_index_nprobe_pairs_SIFT100M.pkl' -throughput_dict_dir './gpu_performance_result/gpu_throughput_SIFT100M.pkl' -response_time_dict_dir './gpu_performance_result/gpu_response_time_SIFT100M.pkl' -ngpu 1 -startgpu 0 -tempmem $[1536*1024*1024] -qbs 1
@@ -1179,10 +1182,14 @@ def recall_eval(index, preproc):
 
             inter_res = ''
 
+            response_time = [] # in terms of ms
             for i0, xs in dataset_iterator(xq, preproc, sl):
 
                 i1 = i0 + xs.shape[0]
+                t_RT_start = time.time()
                 Di, Ii = index.search(xs, topK)
+                t_RT_end = time.time()
+                response_time.append(1000 * (t_RT_end - t_RT_start)) 
 
                 I[i0:i1] = Ii
                 D[i0:i1] = Di
@@ -1200,6 +1207,15 @@ def recall_eval(index, preproc):
         nok = (I[:, :topK] == gtc).sum()
         recall = nok / float(nq)
         print("1-R@%d: %.4f" % (topK, recall), end='\n')
+
+
+        response_time = np.array(response_time, dtype=np.float32)
+        if response_time_dict_dir is not None: 
+            with open(response_time_dict_dir, 'wb') as f:
+                # dictionary format:
+                #   d[dbname (str)][index_key (str)][topK (int)][recall_goal (float, 0~1)] = response time array (np array)
+                #   e.g., d["SIFT100M"]["IVF4096,PQ16"][10][0.7]
+                pickle.dump(response_time, f, protocol=4)
 
         if recall >= recall_goal:
             max_range = nprobe # max range is used when recall goal is achieved
