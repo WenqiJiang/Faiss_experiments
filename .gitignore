@@ -10,7 +10,6 @@ SYN_dataset/
 bigann
 __pycache__
 bench_cpu_*/*
-bench_gpu_1bn_*
 bench_gpu_1bn_*/*
 bench_gpu_1bn_coarse/*
 trained_CPU_indexes
