@@ -705,8 +705,6 @@ def compute_populated_index_2(preproc):
 
     return None, indexall
 
-
-
 def get_populated_index(preproc):
 
     if not index_cachefile or not os.path.exists(index_cachefile):

@@ -248,7 +248,8 @@ if not args.load_from_dict: # Mode A: using arguments passed by the arguments
     for param in parametersets:
         print(param, '\t', end=' ')
         sys.stdout.flush()
-        ps.set_index_parameters(index, param)
+        if index_key != 'Flat':
+            ps.set_index_parameters(index, param)
         
 
         I = np.empty((nq, topK), dtype='int32')

@@ -88,6 +88,22 @@ def mmap_bvecs_Journal(fname, num_vec=int(1e6)):
     x = np.memmap(fname, dtype='float32', mode='r')
     return x.reshape(-1, d)
 
+def mmap_bvecs_SIFT_replicate(fname, dim_replicate_factor=8, num_replicate_factor=2):
+    # Create the SYN dataset for RALM
+    x = np.memmap(fname, dtype='uint8', mode='r')
+    d = x[:4].view('int32')[0]
+    x = x.reshape(-1, d + 4)[:, 4:]
+    nb = x.shape[0]
+    # repeat: [1, 2, 3] -> [1, 1, 2, 2, 3, 3]
+    x_rep = np.repeat(x, dim_replicate_factor, axis=1)
+    x_rep = np.repeat(x_rep, num_replicate_factor, axis=0)
+    # concatenate: [1, 2, 3] -> [1, 2, 3, 1, 2, 3], but seems it requires to allocate memory for data 
+    # x_rep = np.concatenate([x] * dim_replicate_factor, axis=1)
+    # x_rep = np.concatenate([x_rep] * num_replicate_factor, axis=0)
+    assert x_rep.shape == (nb * num_replicate_factor, d * dim_replicate_factor)
+    
+    return x_rep
+
 def read_deep_fbin(filename):
     """
     Read *.fbin file that contains float32 vectors

@@ -1,14 +1,16 @@
 """
+adapted from run_RALM_SYN_dataset.py
+
 Example usage:
     <on_disk> -> 0 = in memory; 1 = on disk
     <dbnam> e.g., SIFT100M
     <index_key> e.g., IVF4096,PQ16
     <parametersets>, e.g., 'nprobe=1 nprobe=32
-    python bench_polysemous_1bn.py --on_disk 0 --dbname SIFT100M --index_key IVF4096,PQ16 --parametersets 'nprobe=1 nprobe=32'
-    python bench_polysemous_1bn.py --on_disk 0 --dbname SIFT1M --index_key IVF4096,Flat --parametersets 'nprobe=1 nprobe=32'
+    python run_RALM_SYN_dataset.py --on_disk 0 --dbname RALM-S2000M --index_key IVF32768,PQ32 --parametersets 'nprobe=1 nprobe=32'
+    python run_RALM_SYN_dataset.py --on_disk 0 --dbname RALM-L2000M --index_key IVF32768,PQ64 --parametersets 'nprobe=1 nprobe=32'
 For large dataset that needs multiple servers / FPGAs for the search, using the shard option (need to add populated index shard by shard), e.g.:
-    python bench_polysemous_1bn.py --on_disk 0 --dbname GNN1400M --index_key IVF32768,PQ64 --n_shards 2 --shard_id 1 --parametersets 'nprobe=1 nprobe=32'
-    python bench_polysemous_1bn.py --on_disk 0 --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --shard_id 3 --parametersets 'nprobe=1 nprobe=32'
+    python run_RALM_SYN_dataset.py --on_disk 0 --dbname GNN1400M --index_key IVF32768,PQ64 --n_shards 2 --shard_id 1 --parametersets 'nprobe=1 nprobe=32'
+    python run_RALM_SYN_dataset.py --on_disk 0 --dbname SBERT3000M --index_key IVF65536,PQ64 --n_shards 4 --shard_id 3 --parametersets 'nprobe=1 nprobe=32'
 
 Note! Use on_disk = 1 only when
     (1) the trained index is built in memory (not by ondisk merge)
@@ -30,7 +32,7 @@ import faiss
 from multiprocessing.dummy import Pool as ThreadPool
 from datasets import ivecs_read
 from datasets import read_deep_fbin, read_deep_ibin, mmap_bvecs_FB, \
-    mmap_bvecs_SBERT, mmap_bvecs_GNN, mmap_bvecs_Journal
+    mmap_bvecs_SBERT, mmap_bvecs_GNN, mmap_bvecs_Journal, mmap_bvecs_SIFT_replicate
 
 import argparse 
 parser = argparse.ArgumentParser()
@@ -89,6 +91,17 @@ if not os.path.isdir(tmpdir):
 # Prepare dataset
 #################################################################
 
+dim_replicate_factor = 1
+num_replicate_factor = 1
+
+def replicate_vectors(x, dim_replicate_factor=1, num_replicate_factor=1):
+    # x: (n, d)
+    # return: (n, d * dim_replicate_factor * num_replicate_factor)
+    n, d = x.shape
+    x = np.tile(x, (1, dim_replicate_factor))
+    x = np.tile(x, (num_replicate_factor, 1))
+    assert x.shape == (n * num_replicate_factor, d * dim_replicate_factor)
+    return x
 
 print("Preparing dataset", dbname)
 
@@ -104,106 +117,37 @@ if dbname.startswith('SIFT'):
 
     gt = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
 
-elif dbname.startswith('Deep'):
+if dbname.startswith('RALM'):
+    
+    if dbname.startswith('RALM-S'):
+        dim_replicate_factor = 4 # dim = 512
+    elif dbname.startswith('RALM-L'):
+        dim_replicate_factor = 8 # dim = 1024
+    else:
+        print('unknown RALM dataset', dbname, file=sys.stderr)
+        sys.exit(1)
+    num_replicate_factor = 2 # num = up to 2 B
+         
+    # SIFT1M to SIFT1000M
+    dbsize = int(dbname[6:-1])
+    # xb = mmap_bvecs_SIFT_replicate('bigann/bigann_base.bvecs', 
+    #     dim_replicate_factor=dim_replicate_factor, num_replicate_factor=num_replicate_factor)
+    # xq = mmap_bvecs_SIFT_replicate('bigann/bigann_query.bvecs', 
+    #     dim_replicate_factor=dim_replicate_factor, num_replicate_factor=num_replicate_factor)
+    # xt = mmap_bvecs_SIFT_replicate('bigann/bigann_learn.bvecs', 
+    #     dim_replicate_factor=dim_replicate_factor, num_replicate_factor=num_replicate_factor)
 
-    assert dbname[:4] == 'Deep' 
-    assert dbname[-1] == 'M'
-    dbsize = int(dbname[4:-1]) # in million
-    xb = read_deep_fbin('deep1b/base.1B.fbin')[:dbsize * 1000 * 1000]
-    xq = read_deep_fbin('deep1b/query.public.10K.fbin')
-    xt = read_deep_fbin('deep1b/learn.350M.fbin')
+    xb = mmap_bvecs('bigann/bigann_base.bvecs')
+    xq = mmap_bvecs('bigann/bigann_query.bvecs')
+    xt = mmap_bvecs('bigann/bigann_learn.bvecs')
 
-    gt = read_deep_ibin('deep1b/gt_idx_{}M.ibin'.format(dbsize))
-
-    # Wenqi: load xq to main memory and reshape
-    xq = xq.astype('float32').copy()
-    xq = np.array(xq, dtype=np.float32)
-
-elif dbname.startswith('FB'):
-
-    assert dbname[:2] == 'FB' 
-    assert dbname[-1] == 'M'
-    dbsize = int(dbname[2:-1]) # in million
-    xb = mmap_bvecs_FB('Facebook_SimSearchNet++/FB_ssnpp_database.u8bin', num_vec=dbsize * 1000 * 1000)
-    xq = mmap_bvecs_FB('Facebook_SimSearchNet++/FB_ssnpp_public_queries.u8bin', num_vec=10 * 1000)
-    xt = xb
-
-    # trim to correct size
-    xb = xb[:dbsize * 1000 * 1000]
-
-    gt = read_deep_ibin('Facebook_SimSearchNet++/gt_idx_{}M.ibin'.format(dbsize), dtype='int32')
-
-    # Wenqi: load xq to main memory and reshape
-    xq = xq.astype('float32').copy()
-    xq = np.array(xq, dtype=np.float32)
-
-elif dbname.startswith('SBERT'):
-    # FB1M to FB1000M
-    dataset_dir = './sbert'
-    assert dbname[:5] == 'SBERT' 
-    assert dbname[-1] == 'M'
-    dbsize = int(dbname[5:-1]) # in million
-    xb = mmap_bvecs_SBERT('sbert/sbert3B.fvecs', num_vec=int(dbsize * 1e6))
-    xq = mmap_bvecs_SBERT('sbert/query_10K.fvecs', num_vec=10 * 1000)
-    xt = xb
-
-    # trim to correct size
+    # trim xb to correct size
     xb = xb[:dbsize * 1000 * 1000]
     
-    gt = read_deep_ibin('sbert/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32')
-
-    # Wenqi: load xq to main memory and reshape
-    xq = xq.astype('float32').copy()
-    xq = np.array(xq, dtype=np.float32)
-
-    query_num = xq.shape[0]
-    print('query shape: ', xq.shape)
-
-elif dbname.startswith('GNN'):
-    # FB1M to FB1000M
-    dataset_dir = './MariusGNN/'
-    assert dbname[:3] == 'GNN' 
-    assert dbname[-1] == 'M'
-    dbsize = int(dbname[3:-1]) # in million
-    xb = mmap_bvecs_GNN('MariusGNN/embeddings.bin', num_vec=int(dbsize * 1e6))
-    
-    xq = mmap_bvecs_GNN('MariusGNN/query_10K.fvecs', num_vec=10 * 1000)
-    xt = xb
-
-    # trim to correct size
+    # trim xb to correct size
     xb = xb[:dbsize * 1000 * 1000]
-   
-    gt = read_deep_ibin('MariusGNN/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32') 
-    # Wenqi: load xq to main memory and reshape
-    xq = xq.astype('float32').copy()
-    xq = np.array(xq, dtype=np.float32)
 
-    nb, D = xb.shape # same as SIFT
-    query_num = xq.shape[0]
-    print('query shape: ', xq.shape)
-
-
-elif dbname.startswith('Journal'): # Roger's 4M sample
-    # FB1M to FB1000M
-    dataset_dir = './Journal/'
-    assert dbname[:7] == 'Journal' 
-    assert dbname[-1] == 'M'
-    dbsize = int(dbname[7:-1]) # in million
-    xb = mmap_bvecs_Journal('Journal/livejournal_embeddings.bin', num_vec=int(dbsize * 1e6))
-    xq = mmap_bvecs_Journal('Journal/query_10K.fvecs', num_vec=10 * 1000)
-    xt = xb
-
-    # trim to correct size
-    xb = xb[:dbsize * 1000 * 1000]
-    
-    gt = read_deep_ibin('Journal/gt_idx_{}M.ibin'.format(dbsize), dtype='uint32') 
-    # Wenqi: load xq to main memory and reshape
-    xq = xq.astype('float32').copy()
-    xq = np.array(xq, dtype=np.float32)
-
-    nb, D = xb.shape # same as SIFT
-    query_num = xq.shape[0]
-    print('query shape: ', xq.shape)
+    gt = ivecs_read('bigann/gnd/idx_%dM.ivecs' % dbsize)
     
 else:
     print('unknown dataset', dbname, file=sys.stderr)
@@ -250,7 +194,7 @@ def get_trained_index():
         tmpdir, dbname, index_key)
 
     if not os.path.exists(filename):
-        index = faiss.index_factory(d, index_key)
+        index = faiss.index_factory(d * dim_replicate_factor, index_key)
 
         n_train = choose_train_size(index_key)
 
@@ -258,6 +202,7 @@ def get_trained_index():
         print("Keeping %d train vectors" % xtsub.shape[0])
         # make sure the data is actually in RAM and in float
         xtsub = xtsub.astype('float32').copy()
+        xtsub = replicate_vectors(xtsub, dim_replicate_factor=dim_replicate_factor)
         index.verbose = True
 
         t0 = time.time()
@@ -316,15 +261,23 @@ def get_populated_index():
         else:
             i0 = 0
         t0 = time.time()
-        for xs in matrix_slice_iterator(xb, 100000):
-            i1 = i0 + xs.shape[0]
-            print('\radd %d:%d, %.3f s' % (i0, i1, time.time() - t0), end=' ')
-            sys.stdout.flush()
-            if index_key != 'Flat':
-                index.add_with_ids(xs, np.arange(i0, i1))
-            else:
-                index.add(xs)
-            i0 = i1
+        for i_rep in range(num_replicate_factor):
+            if nb * (i_rep + 1) > dbsize * 1e6: 
+                break
+            batch_size = 100000
+            for batch_id in range(int(np.ceil(nb / batch_size))):
+                xs = xb[batch_id * batch_size: (batch_id + 1) * batch_size].astype('float32').copy()
+                xs = replicate_vectors(xs, dim_replicate_factor=dim_replicate_factor)
+                i1 = i0 + xs.shape[0]
+                if i1 > dbsize * 1e6:
+                    break
+                print('\radd %d:%d, %.3f s' % (i0, i1, time.time() - t0), end=' ')
+                sys.stdout.flush()
+                if index_key != 'Flat':
+                    index.add_with_ids(xs, np.arange(i0, i1))
+                else:
+                    index.add(xs)
+                i0 = i1
         print()
         print("Add done in %.3f s" % (time.time() - t0))
         print("storing", filename)
@@ -353,56 +306,29 @@ ps.initialize(index)
 
 # make sure queries are in RAM
 xq = xq.astype('float32').copy()
+xq = replicate_vectors(xq, dim_replicate_factor=dim_replicate_factor)
 
 # a static C++ object that collects statistics about searches
 ivfpq_stats = faiss.cvar.indexIVFPQ_stats
 ivf_stats = faiss.cvar.indexIVF_stats
 
+# we do queries in a single thread
+# faiss.omp_set_num_threads(1)
 
-if parametersets == ['autotune'] or parametersets == ['autotuneMT']:
+print(' ' * len(parametersets[0]), '\t', 'R@1    R@10   R@100     time    %pass')
 
-    if parametersets == ['autotune']:
-        faiss.omp_set_num_threads(1)
-
-    # setup the Criterion object: optimize for 1-R@1
-    crit = faiss.OneRecallAtRCriterion(nq, 1)
-    # by default, the criterion will request only 1 NN
-    crit.nnn = 100
-    crit.set_groundtruth(None, gt.astype('int64'))
-
-    # then we let Faiss find the optimal parameters by itself
-    print("exploring operating points")
-
+for param in parametersets:
+    print(param, '\t', end=' ')
+    sys.stdout.flush()
+    if index_key != 'Flat':
+        ps.set_index_parameters(index, param)
     t0 = time.time()
-    op = ps.explore(index, xq, crit)
-    print("Done in %.3f s, available OPs:" % (time.time() - t0))
-
-    # opv is a C++ vector, so it cannot be accessed like a Python array
-    opv = op.optimal_pts
-    print("%-40s  1-R@1     time" % "Parameters")
-    for i in range(opv.size()):
-        opt = opv.at(i)
-        print("%-40s  %.4f  %7.3f" % (opt.key, opt.perf, opt.t))
-
-else:
-
-    # we do queries in a single thread
-    # faiss.omp_set_num_threads(1)
-
-    print(' ' * len(parametersets[0]), '\t', 'R@1    R@10   R@100     time    %pass')
-
-    for param in parametersets:
-        print(param, '\t', end=' ')
-        sys.stdout.flush()
-        if index_key != 'Flat':
-            ps.set_index_parameters(index, param)
-        t0 = time.time()
-        ivfpq_stats.reset()
-        ivf_stats.reset()
-        D, I = index.search(xq, 100)
-        t1 = time.time()
-        for rank in 1, 10, 100:
-            n_ok = (I[:, :rank] == gt[:, :1]).sum()
-            print("%.4f" % (n_ok / float(nq)), end=' ')
-        print("%8.3f  " % ((t1 - t0) * 1000.0 / nq))
-        # print("%5.2f" % (ivfpq_stats.n_hamming_pass * 100.0 / ivf_stats.ndis)) 
+    ivfpq_stats.reset()
+    ivf_stats.reset()
+    D, I = index.search(xq, 100)
+    t1 = time.time()
+    for rank in 1, 10, 100:
+        n_ok = (I[:, :rank] == gt[:, :1]).sum()
+        print("%.4f" % (n_ok / float(nq)), end=' ')
+    print("%8.3f  " % ((t1 - t0) * 1000.0 / nq))
+    # print("%5.2f" % (ivfpq_stats.n_hamming_pass * 100.0 / ivf_stats.ndis)) 
