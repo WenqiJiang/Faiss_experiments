@@ -152,17 +152,50 @@ elif dbname.startswith('GNN'):
     nb, D = xb.shape # same as SIFT
     query_num = xq.shape[0]
     print('query shape: ', xq.shape)
+if dbname.startswith('RALM'):
+    
+    if dbname.startswith('RALM-S'):
+        dim_replicate_factor = 4 # dim = 512
+    elif dbname.startswith('RALM-L'):
+        dim_replicate_factor = 8 # dim = 1024
+    else:
+        print('unknown RALM dataset', dbname, file=sys.stderr)
+        sys.exit(1)
+    num_replicate_factor = 2 # num = up to 2 B
+         
+    # SIFT1M to SIFT1000M
+    dbsize = int(dbname[6:-1])
+    # xb = mmap_bvecs_SIFT_replicate('bigann/bigann_base.bvecs', 
+    #     dim_replicate_factor=dim_replicate_factor, num_replicate_factor=num_replicate_factor)
+    # xq = mmap_bvecs_SIFT_replicate('bigann/bigann_query.bvecs', 
+    #     dim_replicate_factor=dim_replicate_factor, num_replicate_factor=num_replicate_factor)
+    # xt = mmap_bvecs_SIFT_replicate('bigann/bigann_learn.bvecs', 
+    #     dim_replicate_factor=dim_replicate_factor, num_replicate_factor=num_replicate_factor)
+
+    # xb = mmap_bvecs('bigann/bigann_base.bvecs')
+    xq = mmap_bvecs('../bigann/bigann_query.bvecs')
+    # xt = mmap_bvecs('bigann/bigann_learn.bvecs')
+    xq = xq.astype('float32').copy()
+    xq = np.tile(xq, (1, dim_replicate_factor))
+
+    # # trim xb to correct size
+    # xb = xb[:dbsize * 1000 * 1000]
+    
+    # # trim xb to correct size
+    # xb = xb[:dbsize * 1000 * 1000]
+
+    gt = ivecs_read('../bigann/gnd/idx_%dM.ivecs' % dbsize)
+    
 else:
     print('unknown dataset', dbname, file=sys.stderr)
     sys.exit(1)
 
 xq = np.array(xq, dtype=np.float32)
 
-print("sizes: B %s Q %s T %s gt %s" % (
-    xb.shape, xq.shape, xt.shape, gt.shape))
+# print("sizes: B %s Q %s T %s gt %s" % (
+#     xb.shape, xq.shape, xt.shape, gt.shape))
 
 nq, d = xq.shape
-nb, d = xb.shape
 assert gt.shape[0] == nq
 
 
@@ -205,7 +238,9 @@ def get_coarse_quantizer_centroids(index):
     e.g., nlist=1024, d=128 -> (1024, 128)
     """
     coarse_quantizer = faiss.downcast_index(index.quantizer)
-    coarse_cen = faiss.vector_to_array(coarse_quantizer.xb)
+    # coarse_cen = faiss.vector_to_array(coarse_quantizer.xb) # deprecated! worked in faiss 1.6.9, not in 1.7.2
+    coarse_cen = faiss.rev_swig_ptr(coarse_quantizer.get_xb(), nlist * d)
+    coarse_cen = coarse_cen.reshape(nlist, d)
 
     coarse_cen = coarse_cen.reshape(coarse_quantizer.ntotal, coarse_quantizer.d)
     return coarse_cen
