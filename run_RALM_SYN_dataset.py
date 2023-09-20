@@ -41,6 +41,7 @@ parser.add_argument('--dbname', type=str, default='SIFT100M', help="dataset name
 parser.add_argument('--index_key', type=str, default='IVF4096,PQ16', help="index parameters, e.g., IVF4096,PQ16 or OPQ16,IVF4096,PQ16")
 parser.add_argument('--n_shards', type=int, default=None, help="e.g., can use 2 or 4 shards for large datasets")
 parser.add_argument('--shard_id', type=int, default=None, help="shard id, cooperate with n_shards")
+parser.add_argument('--batch_size', type=int, default=None, help="batch size for search")
 parser.add_argument('--parametersets', type=str, default='nprobe=1', help="a string of nprobes, e.g., 'nprobe=1 nprobe=32'")
 
 args = parser.parse_args()
@@ -316,16 +317,24 @@ ivf_stats = faiss.cvar.indexIVF_stats
 # faiss.omp_set_num_threads(1)
 
 print(' ' * len(parametersets[0]), '\t', 'R@1    R@10   R@100     time    %pass')
+if args.batch_size is None:
+    batch_size = nq
+else:
+    batch_size = args.batch_size
 
 for param in parametersets:
     print(param, '\t', end=' ')
     sys.stdout.flush()
     if index_key != 'Flat':
         ps.set_index_parameters(index, param)
+    k = 100
+    D = np.zeros(shape=(nq, k), dtype=np.float32)
+    I = np.zeros(shape=(nq, k), dtype=np.int64)
     t0 = time.time()
     ivfpq_stats.reset()
     ivf_stats.reset()
-    D, I = index.search(xq, 100)
+    for i0 in range(0, nq, batch_size):
+        D[i0: i0 + batch_size], I[i0: i0 + batch_size] = index.search(xq[i0: i0 + batch_size], k)
     t1 = time.time()
     for rank in 1, 10, 100:
         n_ok = (I[:, :rank] == gt[:, :1]).sum()
