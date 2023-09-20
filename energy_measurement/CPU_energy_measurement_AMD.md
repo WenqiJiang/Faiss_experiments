@@ -19,7 +19,7 @@ python turbostat_energy_parsing.py --fname log_energy_idle_CPU_AMD
 
 2 sockets (16 x 2 = 32 cores):
 
-Average energy consumption:  131.4157142857143
+Average energy consumption: 85.23 W
 
 ## SIFT
 
