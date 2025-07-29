@@ -340,6 +340,66 @@ def get_populated_index():
             print("Finish saving numpy index")
     return index
 
+def calculate_recall_at_K(I, gt, k):
+    """
+    I: ANN search result. numpy array of shape (nq, ?)
+    gt: numpy array of shape (>=nq, ?)
+    """
+    assert I.shape[1] >= k
+    assert gt.shape[1] >= k
+    nq = I.shape[0]
+    total_intersect = 0
+    for i in range(nq):
+        n_intersect = np.intersect1d(I[i, :k], gt[i, :k], assume_unique=False, return_indices=False).shape[0]
+        total_intersect += n_intersect
+    return total_intersect / (nq * k)
+
+def calculate_recall_one_at_K(I, gt, k):
+    assert I.shape[1] >= k
+    assert gt.shape[1] >= k
+    nq = I.shape[0]
+    total_intersect = (I[:, :k] == gt[:, :1]).sum()
+    return total_intersect / float(nq)
+
+def print_recall_at_K(I, gt): 
+    """
+    print recall (depends on the shape of I, return 1/10/100)
+    """
+    k_max = I.shape[1]
+    if k_max >= 100:
+        k_set = [1, 10, 100]
+        print(' ' * 4, '\t', 'R@1    R@10   R@100')
+    elif k_max >= 10:
+        k_set = [1, 10]
+        print(' ' * 4, '\t', 'R@1    R@10')
+    else:
+        k_set = [1]
+        print(' ' * 4, '\t', 'R@1')
+    for k in k_set:
+        end = '\t' if k != k_set[-1] else '\n'
+        if k == k_set[0]:
+            print('\t', end=" ")
+        print("{:.4f}".format(calculate_recall_at_K(I, gt, k)), end=end)
+
+def print_recall_one_at_K(I, gt): 
+    """
+    print recall (depends on the shape of I, return 1/10/100)
+    """
+    k_max = I.shape[1]
+    if k_max >= 100:
+        k_set = [1, 10, 100]
+        print(' ' * 4, '\t', 'R1@1    R1@10   R1@100')
+    elif k_max >= 10:
+        k_set = [1, 10]
+        print(' ' * 4, '\t', 'R1@1    R1@10')
+    else:
+        k_set = [1]
+        print(' ' * 4, '\t', 'R1@1')
+    for k in k_set:
+        end = '\t' if k != k_set[-1] else '\n'
+        if k == k_set[0]:
+            print('\t', end=" ")
+        print("{:.4f}".format(calculate_recall_one_at_K(I, gt, k)), end=end)
 
 #################################################################
 # Perform searches
@@ -395,10 +455,10 @@ else:
     # we do queries in a single thread
     # faiss.omp_set_num_threads(1)
 
-    print(' ' * len(parametersets[0]), '\t', 'R@1    R@10   R@100     time    %pass')
+    # print(' ' * len(parametersets[0]), '\t', 'R@1    R@10   R@100     time    %pass')
 
     for param in parametersets:
-        print(param, '\t', end=' ')
+        print(param, '\t', end='\n')
         sys.stdout.flush()
         if index_key != 'Flat':
             ps.set_index_parameters(index, param)
@@ -411,8 +471,7 @@ else:
         for i0 in range(0, nq, batch_size):
             D[i0: i0 + batch_size], I[i0: i0 + batch_size] = index.search(xq[i0: i0 + batch_size], k)
         t1 = time.time()
-        for rank in 1, 10, 100:
-            n_ok = (I[:, :rank] == gt[:, :1]).sum()
-            print("%.4f" % (n_ok / float(nq)), end=' ')
-        print("%8.3f  " % ((t1 - t0) * 1000.0 / nq))
+        print_recall_at_K(I, gt)
+        print_recall_one_at_K(I, gt)
+        # print("%8.3f  " % ((t1 - t0) * 1000.0 / nq))
         # print("%5.2f" % (ivfpq_stats.n_hamming_pass * 100.0 / ivf_stats.ndis)) 
